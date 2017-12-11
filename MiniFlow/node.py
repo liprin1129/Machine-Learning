@@ -6,7 +6,7 @@ class Node(object):
         self.inbound_nodes = inbound_nodes
         self.outbound_nodes = []
 
-        if not self.inbound_nodes == 0:
+        if not len(self.inbound_nodes) == 0:
             for n in self.inbound_nodes:
                 n.outbound_nodes.append(self)
 
