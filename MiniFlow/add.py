@@ -5,6 +5,6 @@ class Add(Node):
         Node.__init__(self, [x, y])
         self.value = 0
         
-    def depolarization(self):
+    def forward_propagation(self):
         for inbound_node in self.inbound_nodes:
             self.value += inbound_node.value

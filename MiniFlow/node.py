@@ -14,7 +14,7 @@ class Node(object):
 
 
     @abstractmethod
-    def depolarization(self):
+    def forward_propagation(self):
         pass
     
     """ # if abs module isn't allowed for your python version

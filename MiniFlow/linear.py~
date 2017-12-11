@@ -1,5 +1,0 @@
-from node import Node
-
-class Linear(Node):
-    def __init__(self, inputs, weights, bias):
-        Node.__init__(self, [input, weights, bias])

@@ -61,13 +61,18 @@ class Network(object):
 
         return input_nodes, node_group
 
+    """
     @staticmethod
     def forward_propagation(output_node, sorted_nodes):
         for node in sorted_nodes:
-            node.depolarization()
+            node.forward_propagation()
 
         return output_node.value
-    
+    """
+    @staticmethod
+    def forward_propagation(sorted_nodes):
+        for node in sorted_nodes:
+            node.forward_propagation()
 if __name__ == "__main__":
 
     from add import Add

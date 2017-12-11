@@ -5,7 +5,7 @@ class Linear(Node):
     def __init__(self, inputs, weights, bias):
         Node.__init__(self, [inputs, weights, bias])
         
-    def depolarization(self):
+    def forward_propagation(self):
         inputs = self.inbound_nodes[0].value
         weights = self.inbound_nodes[1].value
         bias = self.inbound_nodes[2].value
@@ -17,7 +17,7 @@ class Linear(Node):
 
 if __name__ == "__main__":
     from input import Input
-    from helper_class import Network
+    from network import Network
     
     inputs, weights, bias = Input(), Input(), Input()
 
