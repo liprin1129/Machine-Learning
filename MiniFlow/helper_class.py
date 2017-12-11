@@ -1,20 +1,15 @@
 from input import Input
 
-class Network_(object):
+class Network(object):
     
     @classmethod
     def topological_sort(cls, feed_dict):
         """ Khan's algorithm """
-        input_nodes, node_group =cls.__in_out_update__(Helper(), feed_dict)
-        print ("<< Input Nodes >>\n", input_nodes)
+        input_nodes, node_group =cls.__in_out_update__(Network(), feed_dict)
         sorted_nodes = []
         next_nodes = set(input_nodes)
 
-        c = 0
         while len(next_nodes) > 0:
-            print "C: ", c
-            print next_nodes, "\n"
-            c += 1
             node = next_nodes.pop()
 
             if isinstance(node, Input):
@@ -66,17 +61,21 @@ class Network_(object):
 
         return input_nodes, node_group
 
-    @classmethod
-    def network_forward_propagation(output_node, sorted_nodes):
+    @staticmethod
+    def forward_propagation(output_node, sorted_nodes):
         for node in sorted_nodes:
             node.depolarization()
+
+        return output_node.value
     
 if __name__ == "__main__":
 
     from add import Add
+    
     x, y, z = Input(), Input(), Input()
     f1 = Add(x, y)
     f2 = Add(f1, z)
     feed_dict = {x: 10, y: 20, z: 30}
     
-    print(Helper.topological_sort(feed_dict))
+    sorted_nodes = Network.topological_sort(feed_dict)
+    print(Network.forward_propagation(f2, sorted_nodes))

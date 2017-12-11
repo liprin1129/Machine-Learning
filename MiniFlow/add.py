@@ -8,4 +8,3 @@ class Add(Node):
         self.value = 0
         for inbound_node in self.inbound_nodes:
             self.value += inbound_node.value
-
