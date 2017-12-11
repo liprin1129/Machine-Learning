@@ -6,7 +6,7 @@ class Node(object):
         self.inbound_nodes = inbound_nodes
         self.outbound_nodes = []
 
-        if not self.inbound_node == 0:
+        if not self.inbound_nodes == 0:
             for n in self.inbound_nodes:
                 n.outbound_nodes.append(self)
 
@@ -14,7 +14,7 @@ class Node(object):
 
 
     @abstractmethod
-    def forward_propagation(self):
+    def depolarization(self):
         pass
     
     """ # if abs module isn't allowed for your python version

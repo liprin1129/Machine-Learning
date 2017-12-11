@@ -1,43 +1,64 @@
-from node import Node 
+from input import Input
 
-class Helper(object):
-
+class Network_(object):
+    
     @classmethod
     def topological_sort(cls, feed_dict):
         """ Khan's algorithm """
-        input_nodes, node_group = cls.__in_out_update__(feed_dict)
-
-        L = []
+        input_nodes, node_group =cls.__in_out_update__(Helper(), feed_dict)
+        print ("<< Input Nodes >>\n", input_nodes)
+        sorted_nodes = []
         next_nodes = set(input_nodes)
 
+        c = 0
         while len(next_nodes) > 0:
+            print "C: ", c
+            print next_nodes, "\n"
+            c += 1
             node = next_nodes.pop()
 
-            for out_node in node.outbound_nodes:
+            if isinstance(node, Input):
+                node.value = feed_dict[node]
                 
-        return S
+            sorted_nodes.append(node)
+            
+            for out_node in node.outbound_nodes:
+                node_group[node]['out'].remove(out_node)
+                node_group[out_node]['in'].remove(node)
 
+                if len(node_group[out_node]['in']) == 0:
+                    next_nodes.add(out_node)
+
+        return sorted_nodes
+    
+    @staticmethod
     def __in_out_update__(self, feed_dict):
+        """
+        Args:
+
+        Returns:
+        input_nodes: keys of feed_dict which represent all nodes
+        """
         # Insert inbound and outbout value for every node
         input_nodes = feed_dict.keys()
         nodes = [n for n in input_nodes]
-        all_nodes = {}
+        node_group = {}
         
-        while not len(next_nodes) - 1 > 0:
+        while len(nodes) > 0:
             selected_node = nodes.pop(0) # return the first node of nodes
-            if selected_node not in all_nodes:
-                all_nodes[selected_node] = {'in': set(), 'out': set()}
+
+            if selected_node not in node_group:
+                node_group[selected_node] = {'in': set(), 'out': set()}
 
             # iterate all outbound_nodes in the selected node
-            for out_node in node.outbound_nodes:
-
-                if out_node not in all_nodes:
-                    all_nodes[out_node] = {'in': set(), 'out': set()}
+            for idx, out_node in enumerate(selected_node.outbound_nodes):
+                if out_node not in node_group:
+                    node_group[out_node] = {'in': set(), 'out': set()}
 
                 # insert outbound_node into selected_node's inbound_node
-                all_nodes[selected_node]['out'].add[out_node]
+                node_group[selected_node]['out'].add(out_node)
                 # insert selected_node to outbound_node's inbound_node
-                all_nodes[out_node]['in'].add[selected_node]
+                node_group[out_node]['in'].add(selected_node)
 
                 # update all nodes list by inserting outbound_node if it isn't in the list.
                 if out_node not in nodes:
@@ -45,9 +66,17 @@ class Helper(object):
 
         return input_nodes, node_group
 
-if __name__ == "__main__":
-    from input import Neuron
-    x, y, z = Neuron(), Neuron(), Neuron()
+    @classmethod
+    def network_forward_propagation(output_node, sorted_nodes):
+        for node in sorted_nodes:
+            node.depolarization()
     
-    feed_dict = {x: 10, y: 20, z: None}
+if __name__ == "__main__":
+
+    from add import Add
+    x, y, z = Input(), Input(), Input()
+    f1 = Add(x, y)
+    f2 = Add(f1, z)
+    feed_dict = {x: 10, y: 20, z: 30}
+    
     print(Helper.topological_sort(feed_dict))

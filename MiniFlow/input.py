@@ -1,10 +1,10 @@
 from node import Node
 
-class Neuron(Node):
+class Input(Node):
     def __init__(self):
         Node.__init__(self)
 
-    def forward_propagation(self, value = None):
+    def depolarization(self, value = None):
         """ Or you can set input value explicitly 
         after outside of this class"""
         
