@@ -1,0 +1,26 @@
+from node import Node 
+
+class Helper(object):
+
+    @classmethod
+    def topological_sort(cls, feed_dict):
+        #vertex_nodes = feed_dict.keys()#[n for n in feed_dict.keys()]
+        
+        next_nodes = feed_dict.keys()
+        result_sort = []
+        #S = [x for x in input_nodes if x.value is not None]
+
+        while not len(next_nodes):
+            vertex = next_nodes.pop(0)
+
+            vertex.value = feed_dict[vertex] # set value for input
+            
+            result_sort.append(vertex)
+        return S
+
+if __name__ == "__main__":
+    from input import Neuron
+    x, y, z = Neuron(), Neuron(), Neuron()
+    
+    feed_dict = {x: 10, y: 20, z: None}
+    print(Helper.topological_sort(feed_dict))
