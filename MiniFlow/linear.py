@@ -9,8 +9,10 @@ class Linear(Node):
     def forward_propagation(self):
         inputs = self.inbound_nodes[0].value
         weights = self.inbound_nodes[1].value
+        #bias = np.sum(self.inbound_nodes[2].value, axis=0)
         bias = self.inbound_nodes[2].value
-
+        #print "BIAS: ", np.shape(bias)
+        
         self.value = np.dot(inputs, weights) + bias
 
         # calculation on each element (it's slower than numpy) """
@@ -24,7 +26,7 @@ class Linear(Node):
 
         for outbound_node in self.outbound_nodes:
             error = outbound_node.gradients[self]
-            
+            #print "ERROR: ", np.shape(np.sum(error, axis=0))
             """
             Partial derivatives of the error with respect to
             inputs, weights, or biases
@@ -39,4 +41,5 @@ class Linear(Node):
                 self.inbound_nodes[0].value.T, error)
 
             # Error for Biases
-            self.gradients[self.inbound_nodes[2]] += error
+            self.gradients[self.inbound_nodes[2]] += np.sum(error, axis=0)
+            #self.gradients[self.inbound_nodes[2]] += error

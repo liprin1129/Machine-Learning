@@ -2,8 +2,11 @@ from node import Node
 
 
 class Input(Node):
-    def __init__(self):
+    def __init__(self, input_value=None):
         Node.__init__(self)
+
+        if input_value is not None:
+            self.value = input_value
                 
     def forward_propagation(self, value=None):
         if value is not None:

@@ -10,19 +10,24 @@ import numpy as np
 X, y = Input(), Input()
 W, b = Input(), Input()
 
+# Training dataset
+X_ = np.array([[0.1, 0.2], [-1, -2]])
+W_ = np.random.randn(2, 1)
+b_ = np.random.randn(2, 1)
+y_ = np.reshape(np.array([[1], [0]]), (-1, 1))
+
+# Test dataset
+X_test_ = np.array([[0.1, 0.18], [-1, -2]])
+X_test = Input(X_test_)
+#X_test.value = X_test_
+
 l1 = Linear(X, W, b)
 s1 = Sigmoid(l1)
 cost = L2(y, s1)
 
-X_ = np.array([[0.1, 0.2], [-1, -2]])
-#W_ = np.reshape(np.array([[2.], [-3.]]), (2, 1))
-W_ = np.random.randn(2, 1)
-#b_ = np.reshape(np.array([-3.]), (-1, 1))
-b_ = np.random.randn(2, 1)
-y_ = np.reshape(np.array([[1], [0]]), (-1, 1))
-
 feed_dict = {X: X_, y: y_,
              W: W_, b: b_}
+
 hyper_parameters = [W, b]
 
 graph = Network.topological_sort(feed_dict)
@@ -37,4 +42,5 @@ for i in xrange(epoch):
         break
 
     if i % 10000 == 0:
-        print "<EPOCH : {0}>\n".format(i), "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
+        print "<EPOCH : {0}>\n\n".format(i), "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
+        Network.evaluate(X_test, graph)

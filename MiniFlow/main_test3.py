@@ -13,11 +13,12 @@ W1, b1 = Input(), Input()
 W2, b2 = Input(), Input()
 W3, b3 = Input(), Input()
 
+# Training dataset
 X_ = np.reshape(np.array([[0.3, 0.3, 0.3], [0.1, 0.1, 0.1]]), (2, 3))
 W1_ = np.random.randn(3, 10)
-b1_ = np.random.randn(2, 10)
+b1_ = np.random.randn(10)
 W2_ = np.random.randn(10, 2)
-b2_ = np.random.randn(2, 2)
+b2_ = np.random.randn(2)
 y_ = np.array([[1., 0.], [0., 1.]])
 
 l1 = Linear(X, W1, b1)
@@ -46,3 +47,35 @@ for i in xrange(epoch):
     if i % 10000 == 0:
         print "<EPOCH : {0}>\n".format(i)
         print "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
+        """
+        print "W1: ", np.shape(W1.value)
+        print "b1: ", np.shape(b1.value)#, "\n", b1.value
+        print "W2: ", np.shape(W2.value)
+        print "b2: ", np.shape(b2.value)#, "\n", b2.value
+        """
+
+        # Evaluation #
+        # Test dataset
+        X_t, y_t = Input(), Input()
+        W1_t, b1_t = Input(), Input()
+        W2_t, b2_t = Input(), Input()
+        W3_t, b3_t = Input(), Input()
+
+        l1_t = Linear(X_t, W1_t, b1_t)
+        s1_t = Sigmoid(l1_t)
+        l2_t = Linear(s1_t, W2_t, b2_t)
+        s2_t = Sigmoid(l2_t)
+        cost_t = L2(y_t, s2_t)
+
+        X_t_ = np.reshape(np.array([0.3, 0.8, 0.3]), (1, 3))
+        y_t_ = np.array([[1., 0.]])
+        
+        feed_dict_t = {X_t: X_t_, y_t: y_t_,
+                       W1_t: W1.value, b1_t: b1.value,
+                       W2_t: W2.value, b2_t: b2.value}
+        
+        graph_t = Network.topological_sort(feed_dict_t)
+        
+        Network.forward_propagation(graph_t)
+        print "EVALUATE COST: {0}".format(cost_t.value)
+        print "EVALUATE PRED Y: \n{0}\n-----------".format(cost_t.pred_y)

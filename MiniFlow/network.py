@@ -1,5 +1,6 @@
 from input import Input
 
+
 class Network(object):
     
     @classmethod
@@ -70,3 +71,27 @@ class Network(object):
     def backward_propagation(sorted_nodes):
         for node in sorted_nodes[::-1]:
             node.backward_propagation()
+
+    #@staticmethod
+    #def architecture(input,
+    
+    @staticmethod
+    def evaluate(test_dataset, hyper_parameters, sorted_nodes):
+        test_graph = sorted_nodes[:]
+
+        #print test_dataset[0].value
+        #print test_dataset[1].value
+        for idx, node in enumerate(sorted_nodes):
+            if isinstance(node, Input) and node not in hyper_parameters:
+                test_graph.pop(idx)
+                test_graph.insert(idx, test_dataset.pop())
+                #print node.value
+
+        for i in test_graph:
+            import numpy as np
+            print np.shape(i.value)
+
+        
+        print "END!"
+        print "EVALUATE COST: {0}".format(test_graph[-1].value)
+        print "EVALUATE PRED Y: \n{0}\n-----------".format(test_graph[-1].pred_y)
