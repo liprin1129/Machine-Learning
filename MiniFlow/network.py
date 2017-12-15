@@ -73,6 +73,13 @@ class Network(object):
     def forward_propagation(sorted_nodes):
         for node in sorted_nodes:
             node.forward_propagation()
+
+    @staticmethod
+    def backward_propagation(sorted_nodes):
+        for node in sorted_nodes[::-1]:
+            node.backward_propagation()
+
+    
 if __name__ == "__main__":
 
     from add import Add
@@ -83,4 +90,5 @@ if __name__ == "__main__":
     feed_dict = {x: 10, y: 20, z: 30}
     
     sorted_nodes = Network.topological_sort(feed_dict)
-    print(Network.forward_propagation(f2, sorted_nodes))
+    print "Sorted node: ", sorted_nodes
+    #print(Network.forward_propagation(f2, sorted_nodes))

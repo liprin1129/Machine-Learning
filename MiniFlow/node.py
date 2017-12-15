@@ -7,10 +7,11 @@ class Node(object):
         self.outbound_nodes = []
 
         if not len(self.inbound_nodes) == 0:
-            for n in self.inbound_nodes:
-                n.outbound_nodes.append(self)
+            for node in self.inbound_nodes:
+                node.outbound_nodes.append(self)
 
         self.value = None
+        self.gradients = {}
 
 
     @abstractmethod
@@ -21,6 +22,11 @@ class Node(object):
     def forward(self):
         raise NotImplementedError("Forward propagation is neccessary!")
     """
+
+
+    @abstractmethod
+    def backward_propagation(self):
+        pass
     
 if __name__ == "__main__":
     node = Node()
