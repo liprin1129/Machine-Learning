@@ -74,32 +74,6 @@ class Network(object):
         for node in sorted_nodes[::-1]:
             node.backward_propagation()
 
-    #@staticmethod
-    #def architecture(input,
-
-    """
-    @staticmethod
-    def evaluate(test_dataset, hyper_parameters, sorted_nodes):
-        test_graph = sorted_nodes[:]
-
-        #print test_dataset[0].value
-        #print test_dataset[1].value
-        for idx, node in enumerate(sorted_nodes):
-            if isinstance(node, Input) and node not in hyper_parameters:
-                test_graph.pop(idx)
-                test_graph.insert(idx, test_dataset.pop())
-                #print node.value
-
-        for i in test_graph:
-            import numpy as np
-            print np.shape(i.value)
-
-        
-        print "END!"
-        print "EVALUATE COST: {0}".format(test_graph[-1].value)
-        print "EVALUATE PRED Y: \n{0}\n-----------".format(test_graph[-1].pred_y)
-    """
-
     @staticmethod
     def evaluate(graph, hyper_parameters, train_nodes, test_dataset):
         graph_t = zip(deepcopy(graph), graph)
@@ -109,55 +83,17 @@ class Network(object):
         
         for node_copy, node in graph_t:
             if node == train_nodes[0]:
-                #print "X"
                 feed_dict[node_copy] = test_dataset[0]
 
             elif node == train_nodes[1]:
-                #print "Y"
                 feed_dict[node_copy] = test_dataset[1]
 
             elif isinstance(node, Input) and node in hyper_parameters:
                 feed_dict[node_copy] = node_copy.value
 
-        #print feed_dict
         graph_t = Network.topological_sort(feed_dict)
         Network.forward_propagation(graph_t)
-        #Network.backward_propagation(feed_dict)
-
-        """
-        import numpy as np
-        for i in graph_t:
-            print i, "::", np.shape(i.value)
-        """
         
         cost = graph_t[-1]
         print "EVALUATE COST: {0}".format(cost.value)
-        print "EVALUATE PRED Y: \n{0}\n-----------".format(cost.pred_y)
-
-
-    """
-    @staticmethod
-    def evaluate(graph, hyper_parameters, train_nodes, test_dataset):
-        feed_dict = {}
-        
-        for node in graph:
-            if node == train_nodes[0]:
-                print "X"
-                feed_dict[node] = test_dataset[0]
-
-            elif node == train_nodes[1]:
-                print "Y"
-                feed_dict[node] = test_dataset[1]
-        
-            elif isinstance(node, Input) and node in hyper_parameters:
-                feed_dict[node] = node.value
-
-        #print feed_dict
-        graph_t = Network.topological_sort(feed_dict)
-        Network.forward_propagation(feed_dict)
-
-        cost = graph_t[-1]
-        print "EVALUATE COST: {0}".format(cost.value)
-        print "EVALUATE PRED Y: \n{0}\n-----------".format(cost.pred_y)
-        
-    """
+        #print "EVALUATE PRED Y: \n{0}\n-----------".format(cost.pred_y)
