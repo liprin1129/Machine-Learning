@@ -13,13 +13,12 @@ W, b = Input(), Input()
 # Training dataset
 X_ = np.array([[0.1, 0.2], [-1, -2]])
 W_ = np.random.randn(2, 1)
-b_ = np.random.randn(2, 1)
+b_ = np.random.randn(1)
 y_ = np.reshape(np.array([[1], [0]]), (-1, 1))
 
 # Test dataset
-X_test_ = np.array([[0.1, 0.18], [-1, -2]])
-X_test = Input(X_test_)
-#X_test.value = X_test_
+X_t_ = np.array([0.17, 0.18])
+y_t_ = np.array([1.2])
 
 l1 = Linear(X, W, b)
 s1 = Sigmoid(l1)
@@ -43,4 +42,4 @@ for i in xrange(epoch):
 
     if i % 10000 == 0:
         print "<EPOCH : {0}>\n\n".format(i), "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
-        Network.evaluate(X_test, graph)
+        Network.evaluate(graph, hyper_parameters, [X, y], [X_t_, y_t_])

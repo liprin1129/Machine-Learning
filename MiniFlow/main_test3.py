@@ -45,7 +45,7 @@ for i in xrange(epoch):
         break
 
     if i % 10000 == 0:
-        print "<EPOCH : {0}>\n".format(i)
+        print "<EPOCH : {0}>\n\n".format(i)
         print "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
         """
         print "W1: ", np.shape(W1.value)
@@ -55,6 +55,7 @@ for i in xrange(epoch):
         """
 
         # Evaluation #
+        """
         # Test dataset
         X_t, y_t = Input(), Input()
         W1_t, b1_t = Input(), Input()
@@ -77,5 +78,9 @@ for i in xrange(epoch):
         graph_t = Network.topological_sort(feed_dict_t)
         
         Network.forward_propagation(graph_t)
-        print "EVALUATE COST: {0}".format(cost_t.value)
-        print "EVALUATE PRED Y: \n{0}\n-----------".format(cost_t.pred_y)
+        """
+        
+        X_t_ = np.reshape(np.array([0.3, 0.8, 0.3]), (1, 3))
+        y_t_ = np.array([[1., 0.]])
+
+        Network.evaluate(graph, hyper_parameters, [X, y], [X_t_, y_t_])

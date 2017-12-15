@@ -12,12 +12,17 @@ X, y = Input(), Input()
 W1, b1 = Input(), Input()
 W2, b2 = Input(), Input()
 
+# Train dataset
 X_ = np.reshape(np.array([[-1., -2., -3.], [1., 2., 3.]]), (2, 3))
 W1_ = np.random.randn(3, 2)
-b1_ = np.random.randn(2, 2)
+b1_ = np.random.randn(2)
 W2_ = np.random.randn(2, 1)
-b2_ = np.random.randn(2, 1)
-y_ = np.reshape(np.array([[1.], [0.]]), (-1, 1), (-1, 1))
+b2_ = np.random.randn(1)
+y_ = np.reshape(np.array([[1.], [0.]]), (-1, 1))
+
+# Test dataset
+X_t_ = np.reshape(np.array([-1., -2.01, -2.8]), (1, 3))
+y_t_ = np.array([1.])
 
 l1 = Linear(X, W1, b1)
 s1 = Sigmoid(l1)
@@ -42,3 +47,4 @@ for i in xrange(epoch):
 
     if i % 10000 == 0:
         print "<EPOCH : {0}>\n".format(i), "COST: ", cost.value, "\nPRED Y:\n", np.round(cost.pred_y, 3), "\n"
+        Network.evaluate(graph, hyper_parameters, [X, y], [X_t_, y_t_])
