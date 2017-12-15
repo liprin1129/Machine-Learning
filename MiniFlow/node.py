@@ -1,8 +1,10 @@
 from abc import ABCMeta, abstractmethod
 
+
 class Node(object):
     __metaclass__ = ABCMeta
-    def __init__(self, inbound_nodes = []):
+
+    def __init__(self, inbound_nodes=[]):
         self.inbound_nodes = inbound_nodes
         self.outbound_nodes = []
 
@@ -13,7 +15,6 @@ class Node(object):
         self.value = None
         self.gradients = {}
 
-
     @abstractmethod
     def forward_propagation(self):
         pass
@@ -23,10 +24,6 @@ class Node(object):
         raise NotImplementedError("Forward propagation is neccessary!")
     """
 
-
     @abstractmethod
     def backward_propagation(self):
         pass
-    
-if __name__ == "__main__":
-    node = Node()

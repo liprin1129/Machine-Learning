@@ -1,11 +1,4 @@
 class Update(object):
-    """
-    @staticmethod
-
-    def gradient_descent(x, grad_x, learning_rate):
-        x -= learning_rate * grad_x
-        return x
-    """
     @staticmethod
     def gradient_descent(input_x, learning_rate):
         input_x.value -= learning_rate * input_x.gradients[input_x]
