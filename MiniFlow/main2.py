@@ -60,28 +60,35 @@ print "Y TEST: ", np.shape(test_y)
 X, y = Input(), Input()
 W1, b1 = Input(), Input()
 W2, b2 = Input(), Input()
+W3, b3 = Input(), Input()
 
-W1_ = np.random.randn(784, 30)
-b1_ = np.random.randn(30)
-W2_ = np.random.randn(30, 10)
-b2_ = np.random.randn(10)
+W1_ = np.random.randn(784, 500)
+b1_ = np.random.randn(500)
+W2_ = np.random.randn(500, 100)
+b2_ = np.random.randn(100)
+W3_ = np.random.randn(100, 10)
+b3_ = np.random.randn(10)
 
 l1 = Linear(X, W1, b1)
 s1 = Sigmoid(l1)
 l2 = Linear(s1, W2, b2)
 s2 = Sigmoid(l2)
-cost = SSE(y, s2)
+l3 = Linear(s2, W3, b3)
+s3 = Sigmoid(l3)
+
+cost = SSE(y, s3)
 
 feed_dict = {X: train_x, y: train_y,
              W1: W1_, b1: b1_,
-             W2: W2_, b2: b2_}
+             W2: W2_, b2: b2_,
+             W3: W3_, b3: b3_}
 
 hyper_parameters = [W1, b1, W2, b2]
 
 graph = Network.topological_sort(feed_dict)
 
 epoch = 1000
-batch_size = 30
+batch_size = 100
 steps_per_batch = len(train_y) // batch_size
 
 for i in tqdm(xrange(epoch)):
@@ -94,7 +101,7 @@ for i in tqdm(xrange(epoch)):
         
         Network.forward_propagation(graph)
         Network.backward_propagation(graph)
-        Update.stochastic_gradient_descent(hyper_parameters, learning_rate = 3e-3)
+        Update.stochastic_gradient_descent(hyper_parameters, learning_rate = 1e-3)
 
         if cost.value < 1e-5:
             break
@@ -102,5 +109,3 @@ for i in tqdm(xrange(epoch)):
     if i % 10 == 0:
         test_result = Network.evaluate(graph, hyper_parameters, [X, y], [test_x, test_y])
         print "<EPOCH : {0}>\n".format(i), "TRAIN COST: {0}, TEST COST: {1}%".format(cost.value, test_result)
-
-PickleHelper.save_to_pickle(path = "./", name = "trained_data.p", data = [graph, hyper_parameters])

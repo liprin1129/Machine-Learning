@@ -61,10 +61,12 @@ X, y = Input(), Input()
 W1, b1 = Input(), Input()
 W2, b2 = Input(), Input()
 
-W1_ = np.random.randn(784, 30)
-b1_ = np.random.randn(30)
-W2_ = np.random.randn(30, 10)
-b2_ = np.random.randn(10)
+W1_ = np.random.randn(784, 300)
+b1_ = np.random.randn(300)
+W2_ = np.random.randn(300, 30)
+b2_ = np.random.randn(30)
+W3_ = np.random.randn(30, 10)
+b3_ = np.random.randn(10)
 
 l1 = Linear(X, W1, b1)
 s1 = Sigmoid(l1)
@@ -81,7 +83,7 @@ hyper_parameters = [W1, b1, W2, b2]
 graph = Network.topological_sort(feed_dict)
 
 epoch = 1000
-batch_size = 30
+batch_size = 100
 steps_per_batch = len(train_y) // batch_size
 
 for i in tqdm(xrange(epoch)):
@@ -94,7 +96,7 @@ for i in tqdm(xrange(epoch)):
         
         Network.forward_propagation(graph)
         Network.backward_propagation(graph)
-        Update.stochastic_gradient_descent(hyper_parameters, learning_rate = 3e-3)
+        Update.stochastic_gradient_descent(hyper_parameters, learning_rate = 1e-3)
 
         if cost.value < 1e-5:
             break
@@ -102,5 +104,3 @@ for i in tqdm(xrange(epoch)):
     if i % 10 == 0:
         test_result = Network.evaluate(graph, hyper_parameters, [X, y], [test_x, test_y])
         print "<EPOCH : {0}>\n".format(i), "TRAIN COST: {0}, TEST COST: {1}%".format(cost.value, test_result)
-
-PickleHelper.save_to_pickle(path = "./", name = "trained_data.p", data = [graph, hyper_parameters])

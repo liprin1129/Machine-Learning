@@ -2,7 +2,7 @@ from node import Node
 import numpy as np
 
 
-class L2(Node):
+class SSE(Node):
     def __init__(self, true_y_node, pred_y_node):
         Node.__init__(self, [true_y_node, pred_y_node])
         self.diff = 0.

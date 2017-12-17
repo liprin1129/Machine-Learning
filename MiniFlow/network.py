@@ -1,6 +1,6 @@
 from input import Input
 from copy import deepcopy
-
+import numpy as np
 
 class Network(object):
     
@@ -95,5 +95,7 @@ class Network(object):
         Network.forward_propagation(graph_t)
         
         cost = graph_t[-1]
-        print "EVALUATE COST: {0}".format(cost.value)
-        #print "EVALUATE PRED Y: \n{0}\n-----------".format(cost.pred_y)
+        #print "EVALUATE COST: {0}".format(cost.value)
+        #print "EVALUATE PRED Y: \n{0}\n-----------".format(np.shape(cost.pred_y))
+        count_correct_result = sum([np.argmax(y_star) == np.argmax(y) for y_star, y in zip(cost.pred_y, test_dataset[1])])
+        return count_correct_result / float(len(test_dataset[0])) * 100
