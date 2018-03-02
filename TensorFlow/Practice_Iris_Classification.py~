@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar  2 10:56:59 2018
+
+@author: user170
+"""
+
+import matplotlib.pyplot as plt
+import numpy as np

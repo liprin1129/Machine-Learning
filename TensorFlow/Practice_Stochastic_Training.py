@@ -6,7 +6,7 @@ Created on Thu Mar  1 15:38:40 2018
 """
 
 #import matplotlib.pyplot as plt
-import os
+#import os
 import numpy as np
 import tensorflow as tf
 from tensorflow.python.framework import ops
