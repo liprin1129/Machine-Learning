@@ -152,7 +152,7 @@ for i in range(generations):
         test_acc.append(temp_test_acc)
         acc_and_loss = [(i+1), temp_train_loss, temp_train_acc, temp_test_acc]
         acc_and_loss = [np.round(x,2) for x in acc_and_loss]
-        print('Generation # {}. Train Loss: {:.2f}. Train Acc (Test Acc): {:.2f} ({:.2f})'.format(*acc_and_loss))
+        print('Generation # {}. Train Loss: {}. Train Acc (Test Acc): {:.2f} ({:.2f})'.format(*acc_and_loss))
 
 # Matlotlib code to plot the loss and accuracies
 eval_indices = range(0, generations, eval_every)
