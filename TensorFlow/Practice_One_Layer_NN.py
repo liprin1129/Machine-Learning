@@ -23,7 +23,7 @@ np.random.seed(seed)
 '''
 ### TRAIN AND TEST SET SPLITTING
 from sklearn.model_selection import train_test_split
-x_vals_train, x_vals_test, y_vals_train, t_vals_test =train_test_split(x_vals, y_vals, train_size = 0.8, random_state = seed)
+x_vals_train, x_vals_test, y_vals_train, y_vals_test =train_test_split(x_vals, y_vals, train_size = 0.8, random_state = seed)
 
 ### NOMALISATION BY COLUMN
 from sklearn.preprocessing import MinMaxScaler
@@ -64,18 +64,17 @@ for i in range(3):
 # BATCH SIZE
 batch_size = 50
 
-# VARIABLES AND PLACEHOLDER
+# PLACEHOLDER AND VARIABLES
+x_data = tf.placeholder(shape=[None, 3], dtype=tf.float32)
+y_target = tf.placeholder(shape=[None, 1], dtype=tf.float32)
+
 hidden_layer_nodes = 10
 W1 = tf.Variable(tf.random_normal(shape=[3, hidden_layer_nodes]))
 b1 = tf.Variable(tf.random_normal(shape=[hidden_layer_nodes]))
 W2 = tf.Variable(tf.random_normal(shape=[hidden_layer_nodes, 1]))
 b2 = tf.Variable(tf.random_normal(shape=[1]))
 
-x_data = tf.placeholder(shape=[None, 3], dtype=tf.float32)
-y_target = tf.placeholder(shape=[None, 1], dtype=tf.float32)
-
 # MODEL
-'''
 l1_matmul = tf.matmul(x_data, W1)
 l1_add = tf.add(l1_matmul, b1)
 l1_relu = tf.nn.relu(l1_add)
@@ -83,9 +82,6 @@ l1_relu = tf.nn.relu(l1_add)
 o_matmul = tf.matmul(l1_relu, W2)
 o_add = tf.add(o_matmul, b2)
 o_relu = tf.nn.relu(o_add)
-'''
-hidden_output = tf.nn.relu(tf.add(tf.matmul(x_data, W1), b1))
-o_relu = tf.nn.relu(tf.add(tf.matmul(hidden_output, W2), b2))
 
 # COST FUNCTION
 loss = tf.reduce_mean(tf.square(y_target - o_relu))
@@ -101,6 +97,21 @@ sess.run(init)
 # Training loop
 loss_vec = []
 test_loss = []
+'''
+for i in range(500):
+    rand_index = np.random.choice(len(x_vals_train), size=batch_size)
+    rand_x = x_vals_train[rand_index]
+    rand_y = np.transpose([y_vals_train[rand_index]])
+    sess.run(train_step, feed_dict={x_data: rand_x, y_target: rand_y})
+
+    temp_loss = sess.run(loss, feed_dict={x_data: rand_x, y_target: rand_y})
+    loss_vec.append(np.sqrt(temp_loss))
+    
+    test_temp_loss = sess.run(loss, feed_dict={x_data: x_vals_test, y_target: np.transpose([y_vals_test])})
+    test_loss.append(np.sqrt(test_temp_loss))
+    if (i+1)%50==0:
+        print('Generation: ' + str(i+1) + '. Loss = ' + str(temp_loss))
+'''
 for i in range(500):
     rand_index = np.random.choice(len(x_vals_train), size=batch_size)
     rand_x = x_vals_train[rand_index]
