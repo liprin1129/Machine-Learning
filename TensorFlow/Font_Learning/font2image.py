@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+'''
+from fontTools.ttLib import TTFont
+
+font = TTFont('/Library/Fonts/Arial.ttf')
+
+print type(font)
+'''
+
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import csv
+
+'''
+#font_path = '/Library/Fonts/Arial.ttf'
+font_path = '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc'
+arial = ImageFont.truetype(font_path, 100, encoding='utf-8')
+des_folder = './Font_Data/ヒラギノ丸ゴ ProN W4/'
+font_path = '/Library/Fonts/Hiragino Sans GB.ttc'#Verdana.ttf'
+des_folder = './Font_Data/Hiragino Sans GB/'
+'''
+# ------------------ #
+# ----- Ubuntu ----- #
+# ------------------ #
+#font_path = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf'
+#des_folder = '../../Data/Font data/Japanese-gothic/'
+
+font_path = '/usr/share/fonts/truetype/fonts-japanese-mincho.ttf'
+des_folder = '../../Data/Font data/Japanese-mincho/'
+
+
+def draw_image(des_path, font, charater, index):
+    img = Image.new('L', (28, 28), 255)
+    draw = ImageDraw.Draw(img)
+    draw.text( (0, 0), charater, font=font, fill=0)
+    img.save(des_path+'{}.png'.format(index))
+
+
+
+font = ImageFont.truetype(font_path, 28, encoding= 'utf-8')
+
+
+with open('joyo-kanji-code-u.csv') as csvfile:
+    reader = csv.reader(csvfile)
+    line = reader.next()
+    #line = next(reader)
+
+    kanji_idx = 0
+    while line:
+        if not line[0].startswith('#'):# and kanji_idx < 30:
+            str2unicode = unicode(line[0], 'utf-8')
+            #print type(str2unicode)
+            #print str2unicode.encode('utf-8')
+
+            draw_image(des_folder, font, str2unicode, kanji_idx)
+            kanji_idx += 1
+
+        line = reader.next()
+        #line = next(reader)
+        
