@@ -2,4 +2,14 @@ Data/Font data
 Data/mnist.pkl
 Data/Objects
 Data/HandWritten_Data
+<<<<<<< HEAD
 TensorFlow/Font_Learning/Font_Data
+=======
+
+Semantic_Segmentation/data_road/testing/calib/
+Semantic_Segmentation/data_road/
+Semantic_Segmentation/vgg/saved_model.pb
+Semantic_Segmentation/vgg/variables/variables.data-00000-of-00001
+Semantic_Segmentation/vgg/variables/variables.index
+Semantic_Segmentation/data_road.zip
+>>>>>>> VGG pretrained model download
