@@ -13,3 +13,5 @@ Semantic_Segmentation/vgg/variables/variables.data-00000-of-00001
 Semantic_Segmentation/vgg/variables/variables.index
 Semantic_Segmentation/data_road.zip
 >>>>>>> VGG pretrained model download
+Semantic_Segmentation/data/
+Semantic_Segmentation/runs/
