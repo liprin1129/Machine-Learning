@@ -189,62 +189,13 @@ with tf.Session() as sess:
         batch_y = one_hot_train_labels[batch_index]
 
         if i % 100 == 0:
-            train_accuracy = accuracy.eval(feed_dict={
-                x: batch_x, y_: batch_y, keep_prob: 1.0})
-            #train_accuracy = sess.run(accuracy, feed_dict={
+            #train_accuracy = accuracy.eval(feed_dict={
             #    x: batch_x, y_: batch_y, keep_prob: 1.0})
-            print('step %d, training accuracy %g' % (i, train_accuracy))
-        train_step.run(feed_dict={x: batch_x, y_: batch_y, keep_prob: drop_prop})
-        #sess.run(train_step, feed_dict={x: batch_x, y_: batch_y, keep_prob: drop_prop})
+            train_accuracy = sess.run(accuracy, feed_dict={
+                x: batch_x, y_: batch_y, keep_prob: 1.0})
+            print('step %d, training accuracy %g' % (i, train_accuracy*100))
+        #train_step.run(feed_dict={x: batch_x, y_: batch_y, keep_prob: drop_prop})
+        sess.run(train_step, feed_dict={x: batch_x, y_: batch_y, keep_prob: drop_prop})
 
         #print('test accuracy %g' % accuracy.eval(feed_dict={
         #    x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
-
-"""
-def cnn_dense_evaluate(logits, labels):
-        pred = np.argmax(logits, axis=1)
-        #np.argmax(tf.nn.softmax(logits, name='softmax_tensor'), axis=1)
-        num_correct = np.sum(np.equal(pred, labels))
-        return(100. * num_correct/pred.shape[0])
-        
-
-# INITIALIZE
-sess.run(tf.global_variables_initializer())
-
-for i in tqdm(range(epoch)):
-    rand_index = np.random.choice(len(train_xdata), size=batch_size)
-    batch_x = np.expand_dims(train_xdata[rand_index], axis=-1)
-    batch_y = train_labels[rand_index]
-
-    train_dict = {in_true: batch_x}
-
-    #train_stage = cnn_dense_model(in_true)
-    out_logits = sess.run(logits, feed_dict=train_dict)
-
-    '''
-    if (i+1) % 10 == 0:
-        test = cnn_dense_evaluate(out_logits, batch_y)
-        print(test)
-    '''
-        #print('SHAPE: ', np.shape(test), 'ARGMAX: ', np.argmax(test, axis=1))
-        
-    '''
-    if (i+1) % 10 == 0:
-        rand_index = np.random.choice(len(test_xdata), size=batch_size)
-        batch_x = np.expand_dims(test_xdata[rand_index], axis=-1)
-        batch_y = test_labels[rand_index]
-        
-        test_dict = {in_true: batch_x, out_true: batch_y}
-        evaluate_stage = cnn_dense_train(in_true, out_true)
-        print(sess.run(evaluate_stage, train_dict))
-    '''
-
-'''
-train_xdata = np.expand_dims(train_xdata[10], -1)
-train_xdata = np.expand_dims(train_xdata, 0)
-train_ydata = train_labels[10]
-
-logits = cnn_dense_model(in_true, out_true, 'test')
-print(sess.run(logits, feed_dict={in_true: train_xdata, out_true: train_ydata}))
-'''
-"""
