@@ -1,4 +1,16 @@
+'''
+import platform
+if platform.system() is "Darwin":
+        import matplotlib
+        matplotlib.use('TkAgg')
+        import matplotlib.pyplot as plt
+else:
+        import matplotlib.pyplot as plt
+'''
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+
 import numpy as np
 import tensorflow as tf
 from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets
@@ -53,19 +65,25 @@ eval_input = tf.placeholder(tf.float32, shape=eval_input_shape)
 eval_target = tf.placeholder(tf.float32, shape=(None))
 
 # CONVOLUTIONAL LAYER VARIABLES
-conv1_W = tf.Variable(tf.truncated_normal([4, 4, num_channels, conv1_features],
+#conv1_W = tf.Variable(tf.truncated_normal([4, 4, num_channels, conv1_features],
+conv1_W = tf.Variable(tf.random_normal([4, 4, num_channels, conv1_features],
                                           stddev=0.1, dtype=tf.float32)) # 4x4 filter shape
 conv1_b = tf.Variable(tf.zeros([conv1_features], dtype=tf.float32))
 
-conv2_W = tf.Variable(tf.truncated_normal([4, 4, conv1_features, conv2_features],
+#conv2_W = tf.Variable(tf.truncated_normal([4, 4, conv1_features, conv2_features],
+conv2_W = tf.Variable(tf.random_normal([4, 4, conv1_features, conv2_features],
                                           stddev=0.1, dtype=tf.float32)) # 4x4 filter shape
 conv2_b = tf.Variable(tf.zeros([conv2_features], dtype=tf.float32))
 
-fully1_W = tf.Variable(tf.truncated_normal([4*4*50, fully_connected_size1], stddev=0.1, dtype=tf.float32))
-fully1_b = tf.Variable(tf.truncated_normal([fully_connected_size1], stddev=0.1, dtype=tf.float32))
+#fully1_W = tf.Variable(tf.truncated_normal([4*4*50, fully_connected_size1], stddev=0.1, dtype=tf.float32))
+fully1_W = tf.Variable(tf.random_normal([4*4*50, fully_connected_size1], stddev=0.1, dtype=tf.float32))
+fully1_b = tf.Variable(tf.random_normal([fully_connected_size1], stddev=0.1, dtype=tf.float32))
+#fully1_b = tf.Variable(tf.truncated_normal([fully_connected_size1], stddev=0.1, dtype=tf.float32))
 
-fully2_W = tf.Variable(tf.truncated_normal([fully_connected_size1, target_size], stddev=0.1, dtype=tf.float32))
-fully2_b = tf.Variable(tf.truncated_normal([target_size], stddev=0.1, dtype=tf.float32))
+#fully2_W = tf.Variable(tf.truncated_normal([fully_connected_size1, target_size], stddev=0.1, dtype=tf.float32))
+fully2_W = tf.Variable(tf.random_normal([fully_connected_size1, target_size], stddev=0.1, dtype=tf.float32))
+#fully2_b = tf.Variable(tf.truncated_normal([target_size], stddev=0.1, dtype=tf.float32))
+fully2_b = tf.Variable(tf.random_normal([target_size], stddev=0.1, dtype=tf.float32))
 
 def my_conv_net(input_data):
     # FIRST CONV -> RELU -> MAXPOOL
@@ -113,7 +131,8 @@ my_optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9)
 train_step = my_optimizer.minimize(loss)
 
 # INITIALIZE
-init = tf.global_variables_initializer()
+#init = tf.global_variables_initializer()
+init = tf.initialize_all_variables()
 sess.run(init)
 
 # TRAIN START

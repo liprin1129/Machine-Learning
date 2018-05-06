@@ -21,27 +21,29 @@ x_data = tf.placeholder(shape=[1], dtype=tf.float32)
 y_target = tf.placeholder(shape=[1], dtype=tf.float32)
 
 A = tf.Variable(tf.random_normal(shape=[1]))
-my_output = tf.multiply(x_data, A)
+#my_output = tf.multiply(x_data, A)
+my_output = tf.mul(x_data, A)
 
 loss = tf.square(my_output - y_target)
 
 my_opt = tf.train.GradientDescentOptimizer(0.02)
 train_step = my_opt.minimize(loss)
 
-init = tf.global_variables_initializer()
+#init = tf.global_variables_initializer()
+init = tf.initialize_all_variables()
 sess.run(init)
 
 loss_stochastic = []
-for i in xrange(100):
+for i in range(100):
     rand_index = np.random.choice(100)
     rand_x = [x_vals[rand_index]]
     rand_y = [y_vals[rand_index]]
     sess.run(train_step, feed_dict={x_data:rand_x, y_target:rand_y})
     
     if (i+1)%5==0:
-        print 'Step #' + str(i+1) + ' A = ' + str(sess.run(A))
+        print('Step #' + str(i+1) + ' A = ' + str(sess.run(A)))
         temp_loss = sess.run(loss, feed_dict={x_data:rand_x, y_target:rand_y})
-        print 'Loss = ' + str(temp_loss)
+        print('Loss = ' + str(temp_loss))
         loss_stochastic.append(temp_loss)
 
 '''
