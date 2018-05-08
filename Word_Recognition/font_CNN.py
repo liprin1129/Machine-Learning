@@ -199,6 +199,7 @@ def cnn_dense_model(features):
                          conv1_W,
                          strides=[conv1_stride, conv1_stride, conv1_stride, conv1_stride],
                          padding='SAME')
+
     relu1 = tf.nn.relu(tf.nn.bias_add(conv1, conv1_b))
     max_pool1 = tf.nn.max_pool(relu1,
                                ksize=[1, pool1_kernel, pool1_kernel, 1],

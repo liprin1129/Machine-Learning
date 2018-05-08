@@ -75,8 +75,7 @@ class DataWrangling(object):
                     if img_cv is not None:
                         img_cv = self.bgr2gray(img_cv) # convert color to gray scale
                         img_cv = self.resize_img(img_cv, (32, 32)) # resize the image
-                        #img_cv = self.resize_img(img_cv, (224, 224)) # resize the image
-                        img_cv = self.scailing(img_cv, new_min=0, new_max=1) # rescailing
+                        self.scailing(img_cv, new_min=0, new_max=255) # rescailing
                         #print(np.shape(img_cv), np.min(img_cv), np.max(img_cv))
                         features.append(img_cv)
                     #jpg_list_without_path.append(img_file[:-9])
@@ -103,14 +102,17 @@ class DataWrangling(object):
         return cv2.resize(img, dsize=size, interpolation = cv2.INTER_AREA)
 
     def scailing(self, img, new_min = 0, new_max = 255):
-        
+        '''
         old_max = np.max(img)
         old_min = np.min(img)
 
         return ((new_max - new_min) / (old_max - old_min)) * (img - old_min) + new_min
-        
-        #cv2.normalize(img, dst=img, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=-1)
+        '''
+        cv2.normalize(img, dst=img, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=-1)
 
+        #return img
+
+   
 if __name__=="__main__":
     #data_dir =  "/Users/pure/Developments/Personal-Study/Machine-Learning/Data/Face-Data/"
     data_dir = "../../Data/"

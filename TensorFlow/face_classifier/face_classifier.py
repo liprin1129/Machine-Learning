@@ -12,6 +12,7 @@ import numpy as np
 import cv2
 import tensorflow as tf
 from tensorflow.contrib.layers import flatten
+from VGG16 import VGG16
 
 from data_wrangling import PickleHelper
 
@@ -30,7 +31,7 @@ def face_classifier_did_loaded():
     img_cv = PickleHelper.load_pickle("../../Data/", "faces-features.pkl")
 
     print(np.shape(img_cv))
-    fc.imshow(img_cv[0])
+    #fc.imshow(img_cv[0])
 
     '''
     img = cv2.imread("../../Data/lfw/Aaron_Eckhart/Aaron_Eckhart_0001.jpg")
@@ -40,3 +41,6 @@ def face_classifier_did_loaded():
     #fc.imshow(img)
     fc.imshow(img2)
     '''
+
+    vgg16 = VGG16()
+    vgg16.architecture(img_cv)
