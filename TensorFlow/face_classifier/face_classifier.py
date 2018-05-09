@@ -42,5 +42,6 @@ def face_classifier_did_loaded():
     fc.imshow(img2)
     '''
 
-    vgg16 = VGG16()
-    vgg16.architecture(img_cv)
+    vgg16 = VGG16(img_cv[:10])
+    #vgg16.architecture()
+    vgg16.run_architecture()
