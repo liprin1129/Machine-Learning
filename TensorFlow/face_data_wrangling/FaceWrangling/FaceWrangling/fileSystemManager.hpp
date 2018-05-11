@@ -15,10 +15,12 @@
 class FileSystemManager {
 	
 public:
-	auto isDirectory(std::string dir_path) -> int;
+	std::vector<std::string> isDirectory(std::string dir_path);
 	
-	auto classHasLoaded(int argc, ...) -> int;
-	auto isFile(std::string dir_path) -> int;
+	template<typename T1, typename T2>
+	std::vector<std::string> fileInvestigator(T1& dir_path, T2& file_extension);
+	
+	int fileSystemManagerHasLoaded(int argc, ...);
 	//auto classHasLoaded(int argc, char** argv) -> int;
 };
 #endif /* fileSystemManager_hpp */

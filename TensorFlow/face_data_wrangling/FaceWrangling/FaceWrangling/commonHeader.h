@@ -16,6 +16,17 @@
 #include <vector>
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
+
+/*** OpenCV Headers ***/
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
+/*** Dlib Headers ***/
+#include <dlib/opencv.h>
+#include <dlib/image_processing/frontal_face_detector.h>
+#include <dlib/image_processing/render_face_detections.h>
+#include <dlib/image_processing.h>
 /*
 #include <dlib/opencv.h>
 #include <opencv2/highgui/highgui.hpp>

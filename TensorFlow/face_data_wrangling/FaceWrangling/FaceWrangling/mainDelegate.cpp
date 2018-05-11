@@ -10,9 +10,10 @@
 
 auto MainDelegate::mainDelegation(int argc, char** argv) -> int{
 	
-	FileSystemManager fsm;
-	//fsm.classHasLoaded(2, "s1", "s2");
-	fsm.classHasLoaded(argc, argv[1]);
+	/*FileSystemManager fsm;
+	fsm.fileSystemManagerHasLoaded(argc, argv[1]);*/
 	
+	DlibFaceDetector dlibFD;
+	dlibFD.dlibFaceDetectorHasLoaded(argc, argv[1]);
 	return 0;
 }

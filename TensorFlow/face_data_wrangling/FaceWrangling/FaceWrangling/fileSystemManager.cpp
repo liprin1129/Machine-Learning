@@ -8,6 +8,9 @@
 
 #include "fileSystemManager.hpp"
 
+namespace boostFS = boost::filesystem;
+
+void commentOut(){
 /*
 auto FileSystemManager::isDirectory(std::string dir_path) -> int{
 	boost::filesystem::path path(p);
@@ -36,41 +39,73 @@ auto FileSystemManager::isDirectory(std::string dir_path) -> int{
 }
 */
 
-auto FileSystemManager::isDirectory(std::string dir_path) -> int {
-	boost::filesystem::recursive_directory_iterator dir(dir_path), end;
-	while (dir != end)
-	{
-		if (boost::filesystem::is_directory(dir->status())){
-			std::cout << dir->path().parent_path()<< std::endl;
-			if (dir.level() == 0)
-				std::cout << dir->path().filename() <<  " | " << dir.level() << "\n";
-			else{
-				std::string whitespace;
-				for (int i=0; i<dir.level(); i++){
-					whitespace += "     ";
+/*
+std::vector<std::string> FileSystemManager::isDirectory(std::string dir_path){
+	std::vector<std::string> allDir;
+	
+	if (boost::filesystem::exists(dir_path)) { // does p actually exist?
+		boostFS::recursive_directory_iterator dir(dir_path), end;
+		while (dir != end)
+		{
+			if (boostFS::is_directory(dir->status())){
+				std::cout << dir->path().parent_path()<< std::endl;
+				if (dir.level() == 0)
+					std::cout << dir->path().filename() <<  " | " << dir.level() << "\n";
+				else{
+					std::string whitespace;
+					for (int i=0; i<dir.level(); i++){
+						whitespace += "     ";
+					}
+					std::cout << whitespace << dir->path().filename() <<  " | " << dir.level() << "\n";
 				}
-				std::cout << whitespace << dir->path().filename() <<  " | " << dir.level() << "\n";
 			}
+			++dir;
 		}
-		++dir;
 	}
-		return 0;
+	else {
+		std::error_code ec (0, std::generic_category());
+		
+		std::error_condition ok;
+		if (ec != ok) std::cout << "Custom Error: " << ec.message() << std::endl;
+	}
+}
+*/
 }
 
-auto FileSystemManager::isFile(std::string dir_path) -> int {
-	boost::filesystem::recursive_directory_iterator dir(dir_path), end;
-	while (dir != end)
-	{
-		if (boost::filesystem::is_regular_file(dir->status())){
-			//std::cout << dir->path().parent_path();
-			//std::cout << dir->path().filename() << "\n";
-			std::cout << dir->path().parent_path().string() + dir->path().filename().string() << std::endl;
+template<typename T1, typename T2>
+std::vector<std::string> FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
+	std::vector<std::string> allFileAbsPath;
+	
+	if (boostFS::exists(dir_path)) { // does p actually exist?
+		boostFS::recursive_directory_iterator dir(dir_path), end;
+		while (dir != end)
+		{
+			if (boostFS::is_regular_file(dir->status())){
+				//std::cout << dir->path().parent_path();
+				//std::cout << dir->path().filename() << "\n";
+				//std::cout << dir->path().parent_path().string() + dir->path().filename().string() << std::endl;
+				
+				auto extension = boostFS::extension(dir->path().parent_path().string() + dir->path().filename().string());
+				//std::cout << extension << std::endl;
+				
+				if (extension == ref_extension)
+					allFileAbsPath.push_back(dir->path().parent_path().string() + dir->path().filename().string());
+			}
+			++dir;
 		}
-		++dir;
 	}
-	return 0;
+	else {
+		std::cout << "NO!" <<std::endl;
+		std::error_code ec (0, std::generic_category());
+		
+		std::error_condition ok;
+		if (ec == ok) std::cout << "Custom Error: " << ec.message() << std::endl;
+	}
+	
+	return allFileAbsPath;
 }
-auto FileSystemManager::classHasLoaded(int argc, ...) -> int{
+
+int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
 //auto FileSystemManager::classHasLoaded(int argc, char** argv) -> int{
 	
 	// Set cstdarg class for managain multiple variables
@@ -78,12 +113,18 @@ auto FileSystemManager::classHasLoaded(int argc, ...) -> int{
 	va_start(argv, argc);
 	
 	if(argc > 1){
-		auto i = va_arg(argv, char*);
+		auto dirPath = va_arg(argv, char*);
 		
 		//std::cout << i << std::endl;
 		
 		//this->isDirectory(i);
-		this->isFile(i);
+		auto fileAbsPath = this->fileInvestigator(dirPath, ".jpg");
+		std::cout << fileAbsPath.size() << std::endl;
+		/*
+		for (std::vector<std::string>::const_iterator iter=fileAbsPath.begin(); iter!=fileAbsPath.end(); ++iter){
+			std::cout << *iter << std::endl;
+		}*/
+			 //fileAbsPath.begin(), fileAbsPath.end(), boost::bind<std::string>(printf, "%s\n", _1));
 	}
 	
 	va_end(argv);

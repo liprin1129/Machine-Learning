@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C132EAE120A414F200D357DB /* mainDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C132EADF20A414F200D357DB /* mainDelegate.cpp */; };
+		C14DAC7C20A53B0000BBEEB7 /* dlibFaceDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */; };
+		C14DAC8120A570FB00BBEEB7 /* test_img.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = C14DAC8020A570F700BBEEB7 /* test_img.jpg */; };
 		C180B69E20A3FB3F00209021 /* fileSystemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */; };
 		C1CC13B320A3C9B0006BD835 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1CC13B220A3C9B0006BD835 /* main.cpp */; };
 		C1CC16C120A3DA12006BD835 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CC16C020A3DA12006BD835 /* Accelerate.framework */; };
-		C1CC16C720A3E5F5006BD835 /* shape_predictor_68_face_landmarks.dat in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1CC16C520A3E19C006BD835 /* shape_predictor_68_face_landmarks.dat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,7 +22,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				C1CC16C720A3E5F5006BD835 /* shape_predictor_68_face_landmarks.dat in CopyFiles */,
+				C14DAC8120A570FB00BBEEB7 /* test_img.jpg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,12 +31,14 @@
 /* Begin PBXFileReference section */
 		C132EADF20A414F200D357DB /* mainDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mainDelegate.cpp; sourceTree = "<group>"; };
 		C132EAE020A414F200D357DB /* mainDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mainDelegate.hpp; sourceTree = "<group>"; };
+		C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dlibFaceDetector.cpp; sourceTree = "<group>"; };
+		C14DAC7B20A53B0000BBEEB7 /* dlibFaceDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dlibFaceDetector.hpp; sourceTree = "<group>"; };
+		C14DAC8020A570F700BBEEB7 /* test_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_img.jpg; sourceTree = "<group>"; };
 		C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fileSystemManager.cpp; sourceTree = "<group>"; };
 		C180B69D20A3FB3F00209021 /* fileSystemManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileSystemManager.hpp; sourceTree = "<group>"; };
 		C1CC13AF20A3C9B0006BD835 /* FaceWrangling */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FaceWrangling; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CC13B220A3C9B0006BD835 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C1CC16C020A3DA12006BD835 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		C1CC16C520A3E19C006BD835 /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		C1CC16C820A3F8EF006BD835 /* commonHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,8 +79,10 @@
 				C132EADF20A414F200D357DB /* mainDelegate.cpp */,
 				C180B69D20A3FB3F00209021 /* fileSystemManager.hpp */,
 				C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */,
+				C14DAC7B20A53B0000BBEEB7 /* dlibFaceDetector.hpp */,
+				C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */,
 				C1CC13B220A3C9B0006BD835 /* main.cpp */,
-				C1CC16C520A3E19C006BD835 /* shape_predictor_68_face_landmarks.dat */,
+				C14DAC8020A570F700BBEEB7 /* test_img.jpg */,
 			);
 			path = FaceWrangling;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C180B69E20A3FB3F00209021 /* fileSystemManager.cpp in Sources */,
+				C14DAC7C20A53B0000BBEEB7 /* dlibFaceDetector.cpp in Sources */,
 				C132EAE120A414F200D357DB /* mainDelegate.cpp in Sources */,
 				C1CC13B320A3C9B0006BD835 /* main.cpp in Sources */,
 			);
@@ -267,6 +273,7 @@
 		C1CC13B720A3C9B0006BD835 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -346,15 +353,9 @@
 		C1CC13B820A3C9B0006BD835 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					DLIB_NO_GUI_SUPPORT,
-					DLIB_JPEG_SUPPORT,
-					NDEBUG,
-					DLIB_USE_BLAS,
-					DLIB_USE_LAPACK,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/opencv/3.4.1_4/include,
 					/usr/X11/include,

@@ -10,6 +10,7 @@
 #define mainDelegate_hpp
 
 #include "fileSystemManager.hpp"
+#include "dlibFaceDetector.hpp"
 
 class MainDelegate {
 	

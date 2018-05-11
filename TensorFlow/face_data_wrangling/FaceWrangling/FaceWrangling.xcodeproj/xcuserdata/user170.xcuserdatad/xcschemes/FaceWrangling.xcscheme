@@ -68,8 +68,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face"
+            argument = "test_img.jpg"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
