@@ -13,12 +13,15 @@
 #include "commonHeader.h"
 
 class FileSystemManager {
+protected:
+	std::vector<std::string> _allFileAbsPath;
 	
 public:
 	std::vector<std::string> isDirectory(std::string dir_path);
 	
 	template<typename T1, typename T2>
-	std::vector<std::string> fileInvestigator(T1& dir_path, T2& file_extension);
+	void fileInvestigator(T1& dir_path, T2& file_extension);
+	//std::vector<std::string> fileInvestigator(T1& dir_path, T2& file_extension);
 	
 	int fileSystemManagerHasLoaded(int argc, ...);
 	//auto classHasLoaded(int argc, char** argv) -> int;

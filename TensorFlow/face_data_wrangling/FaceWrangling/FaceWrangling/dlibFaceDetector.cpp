@@ -18,7 +18,7 @@ cv::Mat DlibFaceDetector::readImage(const std::string imgName, const bool colour
 	
 	//ImageHelper::showImage(result, false);
 	//ImageHelper::showImage(result, true);
-	std::cout << imgName << result.size() << std::endl;
+	//std::cout << imgName << result.size() << std::endl;
 	return result;
 }
 
@@ -76,7 +76,7 @@ std::vector<cv::Rect> DlibFaceDetector::convertDlibRectToCVRect(std::vector<dlib
 		auto rectCV = cv::Rect(cv::Point2l(dlibFaceRectVector[iterIndex].left(), dlibFaceRectVector[iterIndex].top()),
 							   cv::Point2l(dlibFaceRectVector[iterIndex].right(), dlibFaceRectVector[iterIndex].bottom()));
 		cvRectVector.push_back(rectCV);
-		std::cout << "CV::Rect :" << rectCV << std::endl;
+		//std::cout << "CV::Rect :" << rectCV << std::endl;
 	}
 	
 	return cvRectVector;
@@ -87,14 +87,29 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 	va_start(argv, argc);
 	
 	if(argc > 1){
-		auto imgName = va_arg(argv, char*);
-		_refAbsImg = this->readImage(imgName, true);
+		auto dirPath = va_arg(argv, char*);
+		this->fileInvestigator(dirPath, ".jpg");
 		
-		std::cout << _refAbsImg.size() << std::endl;
+		_refAbsImg = this->readImage(_allFileAbsPath[0], true);
+		std::cout << _allFileAbsPath.size() << std::endl;
+		std::cout << _allFileAbsPath[0] << std::endl;
+		std::cout << "_refAbsImg shape" << _refAbsImg << std::endl;
+		
+		/***** ERROR: Imag read empy *****/
 		//this->showImage(_refAbsImg, true);
 		
 		auto dlibImg = this->convertMatToDlib(_refAbsImg);
-		auto face = this->detectFace(dlibImg);
+		auto faceDlibRectVec = this->detectFace(dlibImg);
+		auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
+		
+		/* // print faceCVRectVec elements
+		 for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
+		 auto iterIndex = iter-faceCVRectVec.begin();
+		 std::cout << iterIndex << " | " << *iter << std::endl;
+		 } */
+		
+		auto faceImgCV = _refAbsImg(faceCVRectVec[0]);
+		this->showImage(faceImgCV, true);
 	}
 	
 	va_end(argv);

@@ -73,9 +73,7 @@ std::vector<std::string> FileSystemManager::isDirectory(std::string dir_path){
 }
 
 template<typename T1, typename T2>
-std::vector<std::string> FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
-	std::vector<std::string> allFileAbsPath;
-	
+void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 	if (boostFS::exists(dir_path)) { // does p actually exist?
 		boostFS::recursive_directory_iterator dir(dir_path), end;
 		while (dir != end)
@@ -89,7 +87,7 @@ std::vector<std::string> FileSystemManager::fileInvestigator(T1& dir_path, T2& r
 				//std::cout << extension << std::endl;
 				
 				if (extension == ref_extension)
-					allFileAbsPath.push_back(dir->path().parent_path().string() + dir->path().filename().string());
+					_allFileAbsPath.push_back(dir->path().parent_path().string() + dir->path().filename().string());
 			}
 			++dir;
 		}
@@ -101,8 +99,6 @@ std::vector<std::string> FileSystemManager::fileInvestigator(T1& dir_path, T2& r
 		std::error_condition ok;
 		if (ec == ok) std::cout << "Custom Error: " << ec.message() << std::endl;
 	}
-	
-	return allFileAbsPath;
 }
 
 int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
@@ -118,8 +114,8 @@ int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
 		//std::cout << i << std::endl;
 		
 		//this->isDirectory(i);
-		auto fileAbsPath = this->fileInvestigator(dirPath, ".jpg");
-		std::cout << fileAbsPath.size() << std::endl;
+		this->fileInvestigator(dirPath, ".jpg");
+		std::cout << _allFileAbsPath.size() << std::endl;
 		/*
 		for (std::vector<std::string>::const_iterator iter=fileAbsPath.begin(); iter!=fileAbsPath.end(); ++iter){
 			std::cout << *iter << std::endl;

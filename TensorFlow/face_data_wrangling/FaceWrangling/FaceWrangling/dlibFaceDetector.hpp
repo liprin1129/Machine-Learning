@@ -21,8 +21,8 @@ public:
 	cv::Mat readImage(const std::string imgName, const bool colour);
 	void showImage(cv::Mat img, const bool enlarge);
 	
-	dlib::cv_image<dlib::bgr_pixel> convertMatToDlib(cv::Mat inImg);
 	
+	dlib::cv_image<dlib::bgr_pixel> convertMatToDlib(cv::Mat inImg);
 	std::vector<cv::Rect> convertDlibRectToCVRect(std::vector<dlib::rectangle> dlibFaceRectVector);
 	
 	template <typename T>
