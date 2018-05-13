@@ -25,5 +25,8 @@ public:
 	
 	int fileSystemManagerHasLoaded(int argc, ...);
 	//auto classHasLoaded(int argc, char** argv) -> int;
+    
+    template <typename T>
+    void saveFile(std::string fileName, T& fileData);
 };
 #endif /* fileSystemManager_hpp */

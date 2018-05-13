@@ -93,21 +93,19 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 		_refAbsImg = this->readImage(_allFileAbsPath[0], true);
 		std::cout << _allFileAbsPath.size() << std::endl;
 		std::cout << _allFileAbsPath[0] << std::endl;
-		std::cout << "_refAbsImg shape" << _refAbsImg << std::endl;
+		std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
 		
-		/***** ERROR: Imag read empy *****/
 		//this->showImage(_refAbsImg, true);
 		
 		auto dlibImg = this->convertMatToDlib(_refAbsImg);
 		auto faceDlibRectVec = this->detectFace(dlibImg);
 		auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
-		
-		/* // print faceCVRectVec elements
-		 for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
-		 auto iterIndex = iter-faceCVRectVec.begin();
-		 std::cout << iterIndex << " | " << *iter << std::endl;
-		 } */
-		
+ 
+        for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
+            auto iterIndex = iter-faceCVRectVec.begin();
+            std::cout << iterIndex << " | " << *iter << std::endl;
+        }
+ 
 		auto faceImgCV = _refAbsImg(faceCVRectVec[0]);
 		this->showImage(faceImgCV, true);
 	}
@@ -115,3 +113,23 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 	va_end(argv);
 	return 0;
 }
+
+/*
+int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
+    va_list argv;
+    va_start(argv, argc);
+    
+    if(argc > 1){
+        auto dirPath = va_arg(argv, char*);
+        this->fileInvestigator(dirPath, ".jpg");
+        
+        _refAbsImg = this->readImage(_allFileAbsPath[0], true);
+        std::cout << _allFileAbsPath.size() << std::endl;
+        std::cout << _allFileAbsPath[0] << std::endl;
+        std::cout << "_refAbsImg shape: " << _refAbsImg.size << std::endl;
+    }
+    
+    va_end(argv);
+    return 0;
+}
+*/

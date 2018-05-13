@@ -1,0 +1,3 @@
+/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/rebuild_cache.dir
+/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/edit_cache.dir
+/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/main.dir

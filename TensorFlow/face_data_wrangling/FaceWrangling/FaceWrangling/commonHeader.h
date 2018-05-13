@@ -10,6 +10,7 @@
 #define commonHeader_h
 
 #include <iostream>
+#include <fstream>
 #include <iterator>
 #include <cstdarg> // take a variable number of arguments
 

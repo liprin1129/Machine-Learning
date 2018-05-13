@@ -83,11 +83,11 @@ void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 				//std::cout << dir->path().filename() << "\n";
 				//std::cout << dir->path().parent_path().string() + dir->path().filename().string() << std::endl;
 				
-				auto extension = boostFS::extension(dir->path().parent_path().string() + dir->path().filename().string());
+				auto extension = boostFS::extension(dir->path().parent_path().string() + '/' + dir->path().filename().string());
 				//std::cout << extension << std::endl;
 				
 				if (extension == ref_extension)
-					_allFileAbsPath.push_back(dir->path().parent_path().string() + dir->path().filename().string());
+					_allFileAbsPath.push_back(dir->path().parent_path().string() + '/' + dir->path().filename().string());
 			}
 			++dir;
 		}
@@ -99,6 +99,12 @@ void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 		std::error_condition ok;
 		if (ec == ok) std::cout << "Custom Error: " << ec.message() << std::endl;
 	}
+}
+
+template <typename T>
+void FileSystemManager::saveFile(std::string fileName, T& fileData){
+    std::ofstream writeFile;
+    writeFile(fileName);
 }
 
 int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
