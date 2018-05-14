@@ -35,18 +35,6 @@ dlib/image_processing/render_face_detections.h
 -
 dlib/image_processing.h
 -
-dlib/opencv.h
--
-opencv2/highgui/highgui.hpp
--
-dlib/image_processing/frontal_face_detector.h
--
-dlib/image_processing/render_face_detections.h
--
-dlib/image_processing.h
--
-dlib/gui_widgets.h
--
 
 /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp
 dlibFaceDetector.hpp
