@@ -18,7 +18,11 @@ private:
 	cv::Mat _refAbsImg; // this should not be changed during runtime, because it is wrapped by dlib::cv_img
 	
 public:
-	std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
+	// 170 Mac
+    // std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
+    
+    // Pure Mac
+    std::string savePath = "/Users/pure/Developments/Personal-Study/Machine-Learning/Data/lfw_truncated/";
 	
 	cv::Mat readImage(const std::string imgName, const bool colour);
 	void showImage(cv::Mat img, const bool enlarge);

@@ -98,9 +98,16 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 		for (std::vector<std::string>::const_iterator iterPath=_allFileAbsPath.begin(); iterPath!=_allFileAbsPath.end(); ++iterPath){
 			
 			auto iterPathIndex = iterPath - _allFileAbsPath.begin();
-			
-			if (!boost::filesystem::exists(savePath+_fileName[iterPathIndex])){ // Check if expected output file is exist
-				std::cout << "_allFileAbsPath path:" << _allFileAbsPath[iterPathIndex] << std::endl;
+            
+            auto desAbsFileNameChecker = savePath+_fileName[iterPathIndex];
+            desAbsFileNameChecker.insert(desAbsFileNameChecker.size()-4, "_0");
+            
+            std::cout << "IN [" << boost::filesystem::exists(desAbsFileNameChecker) << "]"
+                    <<_allFileAbsPath[iterPathIndex] << std::endl;
+            //std::cout << "CHECKER: " << boost::filesystem::exists(desAbsFileNameChecker) << std::endl;
+            // std::cout << "EXIST: " << desAbsFileNameChecker << std::endl;
+            
+			if (!boost::filesystem::exists(desAbsFileNameChecker)){ // Check if expected output file is exist
 				_refAbsImg = this->readImage(_allFileAbsPath[iterPathIndex], true);
 				//std::cout << "_allFileAbsPath size: " <<(int)_allFileAbsPath.size() << std::endl;
 				//std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
@@ -121,13 +128,17 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 						
 						// Check face image size is inside the original image
 						auto faceCVRect = faceCVRectVec[iterFaceIndex];
-						if ((faceCVRect.x+faceCVRect.width <= _refAbsImg.rows) && (faceCVRect.y+faceCVRect.height <= _refAbsImg.cols)) {
+						if ((faceCVRect.x+faceCVRect.width <= _refAbsImg.rows) &&
+                            (faceCVRect.y+faceCVRect.height <= _refAbsImg.cols) &&
+                            (faceCVRect.x >= 0) &&
+                            (faceCVRect.y >= 0)) {
 							// Truncat a face from the image
 							auto faceImgCV = _refAbsImg(faceCVRectVec[iterFaceIndex]);
 							auto desAbsFileName = savePath+_fileName[iterPathIndex];
+                            
 							desAbsFileName.insert(desAbsFileName.size()-4, "_"+std::to_string(iterFaceIndex));
-							
-							//std::cout << desAbsFileName << std::endl;
+							std::cout << "OUT  : " << desAbsFileName << "\n\n";
+                            
 							this->saveImageFile(desAbsFileName, faceImgCV);
 						}
 					}
@@ -136,7 +147,7 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 			
 			if ((iterPathIndex % 100) == 0){
 				//std::cout << iterPathIndex << " | " << _allFileAbsPath.size() << std::endl;
-				std::cout << "\n\n" << iterPathIndex / (float)_allFileAbsPath.size() <<" %" << "\n\n";
+				std::cout << "\n <===== [" << iterPathIndex / (float)_allFileAbsPath.size() <<" %] =====>" << "\n\n";
 			}
 		}
 

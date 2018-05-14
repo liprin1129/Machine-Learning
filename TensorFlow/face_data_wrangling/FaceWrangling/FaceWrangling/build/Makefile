@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
+CMAKE_SOURCE_DIR = /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build
+CMAKE_BINARY_DIR = /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

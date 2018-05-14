@@ -43,10 +43,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
+CMAKE_SOURCE_DIR = /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build
+CMAKE_BINARY_DIR = /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -59,55 +59,55 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: ../dlibFaceDetector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/dlibFaceDetector.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/dlibFaceDetector.cpp.o -c /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/dlibFaceDetector.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/dlibFaceDetector.cpp.o -c /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp
 
 CMakeFiles/main.dir/dlibFaceDetector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/dlibFaceDetector.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp > CMakeFiles/main.dir/dlibFaceDetector.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp > CMakeFiles/main.dir/dlibFaceDetector.cpp.i
 
 CMakeFiles/main.dir/dlibFaceDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/dlibFaceDetector.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp -o CMakeFiles/main.dir/dlibFaceDetector.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp -o CMakeFiles/main.dir/dlibFaceDetector.cpp.s
 
 CMakeFiles/main.dir/fileSystemManager.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/fileSystemManager.cpp.o: ../fileSystemManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/fileSystemManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/fileSystemManager.cpp.o -c /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/fileSystemManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/fileSystemManager.cpp.o -c /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp
 
 CMakeFiles/main.dir/fileSystemManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/fileSystemManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp > CMakeFiles/main.dir/fileSystemManager.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp > CMakeFiles/main.dir/fileSystemManager.cpp.i
 
 CMakeFiles/main.dir/fileSystemManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/fileSystemManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp -o CMakeFiles/main.dir/fileSystemManager.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp -o CMakeFiles/main.dir/fileSystemManager.cpp.s
 
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp > CMakeFiles/main.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
 CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp -o CMakeFiles/main.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 CMakeFiles/main.dir/mainDelegate.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/mainDelegate.cpp.o: ../mainDelegate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/mainDelegate.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/mainDelegate.cpp.o -c /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/mainDelegate.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/mainDelegate.cpp.o -c /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp
 
 CMakeFiles/main.dir/mainDelegate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/mainDelegate.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp > CMakeFiles/main.dir/mainDelegate.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp > CMakeFiles/main.dir/mainDelegate.cpp.i
 
 CMakeFiles/main.dir/mainDelegate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/mainDelegate.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp -o CMakeFiles/main.dir/mainDelegate.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp -o CMakeFiles/main.dir/mainDelegate.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -168,7 +168,7 @@ main: /usr/local/lib/libopencv_objdetect.3.4.1.dylib
 main: /usr/local/lib/libopencv_imgproc.3.4.1.dylib
 main: /usr/local/lib/libopencv_core.3.4.1.dylib
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -181,6 +181,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

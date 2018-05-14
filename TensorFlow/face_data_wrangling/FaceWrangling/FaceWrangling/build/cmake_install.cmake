@@ -1,4 +1,4 @@
-# Install script for directory: /Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
+# Install script for directory: /Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
