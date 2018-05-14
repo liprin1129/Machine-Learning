@@ -13,8 +13,13 @@
 #include "commonHeader.h"
 
 class FileSystemManager {
+private:
+	char *_fileBuffer;
+	
 protected:
-	std::vector<std::string> _allFileAbsPath;
+	std::vector<std::string> _fileName; // file name
+	//std::vector<std::string> _allAbsPath; // absolute path of paths
+	std::vector<std::string> _allFileAbsPath; // absolute path of files
 	
 public:
 	std::vector<std::string> isDirectory(std::string dir_path);
@@ -29,7 +34,8 @@ public:
     template <typename T> void saveFile(std::string fileName, T& fileData);
 	
 	// Read a file and return the file size and binary type file
-	//struct readFileReturn{long sizeOfFile; std::ifstream inFile;};
-	std::tuple<long, std::ifstream> readFile(std::string fileName);
+	//struct readFileReturn{long sizeOfFile;};
+	boost::tuple<long, char*> readFile(std::string fileName);
+	boost::tuple<long> getFileSize(std::string fileName);
 };
 #endif /* fileSystemManager_hpp */

@@ -86,8 +86,10 @@ void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 				auto extension = boostFS::extension(dir->path().parent_path().string() + '/' + dir->path().filename().string());
 				//std::cout << extension << std::endl;
 				
-				if (extension == ref_extension)
+				if (extension == ref_extension){
 					_allFileAbsPath.push_back(dir->path().parent_path().string() + '/' + dir->path().filename().string());
+					_fileName.push_back(dir->path().filename().string());
+				}
 			}
 			++dir;
 		}
@@ -103,13 +105,17 @@ void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 
 template <typename T>
 void FileSystemManager::saveFile(std::string fileName, T& fileData){
-    std::ofstream writeFile;
-    writeFile.open(fileName);
+    //std::ofstream writeFile;
+    //writeFile.open(fileName);
 	
 	auto a = FileSystemManager::readFile(fileName);
+	
+	std::cout << boost::get<0>(a) << std::endl;
+	std::cout << boost::get<1>(a)[0] << boost::get<1>(a)[1] << std::endl;
+	//std::cout << &_fileBuffer << std::endl;
 }
 
-std::tuple<long, std::ifstream> FileSystemManager::readFile(std::string fileName){
+boost::tuple<long, char*> FileSystemManager::readFile(std::string fileName){
 	std::ifstream infile(fileName, std::ifstream::binary);
 	
 	// Get size of file
@@ -117,11 +123,29 @@ std::tuple<long, std::ifstream> FileSystemManager::readFile(std::string fileName
 	long size = infile.tellg();
 	infile.seekg(0);
 	
+	// allocate memory for file content
+	_fileBuffer = new char[size];
+	
+	// read content of infile
+	infile.read(_fileBuffer, size);
+	
 	std::cout << "File size:" << size << std::endl;
+	std::cout << "Buffer address: " << _fileBuffer[0] << _fileBuffer[1] << std::endl;
 	
-	auto data = std::make_tuple(size, infile);
+	return boost::make_tuple(size, _fileBuffer);
+}
+
+boost::tuple<long> FileSystemManager::getFileSize(std::string fileName){
+	std::ifstream infile(fileName, std::ifstream::binary);
 	
-	return data;
+	// Get size of file
+	infile.seekg(0, infile.end);
+	long size = infile.tellg();
+	infile.seekg(0);
+	
+	infile.close();
+	
+	return boost::make_tuple(size);
 }
 
 int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
@@ -144,7 +168,7 @@ int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
 			std::cout << *iter << std::endl;
 		}*/
 			 //fileAbsPath.begin(), fileAbsPath.end(), boost::bind<std::string>(printf, "%s\n", _1));
-		this->saveFile("/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/lfw/German_Khan/German_Khan_0001.jpg", dirPath);
+		this->saveFile(_allFileAbsPath[0], dirPath);
 	}
 	
 	va_end(argv);

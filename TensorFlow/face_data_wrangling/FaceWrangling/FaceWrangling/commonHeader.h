@@ -9,14 +9,15 @@
 #ifndef commonHeader_h
 #define commonHeader_h
 
-#include <iostream>
+//#include <iostream>
 #include <fstream>
 #include <iterator>
 #include <cstdarg> // take a variable number of arguments
 
 // For data container
 #include <vector>
-#include <tuple>
+//#include <tuple>
+#include "boost/tuple/tuple.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>

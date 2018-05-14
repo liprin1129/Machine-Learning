@@ -43,6 +43,10 @@ dlib::cv_image<dlib::bgr_pixel> DlibFaceDetector::convertMatToDlib(cv::Mat inImg
 	return cimg;
 }
 
+template <typename T> void DlibFaceDetector::saveImageFile(std::string desFile, T& imgFile){
+	cv::imwrite(desFile, imgFile);
+}
+
 template <typename T>
 std::vector<dlib::rectangle> DlibFaceDetector::detectFace(T &dlibImg){
 	dlib::frontal_face_detector detector = dlib::get_frontal_face_detector();
@@ -90,24 +94,64 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 		auto dirPath = va_arg(argv, char*);
 		this->fileInvestigator(dirPath, ".jpg");
 		
-		_refAbsImg = this->readImage(_allFileAbsPath[0], true);
-		std::cout << _allFileAbsPath.size() << std::endl;
-		std::cout << _allFileAbsPath[0] << std::endl;
-		std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
+		// Read a image
+		for (std::vector<std::string>::const_iterator iterPath=_allFileAbsPath.begin(); iterPath!=_allFileAbsPath.end(); ++iterPath){
+			
+			auto iterPathIndex = iterPath - _allFileAbsPath.begin();
+			
+			_refAbsImg = this->readImage(_allFileAbsPath[iterPathIndex], true);
+			//std::cout << "_allFileAbsPath size: " <<(int)_allFileAbsPath.size() << std::endl;
+			//std::cout << "_allFileAbsPath path:" << _allFileAbsPath[iterPathIndex] << std::endl;
+			//std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
+			//this->showImage(_refAbsImg, true);
+			
+			// Convert OpenCV Mat to Dlib (actually it just wraps)
+			auto dlibImg = this->convertMatToDlib(_refAbsImg);
+			// Face detection
+			auto faceDlibRectVec = this->detectFace(dlibImg);
+			// Convert dlib::rectangle to cv::Rect
+			auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
+			
+			// Print out how many faces were detected
+			for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
+				auto iterFaceIndex = iter-faceCVRectVec.begin();
+				//std::cout << iterFaceIndex << " | " << *iter << std::endl;
+				
+				// Truncat a face from the image
+				auto faceImgCV = _refAbsImg(faceCVRectVec[iterFaceIndex]);
+				this->saveImageFile(savePath+_fileName[iterPathIndex], faceImgCV);
+			}
+			
+			if ((iterPathIndex % 10) == 0){
+				//std::cout << iterPathIndex << " | " << _allFileAbsPath.size() << std::endl;
+				std::cout << iterPathIndex / (float)_allFileAbsPath.size() <<" %" << std::endl;
+			}
+		}
 		
+		/*
+		_refAbsImg = this->readImage(_allFileAbsPath[0], true);
+		std::cout << "_allFileAbsPath size: " <<_allFileAbsPath.size() << std::endl;
+		std::cout << "_allFileAbsPath path:" << _allFileAbsPath[0] << std::endl;
+		std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
 		//this->showImage(_refAbsImg, true);
 		
+		// Convert OpenCV Mat to Dlib (actually it just wraps)
 		auto dlibImg = this->convertMatToDlib(_refAbsImg);
+		// Face detection
 		auto faceDlibRectVec = this->detectFace(dlibImg);
+		// Convert dlib::rectangle to cv::Rect
 		auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
  
+		// Print out how many faces were detected
         for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
             auto iterIndex = iter-faceCVRectVec.begin();
             std::cout << iterIndex << " | " << *iter << std::endl;
+			
+			// Truncat a face from the image
+			auto faceImgCV = _refAbsImg(faceCVRectVec[iterIndex]);
+			this->saveImageFile(savePath+_fileName[iterIndex], faceImgCV);
         }
- 
-		auto faceImgCV = _refAbsImg(faceCVRectVec[0]);
-		this->showImage(faceImgCV, true);
+		*/
 	}
 	
 	va_end(argv);

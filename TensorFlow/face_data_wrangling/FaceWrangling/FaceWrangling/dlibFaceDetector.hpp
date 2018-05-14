@@ -18,6 +18,8 @@ private:
 	cv::Mat _refAbsImg; // this should not be changed during runtime, because it is wrapped by dlib::cv_img
 	
 public:
+	std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
+	
 	cv::Mat readImage(const std::string imgName, const bool colour);
 	void showImage(cv::Mat img, const bool enlarge);
 	
@@ -29,5 +31,8 @@ public:
 	std::vector<dlib::rectangle> detectFace(T& dlibImg);
 	
 	int dlibFaceDetectorHasLoaded(int argc, ...);
+	
+	// Write a image file
+	template <typename T> void saveImageFile(std::string desFile, T& imgFile);
 };
 #endif /* dlibFaceDetector_hpp */
