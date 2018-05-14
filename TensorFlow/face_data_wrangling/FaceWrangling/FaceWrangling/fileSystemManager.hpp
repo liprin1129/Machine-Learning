@@ -26,7 +26,10 @@ public:
 	int fileSystemManagerHasLoaded(int argc, ...);
 	//auto classHasLoaded(int argc, char** argv) -> int;
     
-    template <typename T>
-    void saveFile(std::string fileName, T& fileData);
+    template <typename T> void saveFile(std::string fileName, T& fileData);
+	
+	// Read a file and return the file size and binary type file
+	//struct readFileReturn{long sizeOfFile; std::ifstream inFile;};
+	std::tuple<long, std::ifstream> readFile(std::string fileName);
 };
 #endif /* fileSystemManager_hpp */

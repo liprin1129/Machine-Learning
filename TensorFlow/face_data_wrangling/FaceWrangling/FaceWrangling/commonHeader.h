@@ -14,7 +14,10 @@
 #include <iterator>
 #include <cstdarg> // take a variable number of arguments
 
+// For data container
 #include <vector>
+#include <tuple>
+
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
 

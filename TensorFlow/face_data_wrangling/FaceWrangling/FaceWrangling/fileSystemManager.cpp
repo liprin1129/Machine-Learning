@@ -104,7 +104,24 @@ void FileSystemManager::fileInvestigator(T1& dir_path, T2& ref_extension){
 template <typename T>
 void FileSystemManager::saveFile(std::string fileName, T& fileData){
     std::ofstream writeFile;
-    writeFile(fileName);
+    writeFile.open(fileName);
+	
+	auto a = FileSystemManager::readFile(fileName);
+}
+
+std::tuple<long, std::ifstream> FileSystemManager::readFile(std::string fileName){
+	std::ifstream infile(fileName, std::ifstream::binary);
+	
+	// Get size of file
+	infile.seekg(0, infile.end);
+	long size = infile.tellg();
+	infile.seekg(0);
+	
+	std::cout << "File size:" << size << std::endl;
+	
+	auto data = std::make_tuple(size, infile);
+	
+	return data;
 }
 
 int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
@@ -127,6 +144,7 @@ int FileSystemManager::fileSystemManagerHasLoaded(int argc, ...){
 			std::cout << *iter << std::endl;
 		}*/
 			 //fileAbsPath.begin(), fileAbsPath.end(), boost::bind<std::string>(printf, "%s\n", _1));
+		this->saveFile("/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/lfw/German_Khan/German_Khan_0001.jpg", dirPath);
 	}
 	
 	va_end(argv);

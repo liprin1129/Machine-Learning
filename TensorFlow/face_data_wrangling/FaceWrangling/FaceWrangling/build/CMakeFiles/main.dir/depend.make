@@ -662,6 +662,8 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/console_prog
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/crc32.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_1.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/cuda/tensor_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/data_io/image_dataset_metadata.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dir_nav.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions_abstract.h
@@ -673,9 +675,10 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dir_nav/wind
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/disjoint_subsets.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dnn/core_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dnn/layers_abstract.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/dnn/tensor_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/enable_if.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/entropy_decoder.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/entropy_decoder/entropy_decoder_kernel_1.h
@@ -718,6 +721,8 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/bor
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/border_enumerator_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/drectangle.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/drectangle_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/line.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/line_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/point_transforms.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/point_transforms_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/geometry/rectangle.h
@@ -802,6 +807,8 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_proces
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_processing/setup_hashed_features_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_transforms.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_transforms/assign_image.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/image_transforms/assign_image_abstract.h
@@ -873,6 +880,7 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapac
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/gesvd.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/getrf.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/ormqr.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/pbtrf.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/potrf.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/syev.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/matrix/lapack/syevr.h
@@ -946,6 +954,8 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/find_max_factor_graph_viterbi_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/optimization/max_sum_submatrix.h
@@ -1014,16 +1024,8 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sliding_buff
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_1.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_c.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe_abstract.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/smart_pointers_thread_safe.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sort.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sparse_vector.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/stack_trace.h
@@ -1163,6 +1165,7 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/svm/track_as
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sync_extension.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_1.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_abstract.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/test_for_odr_violations.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/threads.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/threads/async.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/threads/async_abstract.h
@@ -1210,6 +1213,7 @@ CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/unicode/unic
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/unicode/unicode_abstract.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/unordered_pair.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/dlib/windows_magic.h
+CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/fftw3.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/main.dir/dlibFaceDetector.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -2000,6 +2004,8 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/console_pro
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/crc32.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_1.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/cuda/tensor_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/data_io/image_dataset_metadata.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dir_nav.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions_abstract.h
@@ -2011,9 +2017,10 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dir_nav/win
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/disjoint_subsets.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dnn/core_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dnn/layers_abstract.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/dnn/tensor_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/enable_if.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/entropy_decoder.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/entropy_decoder/entropy_decoder_kernel_1.h
@@ -2056,6 +2063,8 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/bo
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/border_enumerator_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/drectangle.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/drectangle_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/line.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/line_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/point_transforms.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/point_transforms_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/geometry/rectangle.h
@@ -2140,6 +2149,8 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_proce
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_processing/setup_hashed_features_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_transforms.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_transforms/assign_image.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/image_transforms/assign_image_abstract.h
@@ -2211,6 +2222,7 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapa
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/gesvd.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/getrf.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/ormqr.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/pbtrf.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/potrf.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/syev.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/matrix/lapack/syevr.h
@@ -2284,6 +2296,8 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimizatio
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/find_max_factor_graph_viterbi_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/optimization/max_sum_submatrix.h
@@ -2352,16 +2366,8 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sliding_buf
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_1.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_c.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe_abstract.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/smart_pointers_thread_safe.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sort.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sparse_vector.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/stack_trace.h
@@ -2501,6 +2507,7 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/svm/track_a
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sync_extension.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_1.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_abstract.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/test_for_odr_violations.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/threads.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/threads/async.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/threads/async_abstract.h
@@ -2548,6 +2555,7 @@ CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/unicode/uni
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/unicode/unicode_abstract.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/unordered_pair.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/dlib/windows_magic.h
+CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/fftw3.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/main.dir/fileSystemManager.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -3340,6 +3348,8 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/console_progress_indicat
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/crc32.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_1.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/cuda/tensor_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/data_io/image_dataset_metadata.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dir_nav.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions_abstract.h
@@ -3351,9 +3361,10 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dir_nav/windows.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/disjoint_subsets.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dnn/core_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dnn/layers_abstract.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/dnn/tensor_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/enable_if.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/entropy_decoder.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/entropy_decoder/entropy_decoder_kernel_1.h
@@ -3396,6 +3407,8 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/border_enumerat
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/border_enumerator_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/drectangle.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/drectangle_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/line.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/line_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/point_transforms.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/point_transforms_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/geometry/rectangle.h
@@ -3480,6 +3493,8 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/setup_h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/setup_hashed_features_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_transforms.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_transforms/assign_image.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/image_transforms/assign_image_abstract.h
@@ -3551,6 +3566,7 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/gesdd.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/gesvd.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/getrf.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/ormqr.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/pbtrf.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/potrf.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/syev.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/matrix/lapack/syevr.h
@@ -3624,6 +3640,8 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/find_max_fa
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/find_max_factor_graph_viterbi_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/optimization/max_sum_submatrix.h
@@ -3692,16 +3710,8 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sliding_buffer/circular_
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_1.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_c.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe_abstract.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/smart_pointers_thread_safe.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sort.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sparse_vector.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/stack_trace.h
@@ -3841,6 +3851,7 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/svm/track_association_fu
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sync_extension.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_1.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_abstract.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/test_for_odr_violations.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/threads.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/threads/async.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/threads/async_abstract.h
@@ -3888,6 +3899,7 @@ CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/unicode/unicode.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/unicode/unicode_abstract.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/unordered_pair.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/dlib/windows_magic.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/fftw3.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/main.dir/main.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -4680,6 +4692,8 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/console_progress
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/crc32.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_1.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/crc32/crc32_kernel_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/cuda/tensor_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/data_io/image_dataset_metadata.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dir_nav.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dir_nav/dir_nav_extensions_abstract.h
@@ -4691,9 +4705,10 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dir_nav/windows.
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/disjoint_subsets.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dnn/core_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dnn/layers_abstract.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/dnn/tensor_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/enable_if.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/entropy_decoder.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/entropy_decoder/entropy_decoder_kernel_1.h
@@ -4736,6 +4751,8 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/border_
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/border_enumerator_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/drectangle.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/drectangle_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/line.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/line_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/point_transforms.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/point_transforms_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/geometry/rectangle.h
@@ -4820,6 +4837,8 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing/setup_hashed_features_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_transforms.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_transforms/assign_image.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/image_transforms/assign_image_abstract.h
@@ -4891,6 +4910,7 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/ge
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/gesvd.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/getrf.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/ormqr.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/pbtrf.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/potrf.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/syev.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/matrix/lapack/syevr.h
@@ -4964,6 +4984,8 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/fin
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/find_max_factor_graph_viterbi_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/find_max_parse_cky_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/isotonic_regression_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/max_cost_assignment_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/optimization/max_sum_submatrix.h
@@ -5032,16 +5054,8 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sliding_buffer/c
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_1.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sliding_buffer/sliding_buffer_kernel_c.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe_abstract.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/smart_pointers_thread_safe.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sort.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sparse_vector.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/stack_trace.h
@@ -5181,6 +5195,7 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/svm/track_associ
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sync_extension.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_1.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/sync_extension/sync_extension_kernel_abstract.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/test_for_odr_violations.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/threads.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/threads/async.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/threads/async_abstract.h
@@ -5228,6 +5243,7 @@ CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/unicode/unicode.
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/unicode/unicode_abstract.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/unordered_pair.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/dlib/windows_magic.h
+CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/fftw3.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/main.dir/mainDelegate.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h

@@ -6,14 +6,18 @@
 
 #IncludeRegexTransform: 
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
 iostream
+-
+fstream
 -
 iterator
 -
 cstdarg
 -
 vector
+-
+tuple
 -
 boost/filesystem.hpp
 -
@@ -46,27 +50,27 @@ dlib/image_processing.h
 dlib/gui_widgets.h
 -
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.cpp
 dlibFaceDetector.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
 commonHeader.h
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
 fileSystemManager.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.cpp
 fileSystemManager.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
 commonHeader.h
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/commonHeader.h
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/main.cpp
 mainDelegate.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
 dlib/opencv.h
 -
 opencv2/highgui/highgui.hpp
@@ -80,15 +84,15 @@ dlib/image_processing.h
 dlib/gui_widgets.h
 -
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.cpp
 mainDelegate.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
 
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/mainDelegate.hpp
 fileSystemManager.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/fileSystemManager.hpp
 dlibFaceDetector.hpp
-/Users/pure/Developments/Personal-Study/Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
+/Users/user170/Developments/Personal-Dev./Machine-Learning/TensorFlow/face_data_wrangling/FaceWrangling/FaceWrangling/dlibFaceDetector.hpp
 
 /usr/local/include/boost/assert.hpp
 boost/config.hpp
@@ -6155,8 +6159,10 @@ any/any_function.h
 /usr/local/include/dlib/any/any.h
 any_abstract.h
 /usr/local/include/dlib/any/any_abstract.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
+../algs.h
+/usr/local/include/dlib/algs.h
+memory
+-
 typeinfo
 -
 
@@ -6167,8 +6173,6 @@ typeinfo
 /usr/local/include/dlib/any/any_decision_function.h
 any.h
 /usr/local/include/dlib/any/any.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 any_decision_function_abstract.h
 /usr/local/include/dlib/any/any_decision_function_abstract.h
 
@@ -6181,8 +6185,6 @@ any_abstract.h
 /usr/local/include/dlib/any/any_function.h
 any.h
 /usr/local/include/dlib/any/any.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 any_function_abstract.h
 /usr/local/include/dlib/any/any_function_abstract.h
 any_function_impl2.h
@@ -6231,8 +6233,6 @@ any_function_impl.h
 /usr/local/include/dlib/any/any_trainer.h
 any.h
 /usr/local/include/dlib/any/any.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 any_decision_function.h
 /usr/local/include/dlib/any/any_decision_function.h
 any_trainer_abstract.h
@@ -6618,6 +6618,22 @@ string
 vector
 -
 
+/usr/local/include/dlib/cuda/tensor_abstract.h
+../matrix.h
+/usr/local/include/dlib/matrix.h
+../any/any_abstract.h
+/usr/local/include/dlib/any/any_abstract.h
+
+/usr/local/include/dlib/data_io/image_dataset_metadata.h
+string
+-
+vector
+-
+../geometry.h
+/usr/local/include/dlib/geometry.h
+image_dataset_metadata.cpp
+/usr/local/include/dlib/data_io/image_dataset_metadata.cpp
+
 /usr/local/include/dlib/dir_nav.h
 platform.h
 /usr/local/include/dlib/platform.h
@@ -6675,6 +6691,8 @@ vector
 /usr/local/include/dlib/enable_if.h
 ../queue.h
 /usr/local/include/dlib/queue.h
+chrono
+-
 dir_nav_kernel_1.cpp
 /usr/local/include/dlib/dir_nav/dir_nav_kernel_1.cpp
 
@@ -6703,6 +6721,8 @@ errno.h
 -
 stdlib.h
 -
+chrono
+-
 vector
 -
 ../stl_checked.h
@@ -6723,6 +6743,8 @@ vector
 /usr/local/include/dlib/uintn.h
 ../algs.h
 /usr/local/include/dlib/algs.h
+chrono
+-
 
 /usr/local/include/dlib/dir_nav/posix.h
 dir_nav_kernel_2.h
@@ -6735,6 +6757,8 @@ dir_nav_kernel_1.h
 /usr/local/include/dlib/disjoint_subsets.h
 disjoint_subsets/disjoint_subsets.h
 /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
+disjoint_subsets/disjoint_subsets_sized.h
+/usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
 
 /usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
 disjoint_subsets_abstract.h
@@ -6750,9 +6774,25 @@ vector
 ../algs.h
 /usr/local/include/dlib/algs.h
 
+/usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized.h
+disjoint_subsets_sized_abstract.h
+/usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
+disjoint_subsets.h
+/usr/local/include/dlib/disjoint_subsets/disjoint_subsets.h
+vector
+-
+../algs.h
+/usr/local/include/dlib/algs.h
+
+/usr/local/include/dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h
+vector
+-
+../algs.h
+/usr/local/include/dlib/algs.h
+
 /usr/local/include/dlib/dnn/core_abstract.h
-tensor_abstract.h
-/usr/local/include/dlib/dnn/tensor_abstract.h
+../cuda/tensor_abstract.h
+/usr/local/include/dlib/cuda/tensor_abstract.h
 memory
 -
 type_traits
@@ -6765,16 +6805,10 @@ vector
 /usr/local/include/dlib/rand.h
 
 /usr/local/include/dlib/dnn/layers_abstract.h
-tensor_abstract.h
-/usr/local/include/dlib/dnn/tensor_abstract.h
+../cuda/tensor_abstract.h
+/usr/local/include/dlib/cuda/tensor_abstract.h
 core_abstract.h
 /usr/local/include/dlib/dnn/core_abstract.h
-
-/usr/local/include/dlib/dnn/tensor_abstract.h
-../matrix.h
-/usr/local/include/dlib/matrix.h
-../any/any_abstract.h
-/usr/local/include/dlib/any/any_abstract.h
 
 /usr/local/include/dlib/enable_if.h
 
@@ -7125,6 +7159,8 @@ geometry/border_enumerator.h
 /usr/local/include/dlib/geometry/border_enumerator.h
 geometry/point_transforms.h
 /usr/local/include/dlib/geometry/point_transforms.h
+geometry/line.h
+/usr/local/include/dlib/geometry/line.h
 
 /usr/local/include/dlib/geometry/border_enumerator.h
 border_enumerator_abstract.h
@@ -7146,6 +7182,16 @@ rectangle.h
 rectangle_abstract.h
 /usr/local/include/dlib/geometry/rectangle_abstract.h
 
+/usr/local/include/dlib/geometry/line.h
+line_abstract.h
+/usr/local/include/dlib/geometry/line_abstract.h
+vector.h
+/usr/local/include/dlib/geometry/vector.h
+utility
+-
+
+/usr/local/include/dlib/geometry/line_abstract.h
+
 /usr/local/include/dlib/geometry/point_transforms.h
 point_transforms_abstract.h
 /usr/local/include/dlib/geometry/point_transforms_abstract.h
@@ -7161,6 +7207,8 @@ vector.h
 /usr/local/include/dlib/optimization/optimization.h
 rectangle.h
 /usr/local/include/dlib/geometry/rectangle.h
+drectangle.h
+/usr/local/include/dlib/geometry/drectangle.h
 vector
 -
 
@@ -7325,8 +7373,8 @@ gui_core_kernel_abstract.h
 /usr/local/include/dlib/pixel.h
 ../unicode.h
 /usr/local/include/dlib/unicode.h
-../smart_pointers_thread_safe.h
-/usr/local/include/dlib/smart_pointers_thread_safe.h
+../smart_pointers/shared_ptr_thread_safe.h
+/usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 gui_core_kernel_1.cpp
 /usr/local/include/dlib/gui_core/gui_core_kernel_1.cpp
 
@@ -7377,6 +7425,10 @@ gui_widgets/widgets.h
 /usr/local/include/dlib/gui_widgets/widgets.h
 
 /usr/local/include/dlib/gui_widgets/base_widgets.h
+cctype
+-
+memory
+-
 base_widgets_abstract.h
 /usr/local/include/dlib/gui_widgets/base_widgets_abstract.h
 drawable.h
@@ -7403,12 +7455,8 @@ drawable.h
 /usr/local/include/dlib/array.h
 style.h
 /usr/local/include/dlib/gui_widgets/style.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 ../unicode.h
 /usr/local/include/dlib/unicode.h
-cctype
--
 ../any.h
 /usr/local/include/dlib/any.h
 base_widgets.cpp
@@ -7451,6 +7499,8 @@ canvas_drawing.cpp
 /usr/local/include/dlib/pixel.h
 
 /usr/local/include/dlib/gui_widgets/drawable.h
+memory
+-
 drawable_abstract.h
 /usr/local/include/dlib/gui_widgets/drawable_abstract.h
 ../gui_core.h
@@ -7481,12 +7531,14 @@ canvas_drawing_abstract.h
 /usr/local/include/dlib/gui_widgets/canvas_drawing_abstract.h
 
 /usr/local/include/dlib/gui_widgets/fonts.h
+memory
+-
+string
+-
 fonts_abstract.h
 /usr/local/include/dlib/gui_widgets/fonts_abstract.h
 ../gui_core.h
 /usr/local/include/dlib/gui_core.h
-string
--
 ../algs.h
 /usr/local/include/dlib/algs.h
 ../serialize.h
@@ -7499,8 +7551,6 @@ string
 /usr/local/include/dlib/array2d.h
 ../threads.h
 /usr/local/include/dlib/threads.h
-../smart_pointers_thread_safe.h
-/usr/local/include/dlib/smart_pointers_thread_safe.h
 fonts.cpp
 /usr/local/include/dlib/gui_widgets/fonts.cpp
 
@@ -7551,6 +7601,18 @@ widgets_abstract.h
 /usr/local/include/dlib/unicode/unicode_abstract.h
 
 /usr/local/include/dlib/gui_widgets/widgets.h
+cctype
+-
+memory
+-
+set
+-
+sstream
+-
+string
+-
+vector
+-
 ../algs.h
 /usr/local/include/dlib/algs.h
 widgets_abstract.h
@@ -7561,10 +7623,6 @@ drawable.h
 /usr/local/include/dlib/gui_core.h
 fonts.h
 /usr/local/include/dlib/gui_widgets/fonts.h
-string
--
-sstream
--
 ../timer.h
 /usr/local/include/dlib/timer.h
 base_widgets.h
@@ -7581,22 +7639,14 @@ base_widgets.h
 /usr/local/include/dlib/dir_nav.h
 ../queue.h
 /usr/local/include/dlib/queue.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 style.h
 /usr/local/include/dlib/gui_widgets/style.h
 ../string.h
 /usr/local/include/dlib/string.h
 ../misc_api.h
 /usr/local/include/dlib/misc_api.h
-cctype
--
-vector
--
 ../any.h
 /usr/local/include/dlib/any.h
-set
--
 ../image_processing/full_object_detection.h
 /usr/local/include/dlib/image_processing/full_object_detection.h
 widgets.cpp
@@ -7867,6 +7917,8 @@ image_processing/scan_fhog_pyramid.h
 /usr/local/include/dlib/image_processing/scan_fhog_pyramid.h
 image_processing/shape_predictor.h
 /usr/local/include/dlib/image_processing/shape_predictor.h
+image_processing/shape_predictor_trainer.h
+/usr/local/include/dlib/image_processing/shape_predictor_trainer.h
 image_processing/correlation_tracker.h
 /usr/local/include/dlib/image_processing/correlation_tracker.h
 
@@ -8231,12 +8283,8 @@ full_object_detection.h
 /usr/local/include/dlib/geometry.h
 ../pixel.h
 /usr/local/include/dlib/pixel.h
-../console_progress_indicator.h
-/usr/local/include/dlib/console_progress_indicator.h
 ../statistics.h
 /usr/local/include/dlib/statistics.h
-../threads.h
-/usr/local/include/dlib/threads.h
 utility
 -
 
@@ -8249,6 +8297,26 @@ full_object_detection_abstract.h
 /usr/local/include/dlib/geometry.h
 ../pixel.h
 /usr/local/include/dlib/pixel.h
+
+/usr/local/include/dlib/image_processing/shape_predictor_trainer.h
+shape_predictor_trainer_abstract.h
+/usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
+shape_predictor.h
+/usr/local/include/dlib/image_processing/shape_predictor.h
+../console_progress_indicator.h
+/usr/local/include/dlib/console_progress_indicator.h
+../threads.h
+/usr/local/include/dlib/threads.h
+../data_io/image_dataset_metadata.h
+/usr/local/include/dlib/data_io/image_dataset_metadata.h
+box_overlap_testing.h
+/usr/local/include/dlib/image_processing/box_overlap_testing.h
+
+/usr/local/include/dlib/image_processing/shape_predictor_trainer_abstract.h
+shape_predictor_abstract.h
+/usr/local/include/dlib/image_processing/shape_predictor_abstract.h
+../data_io/image_dataset_metadata.h
+/usr/local/include/dlib/data_io/image_dataset_metadata.h
 
 /usr/local/include/dlib/image_transforms.h
 dlib_basic_cpp_build_tutorial.txt
@@ -8349,12 +8417,20 @@ edge_detector_abstract.h
 /usr/local/include/dlib/pixel.h
 ../array2d.h
 /usr/local/include/dlib/array2d.h
+../geometry.h
+/usr/local/include/dlib/geometry.h
+vector
+-
 
 /usr/local/include/dlib/image_transforms/edge_detector_abstract.h
 ../pixel.h
 /usr/local/include/dlib/pixel.h
 ../image_processing/generic_image.h
 /usr/local/include/dlib/image_processing/generic_image.h
+../geometry.h
+/usr/local/include/dlib/geometry.h
+vector
+-
 
 /usr/local/include/dlib/image_transforms/equalize_histogram.h
 ../pixel.h
@@ -8479,6 +8555,10 @@ integral_image_abstract.h
 /usr/local/include/dlib/image_processing/generic_image.h
 
 /usr/local/include/dlib/image_transforms/interpolation.h
+../threads.h
+/usr/local/include/dlib/threads.h
+algorithm
+-
 interpolation_abstract.h
 /usr/local/include/dlib/image_transforms/interpolation_abstract.h
 ../pixel.h
@@ -8493,6 +8573,10 @@ image_pyramid.h
 /usr/local/include/dlib/simd.h
 ../image_processing/full_object_detection.h
 /usr/local/include/dlib/image_processing/full_object_detection.h
+limits
+-
+../rand.h
+/usr/local/include/dlib/rand.h
 
 /usr/local/include/dlib/image_transforms/interpolation_abstract.h
 ../pixel.h
@@ -8661,6 +8745,8 @@ thresholding_abstract.h
 /usr/local/include/dlib/image_transforms/thresholding_abstract.h
 equalize_histogram.h
 /usr/local/include/dlib/image_transforms/equalize_histogram.h
+../enable_if.h
+/usr/local/include/dlib/enable_if.h
 
 /usr/local/include/dlib/image_transforms/thresholding_abstract.h
 ../pixel.h
@@ -8924,6 +9010,12 @@ fortran_id.h
 ../matrix.h
 /usr/local/include/dlib/matrix/matrix.h
 
+/usr/local/include/dlib/matrix/lapack/pbtrf.h
+fortran_id.h
+/usr/local/include/dlib/matrix/lapack/fortran_id.h
+../matrix.h
+/usr/local/include/dlib/matrix/matrix.h
+
 /usr/local/include/dlib/matrix/lapack/potrf.h
 fortran_id.h
 /usr/local/include/dlib/matrix/lapack/fortran_id.h
@@ -9017,6 +9109,8 @@ matrix_conj_trans.h
 /usr/local/include/dlib/matrix/matrix_conj_trans.h
 cblas_constants.h
 /usr/local/include/dlib/matrix/cblas_constants.h
+stdint.h
+-
 
 /usr/local/include/dlib/matrix/matrix_cholesky.h
 matrix.h
@@ -9053,6 +9147,8 @@ matrix_conv_abstract.h
 /usr/local/include/dlib/matrix/matrix_conv_abstract.h
 matrix.h
 /usr/local/include/dlib/matrix/matrix.h
+matrix_fft.h
+/usr/local/include/dlib/matrix/matrix_fft.h
 
 /usr/local/include/dlib/matrix/matrix_conv_abstract.h
 matrix_abstract.h
@@ -9171,10 +9267,16 @@ matrix_eigenvalue.h
 /usr/local/include/dlib/matrix/matrix_eigenvalue.h
 lapack/potrf.h
 /usr/local/include/dlib/matrix/lapack/potrf.h
+lapack/pbtrf.h
+/usr/local/include/dlib/matrix/lapack/pbtrf.h
 lapack/gesdd.h
 /usr/local/include/dlib/matrix/lapack/gesdd.h
 lapack/gesvd.h
 /usr/local/include/dlib/matrix/lapack/gesvd.h
+../threads.h
+/usr/local/include/dlib/threads.h
+iostream
+-
 
 /usr/local/include/dlib/matrix/matrix_la_abstract.h
 matrix_abstract.h
@@ -9429,10 +9531,14 @@ memory_manager_kernel_2.h
 /usr/local/include/dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h
 memory_manager_stateless_kernel_abstract.h
 /usr/local/include/dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
+memory
+-
 
 /usr/local/include/dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
 ../algs.h
 /usr/local/include/dlib/algs.h
+memory
+-
 
 /usr/local/include/dlib/misc_api.h
 platform.h
@@ -9571,6 +9677,8 @@ optimization/find_max_factor_graph_viterbi.h
 /usr/local/include/dlib/optimization/find_max_factor_graph_viterbi.h
 optimization/find_max_parse_cky.h
 /usr/local/include/dlib/optimization/find_max_parse_cky.h
+optimization/isotonic_regression.h
+/usr/local/include/dlib/optimization/isotonic_regression.h
 
 /usr/local/include/dlib/optimization/find_max_factor_graph_nmplp.h
 find_max_factor_graph_nmplp_abstract.h
@@ -9627,6 +9735,20 @@ string
 /usr/local/include/dlib/algs.h
 ../serialize.h
 /usr/local/include/dlib/serialize.h
+
+/usr/local/include/dlib/optimization/isotonic_regression.h
+isotonic_regression_abstract.h
+/usr/local/include/dlib/optimization/isotonic_regression_abstract.h
+vector
+-
+utility
+-
+
+/usr/local/include/dlib/optimization/isotonic_regression_abstract.h
+vector
+-
+utility
+-
 
 /usr/local/include/dlib/optimization/max_cost_assignment.h
 max_cost_assignment_abstract.h
@@ -9699,10 +9821,10 @@ algorithm
 -
 cmath
 -
+memory
+-
 ../matrix.h
 /usr/local/include/dlib/matrix.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 optimization_bobyqa_abstract.h
 /usr/local/include/dlib/optimization/optimization_bobyqa_abstract.h
 optimization.h
@@ -9833,10 +9955,18 @@ optimization_solve_qp_using_smo_abstract.h
 /usr/local/include/dlib/optimization/optimization_solve_qp_using_smo_abstract.h
 ../matrix.h
 /usr/local/include/dlib/matrix.h
+map
+-
+../unordered_pair.h
+/usr/local/include/dlib/unordered_pair.h
 
 /usr/local/include/dlib/optimization/optimization_solve_qp_using_smo_abstract.h
 ../matrix.h
 /usr/local/include/dlib/matrix.h
+map
+-
+../unordered_pair.h
+/usr/local/include/dlib/unordered_pair.h
 
 /usr/local/include/dlib/optimization/optimization_stop_strategies.h
 cmath
@@ -10117,9 +10247,15 @@ complex
 -
 map
 -
+memory
+-
 set
 -
 limits
+-
+type_traits
+-
+utility
 -
 uintn.h
 /usr/local/include/dlib/uintn.h
@@ -10135,8 +10271,6 @@ byte_orderer.h
 /usr/local/include/dlib/byte_orderer.h
 float_details.h
 /usr/local/include/dlib/float_details.h
-smart_pointers/shared_ptr.h
-/usr/local/include/dlib/smart_pointers/shared_ptr.h
 
 /usr/local/include/dlib/set.h
 set/set_kernel_1.h
@@ -10237,6 +10371,10 @@ simd_check.h
 /usr/local/include/dlib/uintn.h
 
 /usr/local/include/dlib/simd/simd_check.h
+array
+-
+iostream
+-
 altivec.h
 -
 xmmintrin.h
@@ -10254,6 +10392,12 @@ smmintrin.h
 immintrin.h
 -
 immintrin.h
+-
+arm_neon.h
+-
+intrin.h
+-
+cpuid.h
 -
 
 /usr/local/include/dlib/sliding_buffer.h
@@ -10310,48 +10454,6 @@ sliding_buffer_kernel_abstract.h
 iostream
 -
 
-/usr/local/include/dlib/smart_pointers.h
-smart_pointers/scoped_ptr.h
-/usr/local/include/dlib/smart_pointers/scoped_ptr.h
-smart_pointers/shared_ptr.h
-/usr/local/include/dlib/smart_pointers/shared_ptr.h
-smart_pointers/weak_ptr.h
-/usr/local/include/dlib/smart_pointers/weak_ptr.h
-
-/usr/local/include/dlib/smart_pointers/scoped_ptr.h
-algorithm
--
-../noncopyable.h
-/usr/local/include/dlib/noncopyable.h
-../algs.h
-/usr/local/include/dlib/algs.h
-scoped_ptr_abstract.h
-/usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-
-/usr/local/include/dlib/smart_pointers/scoped_ptr_abstract.h
-../noncopyable.h
-/usr/local/include/dlib/noncopyable.h
-
-/usr/local/include/dlib/smart_pointers/shared_ptr.h
-algorithm
--
-memory
--
-typeinfo
--
-string
--
-../algs.h
-/usr/local/include/dlib/algs.h
-shared_ptr_abstract.h
-/usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
-
-/usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
-weak_ptr_abstract.h
-/usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-exception
--
-
 /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 algorithm
 -
@@ -10371,26 +10473,6 @@ shared_ptr_thread_safe_abstract.h
 /usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe_abstract.h
 exception
 -
-
-/usr/local/include/dlib/smart_pointers/weak_ptr.h
-algorithm
--
-memory
--
-shared_ptr.h
-/usr/local/include/dlib/smart_pointers/shared_ptr.h
-../algs.h
-/usr/local/include/dlib/algs.h
-weak_ptr_abstract.h
-/usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-
-/usr/local/include/dlib/smart_pointers/weak_ptr_abstract.h
-shared_ptr_abstract.h
-/usr/local/include/dlib/smart_pointers/shared_ptr_abstract.h
-
-/usr/local/include/dlib/smart_pointers_thread_safe.h
-smart_pointers/shared_ptr_thread_safe.h
-/usr/local/include/dlib/smart_pointers/shared_ptr_thread_safe.h
 
 /usr/local/include/dlib/sort.h
 algs.h
@@ -11085,6 +11167,8 @@ kernel_abstract.h
 /usr/local/include/dlib/svm/kkmeans.h
 cmath
 -
+vector
+-
 ../matrix/matrix_abstract.h
 /usr/local/include/dlib/matrix/matrix_abstract.h
 ../algs.h
@@ -11101,10 +11185,6 @@ kkmeans_abstract.h
 /usr/local/include/dlib/svm/kkmeans_abstract.h
 ../noncopyable.h
 /usr/local/include/dlib/noncopyable.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
-vector
--
 
 /usr/local/include/dlib/svm/kkmeans_abstract.h
 cmath
@@ -11339,8 +11419,8 @@ kcentroid.h
 /usr/local/include/dlib/svm/kcentroid.h
 iostream
 -
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
+memory
+-
 
 /usr/local/include/dlib/svm/pegasos_abstract.h
 cmath
@@ -11863,6 +11943,8 @@ limits
 /usr/local/include/dlib/algs.h
 ../rand.h
 /usr/local/include/dlib/rand.h
+svm.h
+/usr/local/include/dlib/svm/svm.h
 function.h
 /usr/local/include/dlib/svm/function.h
 kernel.h
@@ -12154,6 +12236,12 @@ sync_extension_kernel_abstract.h
 ../algs.h
 /usr/local/include/dlib/algs.h
 
+/usr/local/include/dlib/test_for_odr_violations.h
+assert.h
+/usr/local/include/dlib/assert.h
+config.h
+/usr/local/include/dlib/config.h
+
 /usr/local/include/dlib/threads.h
 dlib_basic_cpp_build_tutorial.txt
 /usr/local/include/dlib/dlib_basic_cpp_build_tutorial.txt
@@ -12333,6 +12421,8 @@ rmutex_extension_abstract.h
 /usr/local/include/dlib/threads/rmutex_extension_abstract.h
 
 /usr/local/include/dlib/threads/thread_function_extension.h
+memory
+-
 thread_function_extension_abstract.h
 /usr/local/include/dlib/threads/thread_function_extension_abstract.h
 threads_kernel.h
@@ -12341,14 +12431,18 @@ auto_mutex_extension.h
 /usr/local/include/dlib/threads/auto_mutex_extension.h
 threaded_object_extension.h
 /usr/local/include/dlib/threads/threaded_object_extension.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
 
 /usr/local/include/dlib/threads/thread_function_extension_abstract.h
 threads_kernel_abstract.h
 /usr/local/include/dlib/threads/threads_kernel_abstract.h
 
 /usr/local/include/dlib/threads/thread_pool_extension.h
+exception
+-
+memory
+-
+thread
+-
 thread_pool_extension_abstract.h
 /usr/local/include/dlib/threads/thread_pool_extension_abstract.h
 multithreaded_object_extension.h
@@ -12365,14 +12459,6 @@ auto_mutex_extension.h
 /usr/local/include/dlib/uintn.h
 ../array.h
 /usr/local/include/dlib/array.h
-../smart_pointers_thread_safe.h
-/usr/local/include/dlib/smart_pointers_thread_safe.h
-../smart_pointers.h
-/usr/local/include/dlib/smart_pointers.h
-exception
--
-thread
--
 thread_pool_extension.cpp
 /usr/local/include/dlib/threads/thread_pool_extension.cpp
 
@@ -12431,6 +12517,12 @@ windows.h
 -
 ../algs.h
 /usr/local/include/dlib/algs.h
+condition_variable
+-
+mutex
+-
+chrono
+-
 threads_kernel_shared.h
 /usr/local/include/dlib/threads/threads_kernel_shared.h
 threads_kernel_1.cpp
@@ -12467,6 +12559,8 @@ auto_mutex_extension.h
 /usr/local/include/dlib/queue.h
 ../set.h
 /usr/local/include/dlib/set.h
+../test_for_odr_violations.h
+/usr/local/include/dlib/test_for_odr_violations.h
 threads_kernel_shared.cpp
 /usr/local/include/dlib/threads/threads_kernel_shared.cpp
 
@@ -12481,6 +12575,8 @@ timer/timer_heavy.h
 /usr/local/include/dlib/timer/timer_heavy.h
 
 /usr/local/include/dlib/timer/timer.h
+memory
+-
 ../threads.h
 /usr/local/include/dlib/threads.h
 ../algs.h
@@ -12493,8 +12589,6 @@ timer_abstract.h
 /usr/local/include/dlib/uintn.h
 ../binary_search_tree.h
 /usr/local/include/dlib/binary_search_tree.h
-../smart_pointers_thread_safe.h
-/usr/local/include/dlib/smart_pointers_thread_safe.h
 timer_heavy.h
 /usr/local/include/dlib/timer/timer_heavy.h
 timer.cpp
@@ -12579,6 +12673,12 @@ serialize.h
 /usr/local/include/dlib/windows_magic.h
 platform.h
 /usr/local/include/dlib/platform.h
+
+/usr/local/include/fftw3.h
+stdio.h
+-
+stddef.h
+-
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

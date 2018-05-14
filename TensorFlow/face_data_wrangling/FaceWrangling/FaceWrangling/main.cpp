@@ -10,7 +10,14 @@
 
 int main(int argc, char** argv){
 	MainDelegate delegation;
-	return delegation.mainDelegation(argc, argv);
+	
+	auto data = std::make_tuple(20, std::string("baz"));
+	
+	std::cout << "the int: " << std::get<0>(data) << "\n"
+	<< "the string: " << std::get<1>(data) << "\n";
+	//<< "the float: " << std::get<2>(data) << "\n";
+	
+	return 0;//delegation.mainDelegation(argc, argv);
 }
 
 /*
