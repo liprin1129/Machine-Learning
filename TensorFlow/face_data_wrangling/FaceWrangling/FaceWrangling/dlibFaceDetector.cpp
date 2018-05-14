@@ -99,40 +99,50 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 			
 			auto iterPathIndex = iterPath - _allFileAbsPath.begin();
 			
-			_refAbsImg = this->readImage(_allFileAbsPath[iterPathIndex], true);
-			//std::cout << "_allFileAbsPath size: " <<(int)_allFileAbsPath.size() << std::endl;
-			//std::cout << "_allFileAbsPath path:" << _allFileAbsPath[iterPathIndex] << std::endl;
-			//std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
-			//this->showImage(_refAbsImg, true);
-			
-			// Convert OpenCV Mat to Dlib (actually it just wraps)
-			auto dlibImg = this->convertMatToDlib(_refAbsImg);
-			// Face detection
-			auto faceDlibRectVec = this->detectFace(dlibImg);
-			// Convert dlib::rectangle to cv::Rect
-			auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
-			
-			// Print out how many faces were detected
-			for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
-				auto iterFaceIndex = iter-faceCVRectVec.begin();
-				//std::cout << iterFaceIndex << " | " << *iter << std::endl;
+			if (!boost::filesystem::exists(savePath+_fileName[iterPathIndex])){ // Check if expected output file is exist
+				std::cout << "_allFileAbsPath path:" << _allFileAbsPath[iterPathIndex] << std::endl;
+				_refAbsImg = this->readImage(_allFileAbsPath[iterPathIndex], true);
+				//std::cout << "_allFileAbsPath size: " <<(int)_allFileAbsPath.size() << std::endl;
+				//std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
+				//this->showImage(_refAbsImg, true);
 				
-				// Truncat a face from the image
-				auto faceImgCV = _refAbsImg(faceCVRectVec[iterFaceIndex]);
-				this->saveImageFile(savePath+_fileName[iterPathIndex], faceImgCV);
+				// Convert OpenCV Mat to Dlib (actually it just wraps)
+				auto dlibImg = this->convertMatToDlib(_refAbsImg);
+				// Face detection
+				auto faceDlibRectVec = this->detectFace(dlibImg);
+				// Convert dlib::rectangle to cv::Rect
+				auto faceCVRectVec = this->convertDlibRectToCVRect(faceDlibRectVec);
+				
+				if (!faceCVRectVec.empty()){
+					// Print out how many faces were detected
+					for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
+						auto iterFaceIndex = iter-faceCVRectVec.begin();
+						//std::cout << iterFaceIndex << " | " << *iter << std::endl;
+						
+						// Check face image size is inside the original image
+						auto faceCVRect = faceCVRectVec[iterFaceIndex];
+						if ((faceCVRect.x+faceCVRect.width <= _refAbsImg.rows) && (faceCVRect.y+faceCVRect.height <= _refAbsImg.cols)) {
+							// Truncat a face from the image
+							auto faceImgCV = _refAbsImg(faceCVRectVec[iterFaceIndex]);
+							auto desAbsFileName = savePath+_fileName[iterPathIndex];
+							desAbsFileName.insert(desAbsFileName.size()-4, "_"+std::to_string(iterFaceIndex));
+							
+							//std::cout << desAbsFileName << std::endl;
+							this->saveImageFile(desAbsFileName, faceImgCV);
+						}
+					}
+				}
 			}
 			
-			if ((iterPathIndex % 10) == 0){
+			if ((iterPathIndex % 100) == 0){
 				//std::cout << iterPathIndex << " | " << _allFileAbsPath.size() << std::endl;
-				std::cout << iterPathIndex / (float)_allFileAbsPath.size() <<" %" << std::endl;
+				std::cout << "\n\n" << iterPathIndex / (float)_allFileAbsPath.size() <<" %" << "\n\n";
 			}
 		}
-		
+
 		/*
-		_refAbsImg = this->readImage(_allFileAbsPath[0], true);
-		std::cout << "_allFileAbsPath size: " <<_allFileAbsPath.size() << std::endl;
-		std::cout << "_allFileAbsPath path:" << _allFileAbsPath[0] << std::endl;
-		std::cout << "_refAbsImg shape" << _refAbsImg.size << std::endl;
+		_refAbsImg = this->readImage("/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/lfw/Liza_Minnelli/Liza_Minnelli_0002.jpg", true);
+
 		//this->showImage(_refAbsImg, true);
 		
 		// Convert OpenCV Mat to Dlib (actually it just wraps)
@@ -145,13 +155,24 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 		// Print out how many faces were detected
         for (std::vector<cv::Rect>::const_iterator iter=faceCVRectVec.begin(); iter!=faceCVRectVec.end(); ++iter){
             auto iterIndex = iter-faceCVRectVec.begin();
-            std::cout << iterIndex << " | " << *iter << std::endl;
+            //std::cout << iterIndex << " | " << *iter << std::endl;
 			
-			// Truncat a face from the image
-			auto faceImgCV = _refAbsImg(faceCVRectVec[iterIndex]);
-			this->saveImageFile(savePath+_fileName[iterIndex], faceImgCV);
-        }
-		*/
+			std::cout << _refAbsImg.rows << '|' << _refAbsImg.cols << std::endl;
+			std::cout << faceCVRectVec[iterIndex] << std::endl;
+			
+			// Check face image size is inside the original image
+			auto faceCVRect = faceCVRectVec[iterIndex];
+			std::cout << faceCVRect.x+faceCVRect.width << '|' << faceCVRect.y+faceCVRect.height << std::endl << std::endl;
+			
+			if ((faceCVRect.x+faceCVRect.width <= _refAbsImg.rows) &&
+				(faceCVRect.y+faceCVRect.height <= _refAbsImg.cols) &&
+				(faceCVRect.x >= 0) &&
+				(faceCVRect.y >= 0)) {
+				// Truncat a face from the image
+				auto faceImgCV = _refAbsImg(faceCVRectVec[iterIndex]);
+				this->saveImageFile(savePath+_fileName[iterIndex], faceImgCV);
+			}
+        }*/
 	}
 	
 	va_end(argv);
