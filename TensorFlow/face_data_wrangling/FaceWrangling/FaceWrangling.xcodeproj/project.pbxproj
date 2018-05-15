@@ -10,6 +10,7 @@
 		C132EAE120A414F200D357DB /* mainDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C132EADF20A414F200D357DB /* mainDelegate.cpp */; };
 		C14DAC7C20A53B0000BBEEB7 /* dlibFaceDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */; };
 		C14DAC8120A570FB00BBEEB7 /* test_img.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = C14DAC8020A570F700BBEEB7 /* test_img.jpg */; };
+		C151B96920AA775B00DF5BF6 /* imageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C151B96720AA775B00DF5BF6 /* imageManager.cpp */; };
 		C180B69E20A3FB3F00209021 /* fileSystemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */; };
 		C1CC13B320A3C9B0006BD835 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1CC13B220A3C9B0006BD835 /* main.cpp */; };
 		C1CC16C120A3DA12006BD835 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CC16C020A3DA12006BD835 /* Accelerate.framework */; };
@@ -34,6 +35,8 @@
 		C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dlibFaceDetector.cpp; sourceTree = "<group>"; };
 		C14DAC7B20A53B0000BBEEB7 /* dlibFaceDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dlibFaceDetector.hpp; sourceTree = "<group>"; };
 		C14DAC8020A570F700BBEEB7 /* test_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_img.jpg; sourceTree = "<group>"; };
+		C151B96720AA775B00DF5BF6 /* imageManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageManager.cpp; sourceTree = "<group>"; };
+		C151B96820AA775B00DF5BF6 /* imageManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imageManager.hpp; sourceTree = "<group>"; };
 		C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fileSystemManager.cpp; sourceTree = "<group>"; };
 		C180B69D20A3FB3F00209021 /* fileSystemManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileSystemManager.hpp; sourceTree = "<group>"; };
 		C1CC13AF20A3C9B0006BD835 /* FaceWrangling */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FaceWrangling; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,8 @@
 				C132EADF20A414F200D357DB /* mainDelegate.cpp */,
 				C180B69D20A3FB3F00209021 /* fileSystemManager.hpp */,
 				C180B69C20A3FB3F00209021 /* fileSystemManager.cpp */,
+				C151B96820AA775B00DF5BF6 /* imageManager.hpp */,
+				C151B96720AA775B00DF5BF6 /* imageManager.cpp */,
 				C14DAC7B20A53B0000BBEEB7 /* dlibFaceDetector.hpp */,
 				C14DAC7A20A53B0000BBEEB7 /* dlibFaceDetector.cpp */,
 				C1CC13B220A3C9B0006BD835 /* main.cpp */,
@@ -155,6 +160,7 @@
 				C14DAC7C20A53B0000BBEEB7 /* dlibFaceDetector.cpp in Sources */,
 				C132EAE120A414F200D357DB /* mainDelegate.cpp in Sources */,
 				C1CC13B320A3C9B0006BD835 /* main.cpp in Sources */,
+				C151B96920AA775B00DF5BF6 /* imageManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

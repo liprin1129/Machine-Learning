@@ -12,25 +12,11 @@
 #include "commonHeader.h"
 
 #include "fileSystemManager.hpp"
+#include "imageManager.hpp"
 
-class DlibFaceDetector:public FileSystemManager{
-private:
-	cv::Mat _refAbsImg; // this should not be changed during runtime, because it is wrapped by dlib::cv_img
+class DlibFaceDetector:public FileSystemManager, public ImageManager{
 	
 public:
-	// 170 Mac
-    std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
-	
-	// 170 Ubuntu
-	// std::string savePath = "";
-	
-    // Pure Mac
-    // std::string savePath = "/Users/pure/Developments/Personal-Study/Machine-Learning/Data/lfw_truncated/";
-	
-	cv::Mat readImage(const std::string imgName, const bool colour);
-	void showImage(cv::Mat img, const bool enlarge);
-	
-	
 	dlib::cv_image<dlib::bgr_pixel> convertMatToDlib(cv::Mat inImg);
 	std::vector<cv::Rect> convertDlibRectToCVRect(std::vector<dlib::rectangle> dlibFaceRectVector);
 	
@@ -38,8 +24,5 @@ public:
 	std::vector<dlib::rectangle> detectFace(T& dlibImg);
 	
 	int dlibFaceDetectorHasLoaded(int argc, ...);
-	
-	// Write a image file
-	template <typename T> void saveImageFile(std::string desFile, T& imgFile);
 };
 #endif /* dlibFaceDetector_hpp */

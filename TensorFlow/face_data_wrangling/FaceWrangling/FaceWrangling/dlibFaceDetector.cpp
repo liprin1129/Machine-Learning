@@ -8,43 +8,10 @@
 
 #include "dlibFaceDetector.hpp"
 
-cv::Mat DlibFaceDetector::readImage(const std::string imgName, const bool colour){
-	cv::Mat result;
-	if (colour == false){
-		result = cv::imread(imgName, CV_LOAD_IMAGE_GRAYSCALE);
-	} else{
-		result = cv::imread(imgName, CV_LOAD_IMAGE_COLOR);
-	}
-	
-	//ImageHelper::showImage(result, false);
-	//ImageHelper::showImage(result, true);
-	//std::cout << imgName << result.size() << std::endl;
-	return result;
-}
-
-void DlibFaceDetector::showImage(cv::Mat img, const bool enlarge){
-	cv::Mat resizedImg;
-	
-	if (enlarge){
-		img.copyTo(resizedImg);
-		cv::resize(img, resizedImg, cv::Size(), 3, 3, cv::INTER_LINEAR );
-	} else{
-		img.copyTo(resizedImg);
-	}
-	
-	cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );
-	cv::imshow( "Display window", resizedImg );
-	cv::waitKey(0);
-}
-
 dlib::cv_image<dlib::bgr_pixel> DlibFaceDetector::convertMatToDlib(cv::Mat inImg){
 	dlib::cv_image<dlib::bgr_pixel> cimg(inImg);
 	
 	return cimg;
-}
-
-template <typename T> void DlibFaceDetector::saveImageFile(std::string desFile, T& imgFile){
-	cv::imwrite(desFile, imgFile);
 }
 
 template <typename T>
@@ -138,8 +105,9 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 							desAbsFileName.insert(desAbsFileName.size()-4, "_"+std::to_string(iterFaceIndex));
 							
 							//std::cout << "[ " << iterPathIndex / (float)_allFileAbsPath.size() << "% ]\n"<< _allFileAbsPath[iterPathIndex] << std::endl;
-                            
-							this->saveImageFile(desAbsFileName, faceImgCV);
+							
+							auto smallImg = this->resizeImage(faceImgCV, _outColoumns, _outRows);
+							this->saveImageFile(desAbsFileName, smallImg);
 						}
 					}
 				}
