@@ -19,10 +19,13 @@ private:
 	
 public:
 	// 170 Mac
-    // std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
-    
+    std::string savePath = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face/ifw_truncated/";
+	
+	// 170 Ubuntu
+	// std::string savePath = "";
+	
     // Pure Mac
-    std::string savePath = "/Users/pure/Developments/Personal-Study/Machine-Learning/Data/lfw_truncated/";
+    // std::string savePath = "/Users/pure/Developments/Personal-Study/Machine-Learning/Data/lfw_truncated/";
 	
 	cv::Mat readImage(const std::string imgName, const bool colour);
 	void showImage(cv::Mat img, const bool enlarge);

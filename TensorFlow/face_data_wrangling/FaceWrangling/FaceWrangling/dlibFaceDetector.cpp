@@ -101,9 +101,8 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
             
             auto desAbsFileNameChecker = savePath+_fileName[iterPathIndex];
             desAbsFileNameChecker.insert(desAbsFileNameChecker.size()-4, "_0");
-            
-            std::cout << "IN [" << boost::filesystem::exists(desAbsFileNameChecker) << "]"
-                    <<_allFileAbsPath[iterPathIndex] << std::endl;
+			
+			std::cout << "[ " << iterPathIndex / (float)_allFileAbsPath.size() << " % ]" << _allFileAbsPath[iterPathIndex] << std::endl;
             //std::cout << "CHECKER: " << boost::filesystem::exists(desAbsFileNameChecker) << std::endl;
             // std::cout << "EXIST: " << desAbsFileNameChecker << std::endl;
             
@@ -137,7 +136,8 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 							auto desAbsFileName = savePath+_fileName[iterPathIndex];
                             
 							desAbsFileName.insert(desAbsFileName.size()-4, "_"+std::to_string(iterFaceIndex));
-							std::cout << "OUT  : " << desAbsFileName << "\n\n";
+							
+							//std::cout << "[ " << iterPathIndex / (float)_allFileAbsPath.size() << "% ]\n"<< _allFileAbsPath[iterPathIndex] << std::endl;
                             
 							this->saveImageFile(desAbsFileName, faceImgCV);
 						}
@@ -145,10 +145,10 @@ int DlibFaceDetector::dlibFaceDetectorHasLoaded(int argc, ...){
 				}
 			}
 			
-			if ((iterPathIndex % 100) == 0){
+			/* if ((iterPathIndex % 100) == 0){
 				//std::cout << iterPathIndex << " | " << _allFileAbsPath.size() << std::endl;
 				std::cout << "\n <===== [" << iterPathIndex / (float)_allFileAbsPath.size() <<" %] =====>" << "\n\n";
-			}
+			} */
 		}
 
 		/*
