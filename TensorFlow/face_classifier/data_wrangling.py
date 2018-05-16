@@ -79,7 +79,8 @@ class DataWrangling(object):
                         #img_cv = self.resize_img(img_cv, (224, 224)) # resize the image
                         #img_cv = self.scailing(img_cv, new_min=0, new_max=1) # rescailing
                         #print(np.shape(img_cv), np.min(img_cv), np.max(img_cv))
-                        features.append(img_cv[..., ::-1])
+                        #features.append(img_cv[..., ::-1])
+                        features.append(img_cv)
                     #jpg_list_without_path.append(img_file[:-9])
                     labels.append(img_file[:-9])
 
@@ -97,6 +98,9 @@ class DataWrangling(object):
         #self._folder_path = folder_path
         '''
 
+    def bgr2rgb(self, image):
+        return image[...,::-1]
+        
     def bgr2gray(self, image):
         return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -112,22 +116,24 @@ class DataWrangling(object):
         
         #cv2.normalize(img, dst=img, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=-1)
 
+
 if __name__=="__main__":
 
-    data_dir = "../../Data/Face/"
-
+    read_dir = "../../Data/Face/lfw-truncated/"
+    save_dir = "../../Data/Face/"
+    
     # # data wrangling for raw face dataset
-    data_wrangling = DataWrangling(data_dir)
+    data_wrangling = DataWrangling(read_dir)
     features, labels = data_wrangling.img2numpy_array(data_wrangling.dir_path)
 
-    PickleHelper.save_to_pickle(data_dir, "faces-features.pkl", features)
-    PickleHelper.save_to_pickle(data_dir, "faces-labels.pkl", labels)
+    PickleHelper.save_to_pickle(save_dir, "faces-32x32-features.pkl", features)
+    PickleHelper.save_to_pickle(save_dir, "faces-32x32-labels.pkl", labels)
 
 
     #data_dir = "../../Data/Face/"
 
     # # data wragline for concatenating face and cifar dataset
-    feature1 = PickleHelper.load_pickle(path = "../../Data/Face/", name = "faces-features.pkl")
+    feature1 = PickleHelper.load_pickle(path = "../../Data/Face/", name = "faces-32x32-features.pkl")
     feature2 = PickleHelper.load_pickle(path = "../../Data/Objects/cifar-100-python/", name = "train")[b'data']
     feature2 = np.reshape(feature2, (-1, 3, 32, 32))
     feature2 = np.moveaxis(feature2, 1, 3)
@@ -143,6 +149,5 @@ if __name__=="__main__":
     features = features[shuffle_idx]
     labels = labels[shuffle_idx]
     
-    PickleHelper.save_to_pickle(data_dir, "faces-obj-features.pkl", features)
-    PickleHelper.save_to_pickle(data_dir, "faces-obj-labels.pkl", labels)
-
+    PickleHelper.save_to_pickle(save_dir, "faces-obj-32x32-features.pkl", features)
+    PickleHelper.save_to_pickle(save_dir, "faces-obj-32x32-labels.pkl", labels)

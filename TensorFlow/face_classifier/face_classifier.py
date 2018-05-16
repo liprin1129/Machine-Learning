@@ -28,20 +28,20 @@ def face_classifier_did_loaded():
     
     fc = Face_Classifier_With_Tensorflow()
 
-    img_cv = PickleHelper.load_pickle("../../Data/", "faces-features.pkl")
-
-    print(np.shape(img_cv))
+    img_cv = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features.pkl")
+    img_label = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels.pkl")
+    print("\nFEATURE SHAPE: {0}, LABEL SHAPE: {1}\n".format(np.shape(img_cv), np.shape(img_label)))
+	
+    '''
+    # JUST FOR TEST
+    np.random.seed(32)
+    img_label = np.random.randint(2, size=len(img_label))
+    print(img_label)
     #fc.imshow(img_cv[0])
-
-    '''
-    img = cv2.imread("../../Data/lfw/Aaron_Eckhart/Aaron_Eckhart_0001.jpg")
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    img2 = cv2.resize(img, dsize=(32,32), interpolation=cv2.INTER_LINEAR_EXACT)
-    #fc.imshow(img)
-    fc.imshow(img2)
-    '''
-
-    vgg16 = VGG16(img_cv[:10])
+	'''
+	
+    #fc.imshow(img_cv[0])
+	
+    vgg16 = VGG16(img_cv, img_label)
     #vgg16.architecture()
     vgg16.run_architecture()

@@ -9,14 +9,18 @@
 /* Begin PBXFileReference section */
 		C15DBAEB2099A39D00B6D297 /* main.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
 		C15DBAEC2099A4B100B6D297 /* face_classifier.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = face_classifier.py; sourceTree = "<group>"; };
+		C1F7FA7120ABCBC900CA327E /* VGG16.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = VGG16.py; sourceTree = "<group>"; };
+		C1F7FA7220ABCCD500CA327E /* font_CNN.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = font_CNN.py; path = ../Word_Recognition/font_CNN.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		C15DBAE02099A36800B6D297 = {
 			isa = PBXGroup;
 			children = (
-				C15DBAEB2099A39D00B6D297 /* main.py */,
+				C1F7FA7220ABCCD500CA327E /* font_CNN.py */,
+				C1F7FA7120ABCBC900CA327E /* VGG16.py */,
 				C15DBAEC2099A4B100B6D297 /* face_classifier.py */,
+				C15DBAEB2099A39D00B6D297 /* main.py */,
 			);
 			sourceTree = "<group>";
 		};

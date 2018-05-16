@@ -8,6 +8,12 @@ from tqdm import tqdm
 
 class net_setup(object):
     def __init__(self):
+        # Net info.
+        self.learning_rate = 0.001
+        self.epoch = 1000
+        self.batch_size = 5000
+		
+        # Network shapes
         self.kernel_1x1 = 1
         self.kernel_3x3 = 3
         
@@ -19,6 +25,7 @@ class net_setup(object):
 
         self.dense_4096 = 4096
         self.dense_1000 = 1000
+        self.dense_output = 2
 
     @classmethod
     def filter_variable(cls, kernel, in_depth, out_depth, node_name):
@@ -40,11 +47,18 @@ class net_setup(object):
         return tf.nn.max_pool(in_node, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=node_name)
 
 class VGG16(net_setup):
-    def __init__(self, features):
+    def __init__(self, features, labels):
         super(VGG16, self).__init__()
 
-        self.__architecture = None
         self.__features, self.__feature_shape = self.reshape_for_tensor(features)
+        self.__labels = labels
+
+        # For networks
+        self.__logits_node = None
+        self.__cost_function_node = None
+        self.__optimizer_node = None
+        self.__correct_prediction_node = None
+        self.__accuracy_node = None
 
     def reshape_for_tensor(self, in_data):
         img_shape = np.shape(in_data)
@@ -59,7 +73,7 @@ class VGG16(net_setup):
 
         return in_data, img_shape
 
-    def input_node(self, in_data):
+    def input_node(self, data_shape):
         '''
         img_shape = np.shape(in_data)
  
@@ -74,7 +88,7 @@ class VGG16(net_setup):
         '''
         #_, img_shape = self.reshape_for_tensor(in_data)
         
-        return tf.placeholder(tf.float32, shape=self.__feature_shape)
+        return tf.placeholder(tf.float32, shape=data_shape)
     
     def convolutional_node(self, in_node, kernel_size, out_depth, name):
         with tf.variable_scope(name):
@@ -130,28 +144,70 @@ class VGG16(net_setup):
         dense1 = self.dense_node(max_pool5_flatten, self.dense_4096, name="dense1")
         dense2 = self.dense_node(dense1, self.dense_4096, name="dense2")
         dense3 = self.dense_node(dense2, self.dense_1000, name="dense3")
-
+        dense_output = self.dense_node(dense3, self.dense_output, name="dense_output")
         # Dens -> Probabilities
         #probabilities = tf.nn.softmax(dense3, name="probabilities")
         #self.__architecture = probabilities
 
         # Dens -> Logits
-        logits = tf.nn.relu(dense3)
-        self.__architecture = logits
+        logits = tf.nn.relu(dense_output)
+        self.__logits_node = logits
         
-        
-    
+    def __cross_entropy_cost_function_from_logits(self, logits_from_network_node, hot_encoded_labels_node):
+        self.__cost_function_node = tf.reduce_mean(
+            tf.nn.softmax_cross_entropy_with_logits(
+                logits=logits_from_network_node, labels=hot_encoded_labels_node))
+
+    def __optimizer_for_cost_function(self, cost_function_node, learning_rate):
+        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+        self.__optimizer_node = optimizer.minimize(loss=cost_function_node)
+
+    def __convert_to_one_hot_encoded_labels(self, labels):
+        labels_placeholder = tf.placeholder(tf.int32, shape=(None))
+        one_hot_node = tf.one_hot(labels_placeholder, depth=np.max(labels)+1, dtype=tf.float32)
+
+        with tf.Session() as sess:
+            one_hot_label = sess.run(one_hot_node, feed_dict={labels_placeholder:labels})
+
+        return one_hot_label
+
+    def __get_correct_prediction(logits_node, labels_node):
+        self.__correct_prediction_node = tf.equal(tf.argmax(logits_node, 1), tf.argmax(labels_node, 1))
+	
+    def __get_accuracy(correct_predction_node):
+    	self.__accuracy_node = tf.reduce_mean(tf.cast(correct_predction_node, tf.float32))
+	
     def run_architecture(self):
-        # Set input tensor
-        in_node = self.input_node(self.__features)
+        # Prepare input nodes and data
+        # # Convert input data for proper shape
+        # in_data, _ = self.reshape_for_tensor(self.__features)
+        train_labels_data = self.__convert_to_one_hot_encoded_labels(self.__labels)
+	        
+        # # Set input tensor
+        train_feature_node = self.input_node(self.__feature_shape)
+        train_labels_node = self.input_node([self.batch_size, np.shape(train_labels_data)[1]])
+        print(train_labels_node)
 
         # Build VGG16 architecture
-        self.architecture(in_node)
+        self.architecture(train_feature_node)
+        self.__cross_entropy_cost_function_from_logits(self.__logits_node, train_labels_node)
+        self.__optimizer_for_cost_function(self.__cost_function_node, self.learning_rate)
 
-        in_data, _ = self.reshape_for_tensor(self.__features)
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
 
-            for i in tqdm(self.__features):
-                a = sess.run(self.__architecture, feed_dict={in_node:self.__features})
-                print("Output:", np.max(a))
+            batch_index = np.random.choice(len(self.__features), size=self.batch_size)
+            batch_x = self.__features[batch_index]
+            batch_y = train_labels_data[batch_index]
+            print("Batch train shape:{0}, Batch label shape:{1}".format(np.shape(batch_x), np.shape(batch_y)))
+
+            for epoch in tqdm(range(self.epoch)):
+                #a = sess.run(self.__architecture, feed_dict={train_feature_node:self.__features})
+                #print("Output:", np.max(a))
+                sess.run(self.__optimizer_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y})
+
+                if epoch % 10 == 0:
+                    correct_predction_node = self.__correct_prediction_node(self.__logits_node, train_labels_node)
+                    self.__accuracy_node = self.__get_accuracy(correct_predction_node)
+                    train_accuracy = sess.run(self.__accuracy_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y})
+                    print('step {0}, training accuracy {1}'.format(epoch, train_accuracy))
