@@ -1,6 +1,7 @@
 import platform
+print("Platform is", platform.system())
+
 if platform.system() == "Darwin":
-    print("Platform is", platform.system())
     import matplotlib
     matplotlib.use("TkAgg")
     import matplotlib.pyplot as plt
@@ -38,10 +39,14 @@ def face_classifier_did_loaded():
     img_label = np.random.randint(2, size=len(img_label))
     print(img_label)
     #fc.imshow(img_cv[0])
-	'''
-	
-    #fc.imshow(img_cv[0])
-	
+    '''
+
+    '''
+    test_idx = 0
+    print("Label: ", img_label[test_idx])
+    fc.imshow(img_cv[test_idx])
+    '''
+
     vgg16 = VGG16(img_cv, img_label)
-    #vgg16.architecture()
     vgg16.run_architecture()
+
