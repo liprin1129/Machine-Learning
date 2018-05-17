@@ -78,7 +78,7 @@ class DataWrangling(object):
                         img_cv = self.resize_img(img_cv, (32, 32)) # resize the image
                         #img_cv = self.resize_img(img_cv, (224, 224)) # resize the image
                         #img_cv = self.scailing(img_cv, new_min=0, new_max=1) # rescailing
-                        img_cv = self.bgr2rgb(img_cv)
+                        #img_cv = self.bgr2rgb(img_cv)
                         #print(np.shape(img_cv), np.min(img_cv), np.max(img_cv))
                         #features.append(img_cv[..., ::-1])
                         features.append(img_cv)
@@ -138,7 +138,7 @@ if __name__=="__main__":
     
     # Data wragline for concatenating face and cifar dataset
     # # Normalization for face images
-
+    '''
     new_feature = []
     for f in tqdm(feature1):
         f_gray = data_wrangling.bgr2gray(f)
@@ -146,11 +146,11 @@ if __name__=="__main__":
         #print("feature1 < min: {0} | max: {1} >".format(np.min(f_norm), np.max(f_norm)))
         new_feature.append(f_norm)
     feature1 = new_feature
-    
+    '''
     # # Change channel of image to the last dimension
     feature2 = np.reshape(feature2, (-1, 3, 32, 32))
     feature2 = np.moveaxis(feature2, 1, 3)
-
+    '''
     # # Normalization for object images
     new_feature = []
     for f in tqdm(feature2):
@@ -159,11 +159,11 @@ if __name__=="__main__":
         #print("feature1 < min: {0} | max: {1} >".format(np.min(f_norm), np.max(f_norm)))
         new_feature.append(data_wrangling.scailing(f_norm))
     feature2 = new_feature
-    
+    '''
     features = np.vstack([feature1, feature2])
     
-    label1 = np.ones(len(feature1))
-    label2 = np.zeros(len(feature2))
+    label1 = np.ones(len(feature1), dtype=np.float32)
+    label2 = np.ones(len(feature2), dtype=np.float32)*2
     labels = np.hstack([label1, label2])
     
     # # shuffle the dataset

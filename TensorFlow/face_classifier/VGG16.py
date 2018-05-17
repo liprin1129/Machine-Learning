@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 class net_setup(object):
     def __init__(self):
         # Net info.
-        self.learning_rate = 0.001
-        self.epoch = 1000
+        self.learning_rate = 0.5
+        self.epoch = 5000
         self.batch_size = 2
         self.keep_prob_node = tf.placeholder(tf.float32)
         
@@ -200,7 +200,7 @@ class VGG16(net_setup):
         self.__logits_node = logits
 
     def architecture3(self, in_node, keep_prob_node):
-        img_channel = 3
+        img_channel = 1
         # CONVOLUTIONAL 1
         conv1_kernel = 5
         conv1_filter = 32
@@ -340,22 +340,23 @@ class VGG16(net_setup):
             sess.run(tf.global_variables_initializer())
 
             for epoch in tqdm(range(self.epoch)):
-                '''
                 batch_index = np.random.choice(len(self.__features), size=self.batch_size)
-                print("BATCH_INDEX: ", len(self.__features))
+                #print("BATCH_INDEX: ", len(self.__features))
                 batch_x = self.__features[batch_index]
                 batch_y = train_labels_data[batch_index] 
-                print("Batch train shape:{0}, Batch label shape:{1}".format(np.shape(batch_x), np.shape(batch_y)))
-                '''
+                #print("Batch train shape:{0}, Batch label shape:{1}".format(np.shape(batch_x), np.shape(batch_y)))
+
+                ''' # For testing 10 images
                 batch_index = np.random.choice(len(self.__features[:10]), size=self.batch_size)
                 #print("BATCH_INDEX: ", batch_index, len(self.__features[:10]))
                 batch_x = self.__features[:10][batch_index]
                 batch_y = train_labels_data[:10][batch_index] 
                 #print("Batch train shape:{0}, Batch label shape:{1}".format(np.shape(batch_x), np.shape(batch_y)))
+                '''
                 
                 #a = sess.run(self.__architecture, feed_dict={train_feature_node:self.__features})
                 #print("Output:", np.max(a))
-                sess.run(self.__optimizer_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y, self.keep_prob_node:0.5})
+                sess.run(self.__optimizer_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y, self.keep_prob_node:0.3})
 
                 #loss = sess.run(self.__cost_function_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y, self.keep_prob_node:1})
                 #print("LOSS: ", loss)
@@ -375,8 +376,8 @@ class VGG16(net_setup):
 
                     logits = sess.run(self.__logits_node, feed_dict={train_feature_node:batch_x, train_labels_node:batch_y, self.keep_prob_node:1})
                     if np.argmax(batch_y[0]) == 1:
-                        print("\nprediction", logits[0], " | correct: person")
+                        print("\nprediction", type(logits[0][0]), " | correct: person", type(batch_y[0][0]))
                     else:
-                        print("\nprediction", logits[0], " | correct: object")
+                        print("\nprediction", logits[0], " | correct: object", batch_y[0])
                     #plt.imshow(batch_x[0])
                     #plt.show()
