@@ -29,8 +29,8 @@ def face_classifier_did_loaded():
     
     fc = Face_Classifier_With_Tensorflow()
 
-    img_cv = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features.pkl")
-    img_label = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels.pkl")
+    img_cv = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features-norm.pkl")
+    img_label = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels-norm.pkl")
     print("\nFEATURE SHAPE: {0}, LABEL SHAPE: {1}\n".format(np.shape(img_cv), np.shape(img_label)))
 	
     '''
@@ -41,12 +41,11 @@ def face_classifier_did_loaded():
     #fc.imshow(img_cv[0])
     '''
 
-    '''
     test_idx = 0
-    print("Label: ", img_label[test_idx])
+    print("Label: {0} = < {1} | {2} >".format(img_label[test_idx], np.max(img_cv[test_idx]), np.min(img_cv[test_idx])))
+    print(img_cv[test_idx][:30, :30])
     fc.imshow(img_cv[test_idx])
-    '''
 
-    vgg16 = VGG16(img_cv, img_label)
-    vgg16.run_architecture()
+    #vgg16 = VGG16(img_cv, img_label)
+    #vgg16.run_architecture()
 
