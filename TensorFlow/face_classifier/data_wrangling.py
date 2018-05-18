@@ -5,6 +5,10 @@ import re
 from tqdm import tqdm
 import pickle
 
+# For one hot encoding
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import OneHotEncoder
+
 class PickleHelper(object):
     @classmethod
     def validation_check(cls, _path, _name):
@@ -118,6 +122,16 @@ class DataWrangling(object):
         new_img = img.copy()
         new_img = cv2.normalize(img, dst=None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
         return new_img
+
+    def one_hot_encoding(self, labels):
+        label_binarizer = LabelBinarizer()
+        labels_one_hot = label_binarizer.fit_transform(labels)
+
+        encoder = OneHotEncoder()
+        encoder.fit(labels_one_hot)
+        label_one_hot = encoder.transform(labels_one_hot).toarray()
+
+        return label_one_hot
         
 if __name__=="__main__":
     read_dir = "../../Data/Face/lfw-truncated/"
@@ -138,28 +152,28 @@ if __name__=="__main__":
     
     # Data wragline for concatenating face and cifar dataset
     # # Normalization for face images
-    '''
+
     new_feature = []
     for f in tqdm(feature1):
-        f_gray = data_wrangling.bgr2gray(f)
-        f_norm = data_wrangling.scailing(f_gray, new_min=0, new_max=1)
+        #f_gray = data_wrangling.bgr2gray(f)
+        f_norm = data_wrangling.scailing(f, new_min=0, new_max=1)
         #print("feature1 < min: {0} | max: {1} >".format(np.min(f_norm), np.max(f_norm)))
         new_feature.append(f_norm)
     feature1 = new_feature
-    '''
+
     # # Change channel of image to the last dimension
     feature2 = np.reshape(feature2, (-1, 3, 32, 32))
     feature2 = np.moveaxis(feature2, 1, 3)
-    '''
+
     # # Normalization for object images
     new_feature = []
     for f in tqdm(feature2):
-        f_gray = data_wrangling.bgr2gray(f)
-        f_norm = data_wrangling.scailing(f_gray, new_min=0, new_max=1)
+        #f_gray = data_wrangling.bgr2gray(f)
+        f_norm = data_wrangling.scailing(f, new_min=0, new_max=1)
         #print("feature1 < min: {0} | max: {1} >".format(np.min(f_norm), np.max(f_norm)))
         new_feature.append(data_wrangling.scailing(f_norm))
     feature2 = new_feature
-    '''
+
     features = np.vstack([feature1, feature2])
     
     label1 = np.ones(len(feature1), dtype=np.float32)
@@ -172,6 +186,9 @@ if __name__=="__main__":
     features = features[shuffle_idx]
     labels = labels[shuffle_idx]
 
+    labels = data_wrangling.one_hot_encoding(labels)
+    #print(labels[:10])
+    
     PickleHelper.save_to_pickle(save_dir, "faces-obj-32x32-features-norm.pkl", features)
     PickleHelper.save_to_pickle(save_dir, "faces-obj-32x32-labels-norm.pkl", labels)
 
