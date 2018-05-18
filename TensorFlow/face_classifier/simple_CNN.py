@@ -17,20 +17,21 @@ rl = 0.001 #learning rate
 
 data = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features-norm.pkl")
 labels = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels-norm.pkl")
+test_data = PickleHelper.load_pickle("../../Data/Face/", "blob-itamochi-32x32.pkl")
 
 print("DATA: ", data.shape)
-'''
+
 # FOR CODE TESTING
 train_data = data[:100]
 train_labels = labels[:100]
 eval_data = data[100:120]
 eval_labels = labels[100:120]
-'''
+
 # CODE IMPLEMENTATION
 train_data = data[:80000]
 train_labels = labels[:80000]
-eval_data = data[80000:]
-eval_labels = labels[80000:]
+#eval_data = data[80000:]
+#eval_labels = labels[80000:]
 
 feature_node = tf.placeholder(tf.float32, shape=[None, 32, 32, 3])
 label_node = tf.placeholder(tf.float32, shape=[None, 2])
@@ -97,7 +98,8 @@ with tf.Session() as sess:
         sess.run(train_op, feed_dict={feature_node: batch_x, label_node: batch_y})
 
         if iter % 100 == 0:
-            pred = sess.run(prediction, feed_dict={feature_node: batch_x})
+            pred1 = sess.run(prediction, feed_dict={feature_node: test_data})
+            pred2 = sess.run(prediction, feed_dict={feature_node: batch_x})
             #print("PRED: ", np.argmax(pred[:5], axis=1))
             #print("TRUE: ", np.argmax(train_labels[:5], axis=1))
 
@@ -110,12 +112,20 @@ with tf.Session() as sess:
             
             for i in range(5):
                 for j in range(5):
-                    ax_pred[i, j].imshow(batch_x[i*5+j])
-                    #print("===> ", pred[i*5+j])
-                    if pred[i*5+j] == 0:
-                        ax_pred[i, j].set_title("Person")
+                    if (i == 0) and (j==0):
+                        ax_pred[i, j].imshow(test_data[i*5+j])
+
+                        if pred1[i*5+j] == 0:
+                            ax_pred[i, j].set_title("Face")
+                        else:
+                            ax_pred[i, j].set_title("Non")
                     else:
-                        ax_pred[i, j].set_title("Non")
+                        ax_pred[i, j].imshow(batch_x[i*5+j])
+                        #print("===> ", pred[i*5+j])
+                        if pred2[i*5+j] == 0:
+                            ax_pred[i, j].set_title("Face")
+                        else:
+                            ax_pred[i, j].set_title("Non")
 
             plt.tight_layout()
             plt.pause(0.0001)
