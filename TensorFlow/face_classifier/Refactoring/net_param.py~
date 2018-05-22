@@ -1,0 +1,23 @@
+class netParam(object):
+    def __init__(self):
+        self.epoch = 5000
+        self.batch_size = 500
+        self.rl = 0.001 #learning rate
+        
+        self.data = PickleHelper.load_pickle("../../../Data/Face/", "faces-obj-32x32-features-norm.pkl")
+        self.labels = PickleHelper.load_pickle("../../../Data/Face/", "faces-obj-32x32-labels-norm.pkl")
+        self.test_data = PickleHelper.load_pickle("../../../Data/Face/", "blob-itamochi-32x32.pkl")
+        
+        print("DATA: ", self.data.shape)
+        
+        # FOR CODE TESTING
+        self.train_data = self.data[:100]
+        self.train_labels = self.labels[:100]
+        self.eval_data = self.data[100:120]
+        self.eval_labels = self.labels[100:120]
+        
+        # CODE IMPLEMENTATION
+        self.train_data = self.data[:80000]
+        self.train_labels = self.labels[:80000]
+        #eval_data = data[80000:]
+        #eval_labels = labels[80000:]
