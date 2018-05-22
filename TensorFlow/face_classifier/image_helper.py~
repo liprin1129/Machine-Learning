@@ -1,0 +1,138 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 14 10:17:23 2017
+
+@author: 170
+"""
+
+import cv2
+import numpy as np
+
+class Img_Functions(object):
+    def __init__(self, folder_path):
+        self._folder_path = folder_path
+        ## this must be set to inherit this class
+        self._img = None
+        
+    def get_img(self):
+        return self._img
+    
+    def read_img(self, file_name, channel = 0):
+        ## read image
+        self._img = cv2.imread(self._folder_path + file_name, cv2.IMREAD_UNCHANGED)
+        '''
+        if channel == 0:
+            self._img = cv2.imread(self._folder_path + file_name, cv2.IMREAD_GRAYSCALE)
+        else:
+            self._img = cv2.imread(self._folder_path + file_name, cv2.IMREAD_COLOR)
+        #self._folder_path = folder_path
+        '''
+    def save_img(self, path, file_name, data):
+        cv2.imwrite(path+file_name, data)
+        
+    def image2grey(self, img):
+        return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        
+    def bitwise_reversal(self, img):
+        img =cv2.bitwise_not(img)
+        return img
+        
+    def scailing(self, img, new_min = 0, new_max = 255):
+        old_max = np.max(img)
+        old_min = np.min(img)
+        
+        return ((new_max - new_min) / (old_max - old_min)) * (img - old_min) + new_min
+    
+    def dilate_img(self, img, kernel_type = "ones", shape = (3, 3), iter_n = 1, kernel = None):
+        '''
+        Dilate an image using a given kernel type. Kernel type is either 'ones', 'cross', 'ellipse', or 'self'.
+        To be noted that if 'self' kernel type is selected, you must set your own kernel shape.
+        All kernel must hold int8 type.
+
+        Parameters
+        ----------
+            kernel_type: string
+                kernel_type should be either 'ones', 'cross', 'ellipse', or 'self'.
+                default is 'ones'
+
+            shape: list of two ints
+                shape of kernel, default is (3, 3).
+
+            iter_n: int
+                number of iteration for dilation
+
+            kernel: 2D array
+                if kernel_type is 'self', this parametre should be set.
+
+        Returns
+        ----------
+            No return
+        '''
+        if kernel_type == "ones":
+            _kernel = np.ones(shape, np.uint8)
+
+        elif kernel_type == "cross":
+            _kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, shape)
+
+        elif kernel_type == "ellipse":
+            _kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, shape)
+
+        elif kernel_type == "self":
+            _kernel = kernel
+
+        ## ## Kernel Element Type Check
+        if type(_kernel[0, 0]) == np.uint8:
+            print("\tKernel type conversion from {0} to {1}".format(type(_kernel[0, 0]), np.uint8))
+            _kernel = _kernel.astype(np.uint8)
+
+
+        img = cv2.dilate(img, _kernel, iterations = iter_n)
+        
+        return img
+
+    def erode_img(self, img, kernel_type = "ones", shape = (3, 3), iter_n = 1, kernel = None):
+        '''
+        Erode an image using a given kernel type. Kernel type is either 'ones', 'cross', 'ellipse', or 'self'.
+        To be noted that if 'self' kernel type is selected, you must set your own kernel shape.
+        All kernel must hold int8 type.
+
+        Parameters
+        ----------
+            kernel_type: string
+                kernel_type should be either 'ones', 'cross', 'ellipse', or 'self'.
+                default is 'ones'
+
+            shape: list of two ints
+                shape of kernel, default is (3, 3).
+
+            iter_n: int
+                number of iteration for dilation
+
+            kernel: 2D array
+                if kernel_type is 'self', this parametre should be set.
+
+        Returns
+        ----------
+            No return
+        '''
+        if kernel_type == "ones":
+            _kernel = np.ones(shape, np.uint8)
+
+        elif kernel_type == "cross":
+            _kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, shape)
+
+        elif kernel_type == "ellipse":
+            _kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, shape)
+
+        elif kernel_type == "self":
+            _kernel = kernel
+
+        ## ## Kernel Element Type Check
+        if type(_kernel[0, 0]) == np.uint8:
+            print("\tKernel type conversion from {0} to {1}".format(type(_kernel[0, 0]), np.uint8))
+            _kernel = _kernel.astype(np.uint8)
+
+
+        img = cv2.erode(img, _kernel, iterations = iter_n)
+        
+        return img
