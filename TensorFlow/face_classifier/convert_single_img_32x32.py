@@ -6,7 +6,8 @@ from data_wrangling import DataWrangling
 from data_wrangling import PickleHelper
 
 if __name__=="__main__":
-    img_path = "../../Data/Face/blob-itamochi.png"
+    #img_path = "../../Data/Face/.png"
+    img_path = "non_test.png"
     img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
     
     dw = DataWrangling(img_path)
@@ -23,4 +24,4 @@ if __name__=="__main__":
     print("SHAPE: ", np.shape(new_img), "MIN: {0}, MAX: {1}".format(img.min(), img.max()))
 
     save_dir = "../../Data/Face/"
-    PickleHelper.save_to_pickle(save_dir, "blob-itamochi-32x32.pkl", new_img)
+    PickleHelper.save_to_pickle(save_dir, "non_test-32x32.pkl", new_img)

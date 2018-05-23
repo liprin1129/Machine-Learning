@@ -2,27 +2,51 @@ import cv2
 import numpy as np
 from pickle_helper import PickleHelper
 from image_helper import ImgFunctions
+import matplotlib.pyplot as plt
 
-img = ImgFunctions.read_img_with_abs_path("star_wars.jpg")
-print(img.shape)
+#img = ImgFunctions.read_img_with_abs_path("star_wars.jpg")
+img = ImgFunctions.read_img_with_abs_path("mission_impossible.jpg")
 
-def cut_down_to_windows(img, kernel):
-    (iH, iW) = img.shape[:2]
-    (kH, kW) = kernel.shape[:2]
+def cut_down_to_windows(img, kernel_size=[360, 360], strides=[30, 30]):
+    '''
+    Convert img size to HD size (1920x1080), and return a list of small patches of the enlarged image.
+    '''
 
-    print(iH, iW, kH, kW)
-    # allocate memory for the output image, taking care to
-    # "pad" the borders of the input image so the spatial
-    # size (i.e., width and height) are not reduced
+    return_list = []
     
-    pad = int((kW - 1) / 2)
-    print(pad)
-    image = cv2.copyMakeBorder(img, pad, pad, pad, pad,
-		               cv2.BORDER_CONSTANT,value=[255,0,0])
+    hd_img = ImgFunctions.resize_img(img, (1920, 1080))
+    hd_img = ImgFunctions.bgr2rgb(hd_img)
+    tx = 0
+    ty = 0
 
-    print(image.shape)
-    output = np.zeros((iH, iW), dtype="float32")
 
-cut_down_to_windows(img, np.ones([33, 33, 3]))
+    iter_x = int((1920-kernel_size[0])/strides[0])+1
+    iter_y = int((1080-kernel_size[1])/strides[1])+1
+    
+    for i in range(iter_x):
+        for j in range(iter_y):
+            #print("{0}, {1}: {2}, {3}".format(ty, ty+kernel_size[1], tx, tx+kernel_size[0]))
+                
+            #img2 = cv2.rectangle(hd_img,(tx,ty),(tx+kernel_size[0],ty+kernel_size[1]),(0,255,0),5)
+            #plt.imshow(ImgFunctions.bgr2rgb(img2))
+            #plt.show()
+            
+            patch_img = ImgFunctions.resize_img(hd_img[ty:ty+kernel_size[1], tx:tx+kernel_size[0]])
+            patch_img = ImgFunctions.scailing(patch_img)
+            return_list.append(patch_img)
+
+            ty += strides[0]
+            
+        tx += strides[1]
+        ty = 0
+    
+
+    print("Return shape:", np.shape(return_list))
+    #plt.imshow(ImgFunctions.bgr2rgb(return_list[-1]))
+    #plt.show()
+    return np.array(return_list)
+
+PickleHelper.save_to_pickle("./", "mission_impossible_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
 
 #https://www.pyimagesearch.com/2016/07/25/convolutions-with-opencv-and-python/
+#https://www.coursera.org/learn/convolutional-neural-networks/lecture/fF3O0/yolo-algorithm

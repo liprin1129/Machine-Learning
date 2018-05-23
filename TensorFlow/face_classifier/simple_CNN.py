@@ -17,7 +17,9 @@ rl = 0.001 #learning rate
 
 data = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features-norm.pkl")
 labels = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels-norm.pkl")
-test_data = PickleHelper.load_pickle("../../Data/Face/", "blob-itamochi-32x32.pkl")
+test_data_p = PickleHelper.load_pickle("../../Data/Face/", "blob-itamochi-32x32.pkl")
+test_data_n = PickleHelper.load_pickle("../../Data/Face/", "non_test-32x32.pkl")
+#test_data = PickleHelper.load_pickle("./", "mission_impossible_360x360.pkl")
 
 print("DATA: ", data.shape)
 
@@ -98,8 +100,8 @@ with tf.Session() as sess:
         sess.run(train_op, feed_dict={feature_node: batch_x, label_node: batch_y})
 
         if iter % 100 == 0:
-            pred1 = sess.run(prediction, feed_dict={feature_node: test_data})
-            pred2 = sess.run(prediction, feed_dict={feature_node: batch_x})
+            pred1 = sess.run(prediction, feed_dict={feature_node: test_data_p})
+            pred2 = sess.run(prediction, feed_dict={feature_node: test_data_n})
             #print("PRED: ", np.argmax(pred[:5], axis=1))
             #print("TRUE: ", np.argmax(train_labels[:5], axis=1))
 
@@ -107,18 +109,26 @@ with tf.Session() as sess:
             eval_acc = sess.run(accuracy, feed_dict={feature_node: eval_data[:batch_size], label_node: eval_labels[:batch_size]})
             print("({0}) TRAIN ACC.: {1} % | EVAL ACC.: {2} %"\
                   .format(iter, np.sum(train_acc)/len(train_acc)*100, np.sum(eval_acc)/len(eval_acc)*100))
-
+            print(np.unique(pred1))
             #print(pred[:10])
-            
+
             for i in range(5):
                 for j in range(5):
                     if (i == 0) and (j==0):
-                        ax_pred[i, j].imshow(test_data[i*5+j])
+                        ax_pred[i, j].imshow(test_data_p[i*5+j])
 
                         if pred1[i*5+j] == 0:
                             ax_pred[i, j].set_title("Face")
                         else:
                             ax_pred[i, j].set_title("Non")
+                    elif (i == 1) and (j == 0):
+                        ax_pred[i, j].imshow(test_data_n[i*5+j])
+
+                        if pred2[i*5+j] == 0:
+                            ax_pred[i, j].set_title("Face")
+                        else:
+                            ax_pred[i, j].set_title("Non")
+                        
                     else:
                         ax_pred[i, j].imshow(batch_x[i*5+j])
                         #print("===> ", pred[i*5+j])
