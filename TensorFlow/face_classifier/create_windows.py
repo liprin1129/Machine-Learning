@@ -4,8 +4,11 @@ from pickle_helper import PickleHelper
 from image_helper import ImgFunctions
 import matplotlib.pyplot as plt
 
-#img = ImgFunctions.read_img_with_abs_path("star_wars.jpg")
-img = ImgFunctions.read_img_with_abs_path("mission_impossible.jpg")
+img = ImgFunctions.read_img_with_abs_path("../../Data/Face/star_wars.jpg")
+#img = ImgFunctions.read_img_with_abs_path("../../Data/Face/mission_impossible.jpg")
+#img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Gang.jpg")
+#img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Ermin-Gang.jpg")
+#img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Tsunematsu-Itamochi.jpg")
 
 def cut_down_to_windows(img, kernel_size=[360, 360], strides=[30, 30]):
     '''
@@ -46,7 +49,11 @@ def cut_down_to_windows(img, kernel_size=[360, 360], strides=[30, 30]):
     #plt.show()
     return np.array(return_list)
 
-PickleHelper.save_to_pickle("./", "mission_impossible_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
+PickleHelper.save_to_pickle("../../Data/Face/", "star_wars_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
+#PickleHelper.save_to_pickle("../../Data/Face/", "mission_impossible_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
+#PickleHelper.save_to_pickle("../../Data/Face/", "Gang_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
+#PickleHelper.save_to_pickle("../../Data/Face/", "Ermin-Gang_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
+#PickleHelper.save_to_pickle("../../Data/Face/", "Tsunematsu-Itamochi_360x360.pkl", cut_down_to_windows(img, (250, 250), (10, 10)))
 
 #https://www.pyimagesearch.com/2016/07/25/convolutions-with-opencv-and-python/
 #https://www.coursera.org/learn/convolutional-neural-networks/lecture/fF3O0/yolo-algorithm

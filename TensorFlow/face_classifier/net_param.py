@@ -1,18 +1,38 @@
 from data_wrangling import PickleHelper
 import tensorflow as tf
+from image_helper import ImgFunctions
 
 class netParam(object):
-    def __init__(self, epoch = 500, batch_size = 14112, learning_rate = 0.001):
+    def __init__(self, epoch = 5000, batch_size = 1000, learning_rate = 0.001):
         self._epoch = epoch
         self._batch_size = batch_size
         self._rl = learning_rate
         
-        self._data = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-features-norm.pkl")
-        self._labels = PickleHelper.load_pickle("../../Data/Face/", "faces-obj-32x32-labels-norm.pkl")
-        #self._test_data = PickleHelper.load_pickle("./", "star_wars_360x360.pkl")
-        self._test_data = PickleHelper.load_pickle("./", "mission_impossible_360x360.pkl")
-        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "non_test-32x32.pkl")
+        #self._data = PickleHelper.load_pickle("../../Data/Face/",
+        #                                      "faces-obj-32x32-features-norm.pkl")
+        #self._labels = PickleHelper.load_pickle("../../Data/Face/",
+        #                                        "faces-obj-32x32-labels-landmark.pkl")
+
+        self._data = PickleHelper.load_pickle("../../Data/Face/Face-Obj-Augment/",
+                                              "augment_faces-obj-32x32-features-norm.pkl")
+        self._labels = PickleHelper.load_pickle("../../Data/Face/Face-Obj-Augment/",
+                                                "augment_faces-obj-32x32-labels-landmark.pkl")
+
+        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "Gang_360x360.pkl")
+        #self._test_img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Gang.jpg")
+        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "Tsunematsu-Itamochi_360x360.pkl")
+        #self._test_img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Tsunematsu-Itamochi.jpg")
+        #self._test_data = PickleHelper.load_pickle("./", "mission_impossible_360x360.pkl")
+        #self._test_img = ImgFunctions.read_img_with_abs_path("../../Data/Face/mission_impossible.jpg")
+        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "star_wars_360x360.pkl")
+        #self._test_img = ImgFunctions.read_img_with_abs_path("../../Data/Face/star_wars.jpg")
+        self._test_data = PickleHelper.load_pickle("../../Data/Face/", "Ermin-Gang_360x360.pkl")
+        self._test_img = ImgFunctions.read_img_with_abs_path("../../Data/Face/Ermin-Gang.jpg")
+
         
+        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "non_test-32x32.pkl")
+        #self._test_data = PickleHelper.load_pickle("../../Data/Face/", "itamochi-non_test-32x32.pkl")
+
         print("DATA: ", self._data.shape)
         
         # FOR CODE TESTING
@@ -47,3 +67,4 @@ class netParam(object):
     
     def _max_pool(cls, in_node, node_name):
         return tf.nn.max_pool(in_node, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=node_name+"_max_pool")
+

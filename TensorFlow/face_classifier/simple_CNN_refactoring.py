@@ -12,7 +12,8 @@ else:
     import matplotlib.pyplot as plt
 
 from net_param import netParam
-    
+from image_helper import ImgFunctions
+
 class CNN(netParam):
     def __init__(self):
         super(CNN, self).__init__()
@@ -84,7 +85,7 @@ class CNN(netParam):
         dense1 = self._dense_layer(conv1_flat, 128, "relu", "dense1")
 
         # DENSE 2
-        dense2 = self._dense_layer(dense1, 2, "None", "dense2")
+        dense2 = self._dense_layer(dense1, self.dense_output, "None", "dense2")
         
         self._logits_nd = dense2
 
@@ -130,9 +131,41 @@ class CNN(netParam):
         #logits = tf.nn.relu(dense_output)
         self._logits_nd = dense_output
 
+    def fully_convolution(self, input_node):
+        conv1_1 = self._convolutional_layer(input_node, self.kernel_3x3, self.depth1, self.stride, "SAME", "conv1_1")
+        conv1_2 = self._convolutional_layer(conv1_1, self.kernel_3x3, self.depth1, self.stride, "SAME", "conv1_2")
+        max_pool1 = self._max_pool(conv1_2, "max_pool1")
+        print(max_pool1)
+        
+        conv2_1 = self._convolutional_layer(max_pool1, self.kernel_3x3, self.depth2, self.stride, "SAME", "conv2_1")
+        conv2_2 = self._convolutional_layer(conv2_1, self.kernel_3x3, self.depth2, self.stride, "SAME", "conv2_2")
+        max_pool2 = self._max_pool(conv2_2, "max_pool2")
+        print(max_pool1)
+        
+        conv3_1 = self._convolutional_layer(max_pool2, self.kernel_3x3, self.depth3, self.stride, "SAME", "conv3_1")
+        conv3_2 = self._convolutional_layer(conv3_1, self.kernel_3x3, self.depth3, self.stride, "SAME", "conv3_2")
+        conv3_3 = self._convolutional_layer(conv3_2, self.kernel_1x1, self.depth3, self.stride, "SAME", "conv3_3")
+        max_pool3 = self._max_pool(conv3_3, "max_pool3")
+        print(max_pool1)
+        
+        conv4_1 = self._convolutional_layer(max_pool3, self.kernel_3x3, self.depth4, self.stride, "SAME", "conv4_1")
+        conv4_2 = self._convolutional_layer(conv4_1, self.kernel_3x3, self.depth4, self.stride, "SAME", "conv4_2")
+        conv4_3 = self._convolutional_layer(conv4_2, self.kernel_1x1, self.depth4, self.stride, "SAME", "conv4_3")
+        max_pool4 = self._max_pool(conv4_3, "max_pool4")
+        print(max_pool1)
+        
+        conv5_1 = self._convolutional_layer(max_pool4, self.kernel_3x3, self.depth5, self.stride, "SAME", "conv5_1")
+        conv5_2 = self._convolutional_layer(conv2_1, self.kernel_3x3, self.depth5, self.stride, "SAME", "conv5_2")
+        conv5_3 = self._convolutional_layer(conv2_2, self.kernel_1x1, self.depth5, self.stride, "SAME", "conv5_3")
+        max_pool5 = self._max_pool(conv5_3, "max_pool5")
+        print(max_pool5)
+
+        self._logits_nd = max_pool5
+        
     def _cost_function(self):
         # CONST FUNCTION
         self._loss_nd = tf.losses.softmax_cross_entropy(onehot_labels=self._label_nd, logits=self._logits_nd)
+        #self._loss_nd = tf.reduce_mean(
 
     def _optimizer(self):
         # OPTIMIZER
@@ -151,6 +184,7 @@ class CNN(netParam):
     def net_initializer(self):
         self.simple_CNN(self._feature_nd)
         #self.VGG16(self._feature_nd)
+        #self.fully_convolution(self._feature_nd)
         self._cost_function()
         self._optimizer()
         self._prediction()
@@ -169,7 +203,7 @@ class CNN(netParam):
 
                 sess.run(self._train_optimizer_nd, feed_dict={self._feature_nd: self.batch_x, self._label_nd: self.batch_y})
 
-                if iter % 10 == 0:
+                if iter % 100 == 0:
                     self._train_info(sess)
                     self._pred_result(sess)
 
@@ -177,12 +211,13 @@ class CNN(netParam):
 
         train_acc = session.run(self._acc_nd, feed_dict={self._feature_nd: self.batch_x, self._label_nd: self.batch_y})
         eval_acc = session.run(self._acc_nd, feed_dict={self._feature_nd: self._eval_data[:self._batch_size], self._label_nd: self._eval_labels[:self._batch_size]})
-        '''
-        pred1 = session.run(self._pred_nd, feed_dict={self._feature_nd: self._test_data})
-        print(np.unique(pred1))
-        '''
+
         print("({0}) TRAIN ACC.: {1} % | EVAL ACC.: {2} %"\
               .format(iter, np.sum(train_acc)/len(train_acc)*100, np.sum(eval_acc)/len(eval_acc)*100))
+
+        #pred1 = session.run(self._pred_nd, feed_dict={self._feature_nd: self._test_data})
+        #print("Results: {0} | Predicts: {1}".format(np.unique(pred1), pred1[495:505]))
+        #print(len(pred1[pred1==0]), " | ", len(pred1[pred1==1]))
 
     def _pred_result(self, session):
         #import cv2
@@ -190,7 +225,6 @@ class CNN(netParam):
         #pred2 = session.run(self._pred_nd, feed_dict={self._feature_nd: batch_x})
         #print(pred1)
 
-        #img = cv2.imread("../star_wars.jpg")
         #print("IMG SHAPE: ", img.shape)
         heat_map_img = np.zeros([1080, 1920], dtype=np.float32)
 
@@ -207,19 +241,42 @@ class CNN(netParam):
         for i in range(predX):
             #print("ITER X ", i)
             for j in range(predY):
-                if pred1[i, j] == 1:
+                if pred1[i, j] == 0:
 
                     y_end = kernel_size[1]+strides[1]*j
                     x_end = kernel_size[0]+strides[0]*i
 
                     #print("{0}, {1}: {2}, {3}".format(y_end-kernel_size[1], x_end-kernel_size[0], y_end, x_end))
                     
-        heat_map_img[y_end-kernel_size[1]:y_end, x_end-kernel_size[0]:x_end] += 1
-    
-        plt.imshow(heat_map_img, cmap='hot')
-        plt.show()
+                    heat_map_img[y_end-kernel_size[1]:y_end, x_end-kernel_size[0]:x_end] += 1
+
+        #RESIZE HEAT MAP IMAGE
+        heat_map_img = ImgFunctions.resize_img(heat_map_img,
+                                               (self._test_img.shape[1],
+                                                self._test_img.shape[0]))
+
+        #print(heat_map_img.shape)
+        
+        heat_max = np.max(heat_map_img)
+        heat_map_img = np.divide(heat_map_img, heat_max)
+        #print("Probabilities: ", np.max(heat_map_img), np.min(heat_map_img))
+
+        threshold = 0.1
+        heat_map_img[heat_map_img < threshold] = 0
+        heat_map_img[heat_map_img >= threshold] = 1
+        heat_map_img = np.asarray(heat_map_img, dtype=np.uint8)
+
+        img2 = ImgFunctions.contour_finder(self._test_img, heat_map_img)
+        
+        ax.imshow(img2)
+        plt.pause(0.001)
+        plt.draw()
 
         #print(np.unique(heat_map_img))        
+
+plt.ion()
+plt.close('all')
+fig, ax = plt.subplots(1, 1, figsize=(10, 10))
 
 cnn = CNN()
 cnn.net_initializer()

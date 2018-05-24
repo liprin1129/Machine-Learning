@@ -8,6 +8,9 @@ Created on Mon Nov 20 13:17:21 2017
 
 print("Use pickle")
 import pickle
+from tqdm import tqdm
+import os
+import re
 
 class PickleHelper(object):
     @classmethod

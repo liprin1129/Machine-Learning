@@ -15,9 +15,12 @@ class ImgFunctions(object):
         self._img = None
 
     @classmethod
-    def read_img_with_abs_path(cls, abs_file_name):
-        ## read image
-        return cv2.imread(abs_file_name, cv2.IMREAD_UNCHANGED)
+    def read_img_with_abs_path(cls, abs_file_name, gray=False):
+        if gray==False:
+            ## read image
+            return cv2.imread(abs_file_name, cv2.IMREAD_UNCHANGED)
+        if gray==True:
+            return cv2.imread(abs_file_name, cv2.IMREAD_GRAYSCALE)
 
     @classmethod
     def bgr2rgb(cls, image):
@@ -39,4 +42,23 @@ class ImgFunctions(object):
         
         return new_img
 
+    @classmethod
+    def translation(cls, img, tx=16, ty=16):
+        new_img = img.copy()
 
+        trans_matrix = np.float32( [[1, 0, tx], [0, 1, ty]] )
+        return cv2.warpAffine(new_img, trans_matrix, (img.shape[1], img.shape[0]))
+        
+
+    @classmethod
+    def contour_finder(cls, img, heat_img):
+        copy_img =  cls.bgr2rgb(img.copy())
+        _, contours, _ = cv2.findContours(heat_img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        #img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
+
+        for cnt in contours:
+            x,y,w,h = cv2.boundingRect(cnt)
+            cv2.rectangle(copy_img,(x,y),(x+w,y+h),(0,255,0),2)
+            #print(contours)
+        
+        return copy_img
