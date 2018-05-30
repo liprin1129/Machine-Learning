@@ -1,0 +1,42 @@
+SET(execName main)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+PROJECT(${execName})
+
+if(COMMAND cmake_policy)
+	cmake_policy(SET CMP0003 OLD)
+	cmake_policy(SET CMP0015 OLD)
+endif(COMMAND cmake_policy)
+
+SET(EXECUTABLE_OUTPUT_PATH ".")
+
+find_package(ZED 2 REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(CUDA ${ZED_CUDA_VERSION} EXACT REQUIRED)
+
+include_directories(${CUDA_INCLUDE_DIRS})
+include_directories(${ZED_INCLUDE_DIRS})
+include_directories(${OPENCV_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/data)
+
+message(STATUS "OpenCV library status:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+link_directories(${ZED_LIBRARY_DIR})
+link_directories(${OpenCV_LIBRARY_DIRS})
+link_directories(${CUDA_LIBRARY_DIRS})
+
+FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
+
+ADD_EXECUTABLE(${execName} ${SRC_FILES})
+add_definitions(-std=c++11 -g -O3)
+
+message(${ZED_DIR})
+message( ${ZED_LIBRARIES})
+
+TARGET_LINK_LIBRARIES(${execName}
+                        ${ZED_LIBRARIES}
+                        ${OpenCV_LIBRARIES}
+                        ${CUDA_CUDA_LIBRARY} ${CUDA_CUDART_LIBRARY} ${CUDA_NPP_LIBRARIES_ZED})

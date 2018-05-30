@@ -1,0 +1,50 @@
+/*
+ * CameraManager.hpp
+ *
+ *  Created on: May 30, 2018
+ *      Author: user170
+ */
+
+#ifndef CAMERAMANAGER_HPP_
+#define CAMERAMANAGER_HPP_
+
+#include "CommonHeaders.hpp"
+
+class CameraManager {
+protected:
+	// Create a ZED camera object
+	sl::Camera _zed;
+
+	// Create configuration parameter object
+	sl::InitParameters _initParams;
+
+	int _height;
+	int _width;
+
+public:
+	//CameraManager(int width, int height, sl::MAT_TYPE _pixelType);
+
+	void parameterInitializer();
+
+	// Return 1 if openCamera() occurs error
+	int openCamera();
+
+	// Show camera information
+	void printCameraInfo(sl::Camera &zedCameraObject);
+
+	// sl::Mat to cv::Mat converter
+	cv::Mat slMatToCvMatConverter(sl::Mat &slMat);
+
+	// Convert sl::Mat to cv::Mat
+	void linkSlMatToCvMat(int width, int height, sl::MAT_TYPE _pixelType);
+
+	int cameraManagerHasLoaded(int argc, ...);
+
+	// Call this function after camera open
+	// Arguments:
+	//		_widthRatio		: 0 ~ 1
+	//		_heightRatio	: 0 ~ 1
+	void setWidthAndHeight(float _widthRatio, float _heightRatio);
+};
+
+#endif /* CAMERAMANAGER_HPP_ */
