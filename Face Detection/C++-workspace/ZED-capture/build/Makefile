@@ -150,6 +150,33 @@ src/CameraManager.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/CameraManager.cpp.s
 .PHONY : src/CameraManager.cpp.s
 
+src/ImageManager.o: src/ImageManager.cpp.o
+
+.PHONY : src/ImageManager.o
+
+# target to build an object file
+src/ImageManager.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ImageManager.cpp.o
+.PHONY : src/ImageManager.cpp.o
+
+src/ImageManager.i: src/ImageManager.cpp.i
+
+.PHONY : src/ImageManager.i
+
+# target to preprocess a source file
+src/ImageManager.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ImageManager.cpp.i
+.PHONY : src/ImageManager.cpp.i
+
+src/ImageManager.s: src/ImageManager.cpp.s
+
+.PHONY : src/ImageManager.s
+
+# target to generate assembly for a file
+src/ImageManager.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ImageManager.cpp.s
+.PHONY : src/ImageManager.cpp.s
+
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
 .PHONY : src/MainDelegate.o
@@ -204,6 +231,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/test.o: src/test.cpp.o
+
+.PHONY : src/test.o
+
+# target to build an object file
+src/test.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test.cpp.o
+.PHONY : src/test.cpp.o
+
+src/test.i: src/test.cpp.i
+
+.PHONY : src/test.i
+
+# target to preprocess a source file
+src/test.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test.cpp.i
+.PHONY : src/test.cpp.i
+
+src/test.s: src/test.cpp.s
+
+.PHONY : src/test.s
+
+# target to generate assembly for a file
+src/test.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test.cpp.s
+.PHONY : src/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,12 +270,18 @@ help:
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
+	@echo "... src/ImageManager.o"
+	@echo "... src/ImageManager.i"
+	@echo "... src/ImageManager.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/test.o"
+	@echo "... src/test.i"
+	@echo "... src/test.s"
 .PHONY : help
 
 

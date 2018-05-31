@@ -5,8 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/CameraManager.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/main.dir/src/CameraManager.cpp.o"
+  "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/ImageManager.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/main.dir/src/ImageManager.cpp.o"
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/MainDelegate.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/main.dir/src/MainDelegate.cpp.o"
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/main.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/main.dir/src/main.cpp.o"
+  "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/test.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/main.dir/src/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

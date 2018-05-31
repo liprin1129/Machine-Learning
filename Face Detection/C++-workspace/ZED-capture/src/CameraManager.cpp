@@ -16,10 +16,19 @@
 	this->_height = height;
 }*/
 
-void CameraManager::parameterInitializer() {
-	this->_initParams.camera_resolution = sl::RESOLUTION_HD1080;
-	this->_initParams.depth_mode = sl::DEPTH_MODE_PERFORMANCE;
-	this->_initParams.coordinate_units = sl::UNIT_MILLIMETER;
+CameraManager::~CameraManager(){
+	std::cout << "Camera close" << std::endl;
+	this->_zed.close();
+}
+
+void CameraManager::parameterInitializer(sl::RESOLUTION res) {
+	this->_initParams.camera_resolution = res;
+}
+
+void CameraManager::parameterInitializer(sl::RESOLUTION res, sl::DEPTH_MODE depth, sl::UNIT unit) {
+	this->_initParams.camera_resolution = res; //sl::RESOLUTION_HD1080;
+	this->_initParams.depth_mode = depth; //sl::DEPTH_MODE_PERFORMANCE;
+	this->_initParams.coordinate_units = unit; //sl::UNIT_MILLIMETER;
 }
 
 // Open camera.
@@ -59,26 +68,36 @@ void CameraManager::printCameraInfo(sl::Camera &zedCameraObject){
 
 // Convert sl::Mat to cv::Mat
 cv::Mat CameraManager::slMatToCvMatConverter(sl::Mat &slMat) {
-		int cv_type = -1;
-		switch (slMat.getDataType()){
-			case sl::MAT_TYPE_32F_C1: cv_type = CV_32FC1; break;
-			case sl::MAT_TYPE_32F_C2: cv_type = CV_32FC2; break;
-			case sl::MAT_TYPE_32F_C3: cv_type = CV_32FC3; break;
-			case sl::MAT_TYPE_32F_C4: cv_type = CV_32FC4; break;
-			case sl::MAT_TYPE_8U_C1: cv_type = CV_8UC1; break;
-			case sl::MAT_TYPE_8U_C2: cv_type = CV_8UC2; break;
-			case sl::MAT_TYPE_8U_C3: cv_type = CV_8UC3; break;
-			case sl::MAT_TYPE_8U_C4: cv_type = CV_8UC4; break;
-			default: break;
-		}
+	//std::cout << "GPU SL Mat" << std::endl;
 
-		return cv::Mat(
-				slMat.getHeight(),
-				slMat.getWidth(),
-				cv_type,
-				slMat.getPtr<sl::uchar1>(sl::MEM_CPU)
-				);
+	if (slMat.getMemoryType() == sl::MEM_GPU) {
+		std::cout << "GPU SL Mat" << std::endl;
+		slMat.updateCPUfromGPU();
 	}
+
+	int cvType = -1;
+	switch (slMat.getDataType()){
+		case sl::MAT_TYPE_32F_C1: cvType = CV_32FC1; break;
+		case sl::MAT_TYPE_32F_C2: cvType = CV_32FC2; break;
+		case sl::MAT_TYPE_32F_C3: cvType = CV_32FC3; break;
+		case sl::MAT_TYPE_32F_C4: cvType = CV_32FC4; break;
+		case sl::MAT_TYPE_8U_C1: cvType = CV_8UC1; break;
+		case sl::MAT_TYPE_8U_C2: cvType = CV_8UC2; break;
+		case sl::MAT_TYPE_8U_C3: cvType = CV_8UC3; break;
+		case sl::MAT_TYPE_8U_C4: cvType = CV_8UC4; break;
+		default: break;
+	}
+
+	/*
+	return cv::Mat(
+			slMat.getHeight(),
+			slMat.getWidth(),
+			cvType,
+			slMat.getPtr<sl::uchar1>(memType)
+			);
+	*/
+	return cv::Mat((int) slMat.getHeight(), (int) slMat.getWidth(), cvType, slMat.getPtr<sl::uchar1>(sl::MEM_CPU), slMat.getStepBytes(sl::MEM_CPU));
+}
 
 void CameraManager::setWidthAndHeight(float _widthRatio, float _heightRatio){
 	sl::Resolution resolution = this->_zed.getResolution();
@@ -94,18 +113,19 @@ int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 	if(argc > 1) {
 		auto pixelType = va_arg(argv, int);
 	}*/
-	this->parameterInitializer();
+	this->parameterInitializer(sl::RESOLUTION_HD1080, sl::DEPTH_MODE_PERFORMANCE, sl::UNIT_MILLIMETER);
 	this->openCamera();
 	this->setWidthAndHeight(0.5, 0.5);
 
 	this->printCameraInfo(this->_zed);
 
 	sl::Mat slMat(this->_width , this->_height, sl::MAT_TYPE_8U_C4);
+
 	cv::Mat cvMat = this->slMatToCvMatConverter(slMat);
 
     // Load Face cascade (.xml file)
     cv::CascadeClassifier face_cascade;
-    face_cascade.load( "../data/haarcascade_frontalface_alt.xml" );
+    face_cascade.load("../data/haarcascade_frontalface_alt_cpu.xml" );
 
     // Detect faces
     std::vector<cv::Rect> faces;
@@ -134,6 +154,6 @@ int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 		}
 	}
 
-	this->_zed.close();
+	//this->_zed.close();
 	return 0;
 }

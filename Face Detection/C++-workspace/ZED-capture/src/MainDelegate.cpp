@@ -8,8 +8,10 @@
 #include "MainDelegate.hpp"
 
 int MainDelegate::mainDelegation(int argc, char** argv){
-	CameraManager cm;
-	cm.cameraManagerHasLoaded(0);
+	//CameraManager cm;
+	//cm.cameraManagerHasLoaded(0);
+
+	ImageManager im;
 
 	return 0;
 }

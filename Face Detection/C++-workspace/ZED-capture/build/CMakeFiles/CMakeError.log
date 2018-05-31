@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_06b78/fast"
-/usr/bin/make -f CMakeFiles/cmTC_06b78.dir/build.make CMakeFiles/cmTC_06b78.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0340e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0340e.dir/build.make CMakeFiles/cmTC_0340e.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_06b78.dir/CheckSymbolExists.c.o
-/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_06b78.dir/CheckSymbolExists.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
-Linking C executable cmTC_06b78
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_06b78.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_06b78.dir/CheckSymbolExists.c.o  -o cmTC_06b78 
-CMakeFiles/cmTC_06b78.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_0340e.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_0340e.dir/CheckSymbolExists.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
+Linking C executable cmTC_0340e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0340e.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_0340e.dir/CheckSymbolExists.c.o  -o cmTC_0340e 
+CMakeFiles/cmTC_0340e.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_06b78.dir/build.make:86: recipe for target 'cmTC_06b78' failed
-make[1]: *** [cmTC_06b78] Error 1
+CMakeFiles/cmTC_0340e.dir/build.make:86: recipe for target 'cmTC_0340e' failed
+make[1]: *** [cmTC_0340e] Error 1
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_06b78/fast' failed
-make: *** [cmTC_06b78/fast] Error 2
+Makefile:126: recipe for target 'cmTC_0340e/fast' failed
+make: *** [cmTC_0340e/fast] Error 2
 
 File /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3ea2c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3ea2c.dir/build.make CMakeFiles/cmTC_3ea2c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3b1dc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3b1dc.dir/build.make CMakeFiles/cmTC_3b1dc.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_3ea2c.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3ea2c.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
-Linking C executable cmTC_3ea2c
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ea2c.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_3ea2c.dir/CheckFunctionExists.c.o  -o cmTC_3ea2c -lpthreads 
+Building C object CMakeFiles/cmTC_3b1dc.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3b1dc.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3b1dc
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b1dc.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_3b1dc.dir/CheckFunctionExists.c.o  -o cmTC_3b1dc -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_3ea2c.dir/build.make:86: recipe for target 'cmTC_3ea2c' failed
-make[1]: *** [cmTC_3ea2c] Error 1
+CMakeFiles/cmTC_3b1dc.dir/build.make:86: recipe for target 'cmTC_3b1dc' failed
+make[1]: *** [cmTC_3b1dc] Error 1
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_3ea2c/fast' failed
-make: *** [cmTC_3ea2c/fast] Error 2
+Makefile:126: recipe for target 'cmTC_3b1dc/fast' failed
+make: *** [cmTC_3b1dc/fast] Error 2
 
 

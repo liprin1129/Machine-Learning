@@ -29,3 +29,5 @@ Data/
 TensorFlow/face_classifier/\.#VGG16_backup\.py
 
 *.pkl
+
+Face Detection/C\+\+-workspace/ZED-capture/include/

@@ -18,9 +18,15 @@ sl/Camera.hpp
 opencv2/opencv.hpp
 -
 
-../include/MainDelegate.hpp
+../include/ImageManager.hpp
+CommonHeaders.hpp
+../include/CommonHeaders.hpp
 CameraManager.hpp
 ../include/CameraManager.hpp
+
+../include/MainDelegate.hpp
+ImageManager.hpp
+../include/ImageManager.hpp
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/CameraManager.cpp
 CameraManager.hpp
@@ -30,6 +36,10 @@ opencv2/imgproc.hpp
 opencv2/cudaobjdetect.hpp
 -
 
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/ImageManager.cpp
+ImageManager.hpp
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/ImageManager.hpp
+
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/MainDelegate.cpp
 MainDelegate.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/MainDelegate.hpp
@@ -37,6 +47,12 @@ MainDelegate.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/main.cpp
 MainDelegate.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/MainDelegate.hpp
+
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/test.cpp
+test.h
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/test.h
+
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/C++-workspace/ZED-capture/src/test.h
 
 /usr/local/cuda/include/builtin_types.h
 device_types.h
