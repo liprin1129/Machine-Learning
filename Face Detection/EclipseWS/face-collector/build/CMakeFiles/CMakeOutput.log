@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/mnt/SharedData/Development/Pe
 Determining if the C compiler works passed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c63f5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c63f5.dir/build.make CMakeFiles/cmTC_c63f5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_446b7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_446b7.dir/build.make CMakeFiles/cmTC_446b7.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c63f5.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_c63f5.dir/testCCompiler.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/testCCompiler.c"
-Linking C executable cmTC_c63f5
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c63f5.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c63f5.dir/testCCompiler.c.o  -o cmTC_c63f5 
+Building C object CMakeFiles/cmTC_446b7.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_446b7.dir/testCCompiler.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/testCCompiler.c"
+Linking C executable cmTC_446b7
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_446b7.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_446b7.dir/testCCompiler.c.o  -o cmTC_446b7 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a2d29/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a2d29.dir/build.make CMakeFiles/cmTC_a2d29.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a2392/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a2392.dir/build.make CMakeFiles/cmTC_a2392.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.11/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_a2d29
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2d29.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o  -o cmTC_a2d29 
+Building C object CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.11/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_a2392
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2392.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o  -o cmTC_a2392 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_a2d29' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDoapjJ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a2d29 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_a2392' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGBo2G3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a2392 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -68,14 +68,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a2d29/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_a2d29.dir/build.make CMakeFiles/cmTC_a2d29.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a2392/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_a2392.dir/build.make CMakeFiles/cmTC_a2392.dir/build]
   ignore line: [make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.11/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_a2d29]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2d29.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o  -o cmTC_a2d29 ]
+  ignore line: [Building C object CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.11/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_a2392]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2392.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o  -o cmTC_a2392 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_a2d29' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDoapjJ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a2d29 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_a2392' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGBo2G3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a2392 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccDoapjJ.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccGBo2G3.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_a2d29] ==> ignore
+    arg [cmTC_a2392] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_a2d29.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_a2392.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -151,14 +151,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6217b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6217b.dir/build.make CMakeFiles/cmTC_6217b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_aff8e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aff8e.dir/build.make CMakeFiles/cmTC_aff8e.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6217b.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_6217b.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_6217b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6217b.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6217b.dir/feature_tests.c.o  -o cmTC_6217b 
+Building C object CMakeFiles/cmTC_aff8e.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_aff8e.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTC_aff8e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aff8e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_aff8e.dir/feature_tests.c.o  -o cmTC_aff8e 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -171,14 +171,14 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fa99b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fa99b.dir/build.make CMakeFiles/cmTC_fa99b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_33b11/fast"
+/usr/bin/make -f CMakeFiles/cmTC_33b11.dir/build.make CMakeFiles/cmTC_33b11.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fa99b.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_fa99b.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_fa99b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa99b.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_fa99b.dir/feature_tests.c.o  -o cmTC_fa99b 
+Building C object CMakeFiles/cmTC_33b11.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_33b11.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTC_33b11
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33b11.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_33b11.dir/feature_tests.c.o  -o cmTC_33b11 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -191,14 +191,14 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_74c0f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_74c0f.dir/build.make CMakeFiles/cmTC_74c0f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_72558/fast"
+/usr/bin/make -f CMakeFiles/cmTC_72558.dir/build.make CMakeFiles/cmTC_72558.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_74c0f.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_74c0f.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_74c0f
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74c0f.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_74c0f.dir/feature_tests.c.o  -o cmTC_74c0f 
+Building C object CMakeFiles/cmTC_72558.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_72558.dir/feature_tests.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTC_72558
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_72558.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_72558.dir/feature_tests.c.o  -o cmTC_72558 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -209,28 +209,28 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_81988/fast"
-/usr/bin/make -f CMakeFiles/cmTC_81988.dir/build.make CMakeFiles/cmTC_81988.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3151b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3151b.dir/build.make CMakeFiles/cmTC_3151b.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_81988.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_81988.dir/testCXXCompiler.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx"
-Linking CXX executable cmTC_81988
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81988.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_81988.dir/testCXXCompiler.cxx.o  -o cmTC_81988 
+Building CXX object CMakeFiles/cmTC_3151b.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_3151b.dir/testCXXCompiler.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx"
+Linking CXX executable cmTC_3151b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3151b.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_3151b.dir/testCXXCompiler.cxx.o  -o cmTC_3151b 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_81973/fast"
-/usr/bin/make -f CMakeFiles/cmTC_81973.dir/build.make CMakeFiles/cmTC_81973.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_13c46/fast"
+/usr/bin/make -f CMakeFiles/cmTC_13c46.dir/build.make CMakeFiles/cmTC_13c46.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_81973
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81973.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_81973 
+Building CXX object CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_13c46
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13c46.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_13c46 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -240,8 +240,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_81973' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8jitjb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_81973 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_13c46' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwIbsLm.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_13c46 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -249,14 +249,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_81973/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_81973.dir/build.make CMakeFiles/cmTC_81973.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_13c46/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_13c46.dir/build.make CMakeFiles/cmTC_13c46.dir/build]
   ignore line: [make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_81973]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81973.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_81973 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_13c46]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13c46.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_13c46 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -266,13 +266,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_81973' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8jitjb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_81973 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_13c46' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwIbsLm.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_13c46 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cc8jitjb.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccwIbsLm.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -290,7 +290,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_81973] ==> ignore
+    arg [cmTC_13c46] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -302,7 +302,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_81973.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_13c46.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -330,14 +330,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_130d5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_130d5.dir/build.make CMakeFiles/cmTC_130d5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_1e211/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1e211.dir/build.make CMakeFiles/cmTC_1e211.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_130d5.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_130d5.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_130d5
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_130d5.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_130d5.dir/feature_tests.cxx.o  -o cmTC_130d5 
+Building CXX object CMakeFiles/cmTC_1e211.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_1e211.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTC_1e211
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e211.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_1e211.dir/feature_tests.cxx.o  -o cmTC_1e211 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -403,14 +403,14 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c54a7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c54a7.dir/build.make CMakeFiles/cmTC_c54a7.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_df690/fast"
+/usr/bin/make -f CMakeFiles/cmTC_df690.dir/build.make CMakeFiles/cmTC_df690.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c54a7.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_c54a7.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_c54a7
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c54a7.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c54a7.dir/feature_tests.cxx.o  -o cmTC_c54a7 
+Building CXX object CMakeFiles/cmTC_df690.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_df690.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTC_df690
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df690.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_df690.dir/feature_tests.cxx.o  -o cmTC_df690 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -476,14 +476,14 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_86e85/fast"
-/usr/bin/make -f CMakeFiles/cmTC_86e85.dir/build.make CMakeFiles/cmTC_86e85.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_516c6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_516c6.dir/build.make CMakeFiles/cmTC_516c6.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_86e85.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_86e85.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_86e85
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86e85.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_86e85.dir/feature_tests.cxx.o  -o cmTC_86e85 
+Building CXX object CMakeFiles/cmTC_516c6.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_516c6.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTC_516c6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_516c6.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_516c6.dir/feature_tests.cxx.o  -o cmTC_516c6 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -549,14 +549,14 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_04fda/fast"
-/usr/bin/make -f CMakeFiles/cmTC_04fda.dir/build.make CMakeFiles/cmTC_04fda.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5cf30/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5cf30.dir/build.make CMakeFiles/cmTC_5cf30.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_04fda.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_04fda.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_04fda
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04fda.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_04fda.dir/feature_tests.cxx.o  -o cmTC_04fda 
+Building CXX object CMakeFiles/cmTC_5cf30.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_5cf30.dir/feature_tests.cxx.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTC_5cf30
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5cf30.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_5cf30.dir/feature_tests.cxx.o  -o cmTC_5cf30 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
@@ -620,28 +620,28 @@ make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Lea
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_02201/fast"
-/usr/bin/make -f CMakeFiles/cmTC_02201.dir/build.make CMakeFiles/cmTC_02201.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_dacf1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dacf1.dir/build.make CMakeFiles/cmTC_dacf1.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_02201.dir/CheckIncludeFile.c.o
-/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_02201.dir/CheckIncludeFile.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c"
-Linking C executable cmTC_02201
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_02201.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_02201.dir/CheckIncludeFile.c.o  -o cmTC_02201 
+Building C object CMakeFiles/cmTC_dacf1.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_dacf1.dir/CheckIncludeFile.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c"
+Linking C executable cmTC_dacf1
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dacf1.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_dacf1.dir/CheckIncludeFile.c.o  -o cmTC_dacf1 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0d0c5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0d0c5.dir/build.make CMakeFiles/cmTC_0d0c5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3e62f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3e62f.dir/build.make CMakeFiles/cmTC_3e62f.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_0d0c5.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_0d0c5.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
-Linking C executable cmTC_0d0c5
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d0c5.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_0d0c5.dir/CheckFunctionExists.c.o  -o cmTC_0d0c5 -lpthread 
+Building C object CMakeFiles/cmTC_3e62f.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3e62f.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3e62f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e62f.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_3e62f.dir/CheckFunctionExists.c.o  -o cmTC_3e62f -lpthread 
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
 
 

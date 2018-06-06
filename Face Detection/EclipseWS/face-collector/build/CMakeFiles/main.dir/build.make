@@ -70,9 +70,35 @@ CMakeFiles/main.dir/src/CameraManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/CameraManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.cpp" -o CMakeFiles/main.dir/src/CameraManager.cpp.s
 
+CMakeFiles/main.dir/src/FileSystemManager.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/FileSystemManager.cpp.o: ../src/FileSystemManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/FileSystemManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/FileSystemManager.cpp.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.cpp"
+
+CMakeFiles/main.dir/src/FileSystemManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FileSystemManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.cpp" > CMakeFiles/main.dir/src/FileSystemManager.cpp.i
+
+CMakeFiles/main.dir/src/FileSystemManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FileSystemManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.cpp" -o CMakeFiles/main.dir/src/FileSystemManager.cpp.s
+
+CMakeFiles/main.dir/src/HighGuiHandler.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/HighGuiHandler.cpp.o: ../src/HighGuiHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/HighGuiHandler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/HighGuiHandler.cpp.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.cpp"
+
+CMakeFiles/main.dir/src/HighGuiHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/HighGuiHandler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.cpp" > CMakeFiles/main.dir/src/HighGuiHandler.cpp.i
+
+CMakeFiles/main.dir/src/HighGuiHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/HighGuiHandler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.cpp" -o CMakeFiles/main.dir/src/HighGuiHandler.cpp.s
+
 CMakeFiles/main.dir/src/ImageManager.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/ImageManager.cpp.o: ../src/ImageManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/ImageManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/ImageManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/ImageManager.cpp.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.cpp"
 
 CMakeFiles/main.dir/src/ImageManager.cpp.i: cmake_force
@@ -85,7 +111,7 @@ CMakeFiles/main.dir/src/ImageManager.cpp.s: cmake_force
 
 CMakeFiles/main.dir/src/MainDelegate.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/MainDelegate.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/src/MainDelegate.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/MainDelegate.cpp.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.cpp"
 
 CMakeFiles/main.dir/src/MainDelegate.cpp.i: cmake_force
@@ -98,7 +124,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.s: cmake_force
 
 CMakeFiles/main.dir/src/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/src/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main.cpp.o -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/main.cpp"
 
 CMakeFiles/main.dir/src/main.cpp.i: cmake_force
@@ -112,6 +138,8 @@ CMakeFiles/main.dir/src/main.cpp.s: cmake_force
 # Object files for target main
 main_OBJECTS = \
 "CMakeFiles/main.dir/src/CameraManager.cpp.o" \
+"CMakeFiles/main.dir/src/FileSystemManager.cpp.o" \
+"CMakeFiles/main.dir/src/HighGuiHandler.cpp.o" \
 "CMakeFiles/main.dir/src/ImageManager.cpp.o" \
 "CMakeFiles/main.dir/src/MainDelegate.cpp.o" \
 "CMakeFiles/main.dir/src/main.cpp.o"
@@ -120,6 +148,8 @@ main_OBJECTS = \
 main_EXTERNAL_OBJECTS =
 
 main: CMakeFiles/main.dir/src/CameraManager.cpp.o
+main: CMakeFiles/main.dir/src/FileSystemManager.cpp.o
+main: CMakeFiles/main.dir/src/HighGuiHandler.cpp.o
 main: CMakeFiles/main.dir/src/ImageManager.cpp.o
 main: CMakeFiles/main.dir/src/MainDelegate.cpp.o
 main: CMakeFiles/main.dir/src/main.cpp.o
@@ -173,6 +203,8 @@ main: /usr/local/cuda-9.1/lib64/libnppim.so
 main: /usr/local/cuda-9.1/lib64/libnppist.so
 main: /usr/local/cuda-9.1/lib64/libnppitc.so
 main: /usr/local/cuda/lib64/libnpps.so
+main: /usr/local/lib/libboost_system.so
+main: /usr/local/lib/libboost_filesystem.so
 main: /usr/local/lib/libopencv_cudafeatures2d.so.3.4.1
 main: /usr/local/lib/libopencv_cudacodec.so.3.4.1
 main: /usr/local/lib/libopencv_cudaoptflow.so.3.4.1
@@ -201,7 +233,7 @@ main: /usr/local/lib/libopencv_imgproc.so.3.4.1
 main: /usr/local/lib/libopencv_core.so.3.4.1
 main: /usr/local/lib/libopencv_cudev.so.3.4.1
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

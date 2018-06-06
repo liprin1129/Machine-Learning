@@ -5,6 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/CameraManager.cpp.o"
+  "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/FileSystemManager.cpp.o"
+  "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/HighGuiHandler.cpp.o"
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/ImageManager.cpp.o"
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/MainDelegate.cpp.o"
   "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/main.cpp" "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/main.dir/src/main.cpp.o"

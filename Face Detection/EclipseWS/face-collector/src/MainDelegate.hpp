@@ -10,6 +10,8 @@
 
 #include "CameraManager.hpp"
 //#include "ImageManager.hpp"
+//#include "FileSystemManager.hpp"
+//#include "HighGuiHandler.hpp"
 
 class MainDelegate {
 

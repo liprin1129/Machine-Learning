@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.11.1)
+project(face_data_wrangling)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+include_directories("${PROJECT_BINARY_DIR}")
+
+find_package(OpenCV REQUIRED)
+find_package(Boost 1.67 COMPONENTS system filesystem REQUIRED)
+find_package(BLAS REQUIRED)
+find_package(LAPACK REQUIRED)
+
+include_directories(${OpenCV_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+#link_libraries(boost_filesystem boost_system blas lapack)
+
+#add_excutable(main main.cpp dlibFaceDetector.cpp fileSystemManager.cpp mainDelegate.cpp)
+file(GLOB SOURCES "*.cpp")
+add_executable(main ${SOURCES})
+target_link_libraries(main dlib ${OpenCV_LIBS} boost_filesystem boost_system blas lapack)

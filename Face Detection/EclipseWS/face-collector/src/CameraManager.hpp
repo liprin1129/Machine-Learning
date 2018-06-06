@@ -10,8 +10,9 @@
 
 #include "CommonHeaders.hpp"
 #include "ImageManager.hpp"
+#include "HighGuiHandler.hpp"
 
-class CameraManager: public ImageManager {
+class CameraManager: public ImageManager, public HighGuiHandler {
 
 protected:
 	// Create a ZED camera object
@@ -25,6 +26,9 @@ protected:
 	int _width;
 
 	//sl::Mat _inSlMat;
+	sl::Mat _inSlMat;
+	cv::Mat _inCvMat;
+	cv::Mat _overlapMat;
 
 public:
 	CameraManager();
@@ -33,8 +37,7 @@ public:
 	int height() const {return _height;}
 	int width() const {return _width;}
 	//sl::Mat inSlMat() const {return _inSlMat;}
-	sl::Mat _inSlMat;
-	cv::Mat _inCvMat;
+
 	// Call this function after camera open
 	// Arguments:
 	//		_widthRatio		: 0 ~ 1

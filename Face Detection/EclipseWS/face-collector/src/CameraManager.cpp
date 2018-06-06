@@ -142,21 +142,31 @@ int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 	// Wrapper of sl::Mat to cv::Mat
 	this->_inCvMat = this->slMatToCvMatConverter(slMat);
 
+	cv::namedWindow("Left", cv::WINDOW_AUTOSIZE);
+	cv::moveWindow("Left", 30, 30);
+
 	char key = ' ';
 	//for (int i=1; i < 50; i++) {
 	while(key != 'q') {
 		if (this->_zed.grab() == sl::SUCCESS) {
 			this->_zed.retrieveImage(slMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
 
+			/*
 			this->uploadFrameToGPU(this->_inCvMat);
 			this->convertRGBAToGrayGPU(this->_frameGPU);
 			this->startCascadeFaceDetection(this->_grayGPU);
 			this->drawRectOnFaces(this->_frameCPU, this->_faces);
+			*/
+			this->getFaces(this->_inCvMat);
 
-			cv::imshow("Left", this->_frameCPU);
+			//this->_frameCPU =
+			this->_overlapMat = this->createButtonOnWindow(this->_inCvMat, 10, 10, 150, 50, 0.8);
+			cv::imshow("Left", this->_overlapMat);
 			key = cv::waitKey(10);
 		}
 	}
+
+	cv::destroyWindow("Left");
 
 	/*
 	sl::Mat slMat(this->_width , this->_height, sl::MAT_TYPE_8U_C4);

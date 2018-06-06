@@ -68,12 +68,12 @@ void ImageManager::gpuParamSetup(
 	this->_cascadeGPU->setMinNeighbors(minNeighbors);
 }
 
-void ImageManager::uploadFrameToGPU(cv::Mat capturedFrame) {
+void ImageManager::uploadFrameToGPU(cv::Mat frameCPU) {
 	// Convert RGBA
 	//cv::Mat grayFrame;
 	//cv::cvtColor(capturedFrame, grayFrame, cv::COLOR_RGBA2GRAY);
 
-	capturedFrame.copyTo(this->_frameCPU);
+	frameCPU.copyTo(this->_frameCPU);
 	// Upload captured frame on CPU memory to GPU memory
 	this->_frameGPU.upload(this->_frameCPU);
 }
@@ -102,6 +102,14 @@ void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces
 	}
 }
 
+std::vector<cv::Rect> ImageManager::getFaces(cv::Mat capturedFrame){
+	this->uploadFrameToGPU(capturedFrame);
+	this->convertRGBAToGrayGPU(this->_frameGPU);
+	this->startCascadeFaceDetection(this->_grayGPU);
+	this->drawRectOnFaces(this->_frameCPU, this->_faces);
+
+	return this->_faces;
+}
 int ImageManager::imageManagerHasLoaded(int argc, ...) {
 	// Read multiple arguments
 	va_list argv;

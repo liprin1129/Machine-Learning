@@ -150,6 +150,60 @@ src/CameraManager.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/CameraManager.cpp.s
 .PHONY : src/CameraManager.cpp.s
 
+src/FileSystemManager.o: src/FileSystemManager.cpp.o
+
+.PHONY : src/FileSystemManager.o
+
+# target to build an object file
+src/FileSystemManager.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/FileSystemManager.cpp.o
+.PHONY : src/FileSystemManager.cpp.o
+
+src/FileSystemManager.i: src/FileSystemManager.cpp.i
+
+.PHONY : src/FileSystemManager.i
+
+# target to preprocess a source file
+src/FileSystemManager.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/FileSystemManager.cpp.i
+.PHONY : src/FileSystemManager.cpp.i
+
+src/FileSystemManager.s: src/FileSystemManager.cpp.s
+
+.PHONY : src/FileSystemManager.s
+
+# target to generate assembly for a file
+src/FileSystemManager.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/FileSystemManager.cpp.s
+.PHONY : src/FileSystemManager.cpp.s
+
+src/HighGuiHandler.o: src/HighGuiHandler.cpp.o
+
+.PHONY : src/HighGuiHandler.o
+
+# target to build an object file
+src/HighGuiHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.o
+.PHONY : src/HighGuiHandler.cpp.o
+
+src/HighGuiHandler.i: src/HighGuiHandler.cpp.i
+
+.PHONY : src/HighGuiHandler.i
+
+# target to preprocess a source file
+src/HighGuiHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.i
+.PHONY : src/HighGuiHandler.cpp.i
+
+src/HighGuiHandler.s: src/HighGuiHandler.cpp.s
+
+.PHONY : src/HighGuiHandler.s
+
+# target to generate assembly for a file
+src/HighGuiHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.s
+.PHONY : src/HighGuiHandler.cpp.s
+
 src/ImageManager.o: src/ImageManager.cpp.o
 
 .PHONY : src/ImageManager.o
@@ -243,6 +297,12 @@ help:
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
+	@echo "... src/FileSystemManager.o"
+	@echo "... src/FileSystemManager.i"
+	@echo "... src/FileSystemManager.s"
+	@echo "... src/HighGuiHandler.o"
+	@echo "... src/HighGuiHandler.i"
+	@echo "... src/HighGuiHandler.s"
 	@echo "... src/ImageManager.o"
 	@echo "... src/ImageManager.i"
 	@echo "... src/ImageManager.s"

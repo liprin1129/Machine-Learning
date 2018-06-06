@@ -11,5 +11,6 @@
 #include <iostream>
 #include <sl/Camera.hpp>
 #include <opencv2/opencv.hpp>
+#include <boost/filesystem.hpp>
 
 #endif /* COMMONHEADERS_HPP_ */
