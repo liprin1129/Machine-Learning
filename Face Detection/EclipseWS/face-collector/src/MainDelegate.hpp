@@ -8,10 +8,10 @@
 #ifndef MAINDELEGATE_HPP_
 #define MAINDELEGATE_HPP_
 
-#include "CameraManager.hpp"
+//#include "CameraManager.hpp"
 //#include "ImageManager.hpp"
 //#include "FileSystemManager.hpp"
-//#include "HighGuiHandler.hpp"
+#include "ViewManager.hpp"
 
 class MainDelegate {
 

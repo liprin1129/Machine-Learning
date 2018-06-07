@@ -177,33 +177,6 @@ src/FileSystemManager.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/FileSystemManager.cpp.s
 .PHONY : src/FileSystemManager.cpp.s
 
-src/HighGuiHandler.o: src/HighGuiHandler.cpp.o
-
-.PHONY : src/HighGuiHandler.o
-
-# target to build an object file
-src/HighGuiHandler.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.o
-.PHONY : src/HighGuiHandler.cpp.o
-
-src/HighGuiHandler.i: src/HighGuiHandler.cpp.i
-
-.PHONY : src/HighGuiHandler.i
-
-# target to preprocess a source file
-src/HighGuiHandler.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.i
-.PHONY : src/HighGuiHandler.cpp.i
-
-src/HighGuiHandler.s: src/HighGuiHandler.cpp.s
-
-.PHONY : src/HighGuiHandler.s
-
-# target to generate assembly for a file
-src/HighGuiHandler.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HighGuiHandler.cpp.s
-.PHONY : src/HighGuiHandler.cpp.s
-
 src/ImageManager.o: src/ImageManager.cpp.o
 
 .PHONY : src/ImageManager.o
@@ -258,6 +231,33 @@ src/MainDelegate.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/MainDelegate.cpp.s
 .PHONY : src/MainDelegate.cpp.s
 
+src/ViewManager.o: src/ViewManager.cpp.o
+
+.PHONY : src/ViewManager.o
+
+# target to build an object file
+src/ViewManager.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ViewManager.cpp.o
+.PHONY : src/ViewManager.cpp.o
+
+src/ViewManager.i: src/ViewManager.cpp.i
+
+.PHONY : src/ViewManager.i
+
+# target to preprocess a source file
+src/ViewManager.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ViewManager.cpp.i
+.PHONY : src/ViewManager.cpp.i
+
+src/ViewManager.s: src/ViewManager.cpp.s
+
+.PHONY : src/ViewManager.s
+
+# target to generate assembly for a file
+src/ViewManager.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ViewManager.cpp.s
+.PHONY : src/ViewManager.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -300,15 +300,15 @@ help:
 	@echo "... src/FileSystemManager.o"
 	@echo "... src/FileSystemManager.i"
 	@echo "... src/FileSystemManager.s"
-	@echo "... src/HighGuiHandler.o"
-	@echo "... src/HighGuiHandler.i"
-	@echo "... src/HighGuiHandler.s"
 	@echo "... src/ImageManager.o"
 	@echo "... src/ImageManager.i"
 	@echo "... src/ImageManager.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"
+	@echo "... src/ViewManager.o"
+	@echo "... src/ViewManager.i"
+	@echo "... src/ViewManager.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

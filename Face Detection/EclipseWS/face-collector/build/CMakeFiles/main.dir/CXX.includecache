@@ -9,18 +9,10 @@
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.cpp
 CameraManager.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
-opencv2/imgproc.hpp
--
-opencv2/cudaobjdetect.hpp
--
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
 CommonHeaders.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
-ImageManager.hpp
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.hpp
-HighGuiHandler.hpp
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.hpp
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
 iostream
@@ -31,20 +23,18 @@ opencv2/opencv.hpp
 -
 boost/filesystem.hpp
 -
+opencv2/highgui/highgui.hpp
+-
+opencv2/imgproc.hpp
+-
+opencv2/cudaobjdetect.hpp
+-
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.cpp
 FileSystemManager.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.hpp
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.hpp
-CommonHeaders.hpp
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
-
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.cpp
-HighGuiHandler.hpp
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.hpp
-
-/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/HighGuiHandler.hpp
 CommonHeaders.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
 
@@ -61,8 +51,38 @@ MainDelegate.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.hpp
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.hpp
+ViewManager.hpp
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
+
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.cpp
+ViewManager.hpp
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
+
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
+cvui.h
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/cvui.h
+CommonHeaders.hpp
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
+ImageManager.hpp
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.hpp
 CameraManager.hpp
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
+
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/cvui.h
+iostream
+-
+vector
+-
+map
+-
+stdarg.h
+-
+opencv2/imgproc/imgproc.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+opencv2/core/core.hpp
+-
 
 /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/main.cpp
 MainDelegate.hpp
@@ -6496,6 +6516,10 @@ opencv2/core/vsx_utils.hpp
 
 /usr/local/include/opencv2/core/bufferpool.hpp
 
+/usr/local/include/opencv2/core/core.hpp
+opencv2/core.hpp
+/usr/local/include/opencv2/core/opencv2/core.hpp
+
 /usr/local/include/opencv2/core/core_c.h
 opencv2/core/types_c.h
 /usr/local/include/opencv2/core/opencv2/core/types_c.h
@@ -7298,6 +7322,10 @@ opencv2/videoio.hpp
 opencv2/highgui/highgui_c.h
 /usr/local/include/opencv2/opencv2/highgui/highgui_c.h
 
+/usr/local/include/opencv2/highgui/highgui.hpp
+opencv2/highgui.hpp
+/usr/local/include/opencv2/highgui/opencv2/highgui.hpp
+
 /usr/local/include/opencv2/highgui/highgui_c.h
 opencv2/core/core_c.h
 /usr/local/include/opencv2/highgui/opencv2/core/core_c.h
@@ -7349,6 +7377,10 @@ opencv2/highgui.hpp
 /usr/local/include/opencv2/opencv2/highgui.hpp
 opencv2/imgproc/imgproc_c.h
 /usr/local/include/opencv2/opencv2/imgproc/imgproc_c.h
+
+/usr/local/include/opencv2/imgproc/imgproc.hpp
+opencv2/imgproc.hpp
+/usr/local/include/opencv2/imgproc/opencv2/imgproc.hpp
 
 /usr/local/include/opencv2/imgproc/imgproc_c.h
 opencv2/imgproc/types_c.h

@@ -8,14 +8,17 @@
 #include "CameraManager.hpp"
 
 //#include <opencv2/objdetect.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/cudaobjdetect.hpp>
+//#include <opencv2/imgproc.hpp>
+//#include <opencv2/cudaobjdetect.hpp>
 
 CameraManager::CameraManager() {
+	// Initialize _key to empty space
+	this->_key = ' ';
+
 	this->parameterInitializer(sl::RESOLUTION_HD1080, sl::DEPTH_MODE_PERFORMANCE, sl::UNIT_MILLIMETER);
 	this->openCamera();
 
-	this->cameraManagerHasLoaded(2, 0.5, 0.5);
+	//this->cameraManagerHasLoaded(2, 0.5, 0.5);
 
 	//std::cout << "WIDTH: " << _width << std::endl;
 }
@@ -119,7 +122,7 @@ cv::Mat CameraManager::getOneCvMat(){
 
 	return this->_inCvMat;
 }
-
+/*
 int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 
 	va_list argv;
@@ -145,68 +148,22 @@ int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 	cv::namedWindow("Left", cv::WINDOW_AUTOSIZE);
 	cv::moveWindow("Left", 30, 30);
 
-	char key = ' ';
-	//for (int i=1; i < 50; i++) {
-	while(key != 'q') {
+	while(this->_key != 'q') {
 		if (this->_zed.grab() == sl::SUCCESS) {
 			this->_zed.retrieveImage(slMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
 
-			/*
-			this->uploadFrameToGPU(this->_inCvMat);
-			this->convertRGBAToGrayGPU(this->_frameGPU);
-			this->startCascadeFaceDetection(this->_grayGPU);
-			this->drawRectOnFaces(this->_frameCPU, this->_faces);
-			*/
-
 			this->getFaces(this->_inCvMat);
 
-			this->_frameCPU = this->createButtonOnWindow(this->_frameCPU, this->_width/15, this->_height/1.2, 150, 50, 0.8);
-			this->mouseHandler("Left");
+			//this->_frameCPU = this->createButtonOnWindow(this->_frameCPU, this->_width/15, this->_height/1.2, 150, 50, 0.8);
+			//this->mouseHandler("Left");
 
 			cv::imshow("Left", this->_frameCPU);
-			key = cv::waitKey(10);
+			this->_key = cv::waitKey(10);
 		}
 	}
 
 	cv::destroyWindow("Left");
 
-	/*
-	sl::Mat slMat(this->_width , this->_height, sl::MAT_TYPE_8U_C4);
-
-	cv::Mat cvMat = this->slMatToCvMatConverter(slMat);
-
-    // Load Face cascade (.xml file)
-    cv::CascadeClassifier face_cascade;
-    face_cascade.load("../data/haarcascade_frontalface_alt_cpu.xml" );
-
-    // Detect faces
-    std::vector<cv::Rect> faces;
-
-	// Loop until 'q' is pressed
-	char key = ' ';
-	while (key != 'q') {
-
-		if (this->_zed.grab() == sl::SUCCESS) {
-			this->_zed.retrieveImage(slMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
-
-		    face_cascade.detectMultiScale( cvMat, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, cv::Size(30, 30) );
-
-		    // Draw circles on the detected faces
-		    for( int i = 0; i < faces.size(); i++ )
-		    {
-		        cv::Point center( faces[i].x + faces[i].width*0.5, faces[i].y + faces[i].height*0.5 );
-		        cv::ellipse( cvMat, center, cv::Size( faces[i].width*0.5, faces[i].height*0.5), 0, 0, 360, cv::Scalar( 255, 0, 255 ), 4, 8, 0 );
-		    }
-
-			cv::imshow("Image-Left", cvMat);
-
-			// Handle key event
-			key = cv::waitKey(10);
-			//processKeyEvent(zed, key); // @suppress("Invalid arguments")
-		}
-	}
-
-	//this->_zed.close();
-	*/
 	return 0;
 }
+*/

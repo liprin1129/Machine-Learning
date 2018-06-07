@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_42411/fast"
-/usr/bin/make -f CMakeFiles/cmTC_42411.dir/build.make CMakeFiles/cmTC_42411.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_8f750/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8f750.dir/build.make CMakeFiles/cmTC_8f750.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_42411.dir/CheckSymbolExists.c.o
-/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_42411.dir/CheckSymbolExists.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
-Linking C executable cmTC_42411
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42411.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_42411.dir/CheckSymbolExists.c.o  -o cmTC_42411 
-CMakeFiles/cmTC_42411.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_8f750.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_8f750.dir/CheckSymbolExists.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
+Linking C executable cmTC_8f750
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f750.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_8f750.dir/CheckSymbolExists.c.o  -o cmTC_8f750 
+CMakeFiles/cmTC_8f750.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_42411.dir/build.make:86: recipe for target 'cmTC_42411' failed
-make[1]: *** [cmTC_42411] Error 1
+CMakeFiles/cmTC_8f750.dir/build.make:86: recipe for target 'cmTC_8f750' failed
+make[1]: *** [cmTC_8f750] Error 1
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_42411/fast' failed
-make: *** [cmTC_42411/fast] Error 2
+Makefile:126: recipe for target 'cmTC_8f750/fast' failed
+make: *** [cmTC_8f750/fast] Error 2
 
 File /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_889c6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_889c6.dir/build.make CMakeFiles/cmTC_889c6.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4c6ca/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4c6ca.dir/build.make CMakeFiles/cmTC_4c6ca.dir/build
 make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_889c6.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_889c6.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
-Linking C executable cmTC_889c6
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_889c6.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_889c6.dir/CheckFunctionExists.c.o  -o cmTC_889c6 -lpthreads 
+Building C object CMakeFiles/cmTC_4c6ca.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_4c6ca.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4c6ca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c6ca.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_4c6ca.dir/CheckFunctionExists.c.o  -o cmTC_4c6ca -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_889c6.dir/build.make:86: recipe for target 'cmTC_889c6' failed
-make[1]: *** [cmTC_889c6] Error 1
+CMakeFiles/cmTC_4c6ca.dir/build.make:86: recipe for target 'cmTC_4c6ca' failed
+make[1]: *** [cmTC_4c6ca] Error 1
 make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_889c6/fast' failed
-make: *** [cmTC_889c6/fast] Error 2
+Makefile:126: recipe for target 'cmTC_4c6ca/fast' failed
+make: *** [cmTC_4c6ca/fast] Error 2
 
 

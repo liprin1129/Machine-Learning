@@ -9,12 +9,13 @@
 #define CAMERAMANAGER_HPP_
 
 #include "CommonHeaders.hpp"
-#include "ImageManager.hpp"
-#include "HighGuiHandler.hpp"
+//#include "ImageManager.hpp"
+//#include "ViewManager.hpp"
 
-class CameraManager: public ImageManager, public HighGuiHandler {
+class CameraManager {
 
 protected:
+	char _key;
 	// Create a ZED camera object
 	//sl::Camera _zed;
 

@@ -13,10 +13,17 @@
 namespace boostFS = boost::filesystem;
 
 class FileSystemManager {
+private:
+	std::string _absDirName;
+
 public:
 	FileSystemManager();
 	//virtual ~FileSystemManager();
 
+	// Getter of _absDirName
+	std::string absDirName() const {return _absDirName;}
+
+	// Create a directory with given path and name
 	bool makeDir(std::string absDirName);
 };
 

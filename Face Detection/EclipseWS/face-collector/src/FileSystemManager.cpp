@@ -8,11 +8,15 @@
 #include "FileSystemManager.hpp"
 
 FileSystemManager::FileSystemManager() {
+	//this->_absDirName = absDirName;
+	std::cout << "Enter your name: " << std::endl;
+	/*
 	bool dir;
-
 	dir = this->makeDir("/home/user170/Desktop/test");
 	std::cout << dir << ": Create a directory." << std::endl;
+	*/
 }
+
 /*
 FileSystemManager::~FileSystemManager() {
 	// TODO Auto-generated destructor stub
