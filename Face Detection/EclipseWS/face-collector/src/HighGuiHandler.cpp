@@ -7,12 +7,12 @@
 
 #include "HighGuiHandler.hpp"
 
-/*static void mouse_callback(int  event, int  x, int  y, int  flag, void *param)
+static void mouse_callback(int  event, int  x, int  y, int  flag, void *param)
 {
 	if (event == cv::EVENT_MOUSEMOVE) {
 		std::cout << "(" << x << ", " << y << ")" << std::endl;
 	}
-}*/
+}
 
 HighGuiHandler::HighGuiHandler() {
 	/*
@@ -30,13 +30,19 @@ HighGuiHandler::~HighGuiHandler() {
 
 }
 
-cv::Mat HighGuiHandler::createButtonOnWindow(cv::Mat img, int x, int y, int width, int height, double alpha){
+cv::Mat HighGuiHandler::createButtonOnWindow(
+		cv::Mat frame,
+		int x,
+		int y,
+		int width,
+		int height,
+		double alpha){
 
 	cv::Mat outputImg;
 	cv::Mat overlayImg;
 
-	img.copyTo(outputImg);
-	img.copyTo(overlayImg);
+	frame.copyTo(outputImg);
+	frame.copyTo(overlayImg);
 
 	cv::rectangle(overlayImg, cv::Rect(x, y, width, height), cv::Scalar(255, 255, 255), -1);
 	cv::addWeighted(overlayImg, alpha, outputImg, 1 - alpha, 0, outputImg);
@@ -47,4 +53,8 @@ cv::Mat HighGuiHandler::createButtonOnWindow(cv::Mat img, int x, int y, int widt
 	//cv::addWeighted(overayImg, alpha, img, 1-alpha, 0, outputImg);
 
 	return outputImg;
+}
+
+void HighGuiHandler::mouseHandler(std::string windowName) {
+	cv::setMouseCallback(windowName, mouse_callback);
 }

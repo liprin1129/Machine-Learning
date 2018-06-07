@@ -18,12 +18,11 @@ private:
 	// Instance of cv::cuda::CascadeClassifier
 	cv::Ptr<cv::cuda::CascadeClassifier> _cascadeGPU;
 
-	std::vector<cv::Rect> _faces;
 	cv::cuda::GpuMat _frameGPU, _grayGPU, _facesBufGPU;
 
 protected:
 	cv::Mat _frameCPU;
-
+	std::vector<cv::Rect> _faces;
 	/*
 	// OpenCV GPU Parameters
 	bool _useGPU;
@@ -36,6 +35,8 @@ protected:
 public:
 	ImageManager();
 	virtual ~ImageManager();
+
+	//std::vector<cv::Rect> faces() const {return _faces;}
 
 	void imageRead(std::string absCascadeFileName, std::string absImageName);
 
@@ -55,7 +56,8 @@ public:
 	void convertRGBAToGrayGPU(cv::cuda::GpuMat rgbaFrame);
 	void startCascadeFaceDetection(cv::cuda::GpuMat);
 	void drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces);
-	std::vector<cv::Rect> getFaces(cv::Mat frameCPU);
+	//std::vector<cv::Rect> getFaces(cv::Mat frameCPU);
+	void getFaces(cv::Mat frameCPU);
 
 	int imageManagerHasLoaded(int argc, ...);
 };

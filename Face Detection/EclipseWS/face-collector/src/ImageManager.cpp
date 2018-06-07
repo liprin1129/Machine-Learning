@@ -91,8 +91,6 @@ void ImageManager::startCascadeFaceDetection(cv::cuda::GpuMat){
 
     //std::cout << std::setfill(' ') << std::setprecision(2);
     //std::cout << std::setw(6) << this->_faces.size() << std::endl;
-
-	//cv::imshow("Left", this->_frameCPU);
 }
 
 void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces){
@@ -102,13 +100,13 @@ void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces
 	}
 }
 
-std::vector<cv::Rect> ImageManager::getFaces(cv::Mat capturedFrame){
+void ImageManager::getFaces(cv::Mat capturedFrame){
 	this->uploadFrameToGPU(capturedFrame);
 	this->convertRGBAToGrayGPU(this->_frameGPU);
 	this->startCascadeFaceDetection(this->_grayGPU);
 	this->drawRectOnFaces(this->_frameCPU, this->_faces);
 
-	return this->_faces;
+	//return this->_faces;
 }
 int ImageManager::imageManagerHasLoaded(int argc, ...) {
 	// Read multiple arguments

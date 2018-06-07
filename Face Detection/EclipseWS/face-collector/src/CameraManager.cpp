@@ -157,11 +157,13 @@ int CameraManager::cameraManagerHasLoaded(int argc, ...) {
 			this->startCascadeFaceDetection(this->_grayGPU);
 			this->drawRectOnFaces(this->_frameCPU, this->_faces);
 			*/
+
 			this->getFaces(this->_inCvMat);
 
-			//this->_frameCPU =
-			this->_overlapMat = this->createButtonOnWindow(this->_inCvMat, 10, 10, 150, 50, 0.8);
-			cv::imshow("Left", this->_overlapMat);
+			this->_frameCPU = this->createButtonOnWindow(this->_frameCPU, this->_width/15, this->_height/1.2, 150, 50, 0.8);
+			this->mouseHandler("Left");
+
+			cv::imshow("Left", this->_frameCPU);
 			key = cv::waitKey(10);
 		}
 	}

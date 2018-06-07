@@ -16,6 +16,7 @@ public:
 	virtual ~HighGuiHandler();
 
 	cv::Mat createButtonOnWindow(cv::Mat img, int x, int y, int width, int height, double alpha);
+	void mouseHandler(std::string windowName);
 };
 
 #endif /* HIGHGUIHANDLER_HPP_ */

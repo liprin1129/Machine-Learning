@@ -28,7 +28,7 @@ protected:
 	//sl::Mat _inSlMat;
 	sl::Mat _inSlMat;
 	cv::Mat _inCvMat;
-	cv::Mat _overlapMat;
+	//cv::Mat _overlapMat;
 
 public:
 	CameraManager();
