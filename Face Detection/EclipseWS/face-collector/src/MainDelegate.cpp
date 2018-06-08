@@ -13,6 +13,8 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 	//cm.cameraManagerHasLoaded(0);
 
 	//FileSystemManager fs;
+	//fs.numOfFiles("/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Data/Face/Face-SJC/170/");
+
 	ViewManager vm;
 
 	return 0;

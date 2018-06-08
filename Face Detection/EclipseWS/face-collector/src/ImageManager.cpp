@@ -93,10 +93,10 @@ void ImageManager::startCascadeFaceDetection(cv::cuda::GpuMat){
     //std::cout << std::setw(6) << this->_faces.size() << std::endl;
 }
 
-void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces){
+void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces, int thick = 1){
 	if (faces.size() != 0){
 		for(int i = 0; i < faces.size(); ++i)
-		   cv::rectangle(frameCPU, faces[i], cv::Scalar(255));
+		   cv::rectangle(frameCPU, faces[i], cv::Scalar(66, 66, 244), thick);
 	}
 }
 
@@ -104,10 +104,24 @@ void ImageManager::getFaces(cv::Mat capturedFrame){
 	this->uploadFrameToGPU(capturedFrame);
 	this->convertRGBAToGrayGPU(this->_frameGPU);
 	this->startCascadeFaceDetection(this->_grayGPU);
-	this->drawRectOnFaces(this->_frameCPU, this->_faces);
+	this->drawRectOnFaces(this->_frameCPU, this->_faces, 3);
 
 	//return this->_faces;
 }
+
+cv::Mat ImageManager::truncateFirstFace(std::vector<cv::Rect> faceCvRectVector) {
+	/*
+	for (std::vector<std::string>::const_iterator iterFace=faceCvRectVector.begin(); iterFace!=faceCvRectVector.end(); ++iterFace){
+		auto iterFaceIndex = iterFace - faceCvRectVector.begin();
+
+		cv::Rect faceCVRect = faceCvRectVector[iterFaceIndex];
+	}
+	*/
+
+	cv::Rect faceCvRect = faceCvRectVector.front();
+	return this->_frameCPU(faceCvRect);
+}
+
 int ImageManager::imageManagerHasLoaded(int argc, ...) {
 	// Read multiple arguments
 	va_list argv;
@@ -130,7 +144,7 @@ int ImageManager::imageManagerHasLoaded(int argc, ...) {
 	this->loadCascadeClassifier(this->_cascadeFileName);
 
     // GPU parameters
-	this->gpuParamSetup(1.2, false, 4, true, false);
+	this->gpuParamSetup(1.2, true, 4, true, false);
 
 	return 0;
 }

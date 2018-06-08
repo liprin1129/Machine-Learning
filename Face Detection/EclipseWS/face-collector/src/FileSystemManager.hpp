@@ -25,6 +25,12 @@ public:
 
 	// Create a directory with given path and name
 	bool makeDir(std::string absDirName);
+
+	// Save a face mat
+	void saveFaceImage(cv::Mat faceCvMat);
+
+	// Count files in a given directory
+	int numOfFiles(std::string obsDirName);
 };
 
 #endif /* FILESYSTEMMANAGER_HPP_ */

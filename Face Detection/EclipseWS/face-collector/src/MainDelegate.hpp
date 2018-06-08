@@ -11,6 +11,7 @@
 //#include "CameraManager.hpp"
 //#include "ImageManager.hpp"
 //#include "FileSystemManager.hpp"
+
 #include "ViewManager.hpp"
 
 class MainDelegate {

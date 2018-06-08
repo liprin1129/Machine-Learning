@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11 -g -O3
 
 CXX_DEFINES = -DOPENCV_TRAITS_ENABLE_DEPRECATED
 
-CXX_INCLUDES = -I/usr/local/cuda/include -I/usr/local/zed/include -I"/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/include" -I"/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/data" -isystem /usr/local/include -isystem /usr/local/include/opencv 
+CXX_INCLUDES = -I/usr/local/cuda/include -I/usr/local/zed/include -I"/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/data" -isystem /usr/local/include -isystem /usr/local/include/opencv 
 

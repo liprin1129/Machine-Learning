@@ -62,9 +62,20 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -100,6 +111,8 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -134,6 +147,8 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -142,13 +157,18 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -167,19 +187,47 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -200,6 +248,10 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -208,11 +260,21 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -222,6 +284,7 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -239,26 +302,44 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -271,37 +352,120 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -357,6 +521,7 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -438,15 +603,19 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -464,12 +633,16 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -492,6 +665,7 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -501,20 +675,28 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -526,12 +708,37 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -579,6 +786,7 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -586,33 +794,49 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -624,9 +848,13 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -634,8 +862,12 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -727,7 +959,6 @@ CMakeFiles/main.dir/src/CameraManager.cpp.o
  /usr/local/include/opencv2/flann/saving.h
  /usr/local/include/opencv2/flann/timer.h
  /usr/local/include/opencv2/highgui.hpp
- /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
  /usr/local/include/opencv2/imgcodecs.hpp
  /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
@@ -851,9 +1082,20 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -889,6 +1131,8 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -923,6 +1167,8 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -931,13 +1177,18 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -956,19 +1207,47 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -989,6 +1268,10 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -997,11 +1280,21 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -1011,6 +1304,7 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -1028,26 +1322,44 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -1060,37 +1372,120 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -1146,6 +1541,7 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -1227,15 +1623,19 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -1253,12 +1653,16 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -1281,6 +1685,7 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -1290,20 +1695,28 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -1315,12 +1728,37 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -1368,6 +1806,7 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -1375,33 +1814,49 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -1413,9 +1868,13 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -1423,8 +1882,12 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -1516,7 +1979,6 @@ CMakeFiles/main.dir/src/FileSystemManager.cpp.o
  /usr/local/include/opencv2/flann/saving.h
  /usr/local/include/opencv2/flann/timer.h
  /usr/local/include/opencv2/highgui.hpp
- /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
  /usr/local/include/opencv2/imgcodecs.hpp
  /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
@@ -1640,9 +2102,20 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -1678,6 +2151,8 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -1712,6 +2187,8 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -1720,13 +2197,18 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -1745,19 +2227,47 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -1778,6 +2288,10 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -1786,11 +2300,21 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -1800,6 +2324,7 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -1817,26 +2342,44 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -1849,37 +2392,120 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -1935,6 +2561,7 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -2016,15 +2643,19 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -2042,12 +2673,16 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -2070,6 +2705,7 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -2079,20 +2715,28 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -2104,12 +2748,37 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -2157,6 +2826,7 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -2164,33 +2834,49 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -2202,9 +2888,13 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -2212,8 +2902,12 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -2305,7 +2999,6 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
  /usr/local/include/opencv2/flann/saving.h
  /usr/local/include/opencv2/flann/timer.h
  /usr/local/include/opencv2/highgui.hpp
- /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
  /usr/local/include/opencv2/imgcodecs.hpp
  /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
@@ -2371,11 +3064,11 @@ CMakeFiles/main.dir/src/ImageManager.cpp.o
 CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
+ /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.cpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
- /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/cvui.h
  /usr/local/cuda/include/builtin_types.h
  /usr/local/cuda/include/channel_descriptor.h
  /usr/local/cuda/include/common_functions.h
@@ -2433,9 +3126,20 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -2471,6 +3175,8 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -2505,6 +3211,8 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -2513,13 +3221,18 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -2538,19 +3251,47 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -2571,6 +3312,10 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -2579,11 +3324,21 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -2593,6 +3348,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -2610,26 +3366,44 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -2642,37 +3416,120 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -2728,6 +3585,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -2809,15 +3667,19 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -2835,12 +3697,16 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -2863,6 +3729,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -2872,20 +3739,28 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -2897,12 +3772,37 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -2950,6 +3850,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -2957,33 +3858,49 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -2995,9 +3912,13 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -3005,8 +3926,12 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -3022,7 +3947,6 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/opencv2/core/affine.hpp
  /usr/local/include/opencv2/core/base.hpp
  /usr/local/include/opencv2/core/bufferpool.hpp
- /usr/local/include/opencv2/core/core.hpp
  /usr/local/include/opencv2/core/core_c.h
  /usr/local/include/opencv2/core/cuda.hpp
  /usr/local/include/opencv2/core/cuda.inl.hpp
@@ -3099,12 +4023,10 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
  /usr/local/include/opencv2/flann/saving.h
  /usr/local/include/opencv2/flann/timer.h
  /usr/local/include/opencv2/highgui.hpp
- /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
  /usr/local/include/opencv2/imgcodecs.hpp
  /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
  /usr/local/include/opencv2/imgproc.hpp
- /usr/local/include/opencv2/imgproc/imgproc.hpp
  /usr/local/include/opencv2/imgproc/imgproc_c.h
  /usr/local/include/opencv2/imgproc/types_c.h
  /usr/local/include/opencv2/ml.hpp
@@ -3166,6 +4088,7 @@ CMakeFiles/main.dir/src/MainDelegate.cpp.o
 CMakeFiles/main.dir/src/ViewManager.cpp.o
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
+ /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.cpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
@@ -3227,9 +4150,20 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -3265,6 +4199,8 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -3299,6 +4235,8 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -3307,13 +4245,18 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -3332,19 +4275,47 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -3365,6 +4336,10 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -3373,11 +4348,21 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -3387,6 +4372,7 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -3404,26 +4390,44 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -3436,37 +4440,120 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -3522,6 +4609,7 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -3603,15 +4691,19 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -3629,12 +4721,16 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -3657,6 +4753,7 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -3666,20 +4763,28 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -3691,12 +4796,37 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -3744,6 +4874,7 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -3751,33 +4882,49 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -3789,9 +4936,13 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -3799,8 +4950,12 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -3960,10 +5115,10 @@ CMakeFiles/main.dir/src/ViewManager.cpp.o
 CMakeFiles/main.dir/src/main.cpp.o
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CameraManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/CommonHeaders.hpp
+ /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/FileSystemManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ImageManager.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/MainDelegate.hpp
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/ViewManager.hpp
- /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/cvui.h
  /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/src/main.cpp
  /usr/local/cuda/include/builtin_types.h
  /usr/local/cuda/include/channel_descriptor.h
@@ -4022,9 +5177,20 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/include/boost/array.hpp
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/cerrno.hpp
  /usr/local/include/boost/checked_delete.hpp
+ /usr/local/include/boost/concept/assert.hpp
+ /usr/local/include/boost/concept/detail/backward_compatibility.hpp
+ /usr/local/include/boost/concept/detail/borland.hpp
+ /usr/local/include/boost/concept/detail/concept_def.hpp
+ /usr/local/include/boost/concept/detail/concept_undef.hpp
+ /usr/local/include/boost/concept/detail/general.hpp
+ /usr/local/include/boost/concept/detail/has_constraints.hpp
+ /usr/local/include/boost/concept/detail/msvc.hpp
+ /usr/local/include/boost/concept/usage.hpp
+ /usr/local/include/boost/concept_check.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/abi_prefix.hpp
  /usr/local/include/boost/config/abi_suffix.hpp
@@ -4060,6 +5226,8 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/config/detail/select_stdlib_config.hpp
  /usr/local/include/boost/config/detail/suffix.hpp
  /usr/local/include/boost/config/helper_macros.hpp
+ /usr/local/include/boost/config/no_tr1/cmath.hpp
+ /usr/local/include/boost/config/no_tr1/complex.hpp
  /usr/local/include/boost/config/no_tr1/memory.hpp
  /usr/local/include/boost/config/no_tr1/utility.hpp
  /usr/local/include/boost/config/platform/aix.hpp
@@ -4094,6 +5262,8 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/config/user.hpp
  /usr/local/include/boost/config/warning_disable.hpp
  /usr/local/include/boost/config/workaround.hpp
+ /usr/local/include/boost/container/container_fwd.hpp
+ /usr/local/include/boost/container/detail/std_fwd.hpp
  /usr/local/include/boost/container_hash/hash_fwd.hpp
  /usr/local/include/boost/core/addressof.hpp
  /usr/local/include/boost/core/checked_delete.hpp
@@ -4102,13 +5272,18 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/core/no_exceptions_support.hpp
  /usr/local/include/boost/core/noncopyable.hpp
  /usr/local/include/boost/core/scoped_enum.hpp
+ /usr/local/include/boost/core/swap.hpp
  /usr/local/include/boost/core/typeinfo.hpp
  /usr/local/include/boost/cstdint.hpp
  /usr/local/include/boost/current_function.hpp
+ /usr/local/include/boost/detail/basic_pointerbuf.hpp
  /usr/local/include/boost/detail/bitmask.hpp
  /usr/local/include/boost/detail/dynamic_bitset.hpp
+ /usr/local/include/boost/detail/endian.hpp
+ /usr/local/include/boost/detail/fenv.hpp
  /usr/local/include/boost/detail/indirect_traits.hpp
  /usr/local/include/boost/detail/iterator.hpp
+ /usr/local/include/boost/detail/lcast_precision.hpp
  /usr/local/include/boost/detail/no_exceptions_support.hpp
  /usr/local/include/boost/detail/scoped_enum_emulation.hpp
  /usr/local/include/boost/detail/sp_typeinfo.hpp
@@ -4127,19 +5302,47 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/filesystem/path_traits.hpp
  /usr/local/include/boost/filesystem/string_file.hpp
  /usr/local/include/boost/functional/hash_fwd.hpp
+ /usr/local/include/boost/integer.hpp
  /usr/local/include/boost/integer/integer_log2.hpp
+ /usr/local/include/boost/integer_fwd.hpp
+ /usr/local/include/boost/integer_traits.hpp
  /usr/local/include/boost/io/detail/quoted_manip.hpp
  /usr/local/include/boost/io/ios_state.hpp
  /usr/local/include/boost/io_fwd.hpp
+ /usr/local/include/boost/iterator/advance.hpp
  /usr/local/include/boost/iterator/detail/config_def.hpp
  /usr/local/include/boost/iterator/detail/config_undef.hpp
  /usr/local/include/boost/iterator/detail/enable_if.hpp
  /usr/local/include/boost/iterator/detail/facade_iterator_category.hpp
  /usr/local/include/boost/iterator/interoperable.hpp
+ /usr/local/include/boost/iterator/iterator_adaptor.hpp
  /usr/local/include/boost/iterator/iterator_categories.hpp
+ /usr/local/include/boost/iterator/iterator_concepts.hpp
  /usr/local/include/boost/iterator/iterator_facade.hpp
  /usr/local/include/boost/iterator/iterator_traits.hpp
+ /usr/local/include/boost/iterator/reverse_iterator.hpp
+ /usr/local/include/boost/lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp
+ /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp
+ /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp
+ /usr/local/include/boost/lexical_cast/detail/is_character.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp
+ /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp
+ /usr/local/include/boost/lexical_cast/detail/widest_char.hpp
+ /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp
  /usr/local/include/boost/limits.hpp
+ /usr/local/include/boost/math/policies/policy.hpp
+ /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp
+ /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp
+ /usr/local/include/boost/math/special_functions/fpclassify.hpp
+ /usr/local/include/boost/math/special_functions/math_fwd.hpp
+ /usr/local/include/boost/math/special_functions/sign.hpp
+ /usr/local/include/boost/math/tools/config.hpp
+ /usr/local/include/boost/math/tools/promotion.hpp
+ /usr/local/include/boost/math/tools/real_cast.hpp
+ /usr/local/include/boost/math/tools/user.hpp
  /usr/local/include/boost/move/algo/move.hpp
  /usr/local/include/boost/move/algorithm.hpp
  /usr/local/include/boost/move/core.hpp
@@ -4160,6 +5363,10 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/move/traits.hpp
  /usr/local/include/boost/move/utility.hpp
  /usr/local/include/boost/move/utility_core.hpp
+ /usr/local/include/boost/mpl/O1_size.hpp
+ /usr/local/include/boost/mpl/O1_size_fwd.hpp
+ /usr/local/include/boost/mpl/advance.hpp
+ /usr/local/include/boost/mpl/advance_fwd.hpp
  /usr/local/include/boost/mpl/always.hpp
  /usr/local/include/boost/mpl/and.hpp
  /usr/local/include/boost/mpl/apply.hpp
@@ -4168,11 +5375,21 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/mpl/arg.hpp
  /usr/local/include/boost/mpl/arg_fwd.hpp
  /usr/local/include/boost/mpl/assert.hpp
+ /usr/local/include/boost/mpl/at.hpp
+ /usr/local/include/boost/mpl/at_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp
  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+ /usr/local/include/boost/mpl/aux_/advance_backward.hpp
+ /usr/local/include/boost/mpl/aux_/advance_forward.hpp
  /usr/local/include/boost/mpl/aux_/arg_typedef.hpp
+ /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp
  /usr/local/include/boost/mpl/aux_/arity.hpp
  /usr/local/include/boost/mpl/aux_/arity_spec.hpp
+ /usr/local/include/boost/mpl/aux_/at_impl.hpp
+ /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp
+ /usr/local/include/boost/mpl/aux_/clear_impl.hpp
  /usr/local/include/boost/mpl/aux_/common_name_wknd.hpp
+ /usr/local/include/boost/mpl/aux_/comparison_op.hpp
  /usr/local/include/boost/mpl/aux_/config/adl.hpp
  /usr/local/include/boost/mpl/aux_/config/arrays.hpp
  /usr/local/include/boost/mpl/aux_/config/bcc.hpp
@@ -4182,6 +5399,7 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp
  /usr/local/include/boost/mpl/aux_/config/dtp.hpp
  /usr/local/include/boost/mpl/aux_/config/eti.hpp
+ /usr/local/include/boost/mpl/aux_/config/forwarding.hpp
  /usr/local/include/boost/mpl/aux_/config/gcc.hpp
  /usr/local/include/boost/mpl/aux_/config/gpu.hpp
  /usr/local/include/boost/mpl/aux_/config/has_apply.hpp
@@ -4199,26 +5417,44 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/mpl/aux_/config/ttp.hpp
  /usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp
  /usr/local/include/boost/mpl/aux_/config/workaround.hpp
+ /usr/local/include/boost/mpl/aux_/contains_impl.hpp
  /usr/local/include/boost/mpl/aux_/count_args.hpp
+ /usr/local/include/boost/mpl/aux_/find_if_pred.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/fold_impl_body.hpp
  /usr/local/include/boost/mpl/aux_/full_lambda.hpp
  /usr/local/include/boost/mpl/aux_/has_apply.hpp
+ /usr/local/include/boost/mpl/aux_/has_begin.hpp
  /usr/local/include/boost/mpl/aux_/has_rebind.hpp
+ /usr/local/include/boost/mpl/aux_/has_size.hpp
+ /usr/local/include/boost/mpl/aux_/has_tag.hpp
  /usr/local/include/boost/mpl/aux_/has_type.hpp
  /usr/local/include/boost/mpl/aux_/include_preprocessed.hpp
+ /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp
  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp
+ /usr/local/include/boost/mpl/aux_/iter_apply.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp
+ /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp
  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp
  /usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp
+ /usr/local/include/boost/mpl/aux_/lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/lambda_support.hpp
+ /usr/local/include/boost/mpl/aux_/largest_int.hpp
  /usr/local/include/boost/mpl/aux_/logical_op.hpp
  /usr/local/include/boost/mpl/aux_/msvc_dtw.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp
  /usr/local/include/boost/mpl/aux_/msvc_is_class.hpp
  /usr/local/include/boost/mpl/aux_/msvc_never_true.hpp
+ /usr/local/include/boost/mpl/aux_/msvc_type.hpp
  /usr/local/include/boost/mpl/aux_/na.hpp
  /usr/local/include/boost/mpl/aux_/na_assert.hpp
  /usr/local/include/boost/mpl/aux_/na_fwd.hpp
  /usr/local/include/boost/mpl/aux_/na_spec.hpp
  /usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp
  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp
+ /usr/local/include/boost/mpl/aux_/numeric_op.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/add.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp
@@ -4231,37 +5467,120 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp
  /usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp
+ /usr/local/include/boost/mpl/aux_/push_back_impl.hpp
+ /usr/local/include/boost/mpl/aux_/push_front_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp
+ /usr/local/include/boost/mpl/aux_/reverse_fold_impl_body.hpp
+ /usr/local/include/boost/mpl/aux_/sequence_wrapper.hpp
+ /usr/local/include/boost/mpl/aux_/size_impl.hpp
  /usr/local/include/boost/mpl/aux_/static_cast.hpp
  /usr/local/include/boost/mpl/aux_/template_arity.hpp
  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+ /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp
  /usr/local/include/boost/mpl/aux_/type_wrapper.hpp
  /usr/local/include/boost/mpl/aux_/value_wknd.hpp
  /usr/local/include/boost/mpl/aux_/yes_no.hpp
+ /usr/local/include/boost/mpl/back_inserter.hpp
+ /usr/local/include/boost/mpl/begin_end.hpp
+ /usr/local/include/boost/mpl/begin_end_fwd.hpp
  /usr/local/include/boost/mpl/bind.hpp
  /usr/local/include/boost/mpl/bind_fwd.hpp
  /usr/local/include/boost/mpl/bool.hpp
  /usr/local/include/boost/mpl/bool_fwd.hpp
+ /usr/local/include/boost/mpl/clear.hpp
+ /usr/local/include/boost/mpl/clear_fwd.hpp
+ /usr/local/include/boost/mpl/comparison.hpp
+ /usr/local/include/boost/mpl/contains.hpp
+ /usr/local/include/boost/mpl/contains_fwd.hpp
+ /usr/local/include/boost/mpl/deref.hpp
+ /usr/local/include/boost/mpl/distance.hpp
+ /usr/local/include/boost/mpl/distance_fwd.hpp
+ /usr/local/include/boost/mpl/equal_to.hpp
  /usr/local/include/boost/mpl/eval_if.hpp
+ /usr/local/include/boost/mpl/find.hpp
+ /usr/local/include/boost/mpl/find_if.hpp
+ /usr/local/include/boost/mpl/fold.hpp
+ /usr/local/include/boost/mpl/front_inserter.hpp
+ /usr/local/include/boost/mpl/greater.hpp
+ /usr/local/include/boost/mpl/greater_equal.hpp
  /usr/local/include/boost/mpl/has_xxx.hpp
  /usr/local/include/boost/mpl/identity.hpp
  /usr/local/include/boost/mpl/if.hpp
+ /usr/local/include/boost/mpl/inserter.hpp
  /usr/local/include/boost/mpl/int.hpp
  /usr/local/include/boost/mpl/int_fwd.hpp
+ /usr/local/include/boost/mpl/integral_c.hpp
+ /usr/local/include/boost/mpl/integral_c_fwd.hpp
  /usr/local/include/boost/mpl/integral_c_tag.hpp
  /usr/local/include/boost/mpl/is_placeholder.hpp
+ /usr/local/include/boost/mpl/iter_fold.hpp
+ /usr/local/include/boost/mpl/iter_fold_if.hpp
+ /usr/local/include/boost/mpl/iterator_range.hpp
  /usr/local/include/boost/mpl/lambda.hpp
  /usr/local/include/boost/mpl/lambda_fwd.hpp
+ /usr/local/include/boost/mpl/less.hpp
+ /usr/local/include/boost/mpl/less_equal.hpp
  /usr/local/include/boost/mpl/limits/arity.hpp
+ /usr/local/include/boost/mpl/limits/list.hpp
+ /usr/local/include/boost/mpl/limits/unrolling.hpp
+ /usr/local/include/boost/mpl/limits/vector.hpp
+ /usr/local/include/boost/mpl/list.hpp
+ /usr/local/include/boost/mpl/logical.hpp
+ /usr/local/include/boost/mpl/long.hpp
+ /usr/local/include/boost/mpl/long_fwd.hpp
+ /usr/local/include/boost/mpl/multiplies.hpp
+ /usr/local/include/boost/mpl/negate.hpp
  /usr/local/include/boost/mpl/next.hpp
  /usr/local/include/boost/mpl/next_prior.hpp
  /usr/local/include/boost/mpl/not.hpp
+ /usr/local/include/boost/mpl/not_equal_to.hpp
+ /usr/local/include/boost/mpl/numeric_cast.hpp
  /usr/local/include/boost/mpl/or.hpp
+ /usr/local/include/boost/mpl/pair.hpp
  /usr/local/include/boost/mpl/placeholders.hpp
+ /usr/local/include/boost/mpl/prior.hpp
  /usr/local/include/boost/mpl/protect.hpp
+ /usr/local/include/boost/mpl/push_back.hpp
+ /usr/local/include/boost/mpl/push_back_fwd.hpp
+ /usr/local/include/boost/mpl/push_front.hpp
+ /usr/local/include/boost/mpl/push_front_fwd.hpp
  /usr/local/include/boost/mpl/quote.hpp
+ /usr/local/include/boost/mpl/remove_if.hpp
+ /usr/local/include/boost/mpl/reverse_fold.hpp
+ /usr/local/include/boost/mpl/same_as.hpp
+ /usr/local/include/boost/mpl/sequence_tag.hpp
+ /usr/local/include/boost/mpl/sequence_tag_fwd.hpp
+ /usr/local/include/boost/mpl/size.hpp
+ /usr/local/include/boost/mpl/size_fwd.hpp
+ /usr/local/include/boost/mpl/tag.hpp
+ /usr/local/include/boost/mpl/times.hpp
+ /usr/local/include/boost/mpl/vector.hpp
  /usr/local/include/boost/mpl/void.hpp
  /usr/local/include/boost/mpl/void_fwd.hpp
+ /usr/local/include/boost/next_prior.hpp
+ /usr/local/include/boost/non_type.hpp
  /usr/local/include/boost/noncopyable.hpp
+ /usr/local/include/boost/numeric/conversion/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/cast.hpp
+ /usr/local/include/boost/numeric/conversion/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/converter.hpp
+ /usr/local/include/boost/numeric/conversion/converter_policies.hpp
+ /usr/local/include/boost/numeric/conversion/detail/bounds.hpp
+ /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/converter.hpp
+ /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp
+ /usr/local/include/boost/numeric/conversion/detail/meta.hpp
+ /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/detail/old_numeric_cast.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp
+ /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp
+ /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp
+ /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp
+ /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp
+ /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp
  /usr/local/include/boost/pending/lowest_bit.hpp
  /usr/local/include/boost/predef.h
  /usr/local/include/boost/predef/architecture.h
@@ -4317,6 +5636,7 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/predef/detail/_cassert.h
  /usr/local/include/boost/predef/detail/_exception.h
  /usr/local/include/boost/predef/detail/comp_detected.h
+ /usr/local/include/boost/predef/detail/endian_compat.h
  /usr/local/include/boost/predef/detail/os_detected.h
  /usr/local/include/boost/predef/detail/platform_detected.h
  /usr/local/include/boost/predef/detail/test.h
@@ -4398,15 +5718,19 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/predef/version_number.h
  /usr/local/include/boost/preprocessor/arithmetic/add.hpp
  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp
  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+ /usr/local/include/boost/preprocessor/arithmetic/mod.hpp
  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp
  /usr/local/include/boost/preprocessor/array/data.hpp
  /usr/local/include/boost/preprocessor/array/elem.hpp
  /usr/local/include/boost/preprocessor/array/size.hpp
  /usr/local/include/boost/preprocessor/cat.hpp
  /usr/local/include/boost/preprocessor/comma_if.hpp
+ /usr/local/include/boost/preprocessor/comparison/less_equal.hpp
  /usr/local/include/boost/preprocessor/comparison/not_equal.hpp
  /usr/local/include/boost/preprocessor/config/config.hpp
+ /usr/local/include/boost/preprocessor/control/deduce_d.hpp
  /usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/edg/while.hpp
  /usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp
@@ -4424,12 +5748,16 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/preprocessor/detail/is_binary.hpp
  /usr/local/include/boost/preprocessor/detail/split.hpp
  /usr/local/include/boost/preprocessor/empty.hpp
+ /usr/local/include/boost/preprocessor/enum.hpp
+ /usr/local/include/boost/preprocessor/enum_params.hpp
+ /usr/local/include/boost/preprocessor/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/expr_if.hpp
  /usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/empty.hpp
  /usr/local/include/boost/preprocessor/facilities/expand.hpp
  /usr/local/include/boost/preprocessor/facilities/identity.hpp
+ /usr/local/include/boost/preprocessor/facilities/intercept.hpp
  /usr/local/include/boost/preprocessor/facilities/is_1.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty.hpp
  /usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp
@@ -4452,6 +5780,7 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/preprocessor/logical/bitand.hpp
  /usr/local/include/boost/preprocessor/logical/bool.hpp
  /usr/local/include/boost/preprocessor/logical/compl.hpp
+ /usr/local/include/boost/preprocessor/logical/not.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma.hpp
  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
  /usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp
@@ -4461,20 +5790,28 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp
  /usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_binary_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_params.hpp
+ /usr/local/include/boost/preprocessor/repetition/enum_params_with_a_default.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp
  /usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp
  /usr/local/include/boost/preprocessor/repetition/for.hpp
  /usr/local/include/boost/preprocessor/repetition/repeat.hpp
+ /usr/local/include/boost/preprocessor/repetition/repeat_from_to.hpp
+ /usr/local/include/boost/preprocessor/seq/cat.hpp
  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp
  /usr/local/include/boost/preprocessor/seq/detail/split.hpp
  /usr/local/include/boost/preprocessor/seq/elem.hpp
+ /usr/local/include/boost/preprocessor/seq/enum.hpp
  /usr/local/include/boost/preprocessor/seq/first_n.hpp
  /usr/local/include/boost/preprocessor/seq/fold_left.hpp
+ /usr/local/include/boost/preprocessor/seq/for_each_i.hpp
  /usr/local/include/boost/preprocessor/seq/rest_n.hpp
  /usr/local/include/boost/preprocessor/seq/seq.hpp
  /usr/local/include/boost/preprocessor/seq/size.hpp
  /usr/local/include/boost/preprocessor/seq/subseq.hpp
+ /usr/local/include/boost/preprocessor/seq/transform.hpp
  /usr/local/include/boost/preprocessor/slot/detail/def.hpp
  /usr/local/include/boost/preprocessor/slot/slot.hpp
  /usr/local/include/boost/preprocessor/stringize.hpp
@@ -4486,12 +5823,37 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/preprocessor/tuple/to_list.hpp
  /usr/local/include/boost/preprocessor/variadic/elem.hpp
  /usr/local/include/boost/preprocessor/variadic/size.hpp
+ /usr/local/include/boost/range/algorithm/equal.hpp
+ /usr/local/include/boost/range/begin.hpp
+ /usr/local/include/boost/range/concepts.hpp
  /usr/local/include/boost/range/config.hpp
  /usr/local/include/boost/range/const_iterator.hpp
+ /usr/local/include/boost/range/detail/begin.hpp
+ /usr/local/include/boost/range/detail/common.hpp
+ /usr/local/include/boost/range/detail/end.hpp
  /usr/local/include/boost/range/detail/extract_optional_type.hpp
+ /usr/local/include/boost/range/detail/has_member_size.hpp
+ /usr/local/include/boost/range/detail/implementation_help.hpp
+ /usr/local/include/boost/range/detail/misc_concept.hpp
  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp
+ /usr/local/include/boost/range/detail/safe_bool.hpp
+ /usr/local/include/boost/range/detail/sfinae.hpp
+ /usr/local/include/boost/range/difference_type.hpp
+ /usr/local/include/boost/range/distance.hpp
+ /usr/local/include/boost/range/empty.hpp
+ /usr/local/include/boost/range/end.hpp
+ /usr/local/include/boost/range/functions.hpp
+ /usr/local/include/boost/range/has_range_iterator.hpp
+ /usr/local/include/boost/range/iterator.hpp
+ /usr/local/include/boost/range/iterator_range_core.hpp
  /usr/local/include/boost/range/mutable_iterator.hpp
  /usr/local/include/boost/range/range_fwd.hpp
+ /usr/local/include/boost/range/rbegin.hpp
+ /usr/local/include/boost/range/rend.hpp
+ /usr/local/include/boost/range/reverse_iterator.hpp
+ /usr/local/include/boost/range/size.hpp
+ /usr/local/include/boost/range/size_type.hpp
+ /usr/local/include/boost/range/value_type.hpp
  /usr/local/include/boost/shared_ptr.hpp
  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp
  /usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp
@@ -4539,6 +5901,7 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp
  /usr/local/include/boost/smart_ptr/shared_ptr.hpp
  /usr/local/include/boost/static_assert.hpp
+ /usr/local/include/boost/swap.hpp
  /usr/local/include/boost/system/api_config.hpp
  /usr/local/include/boost/system/config.hpp
  /usr/local/include/boost/system/detail/error_code.ipp
@@ -4546,33 +5909,49 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/system/error_code.hpp
  /usr/local/include/boost/system/system_error.hpp
  /usr/local/include/boost/throw_exception.hpp
+ /usr/local/include/boost/type.hpp
  /usr/local/include/boost/type_traits/add_const.hpp
  /usr/local/include/boost/type_traits/add_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/add_pointer.hpp
  /usr/local/include/boost/type_traits/add_reference.hpp
  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp
+ /usr/local/include/boost/type_traits/add_volatile.hpp
  /usr/local/include/boost/type_traits/alignment_of.hpp
  /usr/local/include/boost/type_traits/conditional.hpp
+ /usr/local/include/boost/type_traits/conversion_traits.hpp
  /usr/local/include/boost/type_traits/decay.hpp
  /usr/local/include/boost/type_traits/declval.hpp
  /usr/local/include/boost/type_traits/detail/config.hpp
+ /usr/local/include/boost/type_traits/detail/has_binary_operator.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp
  /usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp
+ /usr/local/include/boost/type_traits/detail/is_likely_lambda.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp
  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp
  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+ /usr/local/include/boost/type_traits/function_traits.hpp
+ /usr/local/include/boost/type_traits/has_left_shift.hpp
+ /usr/local/include/boost/type_traits/has_minus.hpp
+ /usr/local/include/boost/type_traits/has_minus_assign.hpp
+ /usr/local/include/boost/type_traits/has_plus.hpp
+ /usr/local/include/boost/type_traits/has_plus_assign.hpp
+ /usr/local/include/boost/type_traits/has_right_shift.hpp
  /usr/local/include/boost/type_traits/integral_constant.hpp
  /usr/local/include/boost/type_traits/intrinsics.hpp
  /usr/local/include/boost/type_traits/is_abstract.hpp
  /usr/local/include/boost/type_traits/is_arithmetic.hpp
  /usr/local/include/boost/type_traits/is_array.hpp
+ /usr/local/include/boost/type_traits/is_base_and_derived.hpp
+ /usr/local/include/boost/type_traits/is_base_of.hpp
  /usr/local/include/boost/type_traits/is_class.hpp
  /usr/local/include/boost/type_traits/is_complete.hpp
  /usr/local/include/boost/type_traits/is_const.hpp
  /usr/local/include/boost/type_traits/is_convertible.hpp
  /usr/local/include/boost/type_traits/is_enum.hpp
+ /usr/local/include/boost/type_traits/is_float.hpp
  /usr/local/include/boost/type_traits/is_floating_point.hpp
  /usr/local/include/boost/type_traits/is_function.hpp
+ /usr/local/include/boost/type_traits/is_fundamental.hpp
  /usr/local/include/boost/type_traits/is_integral.hpp
  /usr/local/include/boost/type_traits/is_lvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp
@@ -4584,9 +5963,13 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/type_traits/is_rvalue_reference.hpp
  /usr/local/include/boost/type_traits/is_same.hpp
  /usr/local/include/boost/type_traits/is_scalar.hpp
+ /usr/local/include/boost/type_traits/is_signed.hpp
  /usr/local/include/boost/type_traits/is_union.hpp
+ /usr/local/include/boost/type_traits/is_unsigned.hpp
  /usr/local/include/boost/type_traits/is_void.hpp
  /usr/local/include/boost/type_traits/is_volatile.hpp
+ /usr/local/include/boost/type_traits/make_unsigned.hpp
+ /usr/local/include/boost/type_traits/make_void.hpp
  /usr/local/include/boost/type_traits/remove_bounds.hpp
  /usr/local/include/boost/type_traits/remove_const.hpp
  /usr/local/include/boost/type_traits/remove_cv.hpp
@@ -4594,8 +5977,12 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/boost/type_traits/remove_pointer.hpp
  /usr/local/include/boost/type_traits/remove_reference.hpp
  /usr/local/include/boost/type_traits/type_with_alignment.hpp
+ /usr/local/include/boost/utility.hpp
  /usr/local/include/boost/utility/addressof.hpp
+ /usr/local/include/boost/utility/base_from_member.hpp
+ /usr/local/include/boost/utility/binary.hpp
  /usr/local/include/boost/utility/enable_if.hpp
+ /usr/local/include/boost/utility/identity_type.hpp
  /usr/local/include/boost/version.hpp
  /usr/local/include/boost/winapi/basic_types.hpp
  /usr/local/include/boost/winapi/character_code_conversion.hpp
@@ -4611,7 +5998,6 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/opencv2/core/affine.hpp
  /usr/local/include/opencv2/core/base.hpp
  /usr/local/include/opencv2/core/bufferpool.hpp
- /usr/local/include/opencv2/core/core.hpp
  /usr/local/include/opencv2/core/core_c.h
  /usr/local/include/opencv2/core/cuda.hpp
  /usr/local/include/opencv2/core/cuda.inl.hpp
@@ -4688,12 +6074,10 @@ CMakeFiles/main.dir/src/main.cpp.o
  /usr/local/include/opencv2/flann/saving.h
  /usr/local/include/opencv2/flann/timer.h
  /usr/local/include/opencv2/highgui.hpp
- /usr/local/include/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv2/highgui/highgui_c.h
  /usr/local/include/opencv2/imgcodecs.hpp
  /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
  /usr/local/include/opencv2/imgproc.hpp
- /usr/local/include/opencv2/imgproc/imgproc.hpp
  /usr/local/include/opencv2/imgproc/imgproc_c.h
  /usr/local/include/opencv2/imgproc/types_c.h
  /usr/local/include/opencv2/ml.hpp

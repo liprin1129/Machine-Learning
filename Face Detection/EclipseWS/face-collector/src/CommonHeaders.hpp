@@ -12,8 +12,9 @@
 #include <sl/Camera.hpp>
 #include <opencv2/opencv.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
 
-#include <opencv2/highgui/highgui.hpp>
+//#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/cudaobjdetect.hpp>
 

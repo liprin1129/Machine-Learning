@@ -8,6 +8,8 @@ if(COMMAND cmake_policy)
 endif(COMMAND cmake_policy)
 
 SET(EXECUTABLE_OUTPUT_PATH ".")
+SET_PROPERTY(TARGET ${ApplicationName} PROPERTY CXX_STANDARD 11)
+#set_property(TARGET ${ApplicationName} PROPERTY CXX_STANDARD 11)
 
 find_package(ZED 2 REQUIRED)
 find_package(OpenCV REQUIRED)
@@ -17,7 +19,7 @@ find_package(Boost 1.67 COMPONENTS system filesystem REQUIRED)
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
 include_directories(${OPENCV_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/data)
 include_directories(${Boost_INCLUDE_DIRS})
 

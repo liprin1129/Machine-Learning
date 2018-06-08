@@ -55,10 +55,11 @@ public:
 	void uploadFrameToGPU(cv::Mat capturedFrame);
 	void convertRGBAToGrayGPU(cv::cuda::GpuMat rgbaFrame);
 	void startCascadeFaceDetection(cv::cuda::GpuMat);
-	void drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces);
+	void drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces, int thick);
 	//std::vector<cv::Rect> getFaces(cv::Mat frameCPU);
 	void getFaces(cv::Mat frameCPU);
 
+	cv::Mat truncateFirstFace(std::vector<cv::Rect> faceVector);
 	int imageManagerHasLoaded(int argc, ...);
 };
 #endif /* IMAGEMANAGER_HPP_ */

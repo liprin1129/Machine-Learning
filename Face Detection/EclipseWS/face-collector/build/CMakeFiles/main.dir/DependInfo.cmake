@@ -22,7 +22,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/cuda/include"
   "/usr/local/zed/include"
-  "../include"
   "../data"
   "/usr/local/include"
   "/usr/local/include/opencv"

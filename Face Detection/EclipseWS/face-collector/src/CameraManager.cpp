@@ -69,6 +69,7 @@ void CameraManager::printCameraInfo(sl::Camera &zedCameraObject){
 			zedCameraObject.getCameraInformation().firmware_version << std::endl;
 	std::cout << "ZED Camera Resolution : (" <<
 			(int)zedCameraObject.getResolution().width << ", " << (int)zedCameraObject.getResolution().height << ")" << std::endl;
+	std::cout << "ZED FPS Resolution    : ( " << this->_width << ", " << this->_height << ")" << std::endl;
 	std::cout << "ZED Serial FPS        : " <<
 			(int)zedCameraObject.getCameraFPS() << std::endl;
 }
