@@ -20,13 +20,15 @@ ViewManager::ViewManager() {
 	this->_buttonRandRatioX = 0.45;
 	this->_buttonRandRatioY = 0.9;
 
-	/*
-	boost::thread th1(&ViewManager::viewHasLoaded, this, 0);
-	boost::thread th2(&ViewManager::saveFaceLoop, this);
+	// Initialize camera
+	// Set input frame size
+	// Arguments:
+	//		arg1	: width ratio
+	//		arg2	: height ratio
+	this->setWidthAndHeight(0.5, 0.5);
 
-	th1.join();
-	th2.join();
-	*/
+	// Show camera information
+	this->printCameraInfo(this->_zed);
 }
 
 ViewManager::~ViewManager() {
@@ -65,18 +67,8 @@ void ViewManager::nameInputView() {
 				boost::lexical_cast<short>(employNum);
 
 				// Camera open
-				this->openCamera();
+				//this->openCamera();
 				//boost::this_thread::sleep(boost::posix_time::millisec(5000));
-
-				// Initialize camera
-				// Set input frame size
-				// Arguments:
-				//		arg1	: width ratio
-				//		arg2	: height ratio
-				this->setWidthAndHeight(0.5, 0.5);
-
-				// Show camera information
-				this->printCameraInfo(this->_zed);
 
 				// Go to camera view
 				this->cameraView();
