@@ -14,7 +14,7 @@ SET_PROPERTY(TARGET ${ApplicationName} PROPERTY CXX_STANDARD 11)
 find_package(ZED 2 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(CUDA ${ZED_CUDA_VERSION} EXACT REQUIRED)
-find_package(Boost 1.67 COMPONENTS system filesystem REQUIRED)
+find_package(Boost 1.67 COMPONENTS system filesystem thread REQUIRED)
 
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
@@ -45,4 +45,5 @@ TARGET_LINK_LIBRARIES(${execName}
                         ${ZED_LIBRARIES}
                         ${OpenCV_LIBRARIES}
                         ${CUDA_CUDA_LIBRARY} ${CUDA_CUDART_LIBRARY} ${CUDA_NPP_LIBRARIES_ZED}
-			${Boost_LIBRARIES})
+			${Boost_LIBRARIES}
+			-lpthread)

@@ -43,7 +43,7 @@ int FileSystemManager::numOfFiles(std::string absDirName) {
 			fileCount += 1;
 	}
 	//std::cout << dir.filename() << '\n';
-	std::cout << "Number of files: " << fileCount << '\n';
+	//std::cout << "Number of files: " << fileCount << '\n';
 
 	return fileCount;
 }

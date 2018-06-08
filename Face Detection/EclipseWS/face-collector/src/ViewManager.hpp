@@ -21,7 +21,7 @@ class ViewManager: public CameraManager, public ImageManager, public FileSystemM
 private:
 	float _buttonRandRatioX;
 	float _buttonRandRatioY;
-
+	bool _close;
 public:
 	ViewManager();
 	virtual ~ViewManager();
@@ -35,7 +35,14 @@ public:
 	bool addButton(cv::Mat frame, int x, int y, int width, int height, std::string msg);
 
 	void cameraView();
-	void viewHasLoaded(int argc, ...);
+
+	// Call this function in a loop to save detected face
+	void saveFaceLoop();
+
+	void viewHasLoaded(int argc);
+
+	void threadTest1();
+	void threadTest2(const std::string tt);
 };
 
 #endif /* VIEWMANAGER_HPP_ */

@@ -205,6 +205,10 @@ main: /usr/local/cuda-9.1/lib64/libnppitc.so
 main: /usr/local/cuda/lib64/libnpps.so
 main: /usr/local/lib/libboost_system.so
 main: /usr/local/lib/libboost_filesystem.so
+main: /usr/local/lib/libboost_thread.so
+main: /usr/local/lib/libboost_chrono.so
+main: /usr/local/lib/libboost_date_time.so
+main: /usr/local/lib/libboost_atomic.so
 main: /usr/local/lib/libopencv_cudafeatures2d.so.3.4.1
 main: /usr/local/lib/libopencv_cudacodec.so.3.4.1
 main: /usr/local/lib/libopencv_cudaoptflow.so.3.4.1

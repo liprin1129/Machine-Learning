@@ -10,31 +10,23 @@
 #include "cvui.h"
 
 ViewManager::ViewManager() {
+	/*
 	cv::namedWindow(START_WINDOW);
 	cv::moveWindow(START_WINDOW, 300, 200);
 	cvui::init(START_WINDOW);
+	*/
 
-	this->_buttonRandRatioX = 0.68;
+	this->_close = false;
+	this->_buttonRandRatioX = 0.45;
 	this->_buttonRandRatioY = 0.9;
 
-	/***********************/
-	/*  Initialize camera  */
-	/***********************/
+	/*
+	boost::thread th1(&ViewManager::viewHasLoaded, this, 0);
+	boost::thread th2(&ViewManager::saveFaceLoop, this);
 
-	// Set input frame size
-	// Arguments:
-	//		arg1	: width ratio
-	//		arg2	: height ratio
-	this->setWidthAndHeight(0.5, 0.5);
-
-	// Show camera information
-	this->printCameraInfo(this->_zed);
-
-	/***********************/
-	/*  Start View  */
-	/***********************/
-	//std::cout << this->startView() << std::endl;
-	this->viewHasLoaded(0);
+	th1.join();
+	th2.join();
+	*/
 }
 
 ViewManager::~ViewManager() {
@@ -61,7 +53,7 @@ void ViewManager::nameInputView() {
 			cvui::text(nameView, width*0.4, height*0.3, employNum, 1.0, 0x000000);
 		}
 
-		if (this->addButton(nameView, width*0.2, height*0.85, 90, 40, "Enter") == true) {
+		if (this->addButton(nameView, width*0.2, height*0.85, 90, 40, "Start") == true) {
 
 			// Try to convert keyboard input to short.
 			// If input is empty, nothing happened
@@ -71,6 +63,22 @@ void ViewManager::nameInputView() {
 
 				// Convert string to short
 				boost::lexical_cast<short>(employNum);
+
+				// Camera open
+				this->openCamera();
+				//boost::this_thread::sleep(boost::posix_time::millisec(5000));
+
+				// Initialize camera
+				// Set input frame size
+				// Arguments:
+				//		arg1	: width ratio
+				//		arg2	: height ratio
+				this->setWidthAndHeight(0.5, 0.5);
+
+				// Show camera information
+				this->printCameraInfo(this->_zed);
+
+				// Go to camera view
 				this->cameraView();
 				break;
 			}
@@ -79,6 +87,7 @@ void ViewManager::nameInputView() {
 		}
 
 		else if (this->addButton(nameView, width*0.4, height*0.85, 90, 40, "Return") == true) {
+			this->_close = false;
 			this->viewHasLoaded(0);
 			break;
 		}
@@ -100,11 +109,12 @@ std::string ViewManager::mainView(){
 			break;
 		}*/
 		if (this->addButton(startView, width*0.6, height*0.85, 90, 40, "STOP") == true){
+			this->_close = true;
 			return "STOP";
 			break;
 		}
 
-		else if (this->addButton(startView, width*0.2, height*0.85, 90, 40, "Enter name") == true) {
+		else if (this->addButton(startView, width*0.2, height*0.85, 120, 40, "Enter Employ No.") == true) {
 			return "Name";
 			break;
 		}
@@ -178,18 +188,11 @@ void ViewManager::cameraView() {
 			}
 			// Create "Return" button
 			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.1), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
+				//this->_zed.close();
+				this->_faces.clear();
 				this->viewHasLoaded(0);
 				break;
 			}
-
-			/*
-			// Save a face mat
-			if (this->_faces.size() != 0) {
-				cv::Mat faceCvMat = this->truncateFirstFace(this->_inCvMat, this->_faces);
-
-				// Save a face mat to a given directory
-				this->saveFaceImage(faceCvMat);
-			}*/
 
 			cvui::imshow(START_WINDOW, this->_frameCPU);
 			this->_key = cv::waitKey(10);
@@ -197,7 +200,41 @@ void ViewManager::cameraView() {
 	}
 }
 
-void ViewManager::viewHasLoaded(int argc, ...) {
+void ViewManager::saveFaceLoop() {
+
+	/*
+	while(!this->_close) {
+		std::cout << this->_close << std::endl;
+		boost::this_thread::sleep(boost::posix_time::millisec(500));
+	}*/
+
+
+	while(!this->_close){
+		// Save a face mat
+		if (this->_faces.size() != 0) {
+			cv::Mat faceCvMat = this->truncateFirstFace(this->_inCvMat, this->_faces);
+
+			// Save a face mat to a given directory
+			this->saveFaceImage(faceCvMat);
+
+			//std::cout << "SAVE" << std::endl;
+		}
+
+		/*
+		if (this->_faces.size() != 0) {
+			std::cout << "Face thread: " << this->_faces.front() << std::endl;
+		}
+		*/
+		//std::cout << "Close: " << this->_close << std::endl;
+		boost::this_thread::sleep(boost::posix_time::millisec(500));
+	}
+}
+
+void ViewManager::viewHasLoaded(int argc) {
+	cv::namedWindow(START_WINDOW);
+	cv::moveWindow(START_WINDOW, 300, 200);
+	cvui::init(START_WINDOW);
+
 	std::string status = this->mainView();
 
 	if (status == "START") {
@@ -206,4 +243,55 @@ void ViewManager::viewHasLoaded(int argc, ...) {
 	else if (status == "Name"){
 		this->nameInputView();
 	}
+}
+
+void ViewManager::threadTest1() {
+	int width = 500;
+	int height = 400;
+
+	cv::Mat startView = cv::Mat(cv::Size(width, height), CV_8UC3);
+	startView = cv::Scalar(255, 255, 255);
+
+	while(this->_key != 'q') {
+
+		/*
+		if (this->addButton(startView, width*0.4, height*0.85, 90, 40, "Start") == true) {
+			return "START";
+			break;
+		}*/
+		if (this->addButton(startView, width*0.6, height*0.85, 90, 40, "STOP") == true){
+			break;
+		}
+
+		else if (this->addButton(startView, width*0.2, height*0.85, 120, 40, "Enter Employ No.") == true) {
+			break;
+		}
+
+		cvui::imshow(START_WINDOW, startView);
+
+		this->_key = cv::waitKey(10);
+	}
+}
+
+void ViewManager::threadTest2(const std::string tt){
+
+	cv::namedWindow(START_WINDOW);
+	cv::moveWindow(START_WINDOW, 300, 200);
+	cvui::init(START_WINDOW);
+
+	cv::Mat startView = cv::Mat(cv::Size(300, 300), CV_8UC3);
+	startView = cv::Scalar(255, 255, 255);
+
+	while(this->_key != 'q') {
+			cv::imshow(START_WINDOW, startView);
+			this->addButton(startView, 300*0.2, 200*0.85, 90, 40, "Start");
+			this->_key = cv::waitKey(10);
+	}
+
+	/*
+	int i;
+	for(i=0; i < 10; i++) {
+		std::cout << tt << std::endl;
+		boost::this_thread::sleep(boost::posix_time::millisec(1000));
+	}*/
 }

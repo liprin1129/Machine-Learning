@@ -16,7 +16,7 @@ CameraManager::CameraManager() {
 	this->_key = ' ';
 
 	this->parameterInitializer(sl::RESOLUTION_HD1080, sl::DEPTH_MODE_PERFORMANCE, sl::UNIT_MILLIMETER);
-	this->openCamera();
+	//this->openCamera();
 
 	//this->cameraManagerHasLoaded(2, 0.5, 0.5);
 
