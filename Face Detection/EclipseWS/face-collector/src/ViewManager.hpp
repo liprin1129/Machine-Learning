@@ -22,6 +22,8 @@ private:
 	float _buttonRandRatioX;
 	float _buttonRandRatioY;
 	bool _close;
+	int _savePeriod;
+
 public:
 	ViewManager();
 	virtual ~ViewManager();

@@ -17,6 +17,8 @@ ViewManager::ViewManager() {
 	*/
 
 	this->_close = false;
+	this->_savePeriod = 200; // millisecond
+
 	this->_buttonRandRatioX = 0.45;
 	this->_buttonRandRatioY = 0.9;
 
@@ -61,7 +63,8 @@ void ViewManager::nameInputView() {
 			// If input is empty, nothing happened
 			try {
 				// Make directory
-				this->makeDir("../../../../Data/Face/Face-SJC/"+employNum+"/");
+				//this->makeDir("../../../../Data/Face/Face-SJC/"+employNum+"/");
+				this->makeDir("data/Face-SJC/"+employNum+"/");
 
 				// Convert string to short
 				boost::lexical_cast<short>(employNum);
@@ -218,13 +221,13 @@ void ViewManager::saveFaceLoop() {
 		}
 		*/
 		//std::cout << "Close: " << this->_close << std::endl;
-		boost::this_thread::sleep(boost::posix_time::millisec(500));
+		boost::this_thread::sleep(boost::posix_time::millisec(this->_savePeriod));
 	}
 }
 
 void ViewManager::viewHasLoaded(int argc) {
 	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 300, 200);
+	cv::moveWindow(START_WINDOW, 512, 288);
 	cvui::init(START_WINDOW);
 
 	std::string status = this->mainView();

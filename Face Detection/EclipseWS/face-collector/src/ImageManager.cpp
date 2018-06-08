@@ -8,7 +8,8 @@
 #include "ImageManager.hpp"
 
 ImageManager::ImageManager() {
-	this->imageManagerHasLoaded(1, "../data/haarcascade_frontalface_alt_gpu.xml");
+	//this->imageManagerHasLoaded(1, "../data/haarcascade_frontalface_alt_gpu.xml");
+	this->imageManagerHasLoaded(1, "data/load-data/haarcascade_frontalface_alt_gpu.xml");
 	//this->imageManagerHasLoaded(2, "../data/haarcascade_frontalface_alt_gpu.xml", "../data/star_wars.jpg");
 	std::cout << "ImageManager constructor" << std::endl;
 }
