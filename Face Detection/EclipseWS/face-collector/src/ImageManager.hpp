@@ -59,7 +59,7 @@ public:
 	//std::vector<cv::Rect> getFaces(cv::Mat frameCPU);
 	void getFaces(cv::Mat frameCPU);
 
-	cv::Mat truncateFirstFace(std::vector<cv::Rect> faceVector);
+	cv::Mat truncateFirstFace(cv::Mat frame, std::vector<cv::Rect> faceVector);
 	int imageManagerHasLoaded(int argc, ...);
 };
 #endif /* IMAGEMANAGER_HPP_ */

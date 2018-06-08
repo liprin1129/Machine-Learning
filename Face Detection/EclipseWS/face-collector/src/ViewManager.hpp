@@ -19,8 +19,8 @@
 
 class ViewManager: public CameraManager, public ImageManager, public FileSystemManager {
 private:
-	float buttonRandRatioX;
-	float buttonRandRatioY;
+	float _buttonRandRatioX;
+	float _buttonRandRatioY;
 
 public:
 	ViewManager();

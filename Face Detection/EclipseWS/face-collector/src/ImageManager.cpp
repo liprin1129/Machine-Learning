@@ -109,7 +109,7 @@ void ImageManager::getFaces(cv::Mat capturedFrame){
 	//return this->_faces;
 }
 
-cv::Mat ImageManager::truncateFirstFace(std::vector<cv::Rect> faceCvRectVector) {
+cv::Mat ImageManager::truncateFirstFace(cv::Mat frame, std::vector<cv::Rect> faceCvRectVector) {
 	/*
 	for (std::vector<std::string>::const_iterator iterFace=faceCvRectVector.begin(); iterFace!=faceCvRectVector.end(); ++iterFace){
 		auto iterFaceIndex = iterFace - faceCvRectVector.begin();
@@ -119,7 +119,7 @@ cv::Mat ImageManager::truncateFirstFace(std::vector<cv::Rect> faceCvRectVector) 
 	*/
 
 	cv::Rect faceCvRect = faceCvRectVector.front();
-	return this->_frameCPU(faceCvRect);
+	return frame(faceCvRect);
 }
 
 int ImageManager::imageManagerHasLoaded(int argc, ...) {

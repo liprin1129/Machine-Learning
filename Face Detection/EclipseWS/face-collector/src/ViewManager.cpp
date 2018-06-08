@@ -14,6 +14,9 @@ ViewManager::ViewManager() {
 	cv::moveWindow(START_WINDOW, 300, 200);
 	cvui::init(START_WINDOW);
 
+	this->_buttonRandRatioX = 0.68;
+	this->_buttonRandRatioY = 0.9;
+
 	/***********************/
 	/*  Initialize camera  */
 	/***********************/
@@ -148,7 +151,7 @@ void ViewManager::cameraView() {
 			this->getFaces(this->_inCvMat);
 
 			// Create "Save" button
-			if (this->addButton(this->_frameCPU, this->_width*0.68, this->_height*0.9, 90, 40, "Save") == true) {
+			if (this->addButton(this->_frameCPU, this->_width*this->_buttonRandRatioX, this->_height*this->_buttonRandRatioY, 90, 40, "Save") == true) {
 
 				/*
 				this->_tMeter.start();
@@ -161,7 +164,9 @@ void ViewManager::cameraView() {
 					}
 				}
 				*/
-				//std::rand()
+				this->_buttonRandRatioX = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
+				this->_buttonRandRatioY = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
+
 				if (this->_faces.size() != 0) {
 					for (int i=0; i < 5; i++) {
 						cv::rectangle(this->_frameCPU, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 30);
@@ -170,22 +175,21 @@ void ViewManager::cameraView() {
 						cv::waitKey(10);
 					}
 				}
-
-				/*// Save a face mat
-				if (this->_faces.size() != 0) {
-					cv::Mat faceCvMat = this->truncateFirstFace(this->_faces);
-
-					// Save a face mat to a given directory
-					this->saveFaceImage(faceCvMat);
-				}
-				*/
-
 			}
 			// Create "Return" button
-			else if (this->addButton(this->_frameCPU, this->_width*0.88, this->_height*0.9, 90, 40, "Return") == true){
+			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.1), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
 				this->viewHasLoaded(0);
 				break;
 			}
+
+			/*
+			// Save a face mat
+			if (this->_faces.size() != 0) {
+				cv::Mat faceCvMat = this->truncateFirstFace(this->_inCvMat, this->_faces);
+
+				// Save a face mat to a given directory
+				this->saveFaceImage(faceCvMat);
+			}*/
 
 			cvui::imshow(START_WINDOW, this->_frameCPU);
 			this->_key = cv::waitKey(10);
