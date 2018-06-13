@@ -73,8 +73,9 @@ void ViewManager::nameInputView() {
 		}
 
 		else if (this->addButton(nameView, width*0.6, height*0.85, 90, 40, "Return") == true) {
-			this->_close = false;
-			this->viewHasLoaded(0);
+			//this->_close = false;
+			this->_close = true;
+			//this->viewHasLoaded(0);
 			break;
 		}
 	}
@@ -148,6 +149,7 @@ void ViewManager::cameraView() {
 			// Start haar cascade face detection
 			this->getFaces(this->_inCvMat);
 
+			/*
 			// Create "Save" button
 			if (this->addButton(this->_frameCPU, this->_width*this->_buttonRandRatioX, this->_height*this->_buttonRandRatioY, 90, 40, "Save") == true) {
 
@@ -195,8 +197,20 @@ void ViewManager::cameraView() {
 				this->viewHasLoaded(0);
 				break;
 			}
+			 */
+			// Create "Save" button
 
-			cvui::imshow(START_WINDOW, this->_frameCPU);
+			cv::flip(this->_frameCPU, this->flipImg, 1);
+
+			// Create "Return" button
+			if (this->addButton(this->flipImg, this->_width*0.9, this->_height*0.9, 90, 40, "Return") == true){
+				this->_faces.clear();
+				this->viewHasLoaded(0);
+				break;
+			}
+
+			cvui::imshow(START_WINDOW, this->flipImg);
+			//cvui::imshow(START_WINDOW, this->_frameCPU);
 			this->_key = cv::waitKey(10);
 		}
 	}
@@ -205,10 +219,10 @@ void ViewManager::cameraView() {
 void ViewManager::shutterReponse() {
 	if (this->_faces.size() != 0) {
 		for (int i=0; i < 5; i++) {
-			cv::rectangle(this->_frameCPU, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 100);
+			cv::rectangle(this->flipImg, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 100);
 
-			cvui::imshow(START_WINDOW, this->_frameCPU);
-			cv::waitKey(10);
+			//cvui::imshow(START_WINDOW, this->_frameCPU);
+			//cv::waitKey(10);
 		}
 	}
 }
@@ -225,7 +239,7 @@ void ViewManager::saveFaceLoop() {
 		boost::this_thread::sleep(boost::posix_time::millisec(this->_savePeriod));
 	}
 }
-
+/*
 void ViewManager::viewHasLoaded(int argc) {
 	cv::namedWindow(START_WINDOW);
 	cv::moveWindow(START_WINDOW, 700, 288);
@@ -240,7 +254,14 @@ void ViewManager::viewHasLoaded(int argc) {
 		this->nameInputView();
 	}
 }
+*/
+void ViewManager::viewHasLoaded(int argc) {
+	cv::namedWindow(START_WINDOW);
+	cv::moveWindow(START_WINDOW, 700, 288);
+	cvui::init(START_WINDOW);
 
+	this->nameInputView();
+}
 void ViewManager::insertSoccerBall() {
 	cv::Mat ballImg = cv::imread("data/load-data/airplane.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	cv::cvtColor(ballImg, ballImg, cv::COLOR_BGR2RGBA);
@@ -254,15 +275,10 @@ void ViewManager::insertSoccerBall() {
 	//int airplaneX = (ballImg.cols*2 + std::rand()/((RAND_MAX + 1u)/(this->_height-ballImg.cols*2)));
 	//int airplaneY = (ballImg.rows*2 + std::rand()/((RAND_MAX + 1u)/(this->_width-ballImg.rows*2)));
 
-	int airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
-	int airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
-	int airplaneH = ballImg.rows;
-	int airplaneW = ballImg.cols;
-
-	int faceX;
-	int faceY;
-	int faceW;
-	int faceH;
+	airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
+	airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
+	airplaneH = ballImg.rows;
+	airplaneW = ballImg.cols;
 
 	while(!this->_close){
 		if (this->_faces.size() != 0) {
@@ -272,6 +288,7 @@ void ViewManager::insertSoccerBall() {
 			 */
 
 			ballImg.copyTo(this->_frameCPU(cv::Rect(airplaneX, airplaneY, airplaneW, airplaneH)));
+			this->addButton(this->_frameCPU, airplaneX+15, airplaneY-42, 90, 40, "!OO!");
 
 			faceX = this->_faces.front().x;
 			faceY = this->_faces.front().y;
@@ -282,7 +299,7 @@ void ViewManager::insertSoccerBall() {
 			if ( ((airplaneX+airplaneW/2) > faceX) & ((airplaneX+airplaneW/2) < faceX+faceW) &
 					((airplaneY+airplaneH/2) > faceY) & ((airplaneY+airplaneH/2) < faceY+faceH) ){
 				//std::cout << "YES!!!" << std::endl;
-
+				this->shutterReponse();
 				airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
 				airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
 			}

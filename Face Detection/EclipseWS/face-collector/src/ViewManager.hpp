@@ -27,6 +27,10 @@ private:
 
 	cv::Mat flipImg;
 
+	int airplaneY, airplaneX, airplaneH, airplaneW;
+
+	int faceX, faceY, faceW, faceH;
+
 public:
 	ViewManager();
 	virtual ~ViewManager();

@@ -25,14 +25,14 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 
 
 	boost::thread th1(boost::bind(&ViewManager::viewHasLoaded, &vm, 0));
-	//boost::thread th2(boost::bind(&ViewManager::saveFaceLoop, &vm));
+	boost::thread th2(boost::bind(&ViewManager::saveFaceLoop, &vm));
 	boost::thread th3(boost::bind(&ViewManager::insertSoccerBall, &vm));
 
 	//boost::thread th1(&ViewManager::mainView, &vm);
 	//boost::thread th1(boost::bind(&ViewManager::mainView, &vm, 0));
 
 	th1.join();
-	//th2.join();
+	th2.join();
 	th3.join();
 
 	return 0;
