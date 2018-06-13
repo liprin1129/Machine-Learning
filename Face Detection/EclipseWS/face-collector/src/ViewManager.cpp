@@ -205,7 +205,8 @@ void ViewManager::cameraView() {
 			// Create "Return" button
 			if (this->addButton(this->flipImg, this->_width*0.9, this->_height*0.9, 90, 40, "Return") == true){
 				this->_faces.clear();
-				this->viewHasLoaded(0);
+				//this->viewHasLoaded(0);
+				this->_close = true;
 				break;
 			}
 
