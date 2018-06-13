@@ -20,14 +20,15 @@ ViewManager::ViewManager() {
 	this->_savePeriod = 200; // millisecond
 
 	this->_buttonRandRatioX = 0.45;
-	this->_buttonRandRatioY = 0.9;
+	this->_buttonRandRatioY = 0.45;
 
+	this->_saveButtonFlag = 0;
 	// Initialize camera
 	// Set input frame size
 	// Arguments:
 	//		arg1	: width ratio
 	//		arg2	: height ratio
-	this->setWidthAndHeight(0.5, 0.5);
+	this->setWidthAndHeight(0.95, 0.95);
 
 	// Show camera information
 	this->printCameraInfo(this->_zed);
@@ -81,7 +82,7 @@ void ViewManager::nameInputView() {
 			}
 		}
 
-		else if (this->addButton(nameView, width*0.4, height*0.85, 90, 40, "Return") == true) {
+		else if (this->addButton(nameView, width*0.6, height*0.85, 90, 40, "Return") == true) {
 			this->_close = false;
 			this->viewHasLoaded(0);
 			break;
@@ -143,8 +144,10 @@ bool ViewManager::addButton(cv::Mat frame, int x, int y, int width, int height, 
 }
 
 void ViewManager::cameraView() {
+	cv::moveWindow(START_WINDOW, 50, 15);
+
 	// Instance of sl:Mat
-	sl::Mat slMat(_width, _height, sl::MAT_TYPE_8U_C4, sl::MEM_CPU);
+	sl::Mat slMat(this->_width, this->_height, sl::MAT_TYPE_8U_C4, sl::MEM_CPU);
 	this->_inCvMat = this->slMatToCvMatConverter(slMat);
 
 	while(this->_key != 'q') {
@@ -169,20 +172,49 @@ void ViewManager::cameraView() {
 					}
 				}
 				*/
-				this->_buttonRandRatioX = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
-				this->_buttonRandRatioY = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
 
-				if (this->_faces.size() != 0) {
-					for (int i=0; i < 5; i++) {
-						cv::rectangle(this->_frameCPU, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 30);
+				// Increase _saveButtonFlag by one
+				//this->_saveButtonFlag += 1;
 
-						cvui::imshow(START_WINDOW, this->_frameCPU);
-						cv::waitKey(10);
-					}
+				// Move button location
+				//switch (this->_saveButtonFlag & (this->_faces.size() != 0)) {
+				if ((this->_saveButtonFlag == 0) & (this->_faces.size() != 0)) {
+					this->_buttonRandRatioX = 0.005;
+					this->_buttonRandRatioY = 0.01;
+					this->shutterReponse();
+					this->_saveButtonFlag = 1;
 				}
+				else if ((this->_saveButtonFlag == 1) & (this->_faces.size() != 0)) {
+					this->_buttonRandRatioX = 0.9;
+					this->_buttonRandRatioY = 0.93;
+					this->shutterReponse();
+					this->_saveButtonFlag = 2;
+				}
+				else if ((this->_saveButtonFlag == 2) & (this->_faces.size() != 0)) {
+					this->_buttonRandRatioX = 0.005;
+					this->_buttonRandRatioY = 0.93;
+					this->shutterReponse();
+					this->_saveButtonFlag = 3;
+				}
+				else if ((this->_saveButtonFlag == 3) & (this->_faces.size() != 0)) {
+					this->_buttonRandRatioX = 0.9;
+					this->_buttonRandRatioY = 0.01;
+					this->shutterReponse();
+					this->_saveButtonFlag = 4;
+				}
+				else if ((this->_saveButtonFlag == 4) & (this->_faces.size() != 0)) {
+					this->_buttonRandRatioX = 0.45;
+					this->_buttonRandRatioY = 0.45;
+					this->shutterReponse();
+					this->_saveButtonFlag = 0;
+				}
+
+				//this->_buttonRandRatioX = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
+				//this->_buttonRandRatioY = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
 			}
+
 			// Create "Return" button
-			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.1), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
+			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.05), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
 				//this->_zed.close();
 				this->_faces.clear();
 				this->viewHasLoaded(0);
@@ -195,6 +227,16 @@ void ViewManager::cameraView() {
 	}
 }
 
+void ViewManager::shutterReponse() {
+	if (this->_faces.size() != 0) {
+		for (int i=0; i < 5; i++) {
+			cv::rectangle(this->_frameCPU, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 100);
+
+			cvui::imshow(START_WINDOW, this->_frameCPU);
+			cv::waitKey(10);
+		}
+	}
+}
 void ViewManager::saveFaceLoop() {
 
 	/*
@@ -227,7 +269,7 @@ void ViewManager::saveFaceLoop() {
 
 void ViewManager::viewHasLoaded(int argc) {
 	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 512, 288);
+	cv::moveWindow(START_WINDOW, 700, 288);
 	cvui::init(START_WINDOW);
 
 	std::string status = this->mainView();
@@ -271,7 +313,7 @@ void ViewManager::threadTest1() {
 void ViewManager::threadTest2(const std::string tt){
 
 	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 300, 200);
+	cv::moveWindow(START_WINDOW, 500, 300);
 	cvui::init(START_WINDOW);
 
 	cv::Mat startView = cv::Mat(cv::Size(300, 300), CV_8UC3);

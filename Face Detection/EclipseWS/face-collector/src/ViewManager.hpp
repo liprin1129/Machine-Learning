@@ -23,6 +23,7 @@ private:
 	float _buttonRandRatioY;
 	bool _close;
 	int _savePeriod;
+	int _saveButtonFlag;
 
 public:
 	ViewManager();
@@ -40,6 +41,8 @@ public:
 
 	// Call this function in a loop to save detected face
 	void saveFaceLoop();
+
+	void shutterReponse();
 
 	void viewHasLoaded(int argc);
 
