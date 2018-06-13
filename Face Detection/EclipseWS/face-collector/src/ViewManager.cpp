@@ -10,12 +10,6 @@
 #include "cvui.h"
 
 ViewManager::ViewManager() {
-	/*
-	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 300, 200);
-	cvui::init(START_WINDOW);
-	*/
-
 	this->_close = false;
 	this->_savePeriod = 200; // millisecond
 
@@ -69,10 +63,6 @@ void ViewManager::nameInputView() {
 
 				// Convert string to short
 				boost::lexical_cast<short>(employNum);
-
-				// Camera open
-				//this->openCamera();
-				//boost::this_thread::sleep(boost::posix_time::millisec(5000));
 
 				// Go to camera view
 				this->cameraView();
@@ -161,21 +151,7 @@ void ViewManager::cameraView() {
 			// Create "Save" button
 			if (this->addButton(this->_frameCPU, this->_width*this->_buttonRandRatioX, this->_height*this->_buttonRandRatioY, 90, 40, "Save") == true) {
 
-				/*
-				this->_tMeter.start();
-
-				while(true){
-					this->_tMeter.stop();
-					if(this->_tMeter.getTimeMilli() > 10) {
-						std::cout << this->_tMeter.getTimeMilli() << "[ms]" << std::endl;
-						break;
-					}
-				}
-				*/
-
 				// Increase _saveButtonFlag by one
-				//this->_saveButtonFlag += 1;
-
 				// Move button location
 				//switch (this->_saveButtonFlag & (this->_faces.size() != 0)) {
 				if ((this->_saveButtonFlag == 0) & (this->_faces.size() != 0)) {
@@ -215,7 +191,6 @@ void ViewManager::cameraView() {
 
 			// Create "Return" button
 			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.05), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
-				//this->_zed.close();
 				this->_faces.clear();
 				this->viewHasLoaded(0);
 				break;
@@ -238,14 +213,6 @@ void ViewManager::shutterReponse() {
 	}
 }
 void ViewManager::saveFaceLoop() {
-
-	/*
-	while(!this->_close) {
-		std::cout << this->_close << std::endl;
-		boost::this_thread::sleep(boost::posix_time::millisec(500));
-	}*/
-
-
 	while(!this->_close){
 		// Save a face mat
 		if (this->_faces.size() != 0) {
@@ -253,16 +220,8 @@ void ViewManager::saveFaceLoop() {
 
 			// Save a face mat to a given directory
 			this->saveFaceImage(faceCvMat);
-
-			//std::cout << "SAVE" << std::endl;
 		}
 
-		/*
-		if (this->_faces.size() != 0) {
-			std::cout << "Face thread: " << this->_faces.front() << std::endl;
-		}
-		*/
-		//std::cout << "Close: " << this->_close << std::endl;
 		boost::this_thread::sleep(boost::posix_time::millisec(this->_savePeriod));
 	}
 }
@@ -282,53 +241,53 @@ void ViewManager::viewHasLoaded(int argc) {
 	}
 }
 
-void ViewManager::threadTest1() {
-	int width = 500;
-	int height = 400;
+void ViewManager::insertSoccerBall() {
+	cv::Mat ballImg = cv::imread("data/load-data/airplane.jpg", CV_LOAD_IMAGE_UNCHANGED);
+	cv::cvtColor(ballImg, ballImg, cv::COLOR_BGR2RGBA);
+	cv::resize(ballImg, ballImg, cv::Size(), 0.1, 0.1, cv::INTER_LINEAR);
 
-	cv::Mat startView = cv::Mat(cv::Size(width, height), CV_8UC3);
-	startView = cv::Scalar(255, 255, 255);
+	std::cout << "ballImg: " << ballImg.size << std::endl;
+	float alpha = 1;
+	float beta = 1;
+	//cv::addWeighted(this->_frameCPU, alpha, ballImg, 1-alpha, 0.0, this->_frameCPU);
 
-	while(this->_key != 'q') {
+	//int airplaneX = (ballImg.cols*2 + std::rand()/((RAND_MAX + 1u)/(this->_height-ballImg.cols*2)));
+	//int airplaneY = (ballImg.rows*2 + std::rand()/((RAND_MAX + 1u)/(this->_width-ballImg.rows*2)));
 
-		/*
-		if (this->addButton(startView, width*0.4, height*0.85, 90, 40, "Start") == true) {
-			return "START";
-			break;
-		}*/
-		if (this->addButton(startView, width*0.6, height*0.85, 90, 40, "STOP") == true){
-			break;
+	int airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
+	int airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
+	int airplaneH = ballImg.rows;
+	int airplaneW = ballImg.cols;
+
+	int faceX;
+	int faceY;
+	int faceW;
+	int faceH;
+
+	while(!this->_close){
+		if (this->_faces.size() != 0) {
+			/*
+			std::cout << airplaneX << ", " << airplaneY << "\t" <<
+					airplaneX+airplaneW << ", " << airplaneY+airplaneH << std::endl;
+			 */
+
+			ballImg.copyTo(this->_frameCPU(cv::Rect(airplaneX, airplaneY, airplaneW, airplaneH)));
+
+			faceX = this->_faces.front().x;
+			faceY = this->_faces.front().y;
+			faceW = this->_faces.front().width;
+			faceH = this->_faces.front().height;
+
+
+			if ( ((airplaneX+airplaneW/2) > faceX) & ((airplaneX+airplaneW/2) < faceX+faceW) &
+					((airplaneY+airplaneH/2) > faceY) & ((airplaneY+airplaneH/2) < faceY+faceH) ){
+				//std::cout << "YES!!!" << std::endl;
+
+				airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
+				airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
+			}
 		}
 
-		else if (this->addButton(startView, width*0.2, height*0.85, 120, 40, "Enter Employ No.") == true) {
-			break;
-		}
-
-		cvui::imshow(START_WINDOW, startView);
-
-		this->_key = cv::waitKey(10);
+		boost::this_thread::sleep(boost::posix_time::millisec(1));
 	}
-}
-
-void ViewManager::threadTest2(const std::string tt){
-
-	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 500, 300);
-	cvui::init(START_WINDOW);
-
-	cv::Mat startView = cv::Mat(cv::Size(300, 300), CV_8UC3);
-	startView = cv::Scalar(255, 255, 255);
-
-	while(this->_key != 'q') {
-			cv::imshow(START_WINDOW, startView);
-			this->addButton(startView, 300*0.2, 200*0.85, 90, 40, "Start");
-			this->_key = cv::waitKey(10);
-	}
-
-	/*
-	int i;
-	for(i=0; i < 10; i++) {
-		std::cout << tt << std::endl;
-		boost::this_thread::sleep(boost::posix_time::millisec(1000));
-	}*/
 }

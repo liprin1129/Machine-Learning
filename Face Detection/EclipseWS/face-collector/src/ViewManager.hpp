@@ -25,14 +25,20 @@ private:
 	int _savePeriod;
 	int _saveButtonFlag;
 
+	cv::Mat flipImg;
+
 public:
 	ViewManager();
 	virtual ~ViewManager();
 
+	// Initial view
 	std::string mainView();
-	void nameInputView();
 
+	// Name input view
+	void nameInputView();
+	// Receive keyboard input in the name input view
 	void nameInputCallback();
+
 	// Create Button
 	bool addButton(cv::Mat frame, int x, int y, std::string msg);
 	bool addButton(cv::Mat frame, int x, int y, int width, int height, std::string msg);
@@ -42,12 +48,11 @@ public:
 	// Call this function in a loop to save detected face
 	void saveFaceLoop();
 
+	// Shutter animation which shows white boundary
 	void shutterReponse();
 
+	void insertSoccerBall();
 	void viewHasLoaded(int argc);
-
-	void threadTest1();
-	void threadTest2(const std::string tt);
 };
 
 #endif /* VIEWMANAGER_HPP_ */
