@@ -31,6 +31,8 @@ private:
 
 	int faceX, faceY, faceW, faceH;
 
+	int _score;
+
 public:
 	ViewManager();
 	virtual ~ViewManager();
@@ -53,7 +55,7 @@ public:
 	void saveFaceLoop();
 
 	// Shutter animation which shows white boundary
-	void shutterReponse();
+	void shutterReponse(cv::Mat frame);
 
 	void insertSoccerBall();
 	void viewHasLoaded(int argc);

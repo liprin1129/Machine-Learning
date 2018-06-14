@@ -16,6 +16,8 @@ ViewManager::ViewManager() {
 	this->_buttonRandRatioX = 0.45;
 	this->_buttonRandRatioY = 0.45;
 
+	this->_score = 0;
+
 	this->_saveButtonFlag = 0;
 	// Initialize camera
 	// Set input frame size
@@ -145,82 +147,36 @@ void ViewManager::cameraView() {
 		if (this->_zed.grab() == sl::SUCCESS) {
 			// Receive image frame from ZED camera
 			this->_zed.retrieveImage(slMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
+			cv::flip(this->_inCvMat, this->_frameCPU, 1);
 
 			// Start haar cascade face detection
-			this->getFaces(this->_inCvMat);
+			this->getFaces(this->_frameCPU);
 
-			/*
 			// Create "Save" button
-			if (this->addButton(this->_frameCPU, this->_width*this->_buttonRandRatioX, this->_height*this->_buttonRandRatioY, 90, 40, "Save") == true) {
+			this->addButton(this->_frameCPU, airplaneX+15, airplaneY-42, 90, 40, "Save");
 
-				// Increase _saveButtonFlag by one
-				// Move button location
-				//switch (this->_saveButtonFlag & (this->_faces.size() != 0)) {
-				if ((this->_saveButtonFlag == 0) & (this->_faces.size() != 0)) {
-					this->_buttonRandRatioX = 0.005;
-					this->_buttonRandRatioY = 0.01;
-					this->shutterReponse();
-					this->_saveButtonFlag = 1;
-				}
-				else if ((this->_saveButtonFlag == 1) & (this->_faces.size() != 0)) {
-					this->_buttonRandRatioX = 0.9;
-					this->_buttonRandRatioY = 0.93;
-					this->shutterReponse();
-					this->_saveButtonFlag = 2;
-				}
-				else if ((this->_saveButtonFlag == 2) & (this->_faces.size() != 0)) {
-					this->_buttonRandRatioX = 0.005;
-					this->_buttonRandRatioY = 0.93;
-					this->shutterReponse();
-					this->_saveButtonFlag = 3;
-				}
-				else if ((this->_saveButtonFlag == 3) & (this->_faces.size() != 0)) {
-					this->_buttonRandRatioX = 0.9;
-					this->_buttonRandRatioY = 0.01;
-					this->shutterReponse();
-					this->_saveButtonFlag = 4;
-				}
-				else if ((this->_saveButtonFlag == 4) & (this->_faces.size() != 0)) {
-					this->_buttonRandRatioX = 0.45;
-					this->_buttonRandRatioY = 0.45;
-					this->shutterReponse();
-					this->_saveButtonFlag = 0;
-				}
-
-				//this->_buttonRandRatioX = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
-				//this->_buttonRandRatioY = (1 + std::rand()/((RAND_MAX + 1u)/8))*0.1;
-			}
+			// Create "Score" text
+			cvui::printf(this->_frameCPU, this->_width*0.1, this->_height*0.1, 2, 0xff0000, "SCORE: %d", this->_score*100);
 
 			// Create "Return" button
-			else if (this->addButton(this->_frameCPU, this->_width*(this->_buttonRandRatioX+0.05), this->_height*this->_buttonRandRatioY, 90, 40, "Return") == true){
-				this->_faces.clear();
-				this->viewHasLoaded(0);
-				break;
-			}
-			 */
-			// Create "Save" button
-
-			cv::flip(this->_frameCPU, this->flipImg, 1);
-
-			// Create "Return" button
-			if (this->addButton(this->flipImg, this->_width*0.9, this->_height*0.9, 90, 40, "Return") == true){
+			if (this->addButton(this->_frameCPU, this->_width*0.9, this->_height*0.9, 90, 40, "Return") == true){
 				this->_faces.clear();
 				//this->viewHasLoaded(0);
 				this->_close = true;
 				break;
 			}
 
-			cvui::imshow(START_WINDOW, this->flipImg);
+			cvui::imshow(START_WINDOW, this->_frameCPU);
 			//cvui::imshow(START_WINDOW, this->_frameCPU);
 			this->_key = cv::waitKey(10);
 		}
 	}
 }
 
-void ViewManager::shutterReponse() {
+void ViewManager::shutterReponse(cv::Mat frame) {
 	if (this->_faces.size() != 0) {
 		for (int i=0; i < 5; i++) {
-			cv::rectangle(this->flipImg, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 100);
+			cv::rectangle(frame, cv::Rect(cv::Point(5, 5), cv::Point(this->_width-5, this->_height-5)), cv::Scalar(255, 255, 255), 100);
 
 			//cvui::imshow(START_WINDOW, this->_frameCPU);
 			//cv::waitKey(10);
@@ -240,22 +196,7 @@ void ViewManager::saveFaceLoop() {
 		boost::this_thread::sleep(boost::posix_time::millisec(this->_savePeriod));
 	}
 }
-/*
-void ViewManager::viewHasLoaded(int argc) {
-	cv::namedWindow(START_WINDOW);
-	cv::moveWindow(START_WINDOW, 700, 288);
-	cvui::init(START_WINDOW);
 
-	std::string status = this->mainView();
-
-	if (status == "START") {
-		this->cameraView();
-	}
-	else if (status == "Name"){
-		this->nameInputView();
-	}
-}
-*/
 void ViewManager::viewHasLoaded(int argc) {
 	cv::namedWindow(START_WINDOW);
 	cv::moveWindow(START_WINDOW, 700, 288);
@@ -289,7 +230,6 @@ void ViewManager::insertSoccerBall() {
 			 */
 
 			ballImg.copyTo(this->_frameCPU(cv::Rect(airplaneX, airplaneY, airplaneW, airplaneH)));
-			this->addButton(this->_frameCPU, airplaneX+15, airplaneY-42, 90, 40, "!OO!");
 
 			faceX = this->_faces.front().x;
 			faceY = this->_faces.front().y;
@@ -300,9 +240,11 @@ void ViewManager::insertSoccerBall() {
 			if ( ((airplaneX+airplaneW/2) > faceX) & ((airplaneX+airplaneW/2) < faceX+faceW) &
 					((airplaneY+airplaneH/2) > faceY) & ((airplaneY+airplaneH/2) < faceY+faceH) ){
 				//std::cout << "YES!!!" << std::endl;
-				this->shutterReponse();
+				this->shutterReponse(this->_frameCPU);
 				airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
 				airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
+
+				this->_score += 1;
 			}
 		}
 
