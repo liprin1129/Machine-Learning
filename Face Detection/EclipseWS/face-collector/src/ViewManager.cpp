@@ -148,6 +148,7 @@ void ViewManager::cameraView() {
 			// Receive image frame from ZED camera
 			this->_zed.retrieveImage(slMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
 			cv::flip(this->_inCvMat, this->_frameCPU, 1);
+			cv::flip(this->_inCvMat, this->flipImg, 1);
 
 			// Start haar cascade face detection
 			this->getFaces(this->_frameCPU);
@@ -187,7 +188,8 @@ void ViewManager::saveFaceLoop() {
 	while(!this->_close){
 		// Save a face mat
 		if (this->_faces.size() != 0) {
-			cv::Mat faceCvMat = this->truncateFirstFace(this->_inCvMat, this->_faces);
+
+			cv::Mat faceCvMat = this->truncateFirstFace(this->flipImg, this->_faces);
 
 			// Save a face mat to a given directory
 			this->saveFaceImage(faceCvMat);
