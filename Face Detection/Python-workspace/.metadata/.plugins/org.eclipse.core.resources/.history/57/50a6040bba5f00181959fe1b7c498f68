@@ -1,0 +1,20 @@
+'''
+Created on May 25, 2018
+
+@author: user170
+'''
+
+class MyClass(object):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(self):
+        '''
+        Constructor
+        '''
+        print("Hello, World!")
+        
+if __name__ == "__main__":
+    MyClass()
