@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="_merged_label_arr" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="_merged_labael_arr"/>
+			<item value="ImgFunctions"/>
+			<item value="img"/>
+			<item value="plt"/>
+			<item value="_dir_path"/>
+		</list>
+		<list key="replacehistory">
+			<item value="_merged_label_arr"/>
+			<item value="ImgFunction"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="318" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="414" key="DIALOG_HEIGHT"/>
+		<item value="1321" key="DIALOG_X_ORIGIN"/>
+		<item value="88" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

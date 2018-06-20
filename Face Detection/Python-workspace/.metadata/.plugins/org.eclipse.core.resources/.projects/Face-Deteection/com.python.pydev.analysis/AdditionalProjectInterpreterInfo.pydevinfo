@@ -1,0 +1,32 @@
+-- VERSION_5
+-- START DISKCACHE_2
+/mnt/SharedData/Development/Personal_Dev/Machine-Learning/TensorFlow/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Face-Deteection/com.python.pydev.analysis/v2_indexcache
+Helpers.pickle_helper|1527211829008041000|/mnt/SharedData/Development/Personal_Dev/Machine-Learning/TensorFlow/eclipse-workspace/Face-Deteection/src/Helpers/pickle_helper.py
+Helpers.image_helper|1527211766128504000|/mnt/SharedData/Development/Personal_Dev/Machine-Learning/TensorFlow/eclipse-workspace/Face-Deteection/src/Helpers/image_helper.py
+-- END DISKCACHE
+-- START DICTIONARY
+6
+3=/mnt/SharedData/Development/Personal_Dev/Machine-Learning/TensorFlow/eclipse-workspace/Face-Deteection/src/Helpers/pickle_helper.py
+4=Helpers.pickle_helper
+1=/mnt/SharedData/Development/Personal_Dev/Machine-Learning/TensorFlow/eclipse-workspace/Face-Deteection/src/Helpers/image_helper.py
+5=ImgFunction
+2=Helpers.image_helper
+6=PickleHelper
+-- END DICTIONARY
+-- START TREE 1
+2
+img|1|ImgFunction!1^10#7*17@
+pic|1|PickleHelper!3^11#7*33@
+-- END TREE
+-- START TREE 2
+9
+bgr|2|bgr2gray!5&1^29#9*18@bgr2rgb!5&1^24#9*18@
+con|1|contour_finder!5&1^51#9*18@
+loa|1|load_pickle!6&3^39#9*34@
+rea|1|read_img_with_abs_path!5&1^16#9*18@
+res|1|resize_img!5&1^33#9*18@
+sav|1|save_to_pickle!6&3^26#9*34@
+sca|1|scailing!5&1^37#9*18@
+tra|1|translation!5&1^43#9*18@
+val|1|validation_check!6&3^16#9*34@
+-- END TREE
