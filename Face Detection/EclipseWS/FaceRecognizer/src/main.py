@@ -2,9 +2,25 @@ import numpy as np
 import tensorflow as tf
 import pickle
 from tqdm import tqdm
-import cv2
 
 import matplotlib.pyplot as plt
+
+#========================================#
+#========================================#
+#           opencv Setup                 #
+#========================================#
+#========================================#
+
+import sys
+ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'
+
+if ros_path in sys.path:
+
+    sys.path.remove(ros_path)
+
+import cv2
+
+sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 
 #========================================#
 #========================================#
@@ -13,7 +29,7 @@ import matplotlib.pyplot as plt
 #========================================#
 
 #abs_file_name = "/Users/user170/Developments/Personal-Dev./Machine-Learning/Data/Face-SJC/employee-faces.pkl"
-abs_file_name = "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Data/Face/Face-SJC/employee-faces.pkl"
+abs_file_name = "/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Data/Face/Face-SJC/employee-faces.pkl"
 
 def unpickle(file):
     with open(file, 'rb') as fo:
@@ -133,6 +149,13 @@ class netParam(object):
         self._epoch = epoch
         self._batch_size = batch_size
         self._rl = learning_rate
+
+        # Result parameters
+        self._train_acc = 0;
+        self._test_acc = 0;
+
+        # Employ Number
+        #employ_num = [157]
         
     @classmethod
     def _filter_var(cls, kernel, in_depth, out_depth, node_name):
@@ -324,6 +347,9 @@ class Resnet(netParam):
         #print("({0}/{1}) TRAIN ACC.: {2} %"\
         #      .format(iter, self._epoch, np.sum(train_acc)/len(train_acc)*100))
 
+        self._train_acc = np.sum(train_acc)/len(train_acc)*100
+        self._test_acc = np.sum(eval_acc)/len(eval_acc)*100
+        
         print("({0}/{1}) TRAIN ACC.: {2} % | EVAL ACC.: {3} %"\
               .format(iterator, self._epoch, np.sum(train_acc)/len(train_acc)*100, np.sum(eval_acc)/len(eval_acc)*100))
         
@@ -335,7 +361,7 @@ class Resnet(netParam):
         pred = self._prediction(logits)
         acc = self._accuracy(pred)
         
-        fig, ax = plt.subplots(5, 5, figsize=(20, 20))
+        fig, ax = plt.subplots(4, 5, figsize=(20, 20))
 
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
@@ -360,16 +386,20 @@ class Resnet(netParam):
                     pred_labels = sess.run(pred, feed_dict={self._input_nd: features_test[:self._batch_size]})
                     print("\t", np.argmax(labels_test[:self._batch_size][:10], axis=1))
                     print("\t", pred_labels[:10], "\n")
-                    #print(np.sum(pred_labels != 0))
+
                 
-                for i in range(5):
-                    for j in range(5):
-                        ax[i, j].imshow(features_test[i*11+j])
-                        ax[i, j].set_title(ref_labels[pred_labels[i*11+j]])
-                
-                plt.tight_layout()
-                plt.pause(0.0001)
-                plt.draw()
+                    for i in range(4):
+                        for j in range(5):
+                            ax[i, j].imshow(features_test[i*23+j])
+                            employ_num = ref_labels[pred_labels[i*23+j]]
+                            ax[i, j].set_title("No. {0}".format(employ_num[:3]))
+                            ax[i, j].axis("off")
+                            
+                    plt.suptitle("Train Accuracy: {0:.2f}% | Test Accuray: {1:.2f}%".format(self._train_acc, self._test_acc))
+                    #plt.axis('off')
+                    #plt.tight_layout()
+                    plt.pause(0.0001)
+                    plt.draw()
                 
                 '''
                 for i in range(4):
@@ -383,3 +413,4 @@ class Resnet(netParam):
 if __name__ == "__main__":
     rn = Resnet(epoch = 1000, batch_size = 100, learning_rate = 0.001)
     rn.train()
+
