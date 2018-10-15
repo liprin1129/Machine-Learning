@@ -1,0 +1,19 @@
+from pickle_helper import PickleHelper
+
+import numpy as np
+
+train_set, valid_set, test_set = PickleHelper.load_pickle(path = "../Data/", name = "mnist.pkl")
+
+def vectorized_result(j):
+    e = np.zeros((10, 1))
+    e[j] = 1.0
+    return e
+
+train_x = [np.reshape(x, (784, 1)) for x in train_set[0]]
+test_x = [np.reshape(x, (784, 1)) for x in test_set[0]]
+
+import matplotlib.pyplot as plt
+
+plt.imshow(np.reshape(train_x[10], (28, 28)), cmap="gray")
+plt.title(train_y[10].T)
+plt.show()

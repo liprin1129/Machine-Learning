@@ -25,3 +25,9 @@ Semantic_Segmentation/data/
 Semantic_Segmentation/runs/
 Data/
 >>>>>>> 97d40178d0bd29a2b22f2e76f4880d3379eb8bca
+
+TensorFlow/face_classifier/\.#VGG16_backup\.py
+
+*.pkl
+
+Face Detection/C\+\+-workspace/ZED-capture/include/

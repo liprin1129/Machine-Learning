@@ -1,0 +1,54 @@
+'''
+Created on Jun 18, 2018
+
+@author: user170
+'''
+
+import numpy as np
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+#%matplotlib inline
+import cv2
+
+##########################
+### Data preprocessing ###
+##########################
+
+def unpickle(file):
+    import pickle
+    with open(file, 'rb') as fo:
+        dictionary = pickle.load(fo, encoding='bytes')
+    return dictionary
+
+# Seperate data and labels, and reshape data to python readable RGB channels
+def preprocess_cifar10_data(cifar):
+    data = cifar[b'data']
+    labels = cifar[b'labels']
+    
+    # # Change channel of image to the last dimension
+    data = np.reshape(data, (-1, 3, 32, 32))
+    data = np.moveaxis(data, 1, 3)
+    
+    return data, labels
+
+label_name = {0:"airplane", 1:"automobile", 2:"bird", 3:"cat", 
+              4:"deer", 5:"dog", 6:"frog", 7:"horse", 8:"ship", 9:"truck"}
+
+###
+# Cifar dataset preprocessing: Merge data
+###
+cifar_name = "../../../Data/Objects/cifar/cifar-10-batches-py/data_batch_"
+
+# Load the dataset on computer's volatile memory
+features, labels = preprocess_cifar10_data(unpickle(cifar_name+str(1)))
+
+for i in range(2,6):
+    feature, label = preprocess_cifar10_data(unpickle(cifar_name+str(i)))
+    
+    features = np.vstack([features, feature])
+    labels = np.hstack([labels, label])
+    
+
+
+if __name__ == '__main__':
+    print("Hello, world!")

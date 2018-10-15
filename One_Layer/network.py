@@ -113,9 +113,12 @@ class Network(object):
                         for (x, y) in test_data]
         return sum(int(x == y) for (x, y) in test_results)
 
+    def save_network(self, name):
+        PickleHelper.save_to_pickle(path="./", name=name, data=[self.weights, self.biases])
+    
 if __name__ == "__main__":
 
-    train_set, valid_set, test_set = PickleHelper.load_pickle(path = "./", name = "mnist.pkl")
+    train_set, valid_set, test_set = PickleHelper.load_pickle(path = "../Data/", name = "mnist.pkl")
 
     def vectorized_result(j):
         e = np.zeros((10, 1))
@@ -130,11 +133,14 @@ if __name__ == "__main__":
     #print(np.shape(train_x), np.shape(train_y))
     #print(np.max(train_x[0]))
 
+    '''
     import matplotlib.pyplot as plt
 
     plt.imshow(np.reshape(train_x[10], (28, 28)), cmap="gray")
     plt.title(train_y[10].T)
     plt.show()
-
+    '''
+    
     ann = Network([784, 30, 10])
-    ann.SGD(zip(train_x, train_y), test_data = zip(test_x, test_set[1]))
+    ann.SGD(zip(train_x, train_y), epochs=10, test_data = zip(test_x, test_set[1]))
+    ann.save_network("minist_one_layer.pkl")
