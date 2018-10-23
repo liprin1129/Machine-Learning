@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
+Change Dir: /mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cd419/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cd419.dir/build.make CMakeFiles/cmTC_cd419.dir/build
-make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cd419.dir/CheckSymbolExists.c.o
-/usr/bin/cc   -fPIC    -o CMakeFiles/cmTC_cd419.dir/CheckSymbolExists.c.o   -c "/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
-Linking C executable cmTC_cd419
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd419.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC     -rdynamic CMakeFiles/cmTC_cd419.dir/CheckSymbolExists.c.o  -o cmTC_cd419 
-CMakeFiles/cmTC_cd419.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_5005d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5005d.dir/build.make CMakeFiles/cmTC_5005d.dir/build
+make[1]: Entering directory '/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5005d.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -fPIC    -o CMakeFiles/cmTC_5005d.dir/CheckSymbolExists.c.o   -c "/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
+Linking C executable cmTC_5005d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5005d.dir/link.txt --verbose=1
+/usr/bin/cc  -fPIC     CMakeFiles/cmTC_5005d.dir/CheckSymbolExists.c.o  -o cmTC_5005d -rdynamic 
+CMakeFiles/cmTC_5005d.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_cd419.dir/build.make:86: recipe for target 'cmTC_cd419' failed
-make[1]: *** [cmTC_cd419] Error 1
-make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_cd419/fast' failed
-make: *** [cmTC_cd419/fast] Error 2
+CMakeFiles/cmTC_5005d.dir/build.make:97: recipe for target 'cmTC_5005d' failed
+make[1]: *** [cmTC_5005d] Error 1
+make[1]: Leaving directory '/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_5005d/fast' failed
+make: *** [cmTC_5005d/fast] Error 2
 
-File /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
+Change Dir: /mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_586f2/fast"
-/usr/bin/make -f CMakeFiles/cmTC_586f2.dir/build.make CMakeFiles/cmTC_586f2.dir/build
-make[1]: Entering directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_586f2.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_586f2.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.11/Modules/CheckFunctionExists.c
-Linking C executable cmTC_586f2
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_586f2.dir/link.txt --verbose=1
-/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_586f2.dir/CheckFunctionExists.c.o  -o cmTC_586f2 -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_a7530/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a7530.dir/build.make CMakeFiles/cmTC_a7530.dir/build
+make[1]: Entering directory '/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a7530.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a7530.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a7530
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7530.dir/link.txt --verbose=1
+/usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_a7530.dir/CheckFunctionExists.c.o  -o cmTC_a7530 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_586f2.dir/build.make:86: recipe for target 'cmTC_586f2' failed
-make[1]: *** [cmTC_586f2] Error 1
-make[1]: Leaving directory '/mnt/SharedData/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_586f2/fast' failed
-make: *** [cmTC_586f2/fast] Error 2
+CMakeFiles/cmTC_a7530.dir/build.make:97: recipe for target 'cmTC_a7530' failed
+make[1]: *** [cmTC_a7530] Error 1
+make[1]: Leaving directory '/mnt/14BC1C68BC1C4720/Development/Personal_Dev/Machine-Learning/Face Detection/EclipseWS/face-collector/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a7530/fast' failed
+make: *** [cmTC_a7530/fast] Error 2
 
 

@@ -19,6 +19,7 @@ ImageManager::~ImageManager() {
 }
 
 void ImageManager::imageRead(std::string absCascadeFileName, std::string absImageName) {
+	std::cout << "imageRead" << std::endl;
 
 	cv::Ptr<cv::cuda::CascadeClassifier> cascade_gpu = cv::cuda::CascadeClassifier::create(absCascadeFileName);
 	cv::Mat image_cpu = cv::imread(absImageName);
@@ -46,6 +47,8 @@ void ImageManager::imageRead(std::string absCascadeFileName, std::string absImag
 }
 
 void ImageManager::loadCascadeClassifier(std::string absFileName) {
+	std::cout << "loadCascadeClassifier" << std::endl;
+
 	this->_cascadeGPU = cv::cuda::CascadeClassifier::create(this->_cascadeFileName);
 	std::cout << absFileName << " loaded" << std::endl;
 }
@@ -56,6 +59,8 @@ void ImageManager::gpuParamSetup(
 		int minNeighbors,
 		bool filterRects,
 		bool helpScreen) {
+
+	std::cout << "gpuParamSetup" << std::endl;
 
 	/*
 	this->_scaleFactor = scaleFactor;
@@ -73,6 +78,7 @@ void ImageManager::uploadFrameToGPU(cv::Mat frameCPU) {
 	// Convert RGBA
 	//cv::Mat grayFrame;
 	//cv::cvtColor(capturedFrame, grayFrame, cv::COLOR_RGBA2GRAY);
+	std::cout << "uploadFrameToGpu" << std::endl;
 
 	frameCPU.copyTo(this->_frameCPU);
 	// Upload captured frame on CPU memory to GPU memory
@@ -81,12 +87,13 @@ void ImageManager::uploadFrameToGPU(cv::Mat frameCPU) {
 
 void ImageManager::convertRGBAToGrayGPU(cv::cuda::GpuMat rgbaFrame){
 	// Change RGBA frame to gray frame
+	std::cout << "convertRGBAToGrayGPU" << std::endl;
 	cv::cuda::cvtColor(rgbaFrame, this->_grayGPU, cv::COLOR_RGBA2GRAY);
 }
 
 void ImageManager::startCascadeFaceDetection(cv::cuda::GpuMat){
 	// Upload CPU frame to GPU memory
-
+	std::cout << "startCascadeFaceDetection" << std::endl;
 	this->_cascadeGPU->detectMultiScale(this->_grayGPU, this->_facesBufGPU);
     this->_cascadeGPU->convert(this->_facesBufGPU, this->_faces);
 
@@ -95,6 +102,7 @@ void ImageManager::startCascadeFaceDetection(cv::cuda::GpuMat){
 }
 
 void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces, int thick = 1){
+	std::cout << "drawRectOnFaces" << std::endl;
 	if (faces.size() != 0){
 		for(int i = 0; i < faces.size(); ++i)
 		   cv::rectangle(frameCPU, faces[i], cv::Scalar(66, 66, 244), thick);
@@ -102,6 +110,8 @@ void ImageManager::drawRectOnFaces(cv::Mat frameCPU, std::vector<cv::Rect> faces
 }
 
 void ImageManager::getFaces(cv::Mat capturedFrame){
+	std::cout << "getFaces" << std::endl;
+
 	this->uploadFrameToGPU(capturedFrame);
 	this->convertRGBAToGrayGPU(this->_frameGPU);
 	this->startCascadeFaceDetection(this->_grayGPU);
@@ -111,6 +121,7 @@ void ImageManager::getFaces(cv::Mat capturedFrame){
 }
 
 cv::Mat ImageManager::truncateFirstFace(cv::Mat frame, std::vector<cv::Rect> faceCvRectVector) {
+	std::cout << "truncateFirstFace" << std::endl;
 	/*
 	for (std::vector<std::string>::const_iterator iterFace=faceCvRectVector.begin(); iterFace!=faceCvRectVector.end(); ++iterFace){
 		auto iterFaceIndex = iterFace - faceCvRectVector.begin();
@@ -124,6 +135,9 @@ cv::Mat ImageManager::truncateFirstFace(cv::Mat frame, std::vector<cv::Rect> fac
 }
 
 int ImageManager::imageManagerHasLoaded(int argc, ...) {
+
+	std::cout << "imageManagerHasLoaded" << std::endl;
+
 	// Read multiple arguments
 	va_list argv;
 	va_start(argv, argc);
