@@ -8,7 +8,7 @@ import tensorflow as tf
 from tensorflow.contrib import layers
 
 with tf.variable_scope("VGG16"):
-    weights = {
+    conv_weights = {
         'cw1': tf.get_variable('CW1', shape=(3,3,3,64), initializer=layers.xavier_initializer()),
         'cw2': tf.get_variable('CW2', shape=(3,3,64,64), initializer=layers.xavier_initializer()),
         'cw3': tf.get_variable('CW3', shape=(3,3,64,128), initializer=layers.xavier_initializer()),
@@ -24,7 +24,7 @@ with tf.variable_scope("VGG16"):
         'cw13': tf.get_variable('CW13', shape=(1,1,512,512), initializer=layers.xavier_initializer())
         }
     
-    biases = {
+    conv_biases = {
         'cb1': tf.get_variable('CB1', shape=(64), initializer=layers.xavier_initializer()),
         'cb2': tf.get_variable('CB2', shape=(64), initializer=layers.xavier_initializer()),
         'cb3': tf.get_variable('CB3', shape=(128), initializer=layers.xavier_initializer()),
@@ -38,12 +38,19 @@ with tf.variable_scope("VGG16"):
         'cb11': tf.get_variable('CB11', shape=(512), initializer=layers.xavier_initializer()),
         'cb12': tf.get_variable('CB12', shape=(512), initializer=layers.xavier_initializer()),
         'cb13': tf.get_variable('CB13', shape=(512), initializer=layers.xavier_initializer())
-    }
+        }
+    
+    conv_trans_weights = {
+        'ctw3': tf.get_variable('CTW3', shape=(4,4,2,128), initializer=layers.xavier_initializer())
+        }
     
     strides = {
         '1x1': [1, 1, 1, 1],
-        '2x2': [1, 2, 2, 1]
+        '2x2': [1, 2, 2, 1],
+        '8x8': [1, 8, 8, 1]
     }
+    
+    pool_layers = [2, 4, 7, 10, 13]
     
     pool_size = {
         '1x1': [1, 1, 1, 1],
