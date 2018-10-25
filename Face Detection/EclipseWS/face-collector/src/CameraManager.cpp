@@ -42,6 +42,7 @@ void CameraManager::parameterInitializer(sl::RESOLUTION res, sl::DEPTH_MODE dept
 // Return:
 //		1: if openCamera() occurs error.
 int CameraManager::openCamera() {
+	std::cout << "openCamera" << std::endl;
 	sl::ERROR_CODE err = this->_zed.open(this->_initParams);
 
 	if (err != sl::SUCCESS) {
@@ -76,7 +77,7 @@ void CameraManager::printCameraInfo(sl::Camera &zedCameraObject){
 
 // Convert sl::Mat to cv::Mat
 cv::Mat CameraManager::slMatToCvMatConverter(sl::Mat &slMat) {
-	//std::cout << "GPU SL Mat" << std::endl;
+	std::cout << "GPU SL Mat" << std::endl;
 
 	if (slMat.getMemoryType() == sl::MEM_GPU) {
 		std::cout << "GPU SL Mat" << std::endl;
@@ -112,12 +113,14 @@ cv::Mat CameraManager::slMatToCvMatConverter(sl::Mat &slMat) {
 }
 
 void CameraManager::setWidthAndHeight(float _widthRatio, float _heightRatio){
+	std::cout << "setWidthAndHeight" << std::endl;
 	sl::Resolution resolution = this->_zed.getResolution();
 	this->_width = resolution.width * _widthRatio;
 	this->_height= resolution.height * _heightRatio;
 }
 
 cv::Mat CameraManager::getOneCvMat(){
+	std::cout << "getOneCvMat" << std::endl;
 	this->_zed.grab();
 	this->_zed.retrieveImage(this->_inSlMat, sl::VIEW_LEFT, sl::MEM_CPU, this->_width, this->_height);
 

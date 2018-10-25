@@ -24,7 +24,7 @@ ViewManager::ViewManager() {
 	// Arguments:
 	//		arg1	: width ratio
 	//		arg2	: height ratio
-	this->setWidthAndHeight(0.95, 0.95);
+	//this->setWidthAndHXeight(0.95, 0.95);
 
 	// Show camera information
 	this->printCameraInfo(this->_zed);
@@ -34,6 +34,8 @@ ViewManager::~ViewManager() {
 }
 
 void ViewManager::nameInputView() {
+	std::cout << "nameInputView" << std::endl;
+
 	int width = 500;
 	int height = 400;
 
@@ -84,6 +86,8 @@ void ViewManager::nameInputView() {
 }
 
 std::string ViewManager::mainView(){
+	std::cout << "mainView" << std::endl;
+
 	int width = 500;
 	int height = 400;
 
@@ -137,6 +141,8 @@ bool ViewManager::addButton(cv::Mat frame, int x, int y, int width, int height, 
 }
 
 void ViewManager::cameraView() {
+	std::cout << "cameraView" << std::endl;
+
 	cv::moveWindow(START_WINDOW, 50, 15);
 
 	// Instance of sl:Mat
@@ -200,6 +206,8 @@ void ViewManager::saveFaceLoop() {
 }
 
 void ViewManager::viewHasLoaded(int argc) {
+	std::cout << "viewHasLoaded" << std::endl;
+
 	cv::namedWindow(START_WINDOW);
 	cv::moveWindow(START_WINDOW, 700, 288);
 	cvui::init(START_WINDOW);
@@ -207,6 +215,8 @@ void ViewManager::viewHasLoaded(int argc) {
 	this->nameInputView();
 }
 void ViewManager::insertSoccerBall() {
+	std::cout << "insertSoccerBall" << std::endl;
+
 	cv::Mat ballImg = cv::imread("data/load-data/airplane.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	cv::cvtColor(ballImg, ballImg, cv::COLOR_BGR2RGBA);
 	cv::resize(ballImg, ballImg, cv::Size(), 0.1, 0.1, cv::INTER_LINEAR);
@@ -219,6 +229,7 @@ void ViewManager::insertSoccerBall() {
 	//int airplaneX = (ballImg.cols*2 + std::rand()/((RAND_MAX + 1u)/(this->_height-ballImg.cols*2)));
 	//int airplaneY = (ballImg.rows*2 + std::rand()/((RAND_MAX + 1u)/(this->_width-ballImg.rows*2)));
 
+	std::cout << "insertSoccerBall_airplaneY" << std::endl;
 	airplaneY = this->_height*0.1 + std::rand()%(this->_height-ballImg.rows*3);
 	airplaneX = this->_width*0.1 + std::rand()%(this->_width-ballImg.cols*3);
 	airplaneH = ballImg.rows;
@@ -250,6 +261,7 @@ void ViewManager::insertSoccerBall() {
 			}
 		}
 
+		std::cout << "insertSoccerBall_thread" << std::endl;
 		boost::this_thread::sleep(boost::posix_time::millisec(1));
 	}
 }

@@ -15,6 +15,7 @@ find_package(ZED 2 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(CUDA ${ZED_CUDA_VERSION} EXACT REQUIRED)
 find_package(Boost 1.67 COMPONENTS system filesystem thread REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets Test Concurrent OpenGL REQUIRED)
 
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
