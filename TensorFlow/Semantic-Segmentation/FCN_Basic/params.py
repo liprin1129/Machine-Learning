@@ -41,18 +41,27 @@ with tf.variable_scope("VGG16"):
         }
     
     conv_trans_weights = {
-        'ctw3': tf.get_variable('CTW3', shape=(4,4,2,128), initializer=layers.xavier_initializer())
+        'ctw13': tf.get_variable('CTW13', shape=(4,4,512,512), initializer=layers.xavier_initializer()),
+        #'ctw13_add': tf.get_variable('CTW13', shape=(4,4,256,512), initializer=layers.xavier_initializer()),
+        #'ctw10': tf.get_variable('CTW10', shape=(4,4,256,512), initializer=layers.xavier_initializer()),
+        'ctw10_add': tf.get_variable('CTW10', shape=(4,4,256,512), initializer=layers.xavier_initializer()),
+        #'ctw7': tf.get_variable('CTW7', shape=(4,4,128,256), initializer=layers.xavier_initializer()),
+        'ctw7_add': tf.get_variable('CTW7', shape=(4,4,128,256), initializer=layers.xavier_initializer()),
+        #'ctw4': tf.get_variable('CTW4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
+        'ctw4_add': tf.get_variable('CTW4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
+        #'ctw2': tf.get_variable('CTW2', shape=(4,4,2,64), initializer=layers.xavier_initializer()),
+        'ctw2_add': tf.get_variable('CTW2', shape=(4,4,2,64), initializer=layers.xavier_initializer())
         }
     
     strides = {
         '1x1': [1, 1, 1, 1],
         '2x2': [1, 2, 2, 1],
         '8x8': [1, 8, 8, 1]
-    }
+        }
     
     pool_layers = [2, 4, 7, 10, 13]
     
     pool_size = {
         '1x1': [1, 1, 1, 1],
         '2x2': [1, 2, 2, 1]
-    }
+        }
