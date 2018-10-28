@@ -65,3 +65,13 @@ with tf.variable_scope("VGG16"):
         '1x1': [1, 1, 1, 1],
         '2x2': [1, 2, 2, 1]
         }
+    
+    epoch = 100
+    
+    image_list_path = '/Users/pure/Developments/Personal-Study/Machine-Learning/Data/VOC2012/ImageSets/Main/'
+    image_dir_path = '/Users/pure/Developments/Personal-Study/Machine-Learning/Data/VOC2012/JPEGImages/'
+    mask_dir_path = '/Users/pure/Developments/Personal-Study/Machine-Learning/Data/VOC2012/SegmentationClass/'
+    
+    with open(image_list_path+'person_train.txt', 'r') as rt:
+        train_person_list = rt.readlines()
+        

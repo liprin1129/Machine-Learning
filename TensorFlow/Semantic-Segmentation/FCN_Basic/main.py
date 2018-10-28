@@ -6,12 +6,17 @@ Created on Oct 21, 2018
 
 import tensorflow as tf
 import params
+import cv2
+import tqdm
+import numpy as np
+
 #from tensorflow.contrib import layers
+
+#in_img_ph = tf.placeholder("float", [1, None, None, 3])
+#label_ph = tf.placeholder("float", [1, None, None, 2])
 
 in_img_ph = tf.placeholder("float", [None, 224, 224, 3])
 label_ph = tf.placeholder("float", [None, 224, 224, 2])
-
-# label_img_ph = tf.placeholder(tf.float32, [])
 
 # ************* #
 #    Layers    #
@@ -53,17 +58,26 @@ with tf.variable_scope("VGG16"):
 # ****************************** #
     with tf.variable_scope('conv_transpose'):
         with tf.variable_scope('layer13'):
-            layer_trans = tf.nn.conv2d_transpose(globals()['layer13'], filter=params.conv_trans_weights['ctw13'], output_shape=[-1, 14, 14, 512],
-                                                   strides=params.strides['2x2'], padding='SAME')
+            layer_trans = tf.nn.conv2d_transpose(globals()['layer13'], 
+                                                 filter=params.conv_trans_weights['ctw13'], 
+                                                 output_shape=[-1, int(globals()['layer10'].shape[1]), int(globals()['layer10'].shape[2]), 512],
+                                                 strides=params.strides['2x2'], padding='SAME') #output_shape = [-1, 14, 14, 512],
+                                                 
             
             #layer13_trans = tf.layers.conv2d_transpose(globals()['layer13'], 2, 4,  
             #                             strides= (2, 2), 
             #                             padding= 'same', 
             #                             kernel_initializer= tf.random_normal_initializer(stddev=0.01), 
             #                             kernel_regularizer= tf.contrib.layers.l2_regularizer(1e-3))
+            
+            print(layer_trans)
         with tf.variable_scope('layer10'):    
+            print('Shape layer10: ', globals()['layer10'].shape[1])
+            #print('\n'.join(globals()))
             layer_trans = tf.add(layer_trans, globals()['layer10'])
-            layer_trans = tf.nn.conv2d_transpose(layer_trans, filter=params.conv_trans_weights['ctw10_add'], output_shape=[-1, 28, 28, 256],
+            layer_trans = tf.nn.conv2d_transpose(layer_trans, 
+                                                 filter=params.conv_trans_weights['ctw10_add'], 
+                                                 output_shape=[-1, int(globals()['layer10'].shape[1]), int(globals()['layer10'].shape[2]), 256],
                                                   strides=params.strides['2x2'], padding='SAME')
             
             print(layer_trans)
@@ -126,3 +140,25 @@ with tf.variable_scope("VGG16"):
         # define training operation
         optimizer = tf.train.AdamOptimizer(learning_rate= 0.0009)
         train_op = optimizer.minimize(cross_entropy_loss)
+        
+        print(train_op)
+        
+# ******** #
+# Training #
+# ******** #        
+    with tf.variable_scope('training'):
+        for epoch in tqdm(range(params.epoch)):
+            for img_name in params.train_person_list:
+                if int(img_name[-3:-1]) >= 1:
+                    img_with_path = params.image_dir_path + img_name[:11] + '.jpg'
+                    mask_with_path = params.mask_dir_path + img_name[:11] + '.png'
+                    
+                    # read mask image
+                    mask_cv = cv2.imread(mask_with_path)
+                    if mask_cv is not None: 
+                        # read jpg image
+                        img_cv = cv2.imread(img_with_path)
+                        
+                        
+                    
+                    
