@@ -9,8 +9,8 @@ from tensorflow.contrib import layers
 
 with tf.variable_scope("VGG16"):
     
-    in_img_ph = tf.placeholder("float", [1, None, None, 3])
-    label_ph = tf.placeholder("float", [1, None, None, 1])
+    in_img_ph = tf.placeholder(tf.float32, [1, None, None, 3])
+    label_ph = tf.placeholder(tf.float32, [1, None, None, 1])
     
     #in_img_ph = tf.placeholder("float", [None, 224, 224, 3])
     #label_ph = tf.placeholder("float", [None, 224, 224, 2])
@@ -57,7 +57,8 @@ with tf.variable_scope("VGG16"):
         #'ctw4': tf.get_variable('CTW4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
         'add4': tf.get_variable('ADD4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
         #'ctw2': tf.get_variable('CTW2', shape=(4,4,2,64), initializer=layers.xavier_initializer()),
-        'output': tf.get_variable('ADD5', shape=(4,4,1,64), initializer=layers.xavier_initializer())
+        'add5': tf.get_variable('ADD5', shape=(4,4,3,64), initializer=layers.xavier_initializer()),
+        'output': tf.get_variable('output', shape=(1,1,1,64), initializer=layers.xavier_initializer())
         }
     
     strides = {

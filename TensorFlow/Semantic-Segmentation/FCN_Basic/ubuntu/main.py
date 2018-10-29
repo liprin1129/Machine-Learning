@@ -11,7 +11,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 
-#from tensorflow.contrib import layers
+from tensorflow.contrib import layers
 
 # ************* #
 #    Layers    #
@@ -57,18 +57,19 @@ with tf.variable_scope("VGG16"):
 # ****************************** #
     with tf.variable_scope('conv_transpose'):
         with tf.variable_scope('add_skip_1'):
-            layer_trans = tf.nn.conv2d_transpose(globals()['layer13'], 
+            '''layer_trans = tf.nn.conv2d_transpose(globals()['layer13'], 
                                                  filter=params.conv_trans_weights['add1'], 
                                                  #output_shape=[-1, int(globals()['layer10'].shape[1]), int(globals()['layer10'].shape[2]), 512],
-                                                 output_shape=[int(globals()['layer10'].shape[0]), -1, -1, 512],
-                                                 strides=params.strides['2x2'], padding='SAME') #output_shape = [-1, 14, 14, 512],
-                                                 
+                                                 #output_shape=[int(globals()['layer10'].shape[0]), -1, -1, 512],
+                                                 output_shape=tf.shape(globals()['layer10']),
+                                                 strides=params.strides['2x2'], padding='SAME') #output_shape = [-1, 14, 14, 512],                                  
+            '''
+            layer_trans = tf.layers.conv2d_transpose(globals()['layer13'], 2, 4,  
+                                         strides= params.strides['2x2'], 
+                                         padding= 'same', 
+                                         kernel_initializer= tf.random_normal_initializer(stddev=0.01), 
+                                         kernel_regularizer= layers.l2_regularizer(1e-3))
             
-            #layer13_trans = tf.layers.conv2d_transpose(globals()['layer13'], 2, 4,  
-            #                             strides= (2, 2), 
-            #                             padding= 'same', 
-            #                             kernel_initializer= tf.random_normal_initializer(stddev=0.01), 
-            #                             kernel_regularizer= tf.contrib.layers.l2_regularizer(1e-3))
             print('Trans Conv: ', layer_trans.shape, globals()['layer10'].shape)
             
             layer_trans = tf.add(layer_trans, globals()['layer10'])
@@ -80,7 +81,8 @@ with tf.variable_scope("VGG16"):
             layer_trans = tf.nn.conv2d_transpose(layer_trans,
                                                  filter=params.conv_trans_weights['add2'], 
                                                  #output_shape=[-1, int(globals()['layer7'].shape[1]), int(globals()['layer7'].shape[2]), 256],
-                                                 output_shape=[int(globals()['layer7'].shape[0]), -1, -1, 256],
+                                                 #output_shape=[int(globals()['layer7'].shape[0]), -1, -1, 256],
+                                                 output_shape=tf.shape(globals()['layer7']),
                                                  strides=params.strides['2x2'], padding='SAME')
             
             print('Trans Conv: ', layer_trans.shape, globals()['layer7'].shape)
@@ -91,7 +93,8 @@ with tf.variable_scope("VGG16"):
             layer_trans = tf.nn.conv2d_transpose(layer_trans, 
                                                    filter=params.conv_trans_weights['add3'], 
                                                    #output_shape=[-1, int(globals()['layer4'].shape[1]), int(globals()['layer4'].shape[2]), 128],
-                                                   output_shape=[int(globals()['layer4'].shape[0]), -1, -1, 128],
+                                                   #output_shape=[int(globals()['layer4'].shape[0]), -1, -1, 128],
+                                                   output_shape=tf.shape(globals()['layer4']),
                                                    strides=params.strides['2x2'], padding='SAME')
             
             #layer4_trans = tf.layers.conv2d_transpose(globals()['layer4'], 2, 4,  
@@ -108,7 +111,8 @@ with tf.variable_scope("VGG16"):
             layer_trans = tf.nn.conv2d_transpose(layer_trans, 
                                                  filter=params.conv_trans_weights['add4'], 
                                                  #output_shape=[-1, int(globals()['layer2'].shape[1]), int(globals()['layer2'].shape[2]), 64],
-                                                 output_shape=[int(globals()['layer2'].shape[0]), -1, -1, 64],
+                                                 #output_shape=[int(globals()['layer2'].shape[0]), -1, -1, 64],
+                                                 output_shape=tf.shape(globals()['layer2']),
                                                  strides=params.strides['2x2'], padding='SAME')
             
             #layer3_trans = tf.layers.conv2d_transpose(globals()['layer3'], 2, 4, strides=(2, 2), padding='same', 
@@ -125,8 +129,14 @@ with tf.variable_scope("VGG16"):
             #layer3_trans = tf.layers.conv2d_transpose(globals()['layer3'], 2, 4, strides=(2, 2), padding='same', 
             #                                          kernel_initializer= tf.random_normal_initializer(stddev=0.01), kernel_regularizer= tf.contrib.layers.l2_regularizer(1e-3))
             
-            layer_trans = tf.nn.conv2d_transpose(layer_trans, filter=params.conv_trans_weights['output'], output_shape=[-1, 224, 224, 1],
-                                                   strides=params.strides['2x2'], padding='SAME')
+            print(globals()['layer1'].shape)
+            layer_trans = tf.nn.conv2d_transpose(layer_trans, filter=params.conv_trans_weights['add5'],
+                                                 output_shape=
+                                                 strides=params.strides['2x2'], padding='SAME')
+            
+            #layer_trans = tf.nn.conv2d(layer_trans, filter = params.conv_trans_weights['output'], 
+            #                                     strides=params.strides['1x1'], 
+            #                                     padding='SAME')
             
             print('Trans Conv (output): ', layer_trans.shape)
             
@@ -136,13 +146,14 @@ with tf.variable_scope("VGG16"):
 # ************ #
 # Optimization #
 # ************ #
+"""
     with tf.variable_scope('optimization'):
-        logits = tf.reshape(layer_trans, (-1, 2))
-        label = tf.reshape(params.label_ph, (-1,2))
+        #logits = tf.reshape(layer_trans, (-1, 2))
+        #label = tf.reshape(params.label_ph, (-1, 2))
         #print(logits)
         #print(label)
         # define loss function
-        cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits= logits, labels= label))
+        cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits= layer_trans, labels = params.label_ph))
         # define training operation
         optimizer = tf.train.AdamOptimizer(learning_rate= 0.0009)
         train_op = optimizer.minimize(cross_entropy_loss)
@@ -154,6 +165,8 @@ with tf.variable_scope("VGG16"):
 # ******** #        
     #with tf.variable_scope('training'):
     with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+        
         for epoch in tqdm(range(100)):
             for img_name in params.train_person_list:
                 if int(img_name[-3:-1]) >= 1:
@@ -216,3 +229,4 @@ with tf.variable_scope("VGG16"):
                         print("Loss: = {:.3f}".format(loss))
                         
                         #break
+"""
