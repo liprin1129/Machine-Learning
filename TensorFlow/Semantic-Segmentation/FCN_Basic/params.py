@@ -8,6 +8,16 @@ import tensorflow as tf
 from tensorflow.contrib import layers
 
 with tf.variable_scope("VGG16"):
+    
+    num_classes = 1
+    num_channels = 3
+    
+    #input_ph = tf.placeholder(tf.float32, [None, None, None, num_channels])
+    #label_ph = tf.placeholder(tf.float32, [None, None, None, num_classes])
+    
+    input_ph = tf.placeholder(tf.float64, [None, 224, 224, num_channels])
+    label_ph = tf.placeholder(tf.float64, [None, 224, 224, num_classes])
+    
     conv_weights = {
         'cw1': tf.get_variable('CW1', shape=(3,3,3,64), initializer=layers.xavier_initializer()),
         'cw2': tf.get_variable('CW2', shape=(3,3,64,64), initializer=layers.xavier_initializer()),
@@ -50,10 +60,31 @@ with tf.variable_scope("VGG16"):
         #'ctw4': tf.get_variable('CTW4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
         'ctw4_add': tf.get_variable('CTW4', shape=(4,4,64,128), initializer=layers.xavier_initializer()),
         #'ctw2': tf.get_variable('CTW2', shape=(4,4,2,64), initializer=layers.xavier_initializer()),
-        'ctw2_add': tf.get_variable('CTW2', shape=(4,4,2,64), initializer=layers.xavier_initializer())
+        'ctw2_add': tf.get_variable('CTW2', shape=(4,4,1,64), initializer=layers.xavier_initializer())
         }
     
-    strides = {
+    kernel_size = {
+        '1x1': [1, 1],
+        '2x2': [2, 2], 
+        '3x3': [3, 3],
+        '4x4': [4, 4]
+        }
+    
+    kernel_depth = {
+        '1': 1,
+        '64': 64,
+        '128': 128,
+        '256': 256,
+        '512': 512
+        }
+    
+    conv_strides = {
+        '1x1': [1, 1],
+        '2x2': [2, 2],
+        '8x8': [8, 8]
+        }
+    
+    pooling_strides = {
         '1x1': [1, 1, 1, 1],
         '2x2': [1, 2, 2, 1],
         '8x8': [1, 8, 8, 1]
