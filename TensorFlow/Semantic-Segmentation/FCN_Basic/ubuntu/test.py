@@ -303,16 +303,30 @@ with tf.Session() as sess:
             
             #pred = sess.run(output_trans, feed_dict={params.input_ph: img_cv})
             #print("pred: ", pred[0, :, :, 0])
-            #plt.imshow(pred)
-            #plt.show()
             
-
             loss_avg += loss
             loss_avg /= (count+1)
             
             if (count+1)%20 == 0:
                 print("\nTemporal Loss: = {0:.10f}".format(loss))
                 print("Loss Mean: = {0:.10f}".format(loss_avg))
+            
+                #print("img shape: ", img_cv.shape)
+                #print("mask shape: ", mask_cv.shape)
+                #print("predict shape: ", pred.shape)
  
             count += 1
             #break
+
+        plt.figure(1)
+        plt.subplot(311)
+        plt.imshow(img_cv[0, :, :, :])
+        
+        plt.subplot(312)
+        plt.imshow(mask_cv)
+        
+        plt.subplot(313)
+        pred = pred[0, :, :, 0]
+        pred[pred > 0] = 255
+        plt.imshow(pred, cmap='gray')
+        plt.show()
