@@ -12,7 +12,7 @@ with tf.variable_scope("VGG16"):
     num_classes = 1
     num_channels = 3
     
-    learning_rate = 0.0009
+    learning_rate = 0.01 #0.0009
     input_ph = tf.placeholder(tf.float64, [None, None, None, num_channels])
     label_ph = tf.placeholder(tf.float64, [None, None, None, num_classes])
     

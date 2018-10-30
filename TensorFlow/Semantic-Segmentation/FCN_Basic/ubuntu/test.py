@@ -23,12 +23,16 @@ with tf.variable_scope("Convolutional"):
         
         layer1 = tf.layers.conv2d(inputs=params.input_ph, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer1')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer1')
         print(layer1)
         
         layer2 = tf.layers.conv2d(inputs=layer1, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer2')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer2')
         print(layer2)
         
         layer3 = tf.nn.avg_pool(layer2, ksize=params.pool_size['2x2'], strides=params.pooling_strides['2x2'], padding='SAME', name='layer3')
@@ -41,12 +45,16 @@ with tf.variable_scope("Convolutional"):
         
         layer4 = tf.layers.conv2d(inputs=layer3, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer4')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer4')
         print(layer4)
         
         layer5 = tf.layers.conv2d(inputs=layer4, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer5')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer5')
         print(layer5)
         
         layer6 = tf.nn.avg_pool(layer5, ksize=params.pool_size['2x2'], strides=params.pooling_strides['2x2'], padding='SAME', name='layer6')
@@ -58,17 +66,23 @@ with tf.variable_scope("Convolutional"):
         
         layer7 = tf.layers.conv2d(inputs=layer6, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer7')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer7')
         print(layer7)
         
         layer8 = tf.layers.conv2d(inputs=layer7, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer8')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer8')
         print(layer8)
         
         layer9 = tf.layers.conv2d(inputs=layer8, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer9')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer9')
         print(layer9)
         
         layer10 = tf.nn.avg_pool(layer9, ksize=params.pool_size['2x2'], strides=params.pooling_strides['2x2'], padding='SAME', name='layer10')
@@ -80,17 +94,22 @@ with tf.variable_scope("Convolutional"):
         
         layer11 = tf.layers.conv2d(inputs=layer10, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer11')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer11')
         print(layer11)
         
         layer12 = tf.layers.conv2d(inputs=layer11, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer12')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer12')
         print(layer12)
 
         layer13 = tf.layers.conv2d(inputs=layer12, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer13')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),use_bias=True, name='layer13')
         print(layer13)
                 
         layer14 = tf.nn.avg_pool(layer13, ksize=params.pool_size['2x2'], strides=params.pooling_strides['2x2'], padding='SAME', name='layer14')
@@ -102,17 +121,23 @@ with tf.variable_scope("Convolutional"):
         
         layer15 = tf.layers.conv2d(inputs=layer14, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer14')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer14')
         print(layer11)
         
         layer16 = tf.layers.conv2d(inputs=layer15, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer16')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer16')
         print(layer16)
 
         layer17 = tf.layers.conv2d(inputs=layer16, filters=params.kernel_depth[kernel_depth], 
                                   kernel_size=params.kernel_size['3x3'], strides=params.conv_strides['1x1'], 
-                                  padding='same',activation=tf.nn.relu, use_bias=True, name='layer17')
+                                  padding='same',activation=tf.nn.relu, 
+                                  kernel_regularizer=tf.contrib.layers.l2_regularizer(scale=0.1),
+                                  use_bias=True, name='layer17')
         print(layer17)
                 
         layer18 = tf.nn.avg_pool(layer17, ksize=params.pool_size['2x2'], strides=params.pooling_strides['2x2'], padding='SAME', name='layer18')
@@ -128,22 +153,30 @@ with tf.variable_scope('Transpose'):
     
     trans_weight1 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer14.get_shape().as_list()[3], layer18.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight1")
+    l2_regularizer1 = tf.nn.l2_loss(trans_weight1)
     trans1 = tf.nn.conv2d_transpose(layer18, filter=trans_weight1, output_shape=tf.shape(layer14), strides=params.pooling_strides['2x2'], padding='SAME', name='trans1')
+    trans1 = tf.nn.relu(trans1)
     print(trans1)
 
     trans_weight2 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer10.get_shape().as_list()[3], layer14.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight2")
+    l2_regularizer2 = tf.nn.l2_loss(trans_weight2)
     trans2 = tf.nn.conv2d_transpose(layer14, filter=trans_weight2, output_shape=tf.shape(layer10), strides=params.pooling_strides['2x2'], padding='SAME', name='trans2')
+    trans2 = tf.nn.relu(trans2)
     print(trans2)
     
     trans_weight3 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer6.get_shape().as_list()[3], layer10.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight3")
+    l2_regularizer3 = tf.nn.l2_loss(trans_weight3)
     trans3 = tf.nn.conv2d_transpose(layer10, filter=trans_weight3, output_shape=tf.shape(layer6), strides=params.pooling_strides['2x2'], padding='SAME', name='trans3')
+    trans3 = tf.nn.relu(trans3)
     print(trans3)
     
     trans_weight4 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer3.get_shape().as_list()[3], layer6.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight4")
+    l2_regularizer4 = tf.nn.l2_loss(trans_weight4)
     trans4 = tf.nn.conv2d_transpose(layer6, filter=trans_weight4, output_shape=tf.shape(layer3), strides=params.pooling_strides['2x2'], padding='SAME', name='trans4')
+    trans4 = tf.nn.relu(trans4)
     print(trans4)
     
     '''
@@ -178,7 +211,9 @@ with tf.variable_scope('skip_addition'):
     
     trans_weight5 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, params.num_classes, layer3.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight4")
+    l2_regularizer5 = tf.nn.l2_loss(trans_weight5)
     output_trans = tf.nn.conv2d_transpose(skip_addition4, filter=trans_weight5, output_shape=tf.shape(params.label_ph), strides=params.pooling_strides['2x2'], padding='SAME', name='output_trans')
+    output_trans = tf.nn.relu(output_trans)
     print(output_trans)
     
     '''
@@ -203,7 +238,8 @@ with tf.variable_scope('optimization'):
     print("Optimizer        : ", 'Adam Optimizer')
     print("Softmax          : ", True)
     print("Cross Entropy    : ", True)
-    cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits= output_trans, labels = params.label_ph))
+    cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits = output_trans, labels = params.label_ph)) 
+    cross_entropy_loss = cross_entropy_loss + l2_regularizer1 + l2_regularizer2 + l2_regularizer3 + l2_regularizer4 + l2_regularizer5
     # define training operation
     optimizer = tf.train.AdamOptimizer(learning_rate= params.learning_rate)
     train_op = optimizer.minimize(cross_entropy_loss)
@@ -231,7 +267,8 @@ with tf.Session() as sess:
             # read mask image
             img_cv = cv2.imread(img_with_path)
             img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
-            
+            img_cv = img_cv/255
+        
             mask_cv = cv2.imread(mask_with_path)
             mask_cv = cv2.cvtColor(mask_cv, cv2.COLOR_BGR2RGB)
             
@@ -259,15 +296,23 @@ with tf.Session() as sess:
             person_mask = person_mask[np.newaxis, :, :, np.newaxis]
             #print(img_cv.shape, ' || ', person_mask.shape)
             
-            _, loss = sess.run([train_op, cross_entropy_loss], feed_dict={params.input_ph: img_cv, params.label_ph: person_mask})
+            #out = tf.nn.softmax(output_trans)
+            
+            pred, _, loss = sess.run([output_trans, train_op, cross_entropy_loss], feed_dict={params.input_ph: img_cv, params.label_ph: person_mask})
             #print("Loss: = {:.3f}".format(loss))
             
+            #pred = sess.run(output_trans, feed_dict={params.input_ph: img_cv})
+            #print("pred: ", pred[0, :, :, 0])
+            #plt.imshow(pred)
+            #plt.show()
+            
+
             loss_avg += loss
             loss_avg /= (count+1)
             
             if (count+1)%20 == 0:
                 print("\nTemporal Loss: = {0:.10f}".format(loss))
                 print("Loss Mean: = {0:.10f}".format(loss_avg))
-            
+ 
             count += 1
             #break
