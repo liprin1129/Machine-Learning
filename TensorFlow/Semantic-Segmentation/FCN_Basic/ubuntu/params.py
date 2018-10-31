@@ -9,13 +9,14 @@ from tensorflow.contrib import layers
 from tqdm import tqdm
 with tf.variable_scope("VGG16"):
     
-    num_classes = 1
     num_channels = 3
+    num_classes = 1
     
-    learning_rate = 0.01 #0.0009
+    learning_rate = 0.0009
     input_ph = tf.placeholder(tf.float64, [None, None, None, num_channels])
     label_ph = tf.placeholder(tf.float64, [None, None, None, num_classes])
     
+    #output_shape = tf.zeros(label_ph.get_shape().as_list(), tf.float64)
     #input_ph = tf.placeholder(tf.float64, [None, 334, 500, num_channels])
     #label_ph = tf.placeholder(tf.float64, [None, 334, 500, num_classes])
     
@@ -68,7 +69,8 @@ with tf.variable_scope("VGG16"):
         '1x1': [1, 1],
         '2x2': [2, 2], 
         '3x3': [3, 3],
-        '4x4': [4, 4]
+        '4x4': [4, 4],
+        '8x8': [8, 8]
         }
     
     kernel_depth = {
