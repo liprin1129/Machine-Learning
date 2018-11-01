@@ -6,11 +6,11 @@ Created on Oct 16, 2018
 
 import tensorflow as tf
 #from tensorflow.contrib import layers
-#from tqdm import tqdm
+from tqdm import tqdm
 import scipy.misc
 import os
 import numpy as np
-#import re
+import re
 #import matplotlib.pyplot as plt
 
 with tf.variable_scope("VGG16"):
@@ -143,7 +143,15 @@ with tf.variable_scope("VGG16"):
     # READ PERSON.TXT FILE
     with open(os.path.join(root_dir_path, 'person.txt'), 'r') as fr:
         person_train = fr.readlines()
-            
+    
+    for img_name in tqdm(person_train):
+        img_name = re.sub(r'\s', '', img_name)
+        image = scipy.misc.imread(os.path.join(root_dir_path, 'JPEGImages/') + img_name +'.jpg')
+        gt_image = scipy.misc.imread(os.path.join(root_dir_path, 'SegmentationClass/') + img_name + '.png')
+              
+        scipy.misc.imsave('JPEG_Image/'+img_name+'.jpg', image)
+        scipy.misc.imsave('Ground_Truth_Image/'+img_name+'.png', gt_image)
+    
     def convert_mask_for_training(img_name):
         
         background_color = np.array([192, 128, 128])

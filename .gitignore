@@ -31,3 +31,7 @@ TensorFlow/face_classifier/\.#VGG16_backup\.py
 *.pkl
 
 Face Detection/C\+\+-workspace/ZED-capture/include/
+
+TensorFlow/Semantic-Segmentation/FCN_Basic/ubuntu/Ground_Truth_Image/
+
+TensorFlow/Semantic-Segmentation/FCN_Basic/ubuntu/JPEG_Image/
