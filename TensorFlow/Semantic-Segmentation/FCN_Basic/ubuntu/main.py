@@ -6,12 +6,14 @@ Created on Oct 29, 2018
 
 import tensorflow as tf
 from tensorflow.contrib import layers as contrib_layers
+#import tensorflow.contrib.slim as slim
+
 import params
 from tqdm import tqdm
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
+import re
+import random
 
 with tf.variable_scope("Convolutional"):
     print('*******************************************')
@@ -153,28 +155,28 @@ with tf.variable_scope('Transpose'):
     print('*******************************************')
     print()
 
-    trans_weight1 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer14.get_shape().as_list()[3], layer18.get_shape().as_list()[3]], 
+    trans_weight1 = tf.Variable(initial_value=tf.initializers.random_normal([4, 4, layer14.get_shape().as_list()[3], layer18.get_shape().as_list()[3]], 
                                                                          stddev=0.01, dtype=tf.float64), name="trans_weight1")
     l2_regularizer1 = tf.nn.l2_loss(trans_weight1)
     trans1 = tf.nn.conv2d_transpose(layer18, filter=trans_weight1, output_shape=tf.shape(layer14), strides=params.pooling_strides['2x2'], padding='SAME', name='trans1')
     trans1 = tf.nn.relu(trans1)
     print(trans1)
 
-    trans_weight2 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer10.get_shape().as_list()[3], layer14.get_shape().as_list()[3]], 
+    trans_weight2 = tf.Variable(initial_value=tf.random_normal([4, 4, layer10.get_shape().as_list()[3], layer14.get_shape().as_list()[3]], 
                                                                          stddev=0.01, dtype=tf.float64), name="trans_weight2")
     l2_regularizer2 = tf.nn.l2_loss(trans_weight2)
     trans2 = tf.nn.conv2d_transpose(layer14, filter=trans_weight2, output_shape=tf.shape(layer10), strides=params.pooling_strides['2x2'], padding='SAME', name='trans2')
     trans2 = tf.nn.relu(trans2)
     print(trans2)
     
-    trans_weight3 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer6.get_shape().as_list()[3], layer10.get_shape().as_list()[3]], 
+    trans_weight3 = tf.Variable(initial_value=tf.random_normal([4, 4, layer6.get_shape().as_list()[3], layer10.get_shape().as_list()[3]], 
                                                                          stddev=0.01, dtype=tf.float64), name="trans_weight3")
     l2_regularizer3 = tf.nn.l2_loss(trans_weight3)
     trans3 = tf.nn.conv2d_transpose(layer10, filter=trans_weight3, output_shape=tf.shape(layer6), strides=params.pooling_strides['2x2'], padding='SAME', name='trans3')
     trans3 = tf.nn.relu(trans3)
     print(trans3)
     
-    trans_weight4 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, layer3.get_shape().as_list()[3], layer6.get_shape().as_list()[3]], 
+    trans_weight4 = tf.Variable(initial_value=tf.random_normal([4, 4, layer3.get_shape().as_list()[3], layer6.get_shape().as_list()[3]], 
                                                                          stddev=0.01, dtype=tf.float64), name="trans_weight4")
     l2_regularizer4 = tf.nn.l2_loss(trans_weight4)
     trans4 = tf.nn.conv2d_transpose(layer6, filter=trans_weight4, output_shape=tf.shape(layer3), strides=params.pooling_strides['2x2'], padding='SAME', name='trans4')
@@ -219,7 +221,7 @@ with tf.variable_scope('skip_addition'):
     print('*******************************************')
     print()
     
-    trans_weight5 = weights = tf.Variable(initial_value=tf.random_normal([4, 4, params.num_classes, layer3.get_shape().as_list()[3]], 
+    trans_weight5 = tf.Variable(initial_value=tf.random_normal([4, 4, params.num_classes, layer3.get_shape().as_list()[3]], 
                                                                          stddev=0.1, dtype=tf.float64), name="trans_weight4")
     l2_regularizer5 = tf.nn.l2_loss(trans_weight5)
     output_trans = tf.nn.conv2d_transpose(skip_addition4, filter=trans_weight5, output_shape=tf.shape(params.label_ph), strides=params.pooling_strides['2x2'], padding='SAME', name='output_trans')
@@ -242,8 +244,11 @@ with tf.variable_scope('optimization'):
     print('*******************************************')
     print()
     
-    #pred_logits = tf.reshape(output_trans, [-1])
-    #correct_label = tf.reshape(params.label_ph, [-1])
+    output_logits = tf.reshape(output_trans, (-1, params.num_classes))
+    pred_softmax = tf.nn.softmax(output_logits)
+    pred_logits = tf.reshape(pred_softmax, tf.shape(output_trans))
+    
+    correct_label = tf.reshape(params.label_ph, (-1, params.num_classes)) 
     
     #print('Logits shape: ', pred_logits)
     #print('Label shape: ', correct_label)
@@ -253,15 +258,21 @@ with tf.variable_scope('optimization'):
     print("Optimizer        : ", 'Adam Optimizer')
     print("Softmax          : ", True)
     print("Cross Entropy    : ", True)
-    #objective = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits = pred_logits, labels = correct_label)) 
-    output_trans = tf.nn.sigmoid(output_trans)
-    objective = tf.reduce_mean(tf.sqrt(tf.square(params.label_ph - output_trans)))
+    objective = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits = output_logits, labels = correct_label))
+    loss_val = tf.reduce_mean(tf.sqrt(tf.square(params.label_ph - pred_softmax)))
+    
     objective = objective + 1e-3*(l2_regularizer1 + l2_regularizer2 + l2_regularizer3 + l2_regularizer4 + l2_regularizer5)
     optimizer = tf.train.AdamOptimizer(learning_rate= params.learning_rate).minimize(objective)
     #train_op = optimizer.minimize(objective)
 
 #with tf.variable_scope('training'):
+print('\n')
+print('*******************************************')
+print('*                 Session                 *')
+print('*******************************************')
+print()
 with tf.Session() as sess:
+    
     print('\n')
     print('*******************************************')
     print('*                 Training                *')
@@ -274,89 +285,55 @@ with tf.Session() as sess:
         count = 0
         loss_avg = 0.0
         
-        for img_name in tqdm(params.person_train):
-
-            img_with_path = params.image_dir_path + img_name[:11] + '.jpg'
-            mask_with_path = params.mask_dir_path + img_name[:11] + '.png'
-
-            # read mask image
-            img_cv = cv2.imread(img_with_path)
-            img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
-            img_cv = img_cv/255
+        random.shuffle(params.person_train)
         
-            mask_cv = cv2.imread(mask_with_path)
-            mask_cv = cv2.cvtColor(mask_cv, cv2.COLOR_BGR2RGB)
+        for img_name in tqdm(params.person_train):
             
-            # Convert BGR to RBG
-            person_mask = np.ones([img_cv.shape[0], img_cv.shape[1]])
-            #print(img_cv.shape, mask_cv.shape)
+            image, gt_bg_concatenate, gt_image = params.convert_mask_for_training(re.sub(r'\s', '', img_name))
             
-            # Change mask image pixel values to range [1, 0]
-            person_mask[mask_cv[:, :, 0] != 192] = 0.0 # R
-            person_mask[mask_cv[:, :, 1] != 128] = 0.0 # R
-            person_mask[mask_cv[:, :, 2] != 128] = 0.0 # R
+            image = image/255
+            
+            image = image[np.newaxis, :, :, :]
+            gt_bg_concatenate = gt_bg_concatenate[np.newaxis, :, :, :]
 
-            '''
-            # Show images
-            plt.figure(1)
-            plt.subplot(211)
-            plt.imshow(img_cv)
-            
-            plt.subplot(212)
-            plt.imshow(person_mask)
-            plt.show()
-            '''
-            
-            img_cv = img_cv[np.newaxis, :, :, :]
-            person_mask = person_mask[np.newaxis, :, :, np.newaxis]
-            print("\nMask count: {0} -> max: {1}, min: {2}".format(np.sum(person_mask), np.max(person_mask), np.min(person_mask)))
+            _, loss = sess.run([optimizer, objective], feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
 
-            pred = sess.run(output_trans, feed_dict={params.input_ph: img_cv, params.label_ph: person_mask})
-            non_zero_pred = pred.copy()
-            non_zero_pred[pred>0] = 1
-            #print("non_zero_pred shape: ", non_zero_pred.shape)
-            non_zero_count = np.sum(non_zero_pred)
-            print("pred: ", non_zero_count, '-> ', np.max(pred), np.min(pred))
-            #print("pred: ", np.max(pred), np.min(pred))
-
-            
-            _, loss = sess.run([optimizer, objective], feed_dict={params.input_ph: img_cv, params.label_ph: person_mask})
-            #print("Loss: = {:.3f}".format(loss))
-            
-            loss_avg += loss 
+            loss_avg += loss
             loss_avg /= (count+1)
-            
             print("Temporal Loss: = {0:.10f} \t Loss Mean: = {1:.10f}\n".format(loss, loss_avg))
             
-            #break
-        #break
-            """
-            if (count+1)%20 == 0:
-                
-                '''
-                pred = sess.run(output_trans, feed_dict={params.input_ph: img_cv, 
-                                                         params.label_ph: person_mask})
-                non_zero_pred = pred[0, :, :, 0].copy()
-                non_zero_pred[pred[0, :, :, 0]>0] = 1
-                non_zero_count = np.sum(non_zero_pred)
-                print("pred: ", non_zero_count, '-> ', np.max(pred[0, :, :, 0]), np.min(pred[0, :, :, 0]))
-                '''
-                #print("img shape: ", img_cv.shape)
-                #print("mask shape: ", mask_cv.shape)
-                #print("predict shape: ", pred.shape)
+            '''
+            
+                        
+            #pred = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
+            pred = sess.run(pred_logits, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
+            #print("pred: {1:.4f}, {2:.4f}".format(np.max(pred), np.min(pred)))
+            
+            _, ax = plt.subplots(2, 2, figsize=(10, 10))
+            ax[0, 0].imshow(image[0, :, :, :])
+            ax[0, 1].imshow(gt_image, cmap='gray')
+            ax[1, 0].imshow(pred[0, :, :, 1]*100, cmap='gray')
+            ax[1, 1].imshow(pred[0, :, :, 0]*100, cmap='gray')
+            plt.show()
 
-                plt.figure(1)
-                plt.subplot(311)
-                plt.imshow(img_cv[0, :, :, :])
+            '''
+            if (count+1)%10 == 0:
                 
-                plt.subplot(312)
-                plt.imshow(mask_cv)
+                loss_avg += loss 
+                loss_avg /= (count+1)
                 
-                plt.subplot(313)
-                plt.imshow(non_zero_pred[0, :, :, 0]*200, cmap='gray')
+                print("Temporal Loss: = {0:.10f} \t Loss Mean: = {1:.10f}\n".format(loss, loss_avg))
+                
+                #pred = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
+                pred = sess.run(pred_logits, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
+                #print("pred: {1:.4f}, {2:.4f}".format(np.max(pred), np.min(pred)))
+                
+                '''
+                _, ax = plt.subplots(2, 2, figsize=(10, 10))
+                ax[0, 0].imshow(image[0, :, :, :])
+                ax[0, 1].imshow(gt_image, cmap='gray')
+                ax[1, 0].imshow(pred[0, :, :, 1], cmap='gray')
+                ax[1, 1].imshow(pred[0, :, :, 0], cmap='gray')
                 plt.show()
-                
-                   
+                '''
             count += 1
-            #break
-            """
