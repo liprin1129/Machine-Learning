@@ -78,7 +78,7 @@ with tf.variable_scope("VGG16"):
             layer_trans = tf.nn.conv2d_transpose(layer_trans, 
                                                  filter=params.conv_trans_weights['ctw10_add'], 
                                                  output_shape=[-1, int(globals()['layer10'].shape[1]), int(globals()['layer10'].shape[2]), 256],
-                                                  strides=params.strides['2x2'], padding='SAME')
+                                                 strides=params.strides['2x2'], padding='SAME')
             
             print(layer_trans)
 

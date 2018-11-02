@@ -19,12 +19,12 @@ with tf.variable_scope("VGG16"):
     num_classes = 2
     
     learning_rate = 0.0009
-    input_ph = tf.placeholder(tf.float64, [None, None, None, num_channels])
-    label_ph = tf.placeholder(tf.float64, [None, None, None, num_classes])
+    scale_factor = 1e-1;
+    #input_ph = tf.placeholder(tf.float64, [None, None, None, num_channels])
+    #label_ph = tf.placeholder(tf.float64, [None, None, None, num_classes])
     
-    #output_shape = tf.zeros(label_ph.get_shape().as_list(), tf.float64)
-    #input_ph = tf.placeholder(tf.float64, [None, 334, 500, num_channels])
-    #label_ph = tf.placeholder(tf.float64, [None, 334, 500, num_classes])
+    input_ph = tf.placeholder(tf.float64, [None, 160, 160, num_channels])
+    label_ph = tf.placeholder(tf.float64, [None, 160, 160, num_classes])
     
     '''
     conv_weights = {
@@ -143,7 +143,7 @@ with tf.variable_scope("VGG16"):
     # READ PERSON.TXT FILE
     with open(os.path.join(root_dir_path, 'person.txt'), 'r') as fr:
         person_train = fr.readlines()
-    
+    '''
     for img_name in tqdm(person_train):
         img_name = re.sub(r'\s', '', img_name)
         image = scipy.misc.imread(os.path.join(root_dir_path, 'JPEGImages/') + img_name +'.jpg')
@@ -151,7 +151,7 @@ with tf.variable_scope("VGG16"):
               
         scipy.misc.imsave('JPEG_Image/'+img_name+'.jpg', image)
         scipy.misc.imsave('Ground_Truth_Image/'+img_name+'.png', gt_image)
-    
+    '''
     def convert_mask_for_training(img_name):
         
         background_color = np.array([192, 128, 128])
