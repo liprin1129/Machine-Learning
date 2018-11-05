@@ -22,6 +22,10 @@ a = np.where(gt == 255, 21, gt)
 
 print(a)
 
+with tf.Session() as sess:
+    hot = sess.run(tf.one_hot(indices=a,depth=22, on_value=1.0, off_value=0.0, dtype=tf.float32))
+    print(hot.shape)
+    print(hot)
 '''
 #pil_image = Image.fromarray(gt.astype(dtype=np.uint8))
 
