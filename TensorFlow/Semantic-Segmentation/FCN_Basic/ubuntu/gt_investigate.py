@@ -23,9 +23,15 @@ a = np.where(gt == 255, 21, gt)
 print(a)
 
 with tf.Session() as sess:
-    hot = sess.run(tf.one_hot(indices=a,depth=22, on_value=1.0, off_value=0.0, dtype=tf.float32))
-    print(hot.shape)
-    print(hot)
+    hot_tf = sess.run(tf.one_hot(indices=a,depth=22, on_value=1.0, off_value=0.0, dtype=tf.float32))
+    print(hot_tf.shape)
+    #print(hot)
+
+hot_np = np.eye(22)[a]
+print(hot_np.shape)
+
+print(np.array_equal(hot_tf, hot_np))
+
 '''
 #pil_image = Image.fromarray(gt.astype(dtype=np.uint8))
 

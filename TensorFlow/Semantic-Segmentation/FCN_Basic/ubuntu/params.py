@@ -11,18 +11,27 @@ import scipy.misc
 import os
 import numpy as np
 import re
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+from glob import glob
+from PIL import Image
+import random
+
+
 
 with tf.variable_scope("VGG16"):
     
     num_channels = 3
-    num_classes = 2
+    num_classes = 22 # 22 classes in total, including index 0 is background and 21 is border
     
     learning_rate = 0.0009
-    scale_factor = 1e-1;
+    scale_factor = 1e-3;
     #input_ph = tf.placeholder(tf.float64, [None, None, None, num_channels])
     #label_ph = tf.placeholder(tf.float64, [None, None, None, num_classes])
     
+    image_shape = (160, 160)
+    epochs = 30
+    batch_size = 5
+
     input_ph = tf.placeholder(tf.float64, [None, 160, 160, num_channels])
     label_ph = tf.placeholder(tf.float64, [None, 160, 160, num_classes])
     
@@ -152,6 +161,8 @@ with tf.variable_scope("VGG16"):
         scipy.misc.imsave('JPEG_Image/'+img_name+'.jpg', image)
         scipy.misc.imsave('Ground_Truth_Image/'+img_name+'.png', gt_image)
     '''
+
+    '''
     def convert_mask_for_training(img_name):
         
         background_color = np.array([192, 128, 128])
@@ -167,7 +178,6 @@ with tf.variable_scope("VGG16"):
         #if np.sum(np.all(gt_bg_reshape == gt_bg_reshape_inv, axis=2)) != 0 :
         gt_bg_concatenate = np.concatenate((gt_bg_reshape, gt_bg_reshape_inv), axis=2)
         
-        '''
         #print('Ground true: ', np.sum(np.all(gt_bg_reshape == gt_bg_reshape_inv, axis=2)))
         print('[Image] shape: {0}, max: {1}, min: {2}'.format(np.shape(image), np.max(image), np.min(image)))
         print('[Ground true] shape: {0}, values: {1}'.format(np.shape(gt_bg_concatenate), set(gt_bg.reshape(-1))))
@@ -178,6 +188,60 @@ with tf.variable_scope("VGG16"):
         ax[2].imshow(np.invert(gt_bg), cmap='gray')
         
         plt.show()
-        '''
             
         return image, gt_bg_concatenate, gt_bg
+        '''
+
+    #jpeg_list = glob(os.path.join(root_dir_path, 'JPEGImages', '*.jpg'))
+    gt_list = glob(os.path.join(root_dir_path, 'SegmentationClass', '*.png'))
+
+    def batch_seperator(batch_size):
+        for batch_idx in range(0, len(gt_list), batch_size):
+            first = True
+
+            for gt in gt_list[batch_idx:batch_idx+batch_size]:
+                gt_png = Image.open(gt)
+                #print(np.shape(gt_png))
+                gt_name = os.path.basename(gt)
+
+                img_name = re.sub(r'png', 'jpg', gt_name)
+                img_jpeg = Image.open(os.path.join(root_dir_path, 'JPEGImages', img_name))
+                #print(np.shape(img_jpeg))
+
+                # Resize images
+                img_jpeg = img_jpeg.resize(image_shape, Image.ANTIALIAS)
+                gt_png = gt_png.resize(image_shape, Image.ANTIALIAS)
+                gt_palette = gt_png.getpalette()
+                
+                # Convert to ndarray
+                img_jpeg = np.array(img_jpeg, dtype=np.uint8)/255.0
+                gt_png = np.array(gt_png, dtype=np.uint8)
+                
+                # Convert border line to class 21
+                gt_png = np.where(gt_png==255, 21, gt_png)
+                #print(set(gt_png.reshape(-1)))
+                
+                # Index 0 is background and 21 is border, 22 classes in total
+                gt_hot = np.eye(num_classes)[gt_png]
+
+                if first == True:
+                    in_imgs = img_jpeg[np.newaxis, ...]
+                    gt_imgs = gt_hot[np.newaxis, ...]
+                    first = False
+                else:
+                    #print(in_imgs.shape, img_jpeg[np.newaxis].shape)
+                    in_imgs = np.vstack((in_imgs, img_jpeg[np.newaxis, ...]))
+                    gt_imgs = np.vstack((gt_imgs, gt_hot[np.newaxis, ...]))
+
+            '''
+            print(in_imgs.shape, gt_imgs.shape)
+
+            for i in range(num_classes):
+                _, ax = plt.subplots(1, 2, figsize=(10, 5))
+                ax[0].imshow(in_imgs[0])
+                ax[1].imshow(gt_imgs[0, :, :, i])
+                plt.show()
+
+            break
+            '''
+            yield in_imgs, gt_imgs

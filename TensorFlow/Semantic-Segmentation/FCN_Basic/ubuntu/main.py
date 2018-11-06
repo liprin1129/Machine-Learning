@@ -273,8 +273,8 @@ print('*                 Session                 *')
 print('*******************************************')
 print()
 
-image_shape = (160, 160)
-data_dir = './data'
+
+#data_dir = './data'
 runs_dir = './runs'
 
 with tf.Session() as sess:
@@ -286,79 +286,20 @@ with tf.Session() as sess:
     print()
     sess.run(tf.global_variables_initializer())
     
-    get_batches_fn = helper.gen_batch_function(data_dir, image_shape)
+    #get_batches_fn = helper.gen_batch_function(data_dir, image_shape)
 
-
-    epochs = 10
-    batch_size = 5
-
-    for epoch in tqdm(range(epochs)):
+    for epoch in tqdm(range(params.epochs)):
         count = 0
         loss_avg = 0.0
         
         #random.shuffle(params.person_train)
         
-        for image, label in get_batches_fn(batch_size):
+        for count, (image, label) in enumerate(params.batch_seperator(params.batch_size)):#get_batches_fn(batch_size):
             #print('image shape: {0}, label shape: {1}'.format(image.shape, label.shape))
             _, loss = sess.run([optimizer, cross_entropy_loss], 
                                 feed_dict={params.input_ph: image, params.label_ph:label})
             
-            print("Loss: = {:.3f}".format(loss))
+            if (count % 10) == 0:
+                print("Loss: = {:.3f}".format(loss))
 
-    logits = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph:label})
-    #print('logits shape: ', logits.shape)
-
-    helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, params.input_ph)
-
-    """
-        for img_name in tqdm(params.person_train):
-            
-            image, gt_bg_concatenate, gt_image = params.convert_mask_for_training(re.sub(r'\s', '', img_name))
-            
-            image = image/255
-            
-            image = image[np.newaxis, :, :, :]
-            gt_bg_concatenate = gt_bg_concatenate[np.newaxis, :, :, :]
-
-            _, loss = sess.run([optimizer, objective], feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
-
-            loss_avg += loss
-            loss_avg /= (count+1)
-            print("Temporal Loss: = {0:.10f} \t Loss Mean: = {1:.10f}\n".format(loss, loss_avg))
-            
-            '''
-            
-                        
-            #pred = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
-            pred = sess.run(pred_logits, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
-            #print("pred: {1:.4f}, {2:.4f}".format(np.max(pred), np.min(pred)))
-            
-            _, ax = plt.subplots(2, 2, figsize=(10, 10))
-            ax[0, 0].imshow(image[0, :, :, :])
-            ax[0, 1].imshow(gt_image, cmap='gray')
-            ax[1, 0].imshow(pred[0, :, :, 1]*100, cmap='gray')
-            ax[1, 1].imshow(pred[0, :, :, 0]*100, cmap='gray')
-            plt.show()
-
-            '''
-            if (count+1)%10 == 0:
-                
-                loss_avg += loss 
-                loss_avg /= (count+1)
-                
-                print("Temporal Loss: = {0:.10f} \t Loss Mean: = {1:.10f}\n".format(loss, loss_avg))
-                
-                #pred = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
-                pred = sess.run(pred_logits, feed_dict={params.input_ph: image, params.label_ph: gt_bg_concatenate})
-                #print("pred: {1:.4f}, {2:.4f}".format(np.max(pred), np.min(pred)))
-                
-                '''
-                _, ax = plt.subplots(2, 2, figsize=(10, 10))
-                ax[0, 0].imshow(image[0, :, :, :])
-                ax[0, 1].imshow(gt_image, cmap='gray')
-                ax[1, 0].imshow(pred[0, :, :, 1], cmap='gray')
-                ax[1, 1].imshow(pred[0, :, :, 0], cmap='gray')
-                plt.show()
-                '''
-            count += 1
-    """
+    #logits = sess.run(output_trans, feed_dict={params.input_ph: image, params.label_ph:label})
