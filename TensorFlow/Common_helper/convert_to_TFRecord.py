@@ -25,28 +25,36 @@ import numpy as np
 from tqdm import tqdm
 
 class ImageHelper(object):
-    """Helper class that provides TensorFlow image coding utilities.
+    """
+    Helper class that provides TensorFlow image coding utilities.
+    
     Args: 
         height: Prefered height of an output image. 
                 Default is 15 pixel.
         width:  Prefered width of an output image. 
                 Default is 15 pixel.
+
+    Methods:
+        cv_read_img_with_abs_path(self, abs_file_name)
+        cv_bgra2rgb(self, images)
+        cv_bgr2rgb(self, image)
+        
     """
     def __init__(self, height=15, width=15, verbose=False):
         self._height = height
         self._width = width
-        self._channels = None
-        self._image_format = None
-        self._image_data = None
+        self._channels = 3
+        self._image_format = 'jpg'
+        #self._image_data = None
         self._verbose_img = verbose
 
     def cv_read_img_with_abs_path(self, abs_file_name):
         image = cv2.imread(abs_file_name, cv2.IMREAD_UNCHANGED)
         if self._verbose_img==True: print("1. Number of channels: ", image.shape); sys.stdout.flush()
 
-        if image.shape[2] > 3: # if image is in RGBD format
+        if image.shape[2] > self._channels: # if image is in RGBD format
             image = self.cv_bgra2rgb(image)
-        elif image.shape[2] == 3:
+        elif image.shape[2] == self._channels:
             image = self.cv_bgr2rgb(image)
         
         if image.shape[0]!=15 and image.shape[1]!=15: # default image size, 15X15
@@ -64,13 +72,28 @@ class ImageHelper(object):
 
 
 class TFRecord_Helper(ImageHelper):
-    def __init__(self, height=15, width=15, seed=0):
+    """
+    Helper class which converts image to TFRecord format with features including label, encoded, height, width, format of the image.
+    
+    Args:
+        height:  height of desired output image
+        width: width of desired output image
+        seed: random seed to shuffle images
+
+    Methods:
+        _get_dataset_filename(self, tfrecord_dir, split_name, shard_id, dataset_name, num_shards)
+        _get_filenames_and_classes(self, dataset_dir)
+        _int64_feature(self, value)
+        _bytes_feature(self, value)
+        convert_to_tfrecord(self, tf_record_root_dir, dataset_name, num_shards, validation_ratio)
+    """
+    def __init__(self, height=15, width=15, seed=0, verbose=False):
         ImageHelper.__init__(self, height, width, False)
         self._random_seed = seed
-        self._verbose_tfr = True
+        self._verbose_tfr = verbose
 
     def _get_dataset_filename(self, tfrecord_dir, split_name, shard_id, dataset_name, num_shards):
-        assert split_name in ['train', 'validation']
+        assert split_name in ['train', 'valid']
         
         output_filename = dataset_name + '_%s_%05d-of-%05d.tfrecord' % (
             split_name, shard_id, num_shards)
@@ -112,7 +135,7 @@ class TFRecord_Helper(ImageHelper):
         #print(self._get_dataset_filename(root_image_dir, 'train', 2, 'face', 5))
         #print(self._get_filenames_and_classes(root_image_dir))
 
-        def seperate_train_and_validation_set():
+        def _seperate_train_and_validation_set():
             """ Inner function of covert_to_tfrecord """
             filenames, class_names = self._get_filenames_and_classes(tf_record_root_dir)
             class_names_to_ids = dict(zip(class_names, range(len(class_names))))
@@ -121,7 +144,7 @@ class TFRecord_Helper(ImageHelper):
             # Cacluate number of validation proportional to validation_ratio
             num_validation = int(len(filenames) * validation_ratio)
 
-            # Divide into train and test:
+            # Divide into train and validation:
             random.seed(self._random_seed)
             random.shuffle(filenames)
             training_filenames = filenames[num_validation:]
@@ -129,15 +152,15 @@ class TFRecord_Helper(ImageHelper):
 
             return training_filenames, validation_filenames, class_names_to_ids
 
-        train_filenames, valid_filenames, class_names_to_ids = seperate_train_and_validation_set()
+        train_filenames, valid_filenames, class_names_to_ids = _seperate_train_and_validation_set()
         if self._verbose_tfr==True: print("Number of training-set: {0}, Number of validation-set: {1}".format(len(train_filenames), len(valid_filenames))); sys.stdout.flush()
         
-        for filenames, train_or_valid in zip((train_filenames, valid_filenames), ('train', 'valid')):
+        for filenames, train_or_valid in tqdm(zip((train_filenames, valid_filenames), ('train', 'valid'))):
             num_per_shard = int(math.ceil(len(filenames) / float(num_shards)))
             if self._verbose_tfr==True: print("Number per shard: ", num_per_shard); sys.stdout.flush()
 
-            for shard_id in range(num_shards):
-                output_filename = self._get_dataset_filename(tf_record_root_dir, 'train', shard_id, dataset_name, num_shards)
+            for shard_id in tqdm(range(num_shards)):
+                output_filename = self._get_dataset_filename(tf_record_root_dir, train_or_valid, shard_id, dataset_name, num_shards)
                 if self._verbose_tfr==True: print(output_filename); sys.stdout.flush()
 
                 with tf.python_io.TFRecordWriter(output_filename) as tfrecord_writer:
@@ -162,24 +185,74 @@ class TFRecord_Helper(ImageHelper):
 
                         # Create a feature
                         feature = {'image/label': self._int64_feature(class_id),
-                            'image/image': self._bytes_feature(image_data_binary),
+                            'image/encoded': self._bytes_feature(image_data_binary),
                             'image/height': self._int64_feature(self._height),
-                            'image/width': self._int64_feature(self._width) 
-                                    }
+                            'image/width': self._int64_feature(self._width),
+                            'image/format': self._bytes_feature(self._image_format.encode())}
+
+                        # Create an Example protocol buffer
+                        example = tf.train.Example(features=tf.train.Features(feature=feature))
+
+                        # Serialize to string and write on the file 
+                        tfrecord_writer.write(example.SerializeToString())
                         '''
                         example = dataset_utils.image_to_tfexample(
                             image_data, b'jpg', height, width, class_id)
                         tfrecord_writer.write(example.SerializeToString())
                         '''
+        print('\n')
+
+    def convert_from_tfrecord(self, tf_record_root_dir):
+
+        def _get_list():
+            """
+            Neted function of conver_from_tfrecord.
+            Returns:
+                filenames: list of file names which have tfrecord file format
+            """
+            #import time
+            #start = time.time()
+            """
+            filenames = []
+            for tfrecord_filename in os.listdir(tf_record_root_dir):
+                 if tfrecord_filename.endswith('.tfrecord'):
+                     filenames.append(tfrecord_filename)
+            """
+            filenames = [tfrecord_filename for tfrecord_filename in os.listdir(tf_record_root_dir) if tfrecord_filename.endswith('.tfrecord')]
+            #time_difference = time.time() - start
+            #print(time_difference)
+            return filenames
+
+        tfrecord_filenames = _get_list()
+        if self._verbose_tfr==True: print(tfrecord_filenames); sys.stdout.flush()
+        
+        with tf.Session() as sess:
+            # Create a feature
+            feature = {'image/label': tf.FixedLenFeature([], tf.int64),
+                'image/encoded': tf.FixedLenFeature([], tf.string),
+                'image/height': tf.FixedLenFeature([], tf.int64),
+                'image/width': tf.FixedLenFeature([], tf.int64),
+                'image/format': tf.FixedLenFeature([], tf.string)}
+
+            for train_or_valid in ('train', 'valid'):
+                if self._verbose_tfr==True: print([i for i in tfrecord_filenames if train_or_valid in i]); sys.stdout.flush()
+
+                dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i])
 
     #with tf.python_io.TFRecordWriter(filename) as writer:
 if __name__ == "__main__":
-    image_helper = TFRecord_Helper()
-    image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/170/170-11.png")
+    image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+    #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
     
+    """
     image_helper.convert_to_tfrecord(
-        '/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/',
-        'face', 5, 0.3)
+        #'/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/',
+        '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/',
+        'face', 6, 0.3)
+    """
+
+    image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
+    
     #ii = image_helper.tf_read_file_as_binary("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/170/170-11.png")
     #print(type(ii))
     #with tf.Session('') as sess:

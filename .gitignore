@@ -41,3 +41,5 @@ TensorFlow/Semantic-Segmentation/\.vscode/
 TensorFlow/slim/face-recognition/dataset/images/170/
 
 TensorFlow/slim/face-recognition/dataset/images/270/
+
+*.jpg
