@@ -24,6 +24,8 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 
+#import matplotlib.pyplot as plt
+
 class ImageHelper(object):
     """
     Helper class that provides TensorFlow image coding utilities.
@@ -203,6 +205,12 @@ class TFRecord_Helper(ImageHelper):
         print('\n')
 
     def convert_from_tfrecord(self, tf_record_root_dir):
+        # Create a feature
+        feature = {'image/label': tf.FixedLenFeature([], tf.int64),
+            'image/encoded': tf.FixedLenFeature([], tf.string),
+            'image/height': tf.FixedLenFeature([], tf.int64),
+            'image/width': tf.FixedLenFeature([], tf.int64),
+            'image/format': tf.FixedLenFeature([], tf.string)}
 
         def _get_list():
             """
@@ -218,30 +226,64 @@ class TFRecord_Helper(ImageHelper):
                  if tfrecord_filename.endswith('.tfrecord'):
                      filenames.append(tfrecord_filename)
             """
-            filenames = [tfrecord_filename for tfrecord_filename in os.listdir(tf_record_root_dir) if tfrecord_filename.endswith('.tfrecord')]
+            filenames = [os.path.abspath(tfrecord_filename) for tfrecord_filename in os.listdir(tf_record_root_dir) if tfrecord_filename.endswith('.tfrecord')]
             #time_difference = time.time() - start
             #print(time_difference)
             return filenames
 
         tfrecord_filenames = _get_list()
-        if self._verbose_tfr==True: print(tfrecord_filenames); sys.stdout.flush()
-        
-        with tf.Session() as sess:
-            # Create a feature
-            feature = {'image/label': tf.FixedLenFeature([], tf.int64),
-                'image/encoded': tf.FixedLenFeature([], tf.string),
-                'image/height': tf.FixedLenFeature([], tf.int64),
-                'image/width': tf.FixedLenFeature([], tf.int64),
-                'image/format': tf.FixedLenFeature([], tf.string)}
+        #if self._verbose_tfr==True: [print(tfrecord_filename) for tfrecord_filename in tfrecord_filenames]; sys.stdout.flush()
 
-            for train_or_valid in ('train', 'valid'):
-                if self._verbose_tfr==True: print([i for i in tfrecord_filenames if train_or_valid in i]); sys.stdout.flush()
+# ########################################################################################################
+# ########################################################################################################
+# ########################################################################################################        
+        def _extract_from_tfrecord(_tfrecord_filenames):
+            # Extract the data record
+            features = tf.parse_single_example(_tfrecord_filenames, feature)
+            image = tf.image.decode_image(features['image/encoded'])
+            #print("Extracted image shape: ", np.shape(image)); sys.stdout.flush()
+            print("Extracted image shape: ", image); sys.stdout.flush()
+            return image
 
-                dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i])
+        for train_or_valid in ('train', 'valid'):
+            #tfrecord_dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i][0])
+            tfrecord_dataset = tf.data.TFRecordDataset(["/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Face-Recognition/face_train_00000-of-00006.tfrecord"])
+            #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
+            
+            tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
+            
+            tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
+            get_next_in_interator = tfrecord_iterator.get_next()
 
-    #with tf.python_io.TFRecordWriter(filename) as writer:
+            with tf.Session() as sess:
+                sess.run(tf.global_variables_initializer())
+                
+                try:
+                    # Keep extracting data till TFRecord is exhausted
+                    while True:
+                        image_data = sess.run(get_next_in_interator)
+
+                        '''
+                        # Check if image shape is same after decoding
+                        if not np.array_equal(image_data[0].shape, image_data[3]):
+                            print('Image {} not decoded properly'.format(image_data[2]))
+                            continue
+                            
+                        save_path = os.path.abspath(os.path.join(folder_path, image_data[2].decode('utf-8')))
+                        mpimg.imsave(save_path, image_data[0])
+                        print('Save path = ', save_path, ', Label = ', image_data[1])
+                        '''
+                        print("Extracted image shape: ", np.shape(image_data)); sys.stdout.flush()
+
+                except:
+                    pass
+
+# ########################################################################################################
+# ########################################################################################################
+# ########################################################################################################        
+
 if __name__ == "__main__":
-    image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+    image_helper = TFRecord_Helper(height=224, width=224, verbose=True)
     #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
     
     """
