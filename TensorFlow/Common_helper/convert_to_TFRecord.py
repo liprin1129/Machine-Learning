@@ -190,10 +190,10 @@ class TFRecord_Helper(ImageHelper):
                         if self._verbose_tfr==True: print(class_id); sys.stdout.flush()
 
                         # Create a feature
-                        feature = {'image/label': self._int64_feature(class_id),
+                        feature = {'image/label': self._int64_feature(np.int64(class_id)),
                             'image/encoded': self._bytes_feature(image_data_binary),
-                            'image/height': self._int64_feature(self._height),
-                            'image/width': self._int64_feature(self._width),
+                            'image/height': self._int64_feature(np.int64(self._height)),
+                            'image/width': self._int64_feature(np.int64(self._width)),
                             'image/channel': self._int64_feature(self._channels)}
 
                         # Create an Example protocol buffer
@@ -255,7 +255,9 @@ class TFRecord_Helper(ImageHelper):
             image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
             label = datum_record['image/label']
             #print("Extracted image shape: ", np.shape(image)); sys.stdout.flush()
-            #print("Extracted image shape: ", img_shape); sys.stdout.flush()
+            #print("Extracted image shape: ", image_shape); sys.stdout.flush()
+            #print(datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']); sys.stdout.flush()
+
             return image, image_shape, label
 
         #for train_or_valid in ('train', 'valid'):
@@ -289,7 +291,7 @@ class TFRecord_Helper(ImageHelper):
                     mpimg.imsave(save_path, image_data[0])
                     print('Save path = ', save_path, ', Label = ', image_data[1])
                     """
-                    print("Extracted image label: ", np.shape(image_data[2])); sys.stdout.flush()
+                    print("Extracted image label: ", image_data[2]); sys.stdout.flush()
 
             except:
                 print("ERROR!")
@@ -301,10 +303,10 @@ class TFRecord_Helper(ImageHelper):
 
 if __name__ == "__main__":
     
-    select = 0
+    select = 1
     #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
 
-    if select == 1:
+    if select == 0:
         image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
         image_helper.convert_to_tfrecord(
             #'/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/',
