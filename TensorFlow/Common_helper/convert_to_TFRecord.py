@@ -46,13 +46,13 @@ class ImageHelper(object):
         self._height = height
         self._width = width
         self._channels = 3
-        self._image_format = 'jpg'
         #self._image_data = None
         self._verbose_img = verbose
 
     def cv_read_img_with_abs_path(self, abs_file_name):
         image = cv2.imread(abs_file_name, cv2.IMREAD_UNCHANGED)
         if self._verbose_img==True: print("1. Number of channels: ", image.shape); sys.stdout.flush()
+        print("Image shape: ", image.shape)
 
         if image.shape[2] > self._channels: # if image is in RGBD format
             image = self.cv_bgra2rgb(image)
@@ -63,7 +63,7 @@ class ImageHelper(object):
             image = cv2.resize(image, dsize=(self._width, self._height), interpolation = cv2.INTER_AREA)
 
         if self._verbose_img==True: print("2. Number of channels: ", image.shape); sys.stdout.flush()
-
+        
         return image.astype(np.float32)
 
     def cv_bgra2rgb(self, image):
@@ -175,8 +175,12 @@ class TFRecord_Helper(ImageHelper):
 
                         # Read the filename:
                         if self._verbose_tfr==True: print(filenames[i]); sys.stdout.flush()
-                        image_data_cv = self.cv_read_img_with_abs_path(filenames[i])
-                        image_data_binary = tf.compat.as_bytes(image_data_cv.tostring())
+                        #image_data_cv = self.cv_read_img_with_abs_path(filenames[i])
+                        #image_data_binary = tf.compat.as_bytes(image_data_cv.tostring())
+                        # Read image data in terms of bytes
+                        with tf.gfile.FastGFile(filenames[i], 'rb') as fid:
+                            image_data_binary = fid.read()
+                        #image_data_binary = image_data_cv.tostring()
                         #height, width = image_reader.read_image_dims(sess, image_data)
                         
                         class_name = os.path.basename(os.path.dirname(filenames[i]))
@@ -190,7 +194,7 @@ class TFRecord_Helper(ImageHelper):
                             'image/encoded': self._bytes_feature(image_data_binary),
                             'image/height': self._int64_feature(self._height),
                             'image/width': self._int64_feature(self._width),
-                            'image/format': self._bytes_feature(self._image_format.encode())}
+                            'image/channel': self._int64_feature(self._channels)}
 
                         # Create an Example protocol buffer
                         example = tf.train.Example(features=tf.train.Features(feature=feature))
@@ -210,7 +214,13 @@ class TFRecord_Helper(ImageHelper):
             'image/encoded': tf.FixedLenFeature([], tf.string),
             'image/height': tf.FixedLenFeature([], tf.int64),
             'image/width': tf.FixedLenFeature([], tf.int64),
-            'image/format': tf.FixedLenFeature([], tf.string)}
+            'image/channel': tf.FixedLenFeature([], tf.int64)}
+        
+        """feature = {'image/label': tf.FixedLenFeature([], tf.int64),
+            'image/encoded': tf.VarLenFeature(tf.string),
+            'image/height': tf.FixedLenFeature([], tf.int64),
+            'image/width': tf.FixedLenFeature([], tf.int64),
+            'image/channel': tf.FixedLenFeature([], tf.int64)}"""
 
         def _get_list():
             """
@@ -239,61 +249,71 @@ class TFRecord_Helper(ImageHelper):
 # ########################################################################################################        
         def _extract_from_tfrecord(_tfrecord_filenames):
             # Extract the data record
-            features = tf.parse_single_example(_tfrecord_filenames, feature)
-            image = tf.image.decode_image(features['image/encoded'])
+            datum_record = tf.parse_single_example(_tfrecord_filenames, feature)
+
+            image = tf.image.decode_image(datum_record['image/encoded'])
+            image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
+            label = datum_record['image/label']
             #print("Extracted image shape: ", np.shape(image)); sys.stdout.flush()
-            print("Extracted image shape: ", image); sys.stdout.flush()
-            return image
+            #print("Extracted image shape: ", img_shape); sys.stdout.flush()
+            return image, image_shape, label
 
-        for train_or_valid in ('train', 'valid'):
-            #tfrecord_dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i][0])
-            tfrecord_dataset = tf.data.TFRecordDataset(["/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Face-Recognition/face_train_00000-of-00006.tfrecord"])
-            #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
+        #for train_or_valid in ('train', 'valid'):
+        #tfrecord_dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i][0])
+        tfrecord_dataset = tf.data.TFRecordDataset(["/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/face_train_00000-of-00006.tfrecord"])
+        #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
+        
+        tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
+        
+        tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
+        get_next_in_interator = tfrecord_iterator.get_next()
+
+        with tf.Session() as sess:
+            sess.run(tf.global_variables_initializer())
             
-            tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
-            
-            tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
-            get_next_in_interator = tfrecord_iterator.get_next()
+            #image_data = sess.run(get_next_in_interator)
+            #print("Extracted image label: ", np.shape(image_data[2])); sys.stdout.flush()
 
-            with tf.Session() as sess:
-                sess.run(tf.global_variables_initializer())
-                
-                try:
-                    # Keep extracting data till TFRecord is exhausted
-                    while True:
-                        image_data = sess.run(get_next_in_interator)
+            try:
+                # Keep extracting data till TFRecord is exhausted
+                while True:
+                    image_data = sess.run(get_next_in_interator)
 
-                        '''
-                        # Check if image shape is same after decoding
-                        if not np.array_equal(image_data[0].shape, image_data[3]):
-                            print('Image {} not decoded properly'.format(image_data[2]))
-                            continue
-                            
-                        save_path = os.path.abspath(os.path.join(folder_path, image_data[2].decode('utf-8')))
-                        mpimg.imsave(save_path, image_data[0])
-                        print('Save path = ', save_path, ', Label = ', image_data[1])
-                        '''
-                        print("Extracted image shape: ", np.shape(image_data)); sys.stdout.flush()
+                    """
+                    # Check if image shape is same after decoding
+                    if not np.array_equal(image_data[0].shape, image_data[3]):
+                        print('Image {} not decoded properly'.format(image_data[2]))
+                        continue
+                        
+                    save_path = os.path.abspath(os.path.join(folder_path, image_data[2].decode('utf-8')))
+                    mpimg.imsave(save_path, image_data[0])
+                    print('Save path = ', save_path, ', Label = ', image_data[1])
+                    """
+                    print("Extracted image label: ", np.shape(image_data[2])); sys.stdout.flush()
 
-                except:
-                    pass
+            except:
+                print("ERROR!")
+                pass
 
 # ########################################################################################################
 # ########################################################################################################
 # ########################################################################################################        
 
 if __name__ == "__main__":
-    image_helper = TFRecord_Helper(height=224, width=224, verbose=True)
-    #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
     
-    """
-    image_helper.convert_to_tfrecord(
-        #'/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/',
-        '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/',
-        'face', 6, 0.3)
-    """
+    select = 0
+    #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
 
-    image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
+    if select == 1:
+        image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+        image_helper.convert_to_tfrecord(
+            #'/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/',
+            '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/',
+            'face', 6, 0.3)
+    
+    else:
+        image_helper = TFRecord_Helper(height=224, width=224, verbose=True)
+        image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
     
     #ii = image_helper.tf_read_file_as_binary("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/170/170-11.png")
     #print(type(ii))
