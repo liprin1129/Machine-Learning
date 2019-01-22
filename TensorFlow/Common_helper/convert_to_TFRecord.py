@@ -93,6 +93,7 @@ class TFRecord_Helper(ImageHelper):
         ImageHelper.__init__(self, height, width, False)
         self._random_seed = seed
         self._verbose_tfr = verbose
+        #self.get_next_in_interators = []
 
     def _get_dataset_filename(self, tfrecord_dir, split_name, shard_id, dataset_name, num_shards):
         assert split_name in ['train', 'valid']
@@ -194,7 +195,8 @@ class TFRecord_Helper(ImageHelper):
                             'image/encoded': self._bytes_feature(image_data_binary),
                             'image/height': self._int64_feature(np.int64(self._height)),
                             'image/width': self._int64_feature(np.int64(self._width)),
-                            'image/channel': self._int64_feature(self._channels)}
+                            'image/channel': self._int64_feature(self._channels),
+                            'image/name': self._bytes_feature(os.path.basename(filenames[i])[:-4].encode('utf-8'))}
 
                         # Create an Example protocol buffer
                         example = tf.train.Example(features=tf.train.Features(feature=feature))
@@ -214,13 +216,8 @@ class TFRecord_Helper(ImageHelper):
             'image/encoded': tf.FixedLenFeature([], tf.string),
             'image/height': tf.FixedLenFeature([], tf.int64),
             'image/width': tf.FixedLenFeature([], tf.int64),
-            'image/channel': tf.FixedLenFeature([], tf.int64)}
-        
-        """feature = {'image/label': tf.FixedLenFeature([], tf.int64),
-            'image/encoded': tf.VarLenFeature(tf.string),
-            'image/height': tf.FixedLenFeature([], tf.int64),
-            'image/width': tf.FixedLenFeature([], tf.int64),
-            'image/channel': tf.FixedLenFeature([], tf.int64)}"""
+            'image/channel': tf.FixedLenFeature([], tf.int64),
+            'image/name': tf.FixedLenFeature([], tf.string)}
 
         def _get_list():
             """
@@ -228,78 +225,73 @@ class TFRecord_Helper(ImageHelper):
             Returns:
                 filenames: list of file names which have tfrecord file format
             """
-            #import time
-            #start = time.time()
+
             """
             filenames = []
             for tfrecord_filename in os.listdir(tf_record_root_dir):
                  if tfrecord_filename.endswith('.tfrecord'):
                      filenames.append(tfrecord_filename)
             """
-            filenames = [os.path.abspath(tfrecord_filename) for tfrecord_filename in os.listdir(tf_record_root_dir) if tfrecord_filename.endswith('.tfrecord')]
-            #time_difference = time.time() - start
-            #print(time_difference)
+            os.chdir(tf_record_root_dir) # Change working directory
+            filenames = [os.path.abspath(tfrecord_filename) # Return a list of abolute file name for tfrecords
+                for tfrecord_filename in os.listdir(tf_record_root_dir) 
+                    if tfrecord_filename.endswith('.tfrecord')] 
+
             return filenames
 
-        tfrecord_filenames = _get_list()
+        tfrecord_filenames = _get_list() #get tfrecord's absolute file names
         #if self._verbose_tfr==True: [print(tfrecord_filename) for tfrecord_filename in tfrecord_filenames]; sys.stdout.flush()
 
-# ########################################################################################################
-# ########################################################################################################
-# ########################################################################################################        
+ 
         def _extract_from_tfrecord(_tfrecord_filenames):
+            """
+            Load tfrecord file on memory
+            
+            Returns:
+                tfrecord informations
+            """
             # Extract the data record
             datum_record = tf.parse_single_example(_tfrecord_filenames, feature)
 
             image = tf.image.decode_image(datum_record['image/encoded'])
             image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
-            label = datum_record['image/label']
-            #print("Extracted image shape: ", np.shape(image)); sys.stdout.flush()
-            #print("Extracted image shape: ", image_shape); sys.stdout.flush()
-            #print(datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']); sys.stdout.flush()
+            image_label = datum_record['image/label']
+            image_name = datum_record['image/name']
+            return image_name, image_shape, image_label, image
 
-            return image, image_shape, label
+        for train_or_valid in ('train', 'valid'):
+            #tfrecord_dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i])
 
-        #for train_or_valid in ('train', 'valid'):
-        #tfrecord_dataset = tf.data.TFRecordDataset([i for i in tfrecord_filenames if train_or_valid in i][0])
-        tfrecord_dataset = tf.data.TFRecordDataset(["/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/face_train_00000-of-00006.tfrecord"])
-        #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
-        
-        tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
-        
-        tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
-        get_next_in_interator = tfrecord_iterator.get_next()
+            for tfrecord_file in [i for i in tfrecord_filenames if train_or_valid in i]:
+                #tfrecord_dataset = tf.data.TFRecordDataset(["/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/face_train_00000-of-00006.tfrecord"])
+                tfrecord_dataset = tf.data.TFRecordDataset([tfrecord_file])
 
-        with tf.Session() as sess:
-            sess.run(tf.global_variables_initializer())
-            
-            #image_data = sess.run(get_next_in_interator)
-            #print("Extracted image label: ", np.shape(image_data[2])); sys.stdout.flush()
+                #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
+                
+                tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
+                
+                tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
+                get_next_in_interator = tfrecord_iterator.get_next()
 
-            try:
-                # Keep extracting data till TFRecord is exhausted
-                while True:
-                    image_data = sess.run(get_next_in_interator)
+                """ # Example of how to use tfrecord_iterator inside this function; convert_from_tfrecord(self, tf_record_root_dir)
+                with tf.Session() as sess:
+                    sess.run(tf.global_variables_initializer())
 
-                    """
-                    # Check if image shape is same after decoding
-                    if not np.array_equal(image_data[0].shape, image_data[3]):
-                        print('Image {} not decoded properly'.format(image_data[2]))
-                        continue
-                        
-                    save_path = os.path.abspath(os.path.join(folder_path, image_data[2].decode('utf-8')))
-                    mpimg.imsave(save_path, image_data[0])
-                    print('Save path = ', save_path, ', Label = ', image_data[1])
-                    """
-                    print("Extracted image label: ", image_data[2]); sys.stdout.flush()
+                    try:
+                        # Keep extracting data till TFRecord is exhausted
+                        while True:
+                            image_data = sess.run(get_next_in_interator)
 
-            except:
-                print("ERROR!")
-                pass
+                            print("Extracted image name: ", image_data[0]); sys.stdout.flush()
 
-# ########################################################################################################
-# ########################################################################################################
-# ########################################################################################################        
+                    except:
+                        print("End of an {0}".format(os.path.basename(tfrecord_file)))
+                        pass
+                """
+
+                #get_next_in_interators.append(get_next_in_interator)
+                print("[[[[[[[[[[[[ {0} ]]]]]]]]]]]]".format(os.path.basename(tfrecord_file)))
+                yield get_next_in_interator
 
 if __name__ == "__main__":
     
@@ -315,8 +307,26 @@ if __name__ == "__main__":
     
     else:
         image_helper = TFRecord_Helper(height=224, width=224, verbose=True)
-        image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
-    
-    #ii = image_helper.tf_read_file_as_binary("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/170/170-11.png")
-    #print(type(ii))
-    #with tf.Session('') as sess:
+
+        """ # Example of how to use tfrecord_iterator generator yielded by by convert_from_tfrecord(self, tf_record_root_dir)
+        get_next_in_interators = image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
+
+        with tf.Session() as sess:
+            sess.run(tf.global_variables_initializer())
+
+            # Keep extracting data till TFRecord is exhausted
+            for id, get_next_in_interator in enumerate(get_next_in_interators):
+                print("<<<<<<<<<<<< ITERATOR {0} >>>>>>>>>".format(id))
+                try:
+                    while True:
+                    #print(get_next_in_interator)
+                        image_data = sess.run(get_next_in_interator)
+
+                        print("Extracted image name: ", image_data[0]); sys.stdout.flush()
+
+                except:
+                    #print("End of an {0}".format(os.path.basename(tfrecord_file)))
+                    print("ERROR")
+                    pass 
+        """
+
