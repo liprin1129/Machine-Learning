@@ -1,0 +1,15 @@
+*__pycache__*
+FeatureVector/Data/*
+FeatureVector/Model/*
+*.idea*
+ImageAugmentation/ClubbedModules/Data/*
+ImageAugmentation/ClubbedModules/Model/*
+TextEmbeddings/SentenceLevel/Data/*
+TextEmbeddings/SentenceLevel/Model/*
+TextEmbeddings/WordLevel/Data/*
+TextEmbeddings/WordLevel/Model/*
+ObjectDetection/Data/ImgsPlot
+VideoClassification/Model/*
+VideoClassification/Data/*
+Generators/Images/*
+
