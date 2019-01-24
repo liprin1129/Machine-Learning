@@ -43,3 +43,7 @@ TensorFlow/slim/face-recognition/dataset/images/170/
 TensorFlow/slim/face-recognition/dataset/images/270/
 
 *.jpg
+
+TensorFlow/Self-Practices/tensorflow-hub/MNIST-data/
+
+TensorFlow/Self-Practices/tensorflow-hub/MNIST_data/
