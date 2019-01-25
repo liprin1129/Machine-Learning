@@ -24,8 +24,9 @@ print("======> dataset.image_data: ", dataset.img_data)
 #softmax = tf.nn.softmax(logits)
 #top_predictions = tf.nn.top_k(softmax, top_k, name='top_predictions')
 
-module = hub.Module('https://tfhub.dev/google/imagenet/resnet_v1_50/classification/1',
-                    trainable=True)   # Trainable is True since we are going to fine-tune the model
+module = hub.Module('https://tfhub.dev/google/imagenet/resnet_v1_50/classification/1')
+#module = hub.Module('https://tfhub.dev/google/imagenet/resnet_v1_50/classification/1',
+#                    trainable=True)   # Trainable is True since we are going to fine-tune the model
 print("\n========> output info dict:")
 [print('{0}: {1}'.format(k, v)) for k, v in sorted(module.get_output_info_dict(signature='image_classification').items())]
 
