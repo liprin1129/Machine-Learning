@@ -79,6 +79,7 @@ def conv_layer_2d(_input_tensor,
 
     return conv
 
+"""
 def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
     assert _training is not None
 
@@ -173,3 +174,4 @@ def unit_conv_maxpool(_input_tensor, unit_num_int, _output_ch_list=[], _training
             bottle_neck = tf.nn.relu(tf.add(short_cut_tensor, rep_conv))
 
     return bottle_neck
+"""
