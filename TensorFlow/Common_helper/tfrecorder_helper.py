@@ -313,12 +313,9 @@ class TFRecord_Helper(ImageHelper):
         elif _phase == "test": filenames = os.path.join(tf_record_root_dir, "*test*.tfrecord")
         
         tf_dataset_files = tf.data.Dataset.list_files(filenames, shuffle=True)
-        #print("\n====> ",files)
 
         # parallel fetch tfrecords dataset using the file list in parallel
         tf_dataset = tf_dataset_files.apply(tf.data.experimental.parallel_interleave(lambda filename: tf.data.TFRecordDataset(filename), cycle_length=8))
-        #print("\n====> ", dataset)
-        #dataset = dataset.apply(tf.contrib.data.shuffle_and_repeat(32))
 
         def _extract_from_tfrecord(_tfrecord_filenames, resize=[], normalization=None):
             """
@@ -336,9 +333,9 @@ class TFRecord_Helper(ImageHelper):
             datum_record = tf.parse_single_example(_tfrecord_filenames, feature)
 
             jpeg_image = datum_record['image/encoded']
-            #print("===> Shape1: ", np.shape(jpeg_image))
             image = tf.image.decode_jpeg(jpeg_image)
-            #print("===> Shape2: ", np.shape(image))
+            image = tf.cast(image, tf.float32)
+
             image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
             image_label = datum_record['image/label']
             image_name = datum_record['image/name']
@@ -349,7 +346,7 @@ class TFRecord_Helper(ImageHelper):
             image = image - tf.cast(tf.stack((0, 0, 0)), tf.float32) # to specify the dimension of the tfrecord image. If not using this, it will give an error in makeing model phase
 
             if normalization is not None:
-                image = tf.cast(image, tf.float32) * (1./255)
+                image = image * (1./255)
 
             #return image_name, image_shape, image_label, image
             #return {"image": image}, {"class_idx": image_label}
@@ -367,15 +364,15 @@ class TFRecord_Helper(ImageHelper):
         #print("\n====> ", dataset)
 
         #Input Function
-        iterator = tf_dataset.make_one_shot_iterator().get_next()
-        #iterator = tf_dataset.make_initializable_iterator().get_next()
+        #iterator = tf_dataset.make_one_shot_iterator()
+        iterator = tf_dataset.make_initializable_iterator()
 
         return iterator
 
 
 if __name__ == "__main__":
     
-    select = 3
+    select = 2
     #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
 
     if select == 0:
@@ -414,124 +411,55 @@ if __name__ == "__main__":
                 break
 
     elif select == 2:
-        feature = {'image/label': tf.FixedLenFeature([], tf.int64),
-            'image/encoded': tf.FixedLenFeature([], tf.string),
-            'image/height': tf.FixedLenFeature([], tf.int64),
-            'image/width': tf.FixedLenFeature([], tf.int64),
-            'image/channel': tf.FixedLenFeature([], tf.int64),
-            'image/name': tf.FixedLenFeature([], tf.string)}
-
-        files = tf.data.Dataset.list_files("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/face_train_*.tfrecord", shuffle=True)
-        #print("\n====> ",files)
-
-        # parallel fetch tfrecords dataset using the file list in parallel
-        dataset = files.apply(tf.data.experimental.parallel_interleave(lambda filename: tf.data.TFRecordDataset(filename), cycle_length=8))
-        #print("\n====> ", dataset)
-        #dataset = dataset.apply(tf.contrib.data.shuffle_and_repeat(32))
-
-        def _extract_from_tfrecord(_tfrecord_filenames, resize=[], normalization=None):
-            """
-            Load tfrecord file on memory
-            
-            Returns:
-                tfrecord iterator generator
-            """
-
-            # Extract the data record
-            datum_record = tf.parse_single_example(_tfrecord_filenames, feature)
-
-            jpeg_image = datum_record['image/encoded']
-            #print("===> Shape1: ", np.shape(jpeg_image))
-            image = tf.image.decode_jpeg(jpeg_image)
-            #print("===> Shape2: ", np.shape(image))
-            image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
-            image_label = datum_record['image/label']
-            image_name = datum_record['image/name']
-
-            if len(resize) > 1:
-                #resize = tf.cast(resize, tf.int32)
-                #image = tf.reshape(image, [255, 255, 3])
-                #print("===> Shape3: ", np.shape(image))
-                image = tf.image.resize_images(image, resize)#, method=tf.image.ResizeMethod.AREA, align_corners=True)
-                #print("===> Shape4: ", np.shape(image))
-            if normalization is not None:
-                image = tf.cast(image, tf.float32) * (1./255)
-
-            #return image_name, image_shape, image_label, image
-            return {"image": image}, {"class_idx": image_label}
-
-        # map the parse  function to each example individually in threads*2 parallel calls
-        dataset = dataset.map(map_func=lambda example: _extract_from_tfrecord(example, resize=[255, 255], normalization=True), num_parallel_calls=4)
-        #dataset = dataset.map(map_func=lambda example: _parse_function(example, 255, 10,training=True), num_parallel_calls=8)
         
-        #All the individually processed examples are then batched and ready for processing
-        batch_size = 30
-        dataset = dataset.batch(batch_size=batch_size)
+        image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+        train_iterator = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "train")
+        valid_iterator = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "valid")
+        """
+        placeholder_X = tf.placeholder(tf.float32, shape = [None, 28, 28, 1])
+        placeholder_y = tf.placeholder(tf.int32, shape = [None])
 
-        # Load
-        dataset = dataset.prefetch(buffer_size=batch_size)
-        #print("\n====> ", dataset)
+        # Create separate Datasets for training, validation and testing
+        train_dataset = tf.data.Dataset.from_tensor_slices((placeholder_X, placeholder_y))
+        def map_fn(x, y):
+            # Do transformations here
+            return x, y
+        train_dataset = train_dataset.batch(10).map(lambda x, y: map_fn(x, y))
 
-        #Input Function
-        input_fn = dataset.make_one_shot_iterator().get_next()
+        print(train_dataset.output_types, train_dataset.output_shapes)
+        """
+        handle = tf.placeholder(tf.string, shape=[])
+        iterator = tf.data.Iterator.from_string_handle(
+            handle, (tf.float32, tf.int64), ([None, 224, 224, 3], [None]))
+        next_element = iterator.get_next()
 
         with tf.Session() as sess:
-            sess.run(tf.global_variables_initializer())
+            # Return handles that can be feed as the iterator in sess.run
+            training_handle = sess.run(train_iterator.string_handle())
+            validation_handle = sess.run(valid_iterator.string_handle())
 
-            try:
-                while True:
-                #print(get_next_in_interator)
-                    image_data = sess.run(input_fn)
+            for _ in range(3):
+                try:
+                    count = 0
+                    sess.run(train_iterator.initializer)
+                    while True:
+                        a = sess.run(next_element, feed_dict={handle: training_handle})
+                        count += 1
+                except tf.errors.OutOfRangeError:
+                    print(count)
+                    pass
 
-                    #print("Extracted image name: ", np.shape(image_data[3])); sys.stdout.flush()
-                    #print("Extracted image name: ", image_data[2]); sys.stdout.flush()
-                    print("Extracted image name: ", np.shape(image_data[0]['image'])); sys.stdout.flush()
-                    break
+                try:
+                    count = 0
+                    sess.run(valid_iterator.initializer)
+                    while True:
+                        a = sess.run(next_element, feed_dict={handle: validation_handle})
+                        count += 1
+                except tf.errors.OutOfRangeError:
+                    print(count)
+                    print("\n")
+                    pass
 
-            except:
-                #print("End of an {0}".format(os.path.basename(tfrecord_file)))
-                print("ERROR")
-                pass
-
-        """
-        import sys
-        sys.path.append("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Face-Recognition/")
-        import recognition_phase
-
-        def model_fn(features, labels, mode, params):
-
-            if mode == tf.estimator.ModeKeys.PREDICT:
-                pred_model = recognition_phase.facenet(features["image"], False)
-                
-                _,top_5 = tf.nn.top_k(pred_model,k=5)
-                
-                predictions = {
-                    'top_1': tf.argmax(pred_model, -1),
-                    'top_5': top_5,
-                    'probabilities': tf.nn.softmax(pred_model),
-                    'logits': pred_model,
-                    }
-
-                return tf.estimator.EstimatorSpec(mode, predictions=predictions)
-
-            # Define train spec
-            if mode == tf.estimator.ModeKeys.TRAIN:
-                pred_model = recognition_phase.facenet(features["image"], False)
-                loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = features[class_idx], logits = pred_model))
-
-                optimizer = tf.train.AdamOptimizer(learning_rate = 0.001)
-                
-                train_op = optimizer.minimize(loss)
-
-                # if params["output_train_images"] is true output images during training
-                if params["output_train_images"]:
-                    tf.summary.image("training", features["image"])
-
-                #scaffold = tf.train.Scaffold(init_op=None, init_fn=tools.fine_tune.init_weights("squeezenext",params["fine_tune_ckpt"]))
-                # create estimator training spec, which also outputs the model_stats of the model to params["model_dir"]
-                #return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op, training_hooks=[tools.stats._ModelStats("squeezenext", params["model_dir"], features["image"].get_shape().as_list()[0])],scaffold=scaffold)
-                return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
-        """
     elif select == 3:
         image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
         input_fn = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 0, 20, "train")

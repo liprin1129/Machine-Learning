@@ -171,19 +171,28 @@ class FacenetModel(object):
     def __call__(self, _tfdata_dir, _height, _width, _tv_placeholder):
         tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
 
-        #self.iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, _phase="train")
-        #print("\n=====> ", self.iterator)
-    
-        self.train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, _phase="train")
-        self.valid_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, _phase="valid")        
+        placeholder_X = tf.placeholder(tf.float32, shape = [None, _height, _width, 3])
+        placeholder_y = tf.placeholder(tf.int64, shape = [None])
 
-        logits = facenet(self.train_iterator["image"], _tv_placeholder)
-
+###########################################################################################################
+        logits = facenet(placeholder_X, _tv_placeholder)
+        """
         loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.train_iterator["labels"], logits = logits))
         self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate).minimize(loss)
 
         self.predictions = tf.argmax(logits, 1, output_type = tf.int32)
         self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.train_iterator["labels"], tf.int32)), tf.float32)), self.batch) * 100
+###########################################################################################################
+
+        tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
+        train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "train")
+        validation_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "valid")
+
+        handle = tf.placeholder(tf.string, shape=[])
+        iterator = tf.data.Iterator.from_string_handle(
+            handle, (tf.float32, tf.int64), ([None, 224, 224, 3], [None]))
+        next_element = iterator.get_next()
+        """
 
 if __name__=="__main__":
     epoch = 10
@@ -212,17 +221,6 @@ if __name__=="__main__":
         except tf.errors.OutOfRangeError:
             pass
 
-    """
-    epoch = 10
-    batch = 10
-    learning_rate = 0.001
-
-    _tfdata_dir = '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/'
-    _epoch = 10
-    _batch = 10
-    iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, _epoch, _batch, _phase="test")
-    logits = facenet(self.iterator["image"], train_validation_phase=False)
-    """
 
     """
     print(conv)
