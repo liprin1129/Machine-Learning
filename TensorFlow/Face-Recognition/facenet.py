@@ -4,6 +4,7 @@ import tensorflow as tf
 import tensorflow_deeplay as dlay
 import os
 from tfrecorder_helper import TFRecord_Helper
+from tqdm import tqdm
 
 def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
     assert _training is not None
@@ -167,7 +168,7 @@ class FacenetModel(object):
         self.optimizer = None
         self.accuracy = None
         
-    def __call__(self, _tfdata_dir, _height, _width, _call_phase, _tv_placeholder):
+    def __call__(self, _tfdata_dir, _height, _width, _tv_placeholder):
         tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
 
         #self.iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, _phase="train")
@@ -185,10 +186,14 @@ class FacenetModel(object):
         self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.train_iterator["labels"], tf.int32)), tf.float32)), self.batch) * 100
 
 if __name__=="__main__":
-    model = FacenetModel(10, 10, 0.001)
+    epoch = 10
+    batch = 10
+    learning_rate = 0.001
+
+    model = FacenetModel(epoch, batch, learning_rate)
 
     tv = tf.placeholder(tf.bool)
-    model('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224, _call_phase="valid", _tv_placeholder=tv)
+    model('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224, _tv_placeholder=tv)
     #print(model.loss)
 
     if not os.path.exists('summaries'):

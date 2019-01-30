@@ -367,8 +367,8 @@ class TFRecord_Helper(ImageHelper):
         #print("\n====> ", dataset)
 
         #Input Function
-        #iterator = tf_dataset.make_one_shot_iterator().get_next()
-        iterator = tf_dataset.make_initializable_iterator().get_next()
+        iterator = tf_dataset.make_one_shot_iterator().get_next()
+        #iterator = tf_dataset.make_initializable_iterator().get_next()
 
         return iterator
 
