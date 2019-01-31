@@ -2,9 +2,9 @@ import sys; sys.path.append("/home/shared-data/Personal_Dev/Machine-Learning/Ten
 
 import tensorflow as tf
 import tensorflow_deeplay as dlay
-import os
 from tfrecorder_helper import TFRecord_Helper
 
+import os
 from tqdm import tqdm
 import numpy as np
 
@@ -30,7 +30,7 @@ def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _trainin
                 short_cut_tensor = dlay.conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
                                                         _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
                 
-                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
+                #short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -62,7 +62,7 @@ def unit_conv_skip(_input_tensor, unit_num_int, _output_ch_list=[], _training=No
                 short_cut_tensor = dlay.conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
                                                         _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
                 
-                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
+                #short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -96,7 +96,7 @@ def unit_conv_maxpool(_input_tensor, unit_num_int, _output_ch_list=[], _training
                                                 pooling_type="MAX",
                                                 padding="VALID",
                                                 strides=[2,2])
-                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
+                #short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -106,7 +106,7 @@ def unit_conv_maxpool(_input_tensor, unit_num_int, _output_ch_list=[], _training
     return bottle_neck
 
 
-def facenet(_input, train_validation_phase):
+def facenet(_input, train_validation_phase, outputs_logits_int, *layer_shape_dict):
     
     #train_validation_phase = tf.placeholder(tf.bool);
 
@@ -122,6 +122,31 @@ def facenet(_input, train_validation_phase):
                                         _pooling_padding = "SAME", _pooling_strides = [2,2], _batch_norm=True, _train_val_phase=train_validation_phase)
         #print("\n===> ", conv)
 
+    with tf.variable_scope("block1"):
+        unit = unit_conv_shortcut(conv, unit_num_int=1, _output_ch_list=layer_shape_dict[0]["unit1"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=layer_shape_dict[0]["unit2"], _training=train_validation_phase)
+        unit = unit_conv_maxpool(unit, unit_num_int=3, _output_ch_list=layer_shape_dict[0]["unit3"], _training=train_validation_phase)
+
+    with tf.variable_scope("block2"):
+        unit = unit_conv_shortcut(unit, unit_num_int=1, _output_ch_list=layer_shape_dict[1]["unit1"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=layer_shape_dict[1]["unit2"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=3, _output_ch_list=layer_shape_dict[1]["unit3"], _training=train_validation_phase)
+        unit = unit_conv_maxpool(unit, unit_num_int=4, _output_ch_list=layer_shape_dict[1]["unit4"], _training=train_validation_phase)
+
+    with tf.variable_scope("block3"):
+        unit = unit_conv_shortcut(unit, unit_num_int=1, _output_ch_list=layer_shape_dict[2]["unit1"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=layer_shape_dict[2]["unit2"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=3, _output_ch_list=layer_shape_dict[2]["unit3"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=4, _output_ch_list=layer_shape_dict[2]["unit4"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=5, _output_ch_list=layer_shape_dict[2]["unit5"], _training=train_validation_phase)
+        unit = unit_conv_maxpool(unit, unit_num_int=6, _output_ch_list=layer_shape_dict[2]["unit6"], _training=train_validation_phase)
+
+    with tf.variable_scope("block4"):
+        unit = unit_conv_shortcut(unit, unit_num_int=1, _output_ch_list=layer_shape_dict[3]["unit1"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=layer_shape_dict[3]["unit2"], _training=train_validation_phase)
+        unit = unit_conv_skip(unit, unit_num_int=3, _output_ch_list=layer_shape_dict[3]["unit3"], _training=train_validation_phase)
+    """
+    ###########################
     with tf.variable_scope("block1"):
         unit = unit_conv_shortcut(conv, unit_num_int=1, _output_ch_list=[64, 64, 256], _training=train_validation_phase)
         unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=[64, 64, 256], _training=train_validation_phase)
@@ -145,7 +170,8 @@ def facenet(_input, train_validation_phase):
         unit = unit_conv_shortcut(unit, unit_num_int=1, _output_ch_list=[512, 512, 2048], _training=train_validation_phase)
         unit = unit_conv_skip(unit, unit_num_int=2, _output_ch_list=[512, 512, 2048], _training=train_validation_phase)
         unit = unit_conv_skip(unit, unit_num_int=3, _output_ch_list=[512, 512, 2048], _training=train_validation_phase)
-
+    ###########################
+    """
     with tf.variable_scope("logits"):
         logits = tf.nn.pool(unit, 
                             window_shape= [unit.get_shape()[1], unit.get_shape()[2]], 
@@ -153,16 +179,28 @@ def facenet(_input, train_validation_phase):
                             padding="VALID",
                             strides=[1,1])
         #logits = dlay.conv_layer_2d(logits, _output_ch_int=1001, _kernel_w_int=1, _kernel_h_int=1, _stride_list=[1, 1, 1, 1],
-        logits = dlay.conv_layer_2d(logits, _output_ch_int=9, _kernel_w_int=1, _kernel_h_int=1, _stride_list=[1, 1, 1, 1],
+        logits = dlay.conv_layer_2d(logits, _output_ch_int=outputs_logits_int, _kernel_w_int=1, _kernel_h_int=1, _stride_list=[1, 1, 1, 1],
                                         _bias=True, _train_val_phase=train_validation_phase)
         logits = tf.squeeze(logits)
     return logits
 
-class FacenetModel(object):
-    def __init__(self, _num_epochs, _batch_size, _learning_rate):
-        self.epoch = _num_epochs
-        self.batch = _batch_size
-        self.learning_rate = _learning_rate
+
+class HyperParameters(object):
+    def __init__(self, _num_epochs_int, _batch_size_int, _learning_rate_int, _num_outputs_int):
+        self.block1 = {"unit1":[], "unit2":[], "unit3":[]}
+        self.block2 = {"unit1":[], "unit2":[], "unit3":[], "unit4":[]}
+        self.block3 = {"unit1":[], "unit2":[], "unit3":[], "unit4":[], "unit5":[], "unit6":[]}
+        self.block4 = {"unit1":[], "unit2":[], "unit3":[]}
+
+        self.epoch = _num_epochs_int
+        self.batch = _batch_size_int
+        self.learning_rate = _learning_rate_int
+        self.output = _num_outputs_int
+
+class FacenetModel(HyperParameters):
+    def __init__(self, _num_epochs_int, _batch_size_int, _learning_rate_int, _num_outputs_int):
+        HyperParameters.__init__(self, _num_epochs_int, _batch_size_int, _learning_rate_int, _num_outputs_int) # Parent class intializer
+
         self.train_valid_placeholder = tf.placeholder(tf.bool)
 
         self.predictions = None
@@ -196,7 +234,8 @@ class FacenetModel(object):
             self.get_next_in_interators = iterator.get_next()
 
         def _facenet_architecture_setup():
-            logits = facenet(self.input_dataset_placeholder, self.train_valid_placeholder)
+            logits = facenet(self.input_dataset_placeholder, self.train_valid_placeholder, self.output, self.block1, self.block2, self.block3, self.block4)
+
             with tf.variable_scope("loss"):
                 loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labels_dataset_placeholder, logits = logits))
 
@@ -219,18 +258,33 @@ class FacenetModel(object):
         _facenet_architecture_setup()
 
 
-class HyperParameters(object):
-    def __init__(self):
-        block1_unit1 = []
-        block1_unit2 = []
-
-
 if __name__=="__main__":
     epoch = 5
     batch = 20
     learning_rate = 0.001
+    num_outputs = 9
 
-    model = FacenetModel(epoch, batch, learning_rate)
+    model = FacenetModel(epoch, batch, learning_rate, num_outputs)
+
+    model.block1["unit1"] = [64, 64, 256]
+    model.block1["unit2"] = [64, 64, 256]
+    model.block1["unit3"] = [64, 64, 256]
+    
+    model.block2["unit1"] = [128, 128, 512]
+    model.block2["unit2"] = [128, 128, 512]
+    model.block2["unit3"] = [128, 128, 512]
+    model.block2["unit4"] = [128, 128, 512]
+
+    model.block3["unit1"] = [256, 256, 1024]
+    model.block3["unit2"] = [256, 256, 1024]
+    model.block3["unit3"] = [256, 256, 1024]
+    model.block3["unit4"] = [256, 256, 1024]
+    model.block3["unit5"] = [256, 256, 1024]
+    model.block3["unit6"] = [256, 256, 1024]
+
+    model.block4["unit1"] = [512, 512, 2048]
+    model.block4["unit2"] = [512, 512, 2048]
+    model.block4["unit3"] = [512, 512, 2048]
 
     model('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224)
 
@@ -291,6 +345,7 @@ if __name__=="__main__":
             except tf.errors.OutOfRangeError:
                 print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
                 pass
+
 
     """
     print(conv)
