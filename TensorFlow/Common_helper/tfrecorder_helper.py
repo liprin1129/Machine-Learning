@@ -315,9 +315,9 @@ class TFRecord_Helper(ImageHelper):
         tf_dataset_files = tf.data.Dataset.list_files(filenames, shuffle=True)
 
         # parallel fetch tfrecords dataset using the file list in parallel
-        tf_dataset = tf_dataset_files.apply(tf.data.experimental.parallel_interleave(lambda filename: tf.data.TFRecordDataset(filename), cycle_length=8))
+        tf_dataset = tf_dataset_files.apply(tf.data.experimental.parallel_interleave(lambda filename: tf.data.TFRecordDataset(filename), cycle_length=os.cpu_count()))
 
-        def _extract_from_tfrecord(_tfrecord_filenames, resize=[], normalization=None):
+        def _extract_from_tfrecord(_tfrecord_filenames, resize=[]):
             """
             Load tfrecord file on memory
             
@@ -335,25 +335,23 @@ class TFRecord_Helper(ImageHelper):
             jpeg_image = datum_record['image/encoded']
             image = tf.image.decode_jpeg(jpeg_image)
             image = tf.cast(image, tf.float32)
-
-            image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
+            #image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
             image_label = datum_record['image/label']
-            image_name = datum_record['image/name']
+            #image_name = datum_record['image/name']
 
-            assert len(resize) > 1
+            assert len(resize) > 1 # Assertion error if image height and width are not defined
             image = tf.image.resize_images(image, resize)#, method=tf.image.ResizeMethod.AREA, align_corners=True)
-
+            #print("===========================> ", image)
             image = image - tf.cast(tf.stack((0, 0, 0)), tf.float32) # to specify the dimension of the tfrecord image. If not using this, it will give an error in makeing model phase
 
-            if normalization is not None:
-                image = image * (1./255)
+            image = image * (1./255) # Normalization
 
             #return image_name, image_shape, image_label, image
             #return {"image": image}, {"class_idx": image_label}
             return {"image": image, "labels": image_label}
 
         # map the parse  function to each example individually in threads*2 parallel calls
-        tf_dataset = tf_dataset.map(map_func=lambda example: _extract_from_tfrecord(example, resize=[self._height, self._width], normalization=True), num_parallel_calls=4)
+        tf_dataset = tf_dataset.map(map_func=lambda example: _extract_from_tfrecord(example, resize=[self._height, self._width]), num_parallel_calls=os.cpu_count())
         
         #All the individually processed examples are then batched and ready for processing
         tf_dataset = tf_dataset.batch(batch_size=_batch_size)

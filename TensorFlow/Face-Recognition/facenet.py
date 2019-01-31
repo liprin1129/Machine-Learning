@@ -4,7 +4,9 @@ import tensorflow as tf
 import tensorflow_deeplay as dlay
 import os
 from tfrecorder_helper import TFRecord_Helper
+
 from tqdm import tqdm
+import numpy as np
 
 def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
     assert _training is not None
@@ -28,7 +30,7 @@ def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _trainin
                 short_cut_tensor = dlay.conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
                                                         _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
                 
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
+                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -60,7 +62,7 @@ def unit_conv_skip(_input_tensor, unit_num_int, _output_ch_list=[], _training=No
                 short_cut_tensor = dlay.conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
                                                         _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
                 
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
+                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -94,7 +96,7 @@ def unit_conv_maxpool(_input_tensor, unit_num_int, _output_ch_list=[], _training
                                                 pooling_type="MAX",
                                                 padding="VALID",
                                                 strides=[2,2])
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
+                short_cut_tensor = tf.multiply(short_cut_tensor, 10)
 
             #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
             rep_conv = _repetitive_layers()
@@ -161,66 +163,134 @@ class FacenetModel(object):
         self.epoch = _num_epochs
         self.batch = _batch_size
         self.learning_rate = _learning_rate
+        self.train_valid_placeholder = tf.placeholder(tf.bool)
 
-        self.train_iterator = None
-        self.valid_iterator = None
         self.predictions = None
         self.optimizer = None
         self.accuracy = None
-        
-    def __call__(self, _tfdata_dir, _height, _width, _tv_placeholder):
-        tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
 
-        placeholder_X = tf.placeholder(tf.float32, shape = [None, _height, _width, 3])
-        placeholder_y = tf.placeholder(tf.int64, shape = [None])
+        self.train_iterator = None
+        self.validation_iterator = None        
+        self.input_dataset_placeholder = None
+        self.labels_dataset_placeholder = tf.placeholder(tf.int64, shape = [None])
+        self.handle_placeholder = tf.placeholder(tf.string, shape=[])
+        self.get_next_in_interators = None
 
-###########################################################################################################
-        logits = facenet(placeholder_X, _tv_placeholder)
-        """
-        loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.train_iterator["labels"], logits = logits))
-        self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate).minimize(loss)
+    def __call__(self, _tfdata_dir, _height, _width):
+        def _train_valid_iterator_setup():
+            tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
 
-        self.predictions = tf.argmax(logits, 1, output_type = tf.int32)
-        self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.train_iterator["labels"], tf.int32)), tf.float32)), self.batch) * 100
-###########################################################################################################
+            self.input_dataset_placeholder = tf.placeholder(tf.float32, shape = [None, _height, _width, 3])
 
-        tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
-        train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "train")
-        validation_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "valid")
+            with tf.variable_scope("iterator_handler"):
+                with tf.variable_scope("train_iterator"):
+                    self.train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', self.batch, "train")
+                
+                with tf.variable_scope("validation_iterator"):
+                    self.validation_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', self.batch, "valid")
 
-        handle = tf.placeholder(tf.string, shape=[])
-        iterator = tf.data.Iterator.from_string_handle(
-            handle, (tf.float32, tf.int64), ([None, 224, 224, 3], [None]))
-        next_element = iterator.get_next()
-        """
+                with tf.variable_scope("iterator"): 
+                    iterator = tf.data.Iterator.from_string_handle(
+                        self.handle_placeholder, (tf.float32, tf.int64), ([None, _height, _width, 3], [None]))
+
+            self.get_next_in_interators = iterator.get_next()
+
+        def _facenet_architecture_setup():
+            logits = facenet(self.input_dataset_placeholder, self.train_valid_placeholder)
+            with tf.variable_scope("loss"):
+                loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labels_dataset_placeholder, logits = logits))
+
+            with tf.variable_scope("optimizer"):
+                self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate).minimize(loss)
+
+            with tf.variable_scope("predictions"):
+                self.predictions = tf.argmax(logits, 1, output_type = tf.int32)
+
+            """
+            with tf.variable_scope("accuracy"):                
+                self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.labels_dataset_placeholder, tf.int32)), tf.float32)), self.batch) * 100
+                #self.accuracy = tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.labels_dataset_placeholder, tf.int32)), tf.float32))
+                #self.accuracy = tf.equal(tf.cast(self.predictions, tf.int64), self.labels_dataset_placeholder)
+                #self.accuracy = tf.equal(self.predictions, self.labels_dataset_placeholder)
+                #print(self.predictions); sys.stdout.flush()
+                #print(self.labels_dataset_placeholder); sys.stdout.flush()
+            """
+        _train_valid_iterator_setup()
+        _facenet_architecture_setup()
+
+
+class HyperParameters(object):
+    def __init__(self):
+        block1_unit1 = []
+        block1_unit2 = []
+
 
 if __name__=="__main__":
-    epoch = 10
-    batch = 10
+    epoch = 5
+    batch = 20
     learning_rate = 0.001
 
     model = FacenetModel(epoch, batch, learning_rate)
 
-    tv = tf.placeholder(tf.bool)
-    model('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224, _tv_placeholder=tv)
-    #print(model.loss)
+    model('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224)
 
     if not os.path.exists('summaries'):
         os.mkdir('summaries')
     if not os.path.exists(os.path.join('summaries','facenet')):
         os.mkdir(os.path.join('summaries','face'))
 
-    with tf.Session() as sess:
+    config_proto = tf.ConfigProto()
+    config_proto.gpu_options.allow_growth = True
+    #config_proto.gpu_options.per_process_gpu_memory_fraction = 0.9
+    with tf.Session(config=config_proto) as sess:
         summ_writer = tf.summary.FileWriter(os.path.join('summaries','facenet'), sess.graph)
         sess.run(tf.global_variables_initializer())
 
-        try:
-            while True:
-                _, accuracy = sess.run([model.optimizer, model.accuracy], feed_dict={tv:False})
-                print(accuracy, " %")
-        except tf.errors.OutOfRangeError:
-            pass
+        training_handle = sess.run(model.train_iterator.string_handle())
+        validation_handle = sess.run(model.validation_iterator.string_handle())
+        for _ in tqdm(range(epoch)):
+            try:
+                print("=== Training ==="); sys.stdout.flush()
+                sess.run(model.train_iterator.initializer)
+                total_accuracy = 0
+                count = 0
+                print("Processing: ", end=""); sys.stdout.flush()
+                while True:
+                    count += 1
+                    print(".", end=""); sys.stdout.flush()
 
+                    extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: training_handle})
+                    _ = sess.run(model.optimizer, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
+
+                    pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
+                    total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
+
+                    #print("{0} accuracy: {1}".format(np.sum(equality), equality)); sys.stdout.flush()
+                    #print("expected:\t{0} \npredicted:\t{1}".format(extracted_data[1], pred)); sys.stdout.flush()
+            except tf.errors.OutOfRangeError:
+                print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
+                pass
+
+            try:
+                print("=== Validation ==="); sys.stdout.flush()
+                sess.run(model.validation_iterator.initializer)
+                total_accuracy = 0
+                count = 0
+                print("Processing: ", end=""); sys.stdout.flush()
+                while True:
+                    count += 1
+                    print(".", end=""); sys.stdout.flush()
+
+                    extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: validation_handle})
+                    pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
+                    total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
+
+                    #equality = np.equal(pred, extracted_data[1])
+                    #print("{0} accuracy: {1}".format(np.sum(equality), equality)); sys.stdout.flush()
+                    #print("expected:\t{0} \npredicted:\t{1}".format(extracted_data[1], pred)); sys.stdout.flush()
+            except tf.errors.OutOfRangeError:
+                print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
+                pass
 
     """
     print(conv)
