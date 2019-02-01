@@ -6,8 +6,7 @@ def conv_layer_2d(_input_tensor,
                     _bias=None, _activation_fn=None, 
                     _pooling_window_shape=None, _pooling_type = None, 
                     _pooling_padding = None, _pooling_strides = None,
-                    _batch_norm = None,
-                    _train_val_phase = None):
+                    _batch_norm_ph = None):
     """
     Create compact convolutional layer by combining tf.nn.conv2d, bias, activation, and pooling functions.
     
@@ -39,8 +38,7 @@ def conv_layer_2d(_input_tensor,
                                 _input_tensor.get_shape()[3], _output_ch_int], 
                             dtype=tf.float32, 
                             initializer=tf.random_normal_initializer(), 
-                            regularizer=tf.contrib.layers.l2_regularizer(scale=0.1), 
-                            trainable=True)
+                            regularizer=tf.contrib.layers.l2_regularizer(scale=0.1))
 
     # Convolutional node
     with tf.variable_scope("conv2d"):
@@ -52,13 +50,12 @@ def conv_layer_2d(_input_tensor,
             bias_var = tf.get_variable("bias", 
                                         _output_ch_int, 
                                         dtype=tf.float32, 
-                                        initializer=tf.random_normal_initializer(), 
-                                        trainable=True)
+                                        initializer=tf.random_normal_initializer())
             conv = tf.nn.bias_add(conv, bias_var)
 
-    if _batch_norm is not None:
+    if _batch_norm_ph is not None:
         with tf.variable_scope("batch_norm"):
-            conv = tf.layers.batch_normalization(conv, training=_train_val_phase)
+            conv = tf.layers.batch_normalization(conv, training=_batch_norm_ph)
 
     if _activation_fn is not None:
         with tf.variable_scope("activation"):
@@ -78,100 +75,3 @@ def conv_layer_2d(_input_tensor,
                             strides=_pooling_dict["_strides"])"""
 
     return conv
-
-"""
-def unit_conv_shortcut(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
-    assert _training is not None
-
-    def _repetitive_layers():
-        with tf.variable_scope("conv1"):
-            rep_conv = conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[0], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv2"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[1], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv3"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        return rep_conv
-
-    with tf.variable_scope("unit{0}".format(unit_num_int)):
-        with tf.variable_scope("bottlenet_v1"):
-            #short_cut_tensor = tf.identity(conv)
-            with tf.variable_scope("short_cut"):
-                short_cut_tensor = conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
-                                                        _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
-                
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
-
-            #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
-            rep_conv = _repetitive_layers()
-
-            bottle_neck = tf.nn.relu(tf.add(short_cut_tensor, rep_conv))
-
-    return bottle_neck
-
-def unit_conv_skip(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
-    assert _training is not None
-
-    def _repetitive_layers():
-        with tf.variable_scope("conv1"):
-            rep_conv = conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[0], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv2"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[1], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv3"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        return rep_conv
-
-    with tf.variable_scope("unit{0}".format(unit_num_int)):
-        with tf.variable_scope("bottlenet_v1"):
-            #short_cut_tensor = tf.identity(conv)
-            with tf.variable_scope("short_cut"):
-                short_cut_tensor = conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3,
-                                                        _stride_list=[1, 1, 1, 1], _batch_norm=True, _train_val_phase=_training)
-                
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
-
-            #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
-            rep_conv = _repetitive_layers()
-
-            bottle_neck = tf.nn.relu(tf.add(short_cut_tensor, rep_conv))
-
-    return bottle_neck
-
-def unit_conv_maxpool(_input_tensor, unit_num_int, _output_ch_list=[], _training=None):
-    assert _training is not None
-
-    def _repetitive_layers():
-        with tf.variable_scope("conv1"):
-            rep_conv = conv_layer_2d(_input_tensor, _output_ch_int=_output_ch_list[0], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv2"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[1], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 2, 2, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        with tf.variable_scope("conv3"):
-            rep_conv = conv_layer_2d(rep_conv, _output_ch_int=_output_ch_list[2], _kernel_w_int=3, _kernel_h_int=3, 
-                                            _stride_list=[1, 1, 1, 1], _activation_fn=tf.nn.relu, _batch_norm=True, _train_val_phase=_training)
-        return rep_conv
-
-    with tf.variable_scope("unit{0}".format(unit_num_int)):
-        with tf.variable_scope("bottlenet_v1"):
-            #short_cut_tensor = tf.identity(conv)
-            with tf.variable_scope("short_cut"):
-                short_cut_tensor = tf.nn.pool(_input_tensor, 
-                                                window_shape=[2,2], 
-                                                pooling_type="MAX",
-                                                padding="VALID",
-                                                strides=[2,2])
-                #short_cut_tensor = tf.multiply(short_cut_tensor, 0.1)
-
-            #conv = dlay.unit_conv(conv, _output_ch_list=[64, 64, 256], _training=train_phase)
-            rep_conv = _repetitive_layers()
-
-            bottle_neck = tf.nn.relu(tf.add(short_cut_tensor, rep_conv))
-
-    return bottle_neck
-"""

@@ -4,23 +4,15 @@ import tensorflow as tf
 import sys
 import numpy as np
 from tqdm import tqdm
+import tensorboard_helper as tbh
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('image_path', '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', "root directory including images and tfrecords")
 
-data_dir_root_str = FLAGS.image_path
-data_image_dir_str = os.path.join(data_dir_root_str, 'images')
 
-# Image folder list which is used to identify the number of net's output logits
-data_image_list = os.listdir(data_image_dir_str)
-data_image_list = [os.path.join(data_image_dir_str, x) for x in data_image_list]
-data_image_list = [os.path.isdir(x) for x in data_image_list]
+# Set tensorboard folder name
+summary_name_str = 'facenet2'
 
-# Create a folder to save tensorboard data
-if not os.path.exists('summaries'):
-    os.mkdir('summaries')
-if not os.path.exists(os.path.join('summaries','facenet')):
-    os.mkdir(os.path.join('summaries','facenet'))
 
 """ ################
 # Hyper parameters #
@@ -29,7 +21,9 @@ epoch = 60
 batch = 50
 learning_rate = 0.001
 
-num_outputs = sum(data_image_list)
+num_outputs = len(list(
+    filter(lambda y: os.path.isdir(y), list(
+        map(lambda x: os.path.join(FLAGS.image_path+"images", x), os.listdir(FLAGS.image_path+"images"))))))
 
 model = FacenetModel(epoch, batch, learning_rate, num_outputs) # Initialize FacenetModel class to set shapes of layers
 
@@ -53,34 +47,9 @@ model.block4["unit1"] = [512, 512, 256]
 model.block4["unit2"] = [512, 512, 256]
 model.block4["unit3"] = [512, 512, 256]
 
-with tf.name_scope('training_performance'):
-    # Summaries need to be displayed
-    # Whenever you need to record the loss, feed the mean loss to this placeholder
-    train_loss_placeholder = tf.placeholder(tf.float32,shape=None,name='loss_summary')
-    # Create a scalar summary object for the loss so it can be displayed
-    train_loss_summary = tf.summary.scalar('loss', train_loss_placeholder)
-
-    # Whenever you need to record the loss, feed the mean test accuracy to this placeholder
-    train_accuracy_placeholder = tf.placeholder(tf.float32,shape=None, name='accuracy_summary')
-    # Create a scalar summary object for the accuracy so it can be displayed
-    train_accuracy_summary = tf.summary.scalar('accuracy', train_accuracy_placeholder)
-
-    # Merge all summaries together
-    train_performance_summaries = tf.summary.merge([train_loss_summary, train_accuracy_summary])
-
-with tf.name_scope('validation_performance'):
-    # Summaries need to be displayed
-
-    # Whenever you need to record the loss, feed the mean test accuracy to this placeholder
-    valid_accuracy_placeholder = tf.placeholder(tf.float32,shape=None, name='accuracy_summary')
-    # Create a scalar summary object for the accuracy so it can be displayed
-    valid_accuracy_summary = tf.summary.scalar('accuracy', valid_accuracy_placeholder)
-
-    # Merge all summaries together
-    valid_performance_summaries = tf.summary.merge([valid_accuracy_summary])
 
 def training():
-    model(data_dir_root_str, 224, 224)
+    model(FLAGS.image_path, 224, 224)
 
     # Add ops to save and restore all the variables.
     saver = tf.train.Saver()
@@ -90,8 +59,9 @@ def training():
     config_proto.gpu_options.per_process_gpu_memory_fraction = 0.8
     with tf.Session(config=config_proto) as sess:
 
-        summary_writer = tf.summary.FileWriter(os.path.join('summaries','facenet'), sess.graph) # Write tensorboard
-        
+        #summary_writer = tf.summary.FileWriter(os.path.join('summaries','facenet'), sess.graph) # Write tensorboard
+        summary_writer = tbh.summary_writer_fn(summary_name_str, sess)
+
         sess.run(tf.global_variables_initializer())
 
         training_handle = sess.run(model.train_iterator.string_handle())
@@ -110,7 +80,8 @@ def training():
                     extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: training_handle})
                     
                     if len(extracted_data[1]) > 1:
-                        loss, _ = sess.run([model.loss, model.loss_minimizer], feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
+                        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+                        loss, _, _ = sess.run([model.loss, model.loss_minimizer, extra_update_ops], feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
                         pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
                         total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
 
@@ -118,10 +89,7 @@ def training():
                     #print("expected:\t{0} \npredicted:\t{1}".format(extracted_data[1], pred)); sys.stdout.flush()
             except tf.errors.OutOfRangeError:
                 # Execute the summaries defined above
-                train_summary = sess.run(train_performance_summaries, feed_dict={train_loss_placeholder:loss, train_accuracy_placeholder:(total_accuracy/count)*100})
-                # Write the obtained summaries to the file, so it can be displayed in the TensorBoard
-                summary_writer.add_summary(train_summary, current_epoch_int)
-                summary_writer.flush()
+                tbh.write_loss_and_accuracy_summary_fn(summary_writer, sess, loss, total_accuracy, count, epoch)
 
                 print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
                 pass
@@ -139,17 +107,14 @@ def training():
                     extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: validation_handle})
 
                     if len(extracted_data[1]) > 1:
-                        pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
+                        pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:False})
                         total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
 
             except tf.errors.OutOfRangeError:
                 print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
 
                 # Execute the summaries defined above
-                valid_summary = sess.run(valid_performance_summaries, feed_dict={valid_accuracy_placeholder:(total_accuracy/count)*100})
-                # Write the obtained summaries to the file, so it can be displayed in the TensorBoard
-                summary_writer.add_summary(valid_summary, current_epoch_int)
-                summary_writer.flush()
+                tbh.write_accuracy(summary_writer, sess, total_accuracy, count, epoch)
 
                 # Save the variables to disk.
                 save_path = saver.save(sess, '/tmp/%s_%03d-of-%03d.ckpt' % ("facenet", current_epoch_int, epoch))
@@ -158,7 +123,10 @@ def training():
 
                 pass
 
-            
+def testing():
+     model(FLAGS.image_path, 224, 224)
+
+     
     
 def main(argv):
     training()
