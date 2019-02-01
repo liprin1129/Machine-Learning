@@ -206,6 +206,10 @@ class FacenetModel(HyperParameters):
         self.predictions = None
         self.optimizer = None
         self.accuracy = None
+        self.optimizer = None
+        self.loss = None
+        self.loss_minimizer = None
+        self.grads_and_vars = None
 
         self.train_iterator = None
         self.validation_iterator = None        
@@ -237,23 +241,26 @@ class FacenetModel(HyperParameters):
             logits = facenet(self.input_dataset_placeholder, self.train_valid_placeholder, self.output, self.block1, self.block2, self.block3, self.block4)
 
             with tf.variable_scope("loss"):
-                loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labels_dataset_placeholder, logits = logits))
+                self.loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labels_dataset_placeholder, logits = logits))
 
             with tf.variable_scope("optimizer"):
-                self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate).minimize(loss)
+                self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate)
+                self.loss_minimizer = self.optimizer.minimize(self.loss)
 
             with tf.variable_scope("predictions"):
                 self.predictions = tf.argmax(logits, 1, output_type = tf.int32)
 
-            """
-            with tf.variable_scope("accuracy"):                
-                self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.labels_dataset_placeholder, tf.int32)), tf.float32)), self.batch) * 100
-                #self.accuracy = tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.labels_dataset_placeholder, tf.int32)), tf.float32))
-                #self.accuracy = tf.equal(tf.cast(self.predictions, tf.int64), self.labels_dataset_placeholder)
-                #self.accuracy = tf.equal(self.predictions, self.labels_dataset_placeholder)
-                #print(self.predictions); sys.stdout.flush()
-                #print(self.labels_dataset_placeholder); sys.stdout.flush()
-            """
+            with tf.variable_scope("variance"):
+                self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
+            
+            #with tf.variable_scope("accuracy"):                
+                #self.accuracy = tf.divide(tf.reduce_sum(tf.cast(tf.equal(self.predictions, tf.cast(self.labels_dataset_placeholder, tf.int32)), tf.float32)), self.batch) * 100
+                #self.accuracy = tf.equal(tf.cast(self.predictions, tf.int32), tf.cast(self.labels_dataset_placeholder, tf.int32))
+
+                #self.accuracy = np.sum(np.equal(self.predictions, self.labels_dataset_placeholder))*100.0#/self.labels_dataset_placeholder.get_shape().as_list()[0]
+                #print("!!!!!!!!!!!!!!!!!!!!!!!!!", self.predictions.get_shape())
+                #self.accuracy = tf.equal(tf.shape(self.predictions), tf.shape(self.labels_dataset_placeholder))
+
         _train_valid_iterator_setup()
         _facenet_architecture_setup()
 
