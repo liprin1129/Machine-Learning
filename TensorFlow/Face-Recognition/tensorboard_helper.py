@@ -5,8 +5,8 @@ import os
 # Create a folder to save tensorboard data
 if not os.path.exists('summaries'):
     os.mkdir('summaries')
-if not os.path.exists(os.path.join('summaries','facenet')):
-    os.mkdir(os.path.join('summaries','facenet'))
+#if not os.path.exists(os.path.join('summaries','facenet')):
+#    os.mkdir(os.path.join('summaries','facenet'))
 
 with tf.name_scope('training_performance'):
     # Summaries need to be displayed

@@ -9,46 +9,49 @@ import tensorboard_helper as tbh
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('image_path', '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', "root directory including images and tfrecords")
 
+tf.app.flags.DEFINE_string('mode', 'test', "Select train or pred mode")
+
 
 # Set tensorboard folder name
 summary_name_str = 'facenet2'
 
-
-""" ################
-# Hyper parameters #
-################ """
-epoch = 60
-batch = 50
-learning_rate = 0.001
-
-num_outputs = len(list(
-    filter(lambda y: os.path.isdir(y), list(
-        map(lambda x: os.path.join(FLAGS.image_path+"images", x), os.listdir(FLAGS.image_path+"images"))))))
-
-model = FacenetModel(epoch, batch, learning_rate, num_outputs) # Initialize FacenetModel class to set shapes of layers
-
-model.block1["unit1"] = [64, 64, 32]
-model.block1["unit2"] = [64, 64, 32]
-model.block1["unit3"] = [64, 64, 32]
-
-model.block2["unit1"] = [128, 128, 64]
-model.block2["unit2"] = [128, 128, 64]
-model.block2["unit3"] = [128, 128, 64]
-model.block2["unit4"] = [128, 128, 64]
-
-model.block3["unit1"] = [256, 256, 128]
-model.block3["unit2"] = [256, 256, 128]
-model.block3["unit3"] = [256, 256, 128]
-model.block3["unit4"] = [256, 256, 128]
-model.block3["unit5"] = [256, 256, 128]
-model.block3["unit6"] = [256, 256, 128]
-
-model.block4["unit1"] = [512, 512, 256]
-model.block4["unit2"] = [512, 512, 256]
-model.block4["unit3"] = [512, 512, 256]
-
-
 def training():
+    """ #####################################
+    ####### Hyper parameters starts ######"""
+
+    epoch = 60
+    batch = 50
+    learning_rate = 0.001
+
+    num_outputs = len(list(
+        filter(lambda y: os.path.isdir(y), list(
+            map(lambda x: os.path.join(FLAGS.image_path+"images", x), os.listdir(FLAGS.image_path+"images"))))))
+
+    model = FacenetModel(epoch, batch, learning_rate, num_outputs) # Initialize FacenetModel class to set shapes of layers
+
+    model.block1["unit1"] = [64, 64, 32]
+    model.block1["unit2"] = [64, 64, 32]
+    model.block1["unit3"] = [64, 64, 32]
+
+    model.block2["unit1"] = [128, 128, 64]
+    model.block2["unit2"] = [128, 128, 64]
+    model.block2["unit3"] = [128, 128, 64]
+    model.block2["unit4"] = [128, 128, 64]
+
+    model.block3["unit1"] = [256, 256, 128]
+    model.block3["unit2"] = [256, 256, 128]
+    model.block3["unit3"] = [256, 256, 128]
+    model.block3["unit4"] = [256, 256, 128]
+    model.block3["unit5"] = [256, 256, 128]
+    model.block3["unit6"] = [256, 256, 128]
+
+    model.block4["unit1"] = [512, 512, 256]
+    model.block4["unit2"] = [512, 512, 256]
+    model.block4["unit3"] = [512, 512, 256]
+
+    """ ###### Hyper parameters ends #########
+    ###################################### """
+    
     model(FLAGS.image_path, 224, 224)
 
     # Add ops to save and restore all the variables.
@@ -80,8 +83,8 @@ def training():
                     extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: training_handle})
                     
                     if len(extracted_data[1]) > 1:
-                        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-                        loss, _, _ = sess.run([model.loss, model.loss_minimizer, extra_update_ops], feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
+                        #extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+                        loss, _ = sess.run([model.loss, model.loss_minimizer], feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
                         pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
                         total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
 
@@ -117,19 +120,72 @@ def training():
                 tbh.write_accuracy(summary_writer, sess, total_accuracy, count, epoch)
 
                 # Save the variables to disk.
-                save_path = saver.save(sess, '/tmp/%s_%03d-of-%03d.ckpt' % ("facenet", current_epoch_int, epoch))
+                save_file_name = 'trained_tf_data/{0}_{1:05d}-of-{2:05d}'.format("facenet", current_epoch_int+1, epoch)
+                save_path = saver.save(sess, os.path.join(FLAGS.image_path, save_file_name))
                 #save_path = saver.save(sess, "/tmp/model.ckpt")
                 print("Model saved in path: %s" % save_path)
 
                 pass
 
 def testing():
-     model(FLAGS.image_path, 224, 224)
+    # Read stred data
+    batch = 50
 
-     
+    trained_tf_data_folder = os.path.join(FLAGS.image_path, "trained_tf_data")
+    save_file_name = 'facenet_00060-of-00060.meta'
+    saver = tf.train.import_meta_graph(os.path.join(trained_tf_data_folder, save_file_name))
     
+    sess = tf.Session()
+    sess.__enter__()
+    #with tf.Session() as sess:
+    saver.restore(sess,tf.train.latest_checkpoint(trained_tf_data_folder))
+    #summary_writer = tf.summary.FileWriter(os.path.join('summaries','facenet'), sess.graph) # Write tensorboard
+    summary_writer = tbh.summary_writer_fn('loaded_session', sess)
+
+    graph = tf.get_default_graph()
+    input_dataset_placeholder = graph.get_tensor_by_name("placeholders/input:0")
+    train_valid_placeholder = graph.get_tensor_by_name("placeholders/tv_mode_selector_placeholder:0")
+
+    prediction = graph.get_tensor_by_name("predictions/ArgMax:0")
+
+
+    def _read_image(filepath):
+        # Convert filepath string to string tensor
+        tf_filepath = tf.convert_to_tensor(filepath, dtype=tf.string)
+
+        # Read .JPEG image
+        tf_image_string = tf.read_file(tf_filepath)
+        image_tf = tf.image.decode_jpeg(tf_image_string, channels=3)
+
+        # Rescale image and convert to float
+        image_tf = tf.to_float(image_tf)
+        #image_tf = tf.image.resize_images(image_tf, [224, 224], method=tf.image.ResizeMethod.AREA, align_corners=True)
+        image_tf = tf.image.resize_images(image_tf, [224, 224])
+        image_tf = image_tf * (1./255) # Normalization
+        image_tf = tf.expand_dims(image_tf, 0)
+
+        return image_tf
+
+    image_tf = _read_image("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/images/166/36.jpg")
+    
+    #sess.run(tf.global_variables_initializer())
+    image_tf = sess.run(image_tf)
+
+    for i in range(batch-1):
+        if i < 1:
+            stacked_image = np.vstack([image_tf, image_tf])
+        else:
+            stacked_image = np.vstack([stacked_image, image_tf])
+
+    result = sess.run(prediction, feed_dict={input_dataset_placeholder: stacked_image, train_valid_placeholder:False})
+
+    print(result)
+
 def main(argv):
-    training()
+    if FLAGS.mode == "train":
+        training()
+    elif FLAGS.mode == "pred":
+        testing()
 
 if __name__=="__main__":
     tf.app.run(main)

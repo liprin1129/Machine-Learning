@@ -1,0 +1,6 @@
+[2019-02-04 02:48:02.241] [renderer1] [info] no standard startup: not the explorer viewlet
+[2019-02-04 02:48:21.726] [renderer1] [info] no standard startup: not just one text editor
+[2019-02-04 02:48:27.324] [renderer1] [error] Inotify limit reached (ENOSPC)
+[2019-02-04 05:08:27.916] [renderer1] [error] read ECONNRESET: Error: read ECONNRESET
+	at _errnoException (util.js:1024:11)
+	at Pipe.onread (net.js:615:25)
