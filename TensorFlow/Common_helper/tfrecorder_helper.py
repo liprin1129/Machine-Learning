@@ -210,12 +210,8 @@ class TFRecord_Helper(ImageHelper):
                         '''
         print('\n')
 
-# #################################################################################################
-# #################################################################################################
-# #################################################################################################
-# Have to implement Initializable #################################################################
-# #################################################################################################
-    def convert_from_tfrecord(self, tf_record_root_dir):
+
+    def convert_from_tfrecord(self, tf_record_root_dir, _epoch_num, _batch_size):
         # Create a feature
         feature = {'image/label': tf.FixedLenFeature([], tf.int64),
             'image/encoded': tf.FixedLenFeature([], tf.string),
@@ -274,6 +270,8 @@ class TFRecord_Helper(ImageHelper):
                 #if self._verbose_tfr==True: [print(i) for i in tfrecord_filenames if train_or_valid in i]; sys.stdout.flush()
                 
                 tfrecord_dataset = tfrecord_dataset.map(_extract_from_tfrecord)
+
+                #tfrecord_dataset = tfrecord_dataset.repeat(_epoch_num).batch(_batch_size)
                 
                 tfrecord_iterator = tfrecord_dataset.make_one_shot_iterator()
                 get_next_in_interator = tfrecord_iterator.get_next()
@@ -297,15 +295,82 @@ class TFRecord_Helper(ImageHelper):
                 #get_next_in_interators.append(get_next_in_interator)
                 print("[[[[[[[[[[[[ {0} ]]]]]]]]]]]]".format(os.path.basename(tfrecord_file)))
                 yield get_next_in_interator
-# #################################################################################################
-# Have to implement Initializable #################################################################
-# #################################################################################################
-# #################################################################################################
-# #################################################################################################
+
+
+    def convert_from_tfrecord_with_tf_dataset(self, tf_record_root_dir, _batch_size, _phase="test"):
+        """ Convert tfrecord files to batch dataset using tensorflow Dataset
+        
+        Args:
+            pahse: String type, "train", "valid", "test. Default is "test"
+
+        Returns:
+            iterator: iterator of tensorflow Dataset. Currently, make_one_shot_iterator is being used.
+            Future work: update iterator to initializable, reinitializable, and feeadable.
+        """
+
+        if _phase == "train": filenames = os.path.join(tf_record_root_dir, "*train*.tfrecord")
+        elif _phase == "valid": filenames = os.path.join(tf_record_root_dir, "*valid*.tfrecord")
+        elif _phase == "test": filenames = os.path.join(tf_record_root_dir, "*test*.tfrecord")
+        
+        tf_dataset_files = tf.data.Dataset.list_files(filenames, shuffle=True)
+
+        # parallel fetch tfrecords dataset using the file list in parallel
+        tf_dataset = tf_dataset_files.apply(tf.data.experimental.parallel_interleave(lambda filename: tf.data.TFRecordDataset(filename), cycle_length=os.cpu_count()))
+
+        def _extract_from_tfrecord(_tfrecord_filenames, resize=[]):
+            """
+            Load tfrecord file on memory
+            
+            Returns:
+                tfrecord iterator generator
+            """
+
+            feature = {'image/label': tf.FixedLenFeature([], tf.int64), 'image/encoded': tf.FixedLenFeature([], tf.string),
+                        'image/height': tf.FixedLenFeature([], tf.int64), 'image/width': tf.FixedLenFeature([], tf.int64),
+                        'image/channel': tf.FixedLenFeature([], tf.int64), 'image/name': tf.FixedLenFeature([], tf.string)}
+
+            # Extract the data record
+            datum_record = tf.parse_single_example(_tfrecord_filenames, feature)
+
+            jpeg_image = datum_record['image/encoded']
+            image = tf.image.decode_jpeg(jpeg_image)
+            image = tf.cast(image, tf.float32)
+            #image_shape = tf.stack([datum_record['image/height'], datum_record['image/height'], datum_record['image/channel']])
+            image_label = datum_record['image/label']
+            #image_name = datum_record['image/name']
+
+            assert len(resize) > 1 # Assertion error if image height and width are not defined
+            image = tf.image.resize_images(image, resize)#, method=tf.image.ResizeMethod.AREA, align_corners=True)
+            #print("===========================> ", image)
+            image = image - tf.cast(tf.stack((0, 0, 0)), tf.float32) # to specify the dimension of the tfrecord image. If not using this, it will give an error in makeing model phase
+
+            image = image * (1./255) # Normalization
+
+            #return image_name, image_shape, image_label, image
+            #return {"image": image}, {"class_idx": image_label}
+            return {"image": image, "labels": image_label}
+
+        # map the parse  function to each example individually in threads*2 parallel calls
+        tf_dataset = tf_dataset.map(map_func=lambda example: _extract_from_tfrecord(example, resize=[self._height, self._width]), num_parallel_calls=os.cpu_count())
+        
+        #All the individually processed examples are then batched and ready for processing
+        tf_dataset = tf_dataset.batch(batch_size=_batch_size)
+        #tf_dataset = tf_dataset.repeat(_epoch_num).batch(batch_size=_batch_size)
+
+        # Load
+        tf_dataset = tf_dataset.prefetch(buffer_size=_batch_size)
+        #print("\n====> ", dataset)
+
+        #Input Function
+        #iterator = tf_dataset.make_one_shot_iterator()
+        iterator = tf_dataset.make_initializable_iterator()
+
+        return iterator
+
 
 if __name__ == "__main__":
     
-    select = 1
+    select = 2
     #image = image_helper.cv_read_img_with_abs_path("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/slim/face-recognition/dataset/images/370/370-11.jpg")
 
     if select == 0:
@@ -315,11 +380,11 @@ if __name__ == "__main__":
             '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/',
             'face', 6, 0.3)
     
-    else:
+    elif select == 1:
         image_helper = TFRecord_Helper(height=224, width=224, verbose=True)
 
-        """ # Example of how to use tfrecord_iterator generator yielded by by convert_from_tfrecord(self, tf_record_root_dir)
-        get_next_in_interators = image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/')
+        # Example of how to use tfrecord_iterator generator yielded by convert_from_tfrecord(self, tf_record_root_dir)
+        get_next_in_interators = image_helper.convert_from_tfrecord('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 2, 10)
 
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
@@ -332,11 +397,85 @@ if __name__ == "__main__":
                     #print(get_next_in_interator)
                         image_data = sess.run(get_next_in_interator)
 
-                        print("Extracted image name: ", image_data[0]); sys.stdout.flush()
+                        #print("Extracted image name: ", np.shape(image_data[3])); sys.stdout.flush()
+                        #print("Extracted image name: ", image_data[2]); sys.stdout.flush()
+                        print("Extracted image name: ", np.shape(image_data)); sys.stdout.flush()
+                        break
 
                 except:
                     #print("End of an {0}".format(os.path.basename(tfrecord_file)))
                     print("ERROR")
-                    pass 
-        """
+                    pass
+                break
 
+    elif select == 2:
+        
+        image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+        train_iterator = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "train")
+        valid_iterator = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 10, "valid")
+        """
+        placeholder_X = tf.placeholder(tf.float32, shape = [None, 28, 28, 1])
+        placeholder_y = tf.placeholder(tf.int32, shape = [None])
+
+        # Create separate Datasets for training, validation and testing
+        train_dataset = tf.data.Dataset.from_tensor_slices((placeholder_X, placeholder_y))
+        def map_fn(x, y):
+            # Do transformations here
+            return x, y
+        train_dataset = train_dataset.batch(10).map(lambda x, y: map_fn(x, y))
+
+        print(train_dataset.output_types, train_dataset.output_shapes)
+        """
+        handle = tf.placeholder(tf.string, shape=[])
+        iterator = tf.data.Iterator.from_string_handle(
+            handle, (tf.float32, tf.int64), ([None, 224, 224, 3], [None]))
+        next_element = iterator.get_next()
+
+        with tf.Session() as sess:
+            # Return handles that can be feed as the iterator in sess.run
+            training_handle = sess.run(train_iterator.string_handle())
+            validation_handle = sess.run(valid_iterator.string_handle())
+
+            for _ in range(3):
+                try:
+                    count = 0
+                    sess.run(train_iterator.initializer)
+                    while True:
+                        a = sess.run(next_element, feed_dict={handle: training_handle})
+                        count += 1
+                except tf.errors.OutOfRangeError:
+                    print(count)
+                    pass
+
+                try:
+                    count = 0
+                    sess.run(valid_iterator.initializer)
+                    while True:
+                        a = sess.run(next_element, feed_dict={handle: validation_handle})
+                        count += 1
+                except tf.errors.OutOfRangeError:
+                    print(count)
+                    print("\n")
+                    pass
+
+    elif select == 3:
+        image_helper = TFRecord_Helper(height=224, width=224, verbose=False)
+        input_fn = image_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 0, 20, "train")
+
+        with tf.Session() as sess:
+            sess.run(tf.global_variables_initializer())
+
+            try:
+                while True:
+                #print(get_next_in_interator)
+                    image_data = sess.run(input_fn)
+
+                    #print("Extracted image name: ", np.shape(image_data[3])); sys.stdout.flush()
+                    #print("Extracted image name: ", image_data[2]); sys.stdout.flush()
+                    print("Extracted image name: ", np.shape(image_data[0]['image'])); sys.stdout.flush()
+                    break
+
+            except:
+                #print("End of an {0}".format(os.path.basename(tfrecord_file)))
+                print("ERROR")
+                pass

@@ -10,7 +10,7 @@ module = hub.Module('https://tfhub.dev/google/imagenet/inception_v3/classificati
 logits = module(dict(images=images))
 """
 
-"""
+
 module = hub.Module('https://tfhub.dev/google/imagenet/resnet_v1_50/classification/1',
                     trainable=True)   # Trainable is True since we are going to fine-tune the model
 module_features = module(dict(images=images), signature="image_classification",
@@ -27,8 +27,7 @@ if not os.path.exists(os.path.join('summaries','5')):
     os.mkdir(os.path.join('summaries','5'))
 
 with tf.Session() as session:
-    summ_writer = tf.summary.FileWriter(os.path.join('summaries','5'), session.graph)
-"""
+    summ_writer = tf.summary.FileWriter(os.path.join('summaries','resnet_v1_50'), session.graph)
 
 #######################################
 

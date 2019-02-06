@@ -72,7 +72,7 @@ features = normalization(features)
 #labels = labels.reshape(-1, 1)
 
 ##########################################
-# Dataset preprocessing: Onthot encoding #
+# Dataset preprocessing: Onehot encoding #
 ##########################################
 
 tf.one_hot(labels, labels.max()+1, axis=1)
