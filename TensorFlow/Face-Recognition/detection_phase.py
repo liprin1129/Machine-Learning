@@ -10,7 +10,8 @@ tf.reset_default_graph()
 
 img_placeholder = tf.placeholder(tf.string)
 
-filename = '/home/Downloads/lord_of_the_ring.jpg'
+filename = 'faces.jpg'
+#filename = '/home/Downloads/lord_of_the_ring.jpg'
 #filename = '/home/Downloads/gollum.jpg'
 #filename = '/home/Downloads/Explorer_HD2K_SN19671_06-32-16.png'
 
@@ -47,7 +48,12 @@ with tf.Session() as sess:
     shape = origin_img.shape
     for ce, b, s in zip (detected_class_names, detected_image_boxes, detected_scores):
         ce = ce.decode('ascii')
+<<<<<<< HEAD
+        #if (ce == "Human face" or ce == "Person") and s>0.5:
+        if ce == "Human face":
+=======
         if (ce == "Human face" or ce == "Person") and s>0.3:
+>>>>>>> 6aaa39a6be44b7d1f6bfe962b60f99557a94edca
             s1, s2, s3, s4 = int(b[1] * shape[1]), int(b[0] * shape[0]), int(b[3] * shape[1]), int(b[2] * shape[0])
             cv2.rectangle(origin_img, (s1, s2), (s3, s4), (0, 255, 0), 5)
             cv2.putText(origin_img, ce, (s1, s2), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
@@ -55,4 +61,4 @@ with tf.Session() as sess:
             cv2.putText(origin_img, str(s), (s1, s2+30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             #print("< {0}: {1} >".format(ce, b))
     
-    mpimg.imsave("/home/Downloads/detected.png", origin_img)
+    mpimg.imsave("detected_2.png", origin_img)
