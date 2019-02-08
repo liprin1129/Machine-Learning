@@ -1,4 +1,4 @@
-import sys; sys.path.append("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Common_helper")
+import sys; sys.path.append("/home/user170/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Common_helper")
 
 import tensorflow as tf
 import tensorflow_deeplay as dlay

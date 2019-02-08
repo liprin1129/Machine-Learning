@@ -5,9 +5,10 @@ import sys
 import numpy as np
 from tqdm import tqdm
 import tensorboard_helper as tbh
+import time
 
 FLAGS = tf.app.flags.FLAGS
-tf.app.flags.DEFINE_string('image_path', '/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', "root directory including images and tfrecords")
+tf.app.flags.DEFINE_string('image_path', '/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', "root directory including images and tfrecords")
 
 tf.app.flags.DEFINE_string('mode', 'test', "Select train or pred mode")
 
@@ -15,17 +16,20 @@ tf.app.flags.DEFINE_string('mode', 'test', "Select train or pred mode")
 # Set tensorboard folder name
 summary_name_str = 'facenet2'
 
+current_epoch_return = 0;
+
 def training():
     """ #####################################
     ####### Hyper parameters starts ######"""
 
     epoch = 60
-    batch = 50
+    batch = 20
     learning_rate = 0.001
 
     num_outputs = len(list(
         filter(lambda y: os.path.isdir(y), list(
-            map(lambda x: os.path.join(FLAGS.image_path+"images", x), os.listdir(FLAGS.image_path+"images"))))))
+            #map(lambda x: os.path.join(FLAGS.image_path+"images", x), os.listdir(FLAGS.image_path+"images"))))))
+            map(lambda x: os.path.join('/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/'+"images", x), os.listdir('/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/'+"images"))))))
 
     model = FacenetModel(epoch, batch, learning_rate, num_outputs) # Initialize FacenetModel class to set shapes of layers
 
@@ -52,14 +56,14 @@ def training():
     """ ###### Hyper parameters ends #########
     ###################################### """
     
-    model(FLAGS.image_path, 224, 224)
+    model('/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', 224, 224)
 
     # Add ops to save and restore all the variables.
     saver = tf.train.Saver()
 
     config_proto = tf.ConfigProto()
     #config_proto.gpu_options.allow_growth = True
-    config_proto.gpu_options.per_process_gpu_memory_fraction = 0.8
+    config_proto.gpu_options.per_process_gpu_memory_fraction = 0.6
     with tf.Session(config=config_proto) as sess:
 
         #summary_writer = tf.summary.FileWriter(os.path.join('summaries','facenet'), sess.graph) # Write tensorboard
@@ -75,10 +79,10 @@ def training():
                 sess.run(model.train_iterator.initializer)
                 total_accuracy = 0
                 count = 0
-                print("Processing: ", end=""); sys.stdout.flush()
+                #print("Processing: ", end=""); sys.stdout.flush()
                 while True:
                     count += 1
-                    print(".", end=""); sys.stdout.flush()
+                    #print(".", end=""); sys.stdout.flush()
                     
                     extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: training_handle})
                     
@@ -87,9 +91,11 @@ def training():
                         loss, _ = sess.run([model.loss, model.loss_minimizer], feed_dict={model.input_dataset_placeholder:extracted_data[0], model.labels_dataset_placeholder:extracted_data[1], model.train_valid_placeholder:True})
                         pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:True})
                         total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
-
+                    
+                    current_epoch_return = current_epoch_int # Set current itoration as current epoch state
                     #print("{0} accuracy: \t{1}".format(np.sum(np.equal(pred, extracted_data[1])), np.equal(pred, extracted_data[1]))); sys.stdout.flush()
                     #print("expected:\t{0} \npredicted:\t{1}".format(extracted_data[1], pred)); sys.stdout.flush()
+                    
             except tf.errors.OutOfRangeError:
                 # Execute the summaries defined above
                 tbh.write_loss_and_accuracy_summary_fn(summary_writer, sess, loss, total_accuracy, count, epoch)
@@ -102,10 +108,10 @@ def training():
                 sess.run(model.validation_iterator.initializer)
                 total_accuracy = 0
                 count = 0
-                print("Processing: ", end=""); sys.stdout.flush()
+                #print("Processing: ", end=""); sys.stdout.flush()
                 while True:
                     count += 1
-                    print(".", end=""); sys.stdout.flush()
+                    #print(".", end=""); sys.stdout.flush()
 
                     extracted_data = sess.run(model.get_next_in_interators, feed_dict={model.handle_placeholder: validation_handle})
 
@@ -113,6 +119,8 @@ def training():
                         pred = sess.run(model.predictions, feed_dict={model.input_dataset_placeholder:extracted_data[0], model.train_valid_placeholder:False})
                         total_accuracy += np.sum(np.equal(pred, extracted_data[1])) / batch
 
+                    current_epoch = count # Set current itoration as current epoch state
+                    
             except tf.errors.OutOfRangeError:
                 print("\n{0} %".format((total_accuracy/count)*100)); sys.stdout.flush()
 
@@ -121,9 +129,9 @@ def training():
 
                 # Save the variables to disk.
                 save_file_name = 'trained_tf_data/{0}_{1:05d}-of-{2:05d}'.format("facenet", current_epoch_int+1, epoch)
-                save_path = saver.save(sess, os.path.join(FLAGS.image_path, save_file_name))
+                save_path = saver.save(sess, os.path.join('/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', save_file_name))
                 #save_path = saver.save(sess, "/tmp/model.ckpt")
-                print("Model saved in path: %s" % save_path)
+                #print("Model saved in path: %s" % save_path)
 
                 pass
 
@@ -131,7 +139,7 @@ def testing():
     # Read stred data
     batch = 50
 
-    trained_tf_data_folder = os.path.join(FLAGS.image_path, "trained_tf_data")
+    trained_tf_data_folder = os.path.join('/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', "trained_tf_data")
     save_file_name = 'facenet_00060-of-00060.meta'
     saver = tf.train.import_meta_graph(os.path.join(trained_tf_data_folder, save_file_name))
     
@@ -166,7 +174,7 @@ def testing():
 
         return image_tf
 
-    image_tf = _read_image("/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/images/166/36.jpg")
+    image_tf = _read_image("/home/user170/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/images/166/36.jpg")
     
     #sess.run(tf.global_variables_initializer())
     image_tf = sess.run(image_tf)
@@ -177,15 +185,14 @@ def testing():
         else:
             stacked_image = np.vstack([stacked_image, image_tf])
 
+    prev_time = time.time()
     result = sess.run(prediction, feed_dict={input_dataset_placeholder: stacked_image, train_valid_placeholder:False})
-
+    
+    print("Execution time: ", time.time() - prev_time)
+    
     print(result)
 
-def main(argv):
-    if FLAGS.mode == "train":
-        training()
-    elif FLAGS.mode == "pred":
-        testing()
+    return result[0]
 
 if __name__=="__main__":
-    tf.app.run(main)
+    testing()
