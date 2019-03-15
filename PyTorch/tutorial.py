@@ -108,3 +108,10 @@ for epoch in range(2):
             running_loss = 0.0
 
 print('Finished Training')
+
+dataiter = iter(testloader)
+images, labels = dataiter.next()
+
+# print images
+imshow(torchvision.utils.make_grid(images))
+print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
