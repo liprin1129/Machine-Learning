@@ -1,4 +1,4 @@
-import sys; sys.path.append("/home/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Common_helper")
+import sys; sys.path.append("/home/user170/shared-data/Personal_Dev/Machine-Learning/TensorFlow/Common_helper")
 
 import tensorflow as tf
 import tensorflow_deeplay as dlay
@@ -203,7 +203,11 @@ class FacenetModel(HyperParameters):
     def __init__(self, _num_epochs_int, _batch_size_int, _learning_rate_int, _num_outputs_int):
         HyperParameters.__init__(self, _num_epochs_int, _batch_size_int, _learning_rate_int, _num_outputs_int) # Parent class intializer
 
-        self.train_valid_placeholder = tf.placeholder(tf.bool)
+        with tf.variable_scope("placeholders/"):
+            self.labels_dataset_placeholder = tf.placeholder(tf.int64, shape = [None], name="labels")
+            self.handle_placeholder = tf.placeholder(tf.string, shape=[], name="iterator_handler")
+            self.train_valid_placeholder = tf.placeholder(tf.bool, name="tv_mode_selector_placeholder")
+
 
         self.predictions = None
         self.optimizer = None
@@ -214,24 +218,21 @@ class FacenetModel(HyperParameters):
         self.grads_and_vars = None
 
         self.train_iterator = None
-        self.validation_iterator = None        
-        self.input_dataset_placeholder = None
-        self.labels_dataset_placeholder = tf.placeholder(tf.int64, shape = [None])
-        self.handle_placeholder = tf.placeholder(tf.string, shape=[])
+        self.validation_iterator = None
         self.get_next_in_interators = None
 
     def __call__(self, _tfdata_dir, _height, _width):
         def _train_valid_iterator_setup():
             tfrecord_helper = TFRecord_Helper(_height, _width, verbose=False)
-
-            self.input_dataset_placeholder = tf.placeholder(tf.float32, shape = [None, _height, _width, 3])
+            with tf.variable_scope("placeholders/"): self.input_dataset_placeholder = tf.placeholder(tf.float32, shape = [None, _height, _width, 3], name="input")
+            #self.input_dataset_placeholder = tf.placeholder(tf.float32, shape = [None, _height, _width, 3], "input_placeholder")
 
             with tf.variable_scope("iterator_handler"):
                 with tf.variable_scope("train_iterator"):
-                    self.train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', self.batch, "train")
+                    self.train_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, "train")
                 
                 with tf.variable_scope("validation_iterator"):
-                    self.validation_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset('/home/shared-data/SJC_Dev/Projects/SJC_Git/Face-Detector/SJC-Face-Data/', self.batch, "valid")
+                    self.validation_iterator = tfrecord_helper.convert_from_tfrecord_with_tf_dataset(_tfdata_dir, self.batch, "valid")
 
                 with tf.variable_scope("iterator"): 
                     iterator = tf.data.Iterator.from_string_handle(
@@ -245,7 +246,8 @@ class FacenetModel(HyperParameters):
             with tf.variable_scope("loss"):
                 self.loss = tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labels_dataset_placeholder, logits = logits))
 
-            with tf.variable_scope("optimizer"):
+            extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+            with tf.variable_scope("optimizer"), tf.control_dependencies(extra_update_ops):
                 self.optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate)
                 self.loss_minimizer = self.optimizer.minimize(self.loss)
 

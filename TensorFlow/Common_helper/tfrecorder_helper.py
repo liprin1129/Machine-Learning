@@ -340,7 +340,8 @@ class TFRecord_Helper(ImageHelper):
             #image_name = datum_record['image/name']
 
             assert len(resize) > 1 # Assertion error if image height and width are not defined
-            image = tf.image.resize_images(image, resize)#, method=tf.image.ResizeMethod.AREA, align_corners=True)
+            #image = tf.image.resize_images(image, resize)#, method=tf.image.ResizeMethod.AREA, align_corners=True)
+            image = tf.image.resize_images(image, resize, method=tf.image.ResizeMethod.AREA, align_corners=True)
             #print("===========================> ", image)
             image = image - tf.cast(tf.stack((0, 0, 0)), tf.float32) # to specify the dimension of the tfrecord image. If not using this, it will give an error in makeing model phase
 
