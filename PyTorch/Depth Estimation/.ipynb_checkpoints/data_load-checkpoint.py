@@ -7,7 +7,7 @@ from torch.utils.data import Dataset
 import torch
 
 class LoadData(Dataset):
-    def __init__(self, root_dir, dataset_list, transform=None):
+    def __init__(self, root_dir, testset_ratio=0.3, transform=None):
         """
         Args:
             root_dir (string): Directory with RGB and Depth-TIFF images.
@@ -17,19 +17,41 @@ class LoadData(Dataset):
         #self.mat_data = h5py.File(root_dir+mat_file, 'r')
         self.root_dir = root_dir
         self.transform = transform
-        self.dataset_list = dataset_list
+        self.testset_ratio = testset_ratio
+        
+        self.trainset_idx, self.testset_idx, self.trainset_num, self.testset_num = self._seperate_dataset()
+
+    def _seperate_dataset(self):
+        """
+        Seperate Train and Test dataset
+        
+        Returns: random indice of train test datasets, and length of those.
+        """
+        dataset_len = len(os.listdir(self.root_dir+"Images/RGB/"))
+        rnd_idx = [i for i in range(dataset_len)]
+        np.random.shuffle(rnd_idx)
+        split_thresh = int(dataset_len*(1-self.testset_ratio))
+
+        train_idx = rnd_idx[:split_thresh]
+        test_idx = rnd_idx[split_thresh:]
+
+        trainset_len = len(train_idx)
+        testset_len = len(test_idx)
+
+        return train_idx, test_idx, trainset_len, testset_len
     
     def __len__(self):
-        self.dataset_len = len(self.dataset_list)
+        self.dataset_len = len(os.listdir(self.root_dir+"Images/RGB/"))
         return self.dataset_len
     
     def __getitem__(self, idx):
-        rgb_img = io.imread(self.root_dir+'Images/RGB/{0:04d}.jpg'.format(self.dataset_list[idx]))
-        depth_img = io.imread(self.root_dir+'Images/Depth-TIFF/{0:04d}.tiff'.format(self.dataset_list[idx]))
+        #rgb_img = Image.open(self.root_dir+'Images/RGB/{0:04d}.jpg'.format(self.trainset_idx[idx]))
+        #depth_img = Image.open(self.root_dir+'Images/Depth-TIFF/{0:04d}.tiff'.format(self.trainset_idx[idx]))
+        rgb_img = io.imread(self.root_dir+'Images/RGB/{0:04d}.jpg'.format(self.trainset_idx[idx]))
+        depth_img = io.imread(self.root_dir+'Images/Depth-TIFF/{0:04d}.tiff'.format(self.trainset_idx[idx]))
             
         if self.transform:
             rgb_img = self.transform(rgb_img)
-            #depth_img = self.transform(np.expand_dims(depth_img, axis=0))
             depth_img = self.transform(depth_img)
         
         #print(np.max(rgb_img.numpy()), np.min(rgb_img.numpy()))
@@ -40,31 +62,16 @@ class LoadData(Dataset):
 
 # PREPROCESSING
 class ToTensor(object):
-    def __init__(self, norm=False):
-        self.norm = norm
-        self.normalizer = Normalization()
-
     """Convert ndarray in sample to Tensors."""
     def __call__(self, sample_img):
         if len(np.shape(sample_img)) > 2:
             # swap colour axis because
             # numpy image: H x W x C
             # torch image: C x H x W
-            
-            if self.norm == True:
-                sample_img = self.normalizer(sample_img)
-
-            tensor = torch.from_numpy(sample_img.transpose((2, 0, 1)))
-
-            return tensor.float()
-
+            return torch.from_numpy(sample_img.transpose((2, 0, 1)))
+            #rgb_img = np.moveaxis(np.asarray(rgb_img), [-1], [0])
         else:
-            if self.norm == True:
-                sample_img = self.normalizer(sample_img)
-
-            tensor = torch.from_numpy(np.expand_dims(sample_img, axis=0))
-            
-            return tensor.float()
+            return torch.from_numpy(sample_img)
 
 class Normalization(object):
     """Normalization for a given 2d array"""     
@@ -93,35 +100,12 @@ class Normalization(object):
         return array_scaled
 
 if __name__ == '__main__':
-    def seperate_dataset(testset_ratio=0.3):
-        """
-        Seperate Train and Test dataset
-
-        Returns: random indice of train test datasets, and length of those.
-        """
-        dataset_len = len(os.listdir(data_folder+"Images/RGB/"))
-        rnd_indice = [i for i in range(dataset_len)]
-        np.random.shuffle(rnd_indice)
-        split_thresh = int(dataset_len*(1-testset_ratio))
-
-        train_indice = rnd_indice[:split_thresh]
-        test_indice = rnd_indice[split_thresh:]
-
-        trainset_len = len(train_indice)
-        testset_len = len(test_indice)
-
-        return train_indice, test_indice, trainset_len, testset_len
-
-
     from torchvision import transforms
-
+    
     data_folder = "/home/user170/shared-data/Personal_Dev/Machine-Learning/Data/Depth/NYU-Depth-Dataset-V2/"
 
-
-    trainset_indice, testset_indice, trainset_len, testset_len = seperate_dataset()
-
     composed = transforms.Compose([Normalization(), ToTensor()])
-    trainset = LoadData(root_dir=data_folder, dataset_list=trainset_indice, transform=composed)
+    load_data = LoadData(root_dir=data_folder, transform=composed)
 
-    print("RGB SHAPE: {}, MAX: {}, MIN:{}".format(np.shape(trainset[0]["RGB"].numpy()), np.max(trainset[0]["RGB"].numpy()), np.min(trainset[0]["RGB"].numpy())))
-    print("DEPTH SHAPE: {}, MAX: {}, MIN:{}".format(np.shape(trainset[0]["DEPTH"].numpy()), np.max(trainset[0]["DEPTH"].numpy()), np.min(trainset[0]["DEPTH"].numpy())))
+    print("RGB SHAPE: {}, MAX: {}, MIN:{}".format(np.shape(load_data[0]["RGB"].numpy()), np.max(load_data[0]["RGB"].numpy()), np.min(load_data[0]["RGB"].numpy())))
+    print("DEPTH SHAPE: {}, MAX: {}, MIN:{}".format(np.shape(load_data[0]["DEPTH"].numpy()), np.max(load_data[0]["DEPTH"].numpy()), np.min(load_data[0]["DEPTH"].numpy())))
