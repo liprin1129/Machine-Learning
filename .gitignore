@@ -47,3 +47,9 @@ TensorFlow/slim/face-recognition/dataset/images/270/
 TensorFlow/Self-Practices/tensorflow-hub/MNIST-data/
 
 TensorFlow/Self-Practices/tensorflow-hub/MNIST_data/
+
+PoseEstimation/densepose/DensePoseData/DensePose_COCO/
+
+PoseEstimation/densepose/DensePoseData/eval_data/
+
+PoseEstimation/densepose/DensePoseData/UV_data/
