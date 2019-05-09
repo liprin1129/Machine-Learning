@@ -27,10 +27,16 @@ OriginImage = ResultFolder+'/000000000069.jpg'
 IUVImage = '/000000000069_IUV.png'
 INDSImage = '/000000000069_INDS.png'
 '''
+'''
 ResultFolder = "5"
 OriginImage = ResultFolder+'/000000000171.jpg'
 IUVImage = '/000000000171_IUV.png'
 INDSImage = '/000000000171_INDS.png'
+'''
+ResultFolder = "test"
+OriginImage = ResultFolder+'/test2.png'
+IUVImage = '/test2_IUV.png'
+INDSImage = '/test2_INDS.png'
 
 im  = cv2.imread(OriginImage)
 IUV = cv2.imread(ResultFolder+IUVImage)
