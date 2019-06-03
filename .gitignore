@@ -1,3 +1,9 @@
 PoseEstimation/densepose/DensePoseData/DensePose_COCO/
 PoseEstimation/densepose/DensePoseData/eval_data/
 PoseEstimation/densepose/DensePoseData/UV_data/
+
+PoseEstimation/DensePose/
+
+PoseEstimation/cocoapi/
+
+PoseEstimation/OpenPose/
