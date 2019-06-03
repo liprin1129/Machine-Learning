@@ -16,7 +16,7 @@ class CameraManager {
         void runtimeParams(); // Runtime camera configs
         int cameraOpen();
 
-        sl::Mat slMat2cvMatBridge(); // Pointer for slMat to cvMat
+        void slMat2cvMatBridge(); // Pointer for slMat to cvMat
         cv::Mat slMat2cvMatConverter(sl::Mat& input);
     public:
         // Constructor function for CameraManager class
