@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.o"
+  "CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o"
   "CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o"
   "CMakeFiles/ZED_with_OpenCV.dir/src/main.o"
   "ZED_with_OpenCV.pdb"

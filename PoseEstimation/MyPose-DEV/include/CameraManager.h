@@ -1,5 +1,6 @@
 #include <sl_zed/Camera.hpp>
 #include <opencv2/opencv.hpp>
+#include "JsonFileManager.h"
 
 class CameraManager {
     private:
@@ -7,6 +8,10 @@ class CameraManager {
         sl::Camera _zed;
         sl::InitParameters _init_params;
         sl::RuntimeParameters _runtime_params;
+
+        int imgViewWidth;
+        int imgViewHeight;
+        int focalLength;
 
         sl::Mat slMat;
         cv::Mat cvMat;
@@ -16,11 +21,12 @@ class CameraManager {
         void runtimeParams(); // Runtime camera configs
         int cameraOpen();
 
-        void slMat2cvMatBridge(); // Pointer for slMat to cvMat
-        cv::Mat slMat2cvMatConverter(sl::Mat& input);
+        cv::Mat getOneFrame();
     public:
         // Constructor function for CameraManager class
         CameraManager();
+        ~CameraManager();
+        std::vector<double> getJointZ();
 
         // main method for CameraManger class
         int cameraManagerDidLoad();

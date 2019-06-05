@@ -70,9 +70,22 @@ CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.cpp -o CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.s
 
+CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o: CMakeFiles/ZED_with_OpenCV.dir/flags.make
+CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o: ../src/JsonFileManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o -c /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp
+
+CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp > CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.i
+
+CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp -o CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.s
+
 CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o: CMakeFiles/ZED_with_OpenCV.dir/flags.make
 CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o: ../src/MainDelegate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o -c /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/MainDelegate.cpp
 
 CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.s: cmake_force
 
 CMakeFiles/ZED_with_OpenCV.dir/src/main.o: CMakeFiles/ZED_with_OpenCV.dir/flags.make
 CMakeFiles/ZED_with_OpenCV.dir/src/main.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ZED_with_OpenCV.dir/src/main.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ZED_with_OpenCV.dir/src/main.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ZED_with_OpenCV.dir/src/main.o -c /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/main.cpp
 
 CMakeFiles/ZED_with_OpenCV.dir/src/main.i: cmake_force
@@ -99,6 +112,7 @@ CMakeFiles/ZED_with_OpenCV.dir/src/main.s: cmake_force
 # Object files for target ZED_with_OpenCV
 ZED_with_OpenCV_OBJECTS = \
 "CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.o" \
+"CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o" \
 "CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o" \
 "CMakeFiles/ZED_with_OpenCV.dir/src/main.o"
 
@@ -106,13 +120,17 @@ ZED_with_OpenCV_OBJECTS = \
 ZED_with_OpenCV_EXTERNAL_OBJECTS =
 
 ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.o
+ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o
 ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o
 ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/src/main.o
 ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/build.make
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_input.so
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_core.so
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_zed.so
-ZED_with_OpenCV: /usr/lib/x86_64-linux-gnu/libopenblas.so
+ZED_with_OpenCV: /usr/local/lib/libmkl_intel_lp64.so
+ZED_with_OpenCV: /usr/local/lib/libmkl_intel_thread.so
+ZED_with_OpenCV: /usr/local/lib/libmkl_core.so
+ZED_with_OpenCV: /usr/local/lib/libiomp5.so
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudabgsegm.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudaobjdetect.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudastereo.so.3.4.5
@@ -188,7 +206,7 @@ ZED_with_OpenCV: /usr/local/lib/libopencv_imgproc.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_core.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudev.so.3.4.5
 ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ZED_with_OpenCV"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ZED_with_OpenCV"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ZED_with_OpenCV.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

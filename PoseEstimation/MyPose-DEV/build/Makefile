@@ -139,6 +139,21 @@ src/CameraManager.s:
 .PHONY : src/CameraManager.s
 
 # target to build an object file
+src/JsonFileManager.o:
+	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o
+.PHONY : src/JsonFileManager.o
+
+# target to preprocess a source file
+src/JsonFileManager.i:
+	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.i
+.PHONY : src/JsonFileManager.i
+
+# target to generate assembly for a file
+src/JsonFileManager.s:
+	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.s
+.PHONY : src/JsonFileManager.s
+
+# target to build an object file
 src/MainDelegate.o:
 	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o
 .PHONY : src/MainDelegate.o
@@ -180,6 +195,9 @@ help:
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
+	@echo "... src/JsonFileManager.o"
+	@echo "... src/JsonFileManager.i"
+	@echo "... src/JsonFileManager.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"

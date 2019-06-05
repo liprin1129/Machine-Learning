@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/local/zed/include",
-                "/usr/local/cuda-10.0/targets/x86_64-linux/include"
+                "/usr/local/cuda-10.0/targets/x86_64-linux/include",
+                "/usr/local/cuda-10.0/extras/CUPTI/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

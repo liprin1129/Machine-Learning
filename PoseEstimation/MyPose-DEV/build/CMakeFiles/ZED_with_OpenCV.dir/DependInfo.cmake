@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.cpp" "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.o"
+  "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp" "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o"
   "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/MainDelegate.cpp" "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o"
   "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/main.cpp" "/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build/CMakeFiles/ZED_with_OpenCV.dir/src/main.o"
   )

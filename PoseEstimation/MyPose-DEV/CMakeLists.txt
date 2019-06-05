@@ -19,9 +19,11 @@ link_directories(${CUDA_LIBRARY_DIRS})
 
 FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
 FILE(GLOB_RECURSE HDR_FILES include/*.hpp)
+FILE(GLOB_RECURSE HDR_FILES include/nlohmann/*.hpp)
 
 ADD_EXECUTABLE(${execName} ${HDR_FILES} ${SRC_FILES})
-add_definitions(-std=c++11 -g -O3)
+#add_definitions(-std=c++11 -g -O3)
+add_definitions(-std=c++1z -g)
 
 TARGET_LINK_LIBRARIES(${execName}
                         ${ZED_LIBRARIES}
