@@ -1,6 +1,8 @@
+//#ifndef CAMERAMANAGER_H
+//#define CAMERAMANAGER_H
+
 #include <sl_zed/Camera.hpp>
 #include <opencv2/opencv.hpp>
-#include "JsonFileManager.h"
 
 class CameraManager {
     private:
@@ -29,5 +31,7 @@ class CameraManager {
         std::vector<double> getJointZ();
 
         // main method for CameraManger class
-        int cameraManagerDidLoad();
+        int cameraManagerDidLoad(int argc, char **argv);
 };
+
+//#endif

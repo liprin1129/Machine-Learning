@@ -1,13 +1,12 @@
-#ifndef MAINDELEGATE_HPP_
-#define MAINDELEGATE_HPP_
+#ifndef MAINDELEGATE_H
+#define MAINDELEGATE_H
 
 #include "CameraManager.h"
+#include "JsonFileManager.h"
 
 class MainDelegate {
-	private:
-		CameraManager cm;
 	public:
 		int mainDelegation(int argc, char** argv);
 };
 
-#endif /* MAINDELEGATE_HPP_ */
+#endif /* MAINDELEGATE_H */

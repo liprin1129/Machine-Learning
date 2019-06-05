@@ -11,8 +11,6 @@ sl_zed/Camera.hpp
 -
 opencv2/opencv.hpp
 -
-JsonFileManager.h
-../include/JsonFileManager.h
 
 ../include/JsonFileManager.h
 nlohmann/json.hpp
@@ -21,6 +19,14 @@ iostream
 -
 fstream
 -
+vector
+-
+
+../include/MainDelegate.h
+CameraManager.h
+../include/CameraManager.h
+JsonFileManager.h
+../include/JsonFileManager.h
 
 ../include/nlohmann/adl_serializer.hpp
 utility
@@ -590,9 +596,17 @@ string
 vector
 -
 
-/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.cpp
-CameraManager.h
-/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp
+JsonFileManager.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.h
+
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/MainDelegate.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/MainDelegate.h
+
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/main.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/MainDelegate.h
 
 /usr/local/cuda/include/builtin_types.h
 device_types.h
