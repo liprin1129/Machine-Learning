@@ -127,10 +127,7 @@ ZED_with_OpenCV: CMakeFiles/ZED_with_OpenCV.dir/build.make
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_input.so
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_core.so
 ZED_with_OpenCV: /usr/local/zed/lib/libsl_zed.so
-ZED_with_OpenCV: /usr/local/lib/libmkl_intel_lp64.so
-ZED_with_OpenCV: /usr/local/lib/libmkl_intel_thread.so
-ZED_with_OpenCV: /usr/local/lib/libmkl_core.so
-ZED_with_OpenCV: /usr/local/lib/libiomp5.so
+ZED_with_OpenCV: /usr/lib/x86_64-linux-gnu/libopenblas.so
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudabgsegm.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudaobjdetect.so.3.4.5
 ZED_with_OpenCV: /usr/local/lib/libopencv_cudastereo.so.3.4.5

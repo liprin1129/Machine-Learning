@@ -11,7 +11,7 @@ CameraManager::CameraManager() {
 
 CameraManager::~CameraManager() {
 // Destructor function for CameraManager class:
-    _zed.close();
+    //_zed.close();
 
     std::cout << "CameraManager Class Destroyed" << std::endl;
 }
@@ -133,12 +133,12 @@ int CameraManager::cameraManagerDidLoad() {
 // main method for CameraManger class:
     
     auto errInt = 0; // normal condition is 0, abnormal is any other than 0.
-
+    /*
     if (cameraOpen() != errInt) {
         std::cout << "Camera can't open" << std::endl;
         return 1;
     }
-
+    */
     /*
     while (1) { // take only one frame
         if (_zed.grab(_runtime_params) == sl::SUCCESS) {
@@ -159,5 +159,6 @@ int CameraManager::cameraManagerDidLoad() {
     // JSON test
     JsonFileManager jfm;
     jfm.jsonPrint();
-    return 0;
+
+    return errInt;
 }
