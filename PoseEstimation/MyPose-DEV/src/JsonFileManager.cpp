@@ -1,28 +1,30 @@
 #include "JsonFileManager.h"
 
 //using json = nlohmann::json;
-JsonFileManager::JsonFileManager(std::string file) {
-    //parseJSON("left_keypoints.json");
-    parseJSON(file);
+JsonFileManager::JsonFileManager(std::string lF, std::string rF) {
+    leftJSON = parseJSON(lF);
+    rightJSON = parseJSON(rF);
     //std::cout << json["people"][0]["pose_keypoints_2d"] << std::endl;
 }
 
 
-void JsonFileManager::parseJSON(std::string file) {
-    std::ifstream reading(file, std::ios::in);
+nlohmann::json JsonFileManager::parseJSON(std::string file) {
+    nlohmann::json json;
+    
+    std::ifstream readingLeftJSON(file, std::ios::in);
     //auto reading = std::ifstream(file, std::ios::in);
     
-    // json instance
-    //nlohmann::json json;
-    reading >> json;
+    readingLeftJSON >> json;
+
+    return json;
 }
 
 
-void JsonFileManager::estimatedJoints() {
-    //std::vector<std::tuple<double, double, double>> joints;
+std::vector<std::tuple<double, double, double>> JsonFileManager::estimatedJoints(nlohmann::json json) {
+    std::vector<std::tuple<double, double, double>> joints;
     std::tuple<double, double, double> joint;
     
-    auto keypoints = json["people"][0]["pose_keypoints_2d"];
+    auto keypoints = json["people"][0]["pose_keypoints_2d"]; // Data through People -> 0 -> pose_keypoints_2d
     auto epsilon = 0.00001; // float number for comparing kypoints whether they are not zero
 
     for (int i=0; i<keypoints.size()/3; ++i) {        
@@ -35,12 +37,15 @@ void JsonFileManager::estimatedJoints() {
         }
         //fprintf(stdout, "iteration: %d, %lf, %lf, %lf <%d>\n", i, (double)keypoints[i*3], (double)keypoints[i*3+1], (double)keypoints[i*3+2], truefalse);
     }
-    fprintf(stdout, "Keypoints vector size: %d\n", (int)joints.size());
+    //fprintf(stdout, "Keypoints vector size: %d\n", (int)joints.size());
+
+    return joints;
 }
 
 
-int JsonFileManager::jsonFileManagerDidLoad(int argc, char**argv) {
-    estimatedJoints();
+void JsonFileManager::jsonFileManagerDidLoad() {
+    leftJoints = estimatedJoints(leftJSON);
+    rightJoints = estimatedJoints(rightJSON);
 }
 /*
 void JsonFileManager::jsonPrint() {

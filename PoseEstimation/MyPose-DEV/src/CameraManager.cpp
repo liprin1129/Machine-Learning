@@ -129,7 +129,9 @@ std::vector<double> CameraManager::getJointZ() {
    auto lwLZ = static_cast<double>(120)*focalLength/(lwRX-lwLX);
    printf("left jointZ: %f\n", lwLZ);
 }
-int CameraManager::cameraManagerDidLoad(int argc, char** argv) {
+
+
+void CameraManager::cameraManagerDidLoad(int argc, char** argv) {
 // main method for CameraManger class:
     
     auto errInt = 0; // normal condition is 0, abnormal is any other than 0.
@@ -155,6 +157,4 @@ int CameraManager::cameraManagerDidLoad(int argc, char** argv) {
     */
 
     //getJointZ();
-
-    return errInt;
 }

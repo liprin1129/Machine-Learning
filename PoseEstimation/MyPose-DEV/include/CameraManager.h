@@ -1,5 +1,5 @@
-//#ifndef CAMERAMANAGER_H
-//#define CAMERAMANAGER_H
+#ifndef __CAMERA_MANAGER_H__
+#define __CAMERA_MANAGER_H__
 
 #include <sl_zed/Camera.hpp>
 #include <opencv2/opencv.hpp>
@@ -25,13 +25,16 @@ class CameraManager {
 
         cv::Mat getOneFrame();
     public:
+        // Getter
+        int getFocalLength(){return focalLength;};
+        
         // Constructor function for CameraManager class
         CameraManager();
         ~CameraManager();
         std::vector<double> getJointZ();
 
         // main method for CameraManger class
-        int cameraManagerDidLoad(int argc, char **argv);
+        void cameraManagerDidLoad(int argc, char **argv);
 };
 
-//#endif
+#endif

@@ -1,4 +1,4 @@
-SET(execName ZED_with_OpenCV)
+SET(execName MyPose-DEV)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 PROJECT(${execName})
 
@@ -18,7 +18,7 @@ link_directories(${OpenCV_LIBRARY_DIRS})
 link_directories(${CUDA_LIBRARY_DIRS})
 
 FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
-FILE(GLOB_RECURSE HDR_FILES include/*.hpp)
+FILE(GLOB_RECURSE HDR_FILES include/*.h)
 FILE(GLOB_RECURSE HDR_FILES include/nlohmann/*.hpp)
 
 ADD_EXECUTABLE(${execName} ${HDR_FILES} ${SRC_FILES})

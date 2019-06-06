@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/JointCoordinateManager.h
+fstream
+-
+tuple
+-
+vector
+-
+
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JointCoordinateManager.cpp
+JointCoordinateManager.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JointCoordinateManager.h
+

@@ -596,6 +596,10 @@ string
 vector
 -
 
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.cpp
+CameraManager.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/CameraManager.h
+
 /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp
 JsonFileManager.h
 /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.h

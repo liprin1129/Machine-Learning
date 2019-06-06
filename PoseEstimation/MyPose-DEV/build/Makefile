@@ -111,76 +111,91 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ZED_with_OpenCV
+# Target rules for targets named MyPose-DEV
 
 # Build rule for target.
-ZED_with_OpenCV: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ZED_with_OpenCV
-.PHONY : ZED_with_OpenCV
+MyPose-DEV: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MyPose-DEV
+.PHONY : MyPose-DEV
 
 # fast build rule for target.
-ZED_with_OpenCV/fast:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/build
-.PHONY : ZED_with_OpenCV/fast
+MyPose-DEV/fast:
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/build
+.PHONY : MyPose-DEV/fast
 
 # target to build an object file
 src/CameraManager.o:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.o
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/CameraManager.o
 .PHONY : src/CameraManager.o
 
 # target to preprocess a source file
 src/CameraManager.i:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.i
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/CameraManager.i
 .PHONY : src/CameraManager.i
 
 # target to generate assembly for a file
 src/CameraManager.s:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/CameraManager.s
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/CameraManager.s
 .PHONY : src/CameraManager.s
 
 # target to build an object file
+src/JointCoordinateManager.o:
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JointCoordinateManager.o
+.PHONY : src/JointCoordinateManager.o
+
+# target to preprocess a source file
+src/JointCoordinateManager.i:
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JointCoordinateManager.i
+.PHONY : src/JointCoordinateManager.i
+
+# target to generate assembly for a file
+src/JointCoordinateManager.s:
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JointCoordinateManager.s
+.PHONY : src/JointCoordinateManager.s
+
+# target to build an object file
 src/JsonFileManager.o:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.o
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JsonFileManager.o
 .PHONY : src/JsonFileManager.o
 
 # target to preprocess a source file
 src/JsonFileManager.i:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.i
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JsonFileManager.i
 .PHONY : src/JsonFileManager.i
 
 # target to generate assembly for a file
 src/JsonFileManager.s:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/JsonFileManager.s
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/JsonFileManager.s
 .PHONY : src/JsonFileManager.s
 
 # target to build an object file
 src/MainDelegate.o:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.o
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/MainDelegate.o
 .PHONY : src/MainDelegate.o
 
 # target to preprocess a source file
 src/MainDelegate.i:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.i
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/MainDelegate.i
 .PHONY : src/MainDelegate.i
 
 # target to generate assembly for a file
 src/MainDelegate.s:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/MainDelegate.s
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/MainDelegate.s
 .PHONY : src/MainDelegate.s
 
 # target to build an object file
 src/main.o:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/main.o
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/main.o
 .PHONY : src/main.o
 
 # target to preprocess a source file
 src/main.i:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/main.i
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/main.i
 .PHONY : src/main.i
 
 # target to generate assembly for a file
 src/main.s:
-	$(MAKE) -f CMakeFiles/ZED_with_OpenCV.dir/build.make CMakeFiles/ZED_with_OpenCV.dir/src/main.s
+	$(MAKE) -f CMakeFiles/MyPose-DEV.dir/build.make CMakeFiles/MyPose-DEV.dir/src/main.s
 .PHONY : src/main.s
 
 # Help Target
@@ -190,11 +205,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... ZED_with_OpenCV"
+	@echo "... MyPose-DEV"
 	@echo "... edit_cache"
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
+	@echo "... src/JointCoordinateManager.o"
+	@echo "... src/JointCoordinateManager.i"
+	@echo "... src/JointCoordinateManager.s"
 	@echo "... src/JsonFileManager.o"
 	@echo "... src/JsonFileManager.i"
 	@echo "... src/JsonFileManager.s"
