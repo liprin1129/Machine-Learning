@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/tutorial01.dir/tutorial03.o  -o tutorial01 -lGL -lGLU -lglut -lXmu -lXi -lglfw -lGLEW 
+/usr/bin/c++    -rdynamic CMakeFiles/tutorial01.dir/tutorial01.o  -o tutorial01 -lGL -lGLU -lglut -lXmu -lXi -lglfw -lGLEW 

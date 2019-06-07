@@ -6,19 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial03.cpp
-glut.h
--
-math.h
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial01.cpp
+GLFW/glfw3.h
 -
 iostream
--
-
-/usr/local/cuda-10.0/extras/CUPTI/include/GL/glut.h
-windows.h
--
-GL/gl.h
--
-GL/glu.h
 -
 

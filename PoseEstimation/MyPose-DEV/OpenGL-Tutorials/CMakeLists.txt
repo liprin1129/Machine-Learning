@@ -1,4 +1,4 @@
-SET(execName tutorial01)
+SET(execName tutorial02)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 PROJECT(${execName})
 
@@ -26,7 +26,7 @@ set(ALL_LIBS
     glm
 )
 
-ADD_EXECUTABLE(${execName} tutorial03.cpp)
+ADD_EXECUTABLE(${execName} tutorial02.cpp)
 add_definitions(-std=c++1z -g)
 
 TARGET_LINK_LIBRARIES(${execName}

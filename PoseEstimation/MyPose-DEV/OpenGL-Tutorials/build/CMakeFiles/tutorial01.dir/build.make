@@ -57,27 +57,27 @@ include CMakeFiles/tutorial01.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tutorial01.dir/flags.make
 
-CMakeFiles/tutorial01.dir/tutorial03.o: CMakeFiles/tutorial01.dir/flags.make
-CMakeFiles/tutorial01.dir/tutorial03.o: ../tutorial03.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tutorial01.dir/tutorial03.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tutorial01.dir/tutorial03.o -c /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial03.cpp
+CMakeFiles/tutorial01.dir/tutorial01.o: CMakeFiles/tutorial01.dir/flags.make
+CMakeFiles/tutorial01.dir/tutorial01.o: ../tutorial01.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tutorial01.dir/tutorial01.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tutorial01.dir/tutorial01.o -c /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial01.cpp
 
-CMakeFiles/tutorial01.dir/tutorial03.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tutorial01.dir/tutorial03.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial03.cpp > CMakeFiles/tutorial01.dir/tutorial03.i
+CMakeFiles/tutorial01.dir/tutorial01.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tutorial01.dir/tutorial01.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial01.cpp > CMakeFiles/tutorial01.dir/tutorial01.i
 
-CMakeFiles/tutorial01.dir/tutorial03.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tutorial01.dir/tutorial03.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial03.cpp -o CMakeFiles/tutorial01.dir/tutorial03.s
+CMakeFiles/tutorial01.dir/tutorial01.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tutorial01.dir/tutorial01.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial01.cpp -o CMakeFiles/tutorial01.dir/tutorial01.s
 
 # Object files for target tutorial01
 tutorial01_OBJECTS = \
-"CMakeFiles/tutorial01.dir/tutorial03.o"
+"CMakeFiles/tutorial01.dir/tutorial01.o"
 
 # External object files for target tutorial01
 tutorial01_EXTERNAL_OBJECTS =
 
-tutorial01: CMakeFiles/tutorial01.dir/tutorial03.o
+tutorial01: CMakeFiles/tutorial01.dir/tutorial01.o
 tutorial01: CMakeFiles/tutorial01.dir/build.make
 tutorial01: /usr/lib/x86_64-linux-gnu/libGL.so
 tutorial01: /usr/lib/x86_64-linux-gnu/libGLU.so

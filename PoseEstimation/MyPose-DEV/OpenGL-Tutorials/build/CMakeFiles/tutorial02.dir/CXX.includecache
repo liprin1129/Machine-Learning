@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/OpenGL-Tutorials/tutorial02.cpp
+GLFW/glfw3.h
+-
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+

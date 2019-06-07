@@ -111,32 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tutorial01
+# Target rules for targets named tutorial02
 
 # Build rule for target.
-tutorial01: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tutorial01
-.PHONY : tutorial01
+tutorial02: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tutorial02
+.PHONY : tutorial02
 
 # fast build rule for target.
-tutorial01/fast:
-	$(MAKE) -f CMakeFiles/tutorial01.dir/build.make CMakeFiles/tutorial01.dir/build
-.PHONY : tutorial01/fast
+tutorial02/fast:
+	$(MAKE) -f CMakeFiles/tutorial02.dir/build.make CMakeFiles/tutorial02.dir/build
+.PHONY : tutorial02/fast
 
 # target to build an object file
-tutorial03.o:
-	$(MAKE) -f CMakeFiles/tutorial01.dir/build.make CMakeFiles/tutorial01.dir/tutorial03.o
-.PHONY : tutorial03.o
+tutorial02.o:
+	$(MAKE) -f CMakeFiles/tutorial02.dir/build.make CMakeFiles/tutorial02.dir/tutorial02.o
+.PHONY : tutorial02.o
 
 # target to preprocess a source file
-tutorial03.i:
-	$(MAKE) -f CMakeFiles/tutorial01.dir/build.make CMakeFiles/tutorial01.dir/tutorial03.i
-.PHONY : tutorial03.i
+tutorial02.i:
+	$(MAKE) -f CMakeFiles/tutorial02.dir/build.make CMakeFiles/tutorial02.dir/tutorial02.i
+.PHONY : tutorial02.i
 
 # target to generate assembly for a file
-tutorial03.s:
-	$(MAKE) -f CMakeFiles/tutorial01.dir/build.make CMakeFiles/tutorial01.dir/tutorial03.s
-.PHONY : tutorial03.s
+tutorial02.s:
+	$(MAKE) -f CMakeFiles/tutorial02.dir/build.make CMakeFiles/tutorial02.dir/tutorial02.s
+.PHONY : tutorial02.s
 
 # Help Target
 help:
@@ -145,11 +145,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... tutorial01"
+	@echo "... tutorial02"
 	@echo "... edit_cache"
-	@echo "... tutorial03.o"
-	@echo "... tutorial03.i"
-	@echo "... tutorial03.s"
+	@echo "... tutorial02.o"
+	@echo "... tutorial02.i"
+	@echo "... tutorial02.s"
 .PHONY : help
 
 

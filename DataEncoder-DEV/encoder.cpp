@@ -1,15 +1,25 @@
 #include "encoder.h"
 
 Encoder::Encoder() {
-    auto randomInputDouble = (Eigen::MatrixXd::Random(3, 2) + Eigen::MatrixXd::Ones(3, 2));
-    auto randomInputInt = randomInputDouble.cast<int>();
-    _rawData = randomInputInt.cast<double>();
+
+    auto keyD = (Eigen::Matrix4d::Random(4, 4) + Eigen::Matrix4d::Ones(4, 4));
+    auto keyI = keyD.cast<int>();
+    _keyW = keyI.cast<double>();
     //std::cout << result << std::endl;
-    
-    auto keyDouble = (Eigen::MatrixXd::Random(2, 3) + Eigen::MatrixXd::Ones(2, 3));
-    auto keyInt = keyDouble.cast<int>();
-    _keyW = keyInt.cast<double>();
+    /*
+    _rawData = Eigen::MatrixXd(8, 8);
+    Eigen::VectorXd v(8); v << 1, 0, 0, 1, 1, 1, 0, 1;
+    //Eigen::VectorXd v(8); v << 0, 1, 0, 0, 1, 1, 1, 0;
+    for (int i=0; i<8; ++i) {
+        _rawData.row(i) = v;
+    }
+    */
+    auto dataD = (Eigen::MatrixXd::Random(4, 2) + Eigen::MatrixXd::Ones(4, 2));
+    auto dataI = dataD.cast<int>();
+    _data = dataI.cast<double>();
     //_keyW = Eigen::MatrixXd::Random(_rawData.rows(), _rawData.cols());
+
+    std::cout << _keyW.inverse() << std::endl;
 }
 /*
 void Encoder::encryption(Eigen::MatrixXd A, Eigen::MatrixXd W) {
@@ -21,11 +31,15 @@ void Encoder::pinv(Eigen::MatrixXd W) {
 }
 */
 void Encoder::encryption() {
-    _encryptedData = _keyW*_rawData;
+    _encryptedData = _keyW*_data;
 }
 
 double floorX(double &a) {
     return floor(a);
+}
+
+Eigen::Matrix4d Encoder::keyInv(Eigen::Matrix4d data) {
+    std::cout << data.inverse() << std::endl;
 }
 
 void Encoder::pinv() {
@@ -42,11 +56,14 @@ void Encoder::decryption() {
 }
 
 void Encoder::printResult() {
-    std::cout << _rawData << std::endl;
+    std::cout << _data << std::endl;
     std::cout << "----------------" << std::endl;
     std::cout << _keyW << std::endl;
     std::cout << "----------------" << std::endl;
-    std::cout << _encryptedData << std::endl;
+    //std::cout << _encryptedData << std::endl;
+    std::cout << "----------------" << std::endl;
+    //std::cout << keyInv(_keyW) << std::endl;
+    /*
     std::cout << "----------------" << std::endl;
     std::cout << _decryptedData << std::endl;
     std::cout << "----------------" << std::endl;
@@ -58,12 +75,12 @@ void Encoder::printResult() {
         }
     }
     std::cout << result << std::endl;
+    */
 }
 
 int main(int argc, char** argv) {
-    Encoder encoderInstance;
-    encoderInstance.encryption();
-    encoderInstance.pinv();
-    //encoderInstance.decryption();
-    encoderInstance.printResult();
+    Encoder encoder;
+
+    encoder.encryption();
+    encoder.printResult();
 }
