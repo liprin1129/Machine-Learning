@@ -85,6 +85,13 @@ using namespace torch;
 const int64_t kNoiseSize = 100;
 const int64_t kBatchSize = 64;
 const int64_t kNumberOfEpochs = 30;
+// After how many batches to create a new checkpoint periodically.
+const int64_t kCheckpointEvery = 200;
+// How many images to sample at every checkpoint.
+const int64_t kNumberOfSamplesPerCheckpoint = 10;
+// After how many batches to log a new update with the loss value.
+const int64_t kLogInterval = 10;
+const bool kRestoreFromCheckpoint = false;
 /*
 // using Sequential
 nn::Sequential generator(
@@ -319,7 +326,15 @@ int main() {
     torch::optim::Adam discriminator_optimizer(
         discriminator->parameters(), torch::optim::AdamOptions(5e-4).beta1(0.5));
 
-    
+    if (kRestoreFromCheckpoint) {
+        torch::load(generator, "./checkpoints/generator-checkpoint.pt");
+        torch::load(generator_optimizer, "./checkpoints/generator-optimizer-checkpoint.pt");
+        torch::load(discriminator, "./checkpoints/discriminator-checkpoint.pt");
+        torch::load(discriminator_optimizer, "./checkpoints/discriminator-optimizer-checkpoint.pt");
+    }
+
+    int64_t checkpoint_counter = 1;
+
     for (int64_t epoch = 1; epoch <= kNumberOfEpochs; ++epoch) {
         int64_t batch_index = 0;
 
@@ -353,14 +368,29 @@ int main() {
             g_loss.backward();
             generator_optimizer.step();
 
-            std::printf(
-                "\r[%2ld/%2ld][%3ld/%3ld] D_loss: %.4f | G_loss: %.4f",
-                epoch,
-                kNumberOfEpochs,
-                ++batch_index,
-                batches_per_epoch,
-                d_loss.item<float>(),
-                g_loss.item<float>());
+            batch_index++;
+            if (batch_index % kLogInterval ==0) {
+                std::printf(
+                    "\r[%2ld/%2ld][%3ld/%3ld] D_loss: %.4f | G_loss: %.4f",
+                    epoch,
+                    kNumberOfEpochs,
+                    batch_index,
+                    batches_per_epoch,
+                    d_loss.item<float>(),
+                    g_loss.item<float>());
+            }
+
+            if (batch_index % kCheckpointEvery == 0) {
+                // Checkpoint the model and optimizer state.
+                torch::save(generator, "./checkpoints/generator-checkpoint.pt");
+                torch::save(generator_optimizer, "./checkpoints/generator-optimizer-checkpoint.pt");
+                torch::save(discriminator, "./checkpoints/discriminator-checkpoint.pt");
+                torch::save(discriminator_optimizer, "./checkpoints/discriminator-optimizer-checkpoint.pt");
+                // Sample the generator and save the images.
+                torch:: Tensor samples = generator->forward(torch::randn({8, kNoiseSize, 1, 1}, device));
+                torch::save((samples + 1.0) / 2.0, torch::str("./checkpoints/dcgan-sample-", checkpoint_counter, ".pt"));
+                std::cout << "\n-> checkpoint " << ++checkpoint_counter << '\n';
+            }
         }
     }
 }
