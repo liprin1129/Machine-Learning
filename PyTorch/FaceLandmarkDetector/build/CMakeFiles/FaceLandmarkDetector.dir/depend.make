@@ -253,7 +253,11 @@ CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o: /usr/local/l
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o: /usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/utils/variadic.h
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o: /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
 
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o: ../include/ImageDataLoader.h
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o: ../src/ImageDataLoader.cpp
+
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/FaceLandmarkDetector.h
+CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/ImageDataLoader.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/MainDelegate.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: /usr/local/cuda/include/cuda.h
@@ -507,6 +511,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: /usr/local/lib/pytho
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
 
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/FaceLandmarkDetector.h
+CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/ImageDataLoader.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/MainDelegate.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: /usr/local/cuda/include/cuda.h

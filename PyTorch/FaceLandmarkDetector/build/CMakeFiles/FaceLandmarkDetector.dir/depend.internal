@@ -253,8 +253,12 @@ CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o
  /usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/utils/tensor_numpy.h
  /usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/utils/variadic.h
  /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o
+ ../include/ImageDataLoader.h
+ /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.cpp
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
  ../include/FaceLandmarkDetector.h
+ ../include/ImageDataLoader.h
  ../include/MainDelegate.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
  /usr/local/cuda/include/cuda.h
@@ -508,6 +512,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
  /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o
  ../include/FaceLandmarkDetector.h
+ ../include/ImageDataLoader.h
  ../include/MainDelegate.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
  /usr/local/cuda/include/cuda.h

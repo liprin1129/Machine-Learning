@@ -60,45 +60,59 @@ include CMakeFiles/FaceLandmarkDetector.dir/flags.make
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o: ../src/FaceLandmarkDetector.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp
 
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.i
 
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s
+
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o: ../src/ImageDataLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.cpp
+
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.i"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.i
+
+CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.s"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.s
 
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.i
 
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.s
 
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
 
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.i
 
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.s
 
 # Object files for target FaceLandmarkDetector
 FaceLandmarkDetector_OBJECTS = \
 "CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o" \
+"CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o" \
 "CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o" \
 "CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o"
 
@@ -106,6 +120,7 @@ FaceLandmarkDetector_OBJECTS = \
 FaceLandmarkDetector_EXTERNAL_OBJECTS =
 
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o
+FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/build.make
@@ -127,7 +142,7 @@ FaceLandmarkDetector: /usr/local/cuda/lib64/libculibos.a
 FaceLandmarkDetector: /usr/local/cuda/lib64/libcublas.so
 FaceLandmarkDetector: /usr/local/cuda/lib64/libcudart.so
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable FaceLandmarkDetector"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable FaceLandmarkDetector"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FaceLandmarkDetector.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

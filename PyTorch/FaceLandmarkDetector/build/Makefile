@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/local/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -150,6 +150,33 @@ src/FaceLandmarkDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s
 .PHONY : src/FaceLandmarkDetector.cpp.s
 
+src/ImageDataLoader.o: src/ImageDataLoader.cpp.o
+
+.PHONY : src/ImageDataLoader.o
+
+# target to build an object file
+src/ImageDataLoader.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o
+.PHONY : src/ImageDataLoader.cpp.o
+
+src/ImageDataLoader.i: src/ImageDataLoader.cpp.i
+
+.PHONY : src/ImageDataLoader.i
+
+# target to preprocess a source file
+src/ImageDataLoader.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.i
+.PHONY : src/ImageDataLoader.cpp.i
+
+src/ImageDataLoader.s: src/ImageDataLoader.cpp.s
+
+.PHONY : src/ImageDataLoader.s
+
+# target to generate assembly for a file
+src/ImageDataLoader.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.s
+.PHONY : src/ImageDataLoader.cpp.s
+
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
 .PHONY : src/MainDelegate.o
@@ -216,6 +243,9 @@ help:
 	@echo "... src/FaceLandmarkDetector.o"
 	@echo "... src/FaceLandmarkDetector.i"
 	@echo "... src/FaceLandmarkDetector.s"
+	@echo "... src/ImageDataLoader.o"
+	@echo "... src/ImageDataLoader.i"
+	@echo "... src/ImageDataLoader.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"
