@@ -2,7 +2,7 @@
 #define __MAIN_DELEGATE_H__
 
 #include "FaceLandmarkDetector.h"
-#include "ImageDataLoader.h"
+#include "DataLoader.h"
 
 class MainDelegate {
 	public:

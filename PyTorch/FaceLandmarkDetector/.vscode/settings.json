@@ -61,7 +61,8 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "cstdarg": "cpp"
+        "cstdarg": "cpp",
+        "bitset": "cpp"
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }

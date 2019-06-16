@@ -123,6 +123,33 @@ FaceLandmarkDetector/fast:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/build
 .PHONY : FaceLandmarkDetector/fast
 
+src/DataLoader.o: src/DataLoader.cpp.o
+
+.PHONY : src/DataLoader.o
+
+# target to build an object file
+src/DataLoader.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o
+.PHONY : src/DataLoader.cpp.o
+
+src/DataLoader.i: src/DataLoader.cpp.i
+
+.PHONY : src/DataLoader.i
+
+# target to preprocess a source file
+src/DataLoader.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.i
+.PHONY : src/DataLoader.cpp.i
+
+src/DataLoader.s: src/DataLoader.cpp.s
+
+.PHONY : src/DataLoader.s
+
+# target to generate assembly for a file
+src/DataLoader.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s
+.PHONY : src/DataLoader.cpp.s
+
 src/FaceLandmarkDetector.o: src/FaceLandmarkDetector.cpp.o
 
 .PHONY : src/FaceLandmarkDetector.o
@@ -149,33 +176,6 @@ src/FaceLandmarkDetector.s: src/FaceLandmarkDetector.cpp.s
 src/FaceLandmarkDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s
 .PHONY : src/FaceLandmarkDetector.cpp.s
-
-src/ImageDataLoader.o: src/ImageDataLoader.cpp.o
-
-.PHONY : src/ImageDataLoader.o
-
-# target to build an object file
-src/ImageDataLoader.cpp.o:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.o
-.PHONY : src/ImageDataLoader.cpp.o
-
-src/ImageDataLoader.i: src/ImageDataLoader.cpp.i
-
-.PHONY : src/ImageDataLoader.i
-
-# target to preprocess a source file
-src/ImageDataLoader.cpp.i:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.i
-.PHONY : src/ImageDataLoader.cpp.i
-
-src/ImageDataLoader.s: src/ImageDataLoader.cpp.s
-
-.PHONY : src/ImageDataLoader.s
-
-# target to generate assembly for a file
-src/ImageDataLoader.cpp.s:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/ImageDataLoader.cpp.s
-.PHONY : src/ImageDataLoader.cpp.s
 
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
@@ -240,12 +240,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... FaceLandmarkDetector"
+	@echo "... src/DataLoader.o"
+	@echo "... src/DataLoader.i"
+	@echo "... src/DataLoader.s"
 	@echo "... src/FaceLandmarkDetector.o"
 	@echo "... src/FaceLandmarkDetector.i"
 	@echo "... src/FaceLandmarkDetector.s"
-	@echo "... src/ImageDataLoader.o"
-	@echo "... src/ImageDataLoader.i"
-	@echo "... src/ImageDataLoader.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"

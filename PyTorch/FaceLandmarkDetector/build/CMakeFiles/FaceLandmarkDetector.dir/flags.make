@@ -6,5 +6,5 @@ CXX_FLAGS =   -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++11 -std=gnu++1z
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/include -isystem /usr/local/lib/python3.6/dist-packages/torch/include -isystem /usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include 
+CXX_INCLUDES = -I/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/include -isystem /usr/local/include/opencv -isystem /usr/local/lib/python3.6/dist-packages/torch/include -isystem /usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include 
 

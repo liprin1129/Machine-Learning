@@ -321,6 +321,9 @@ CUDA_cusparse_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcusparse.so
 //"nppc" library
 CUDA_nppc_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libnppc.so
 
+//"nppi" library
+CUDA_nppi_LIBRARY:FILEPATH=CUDA_nppi_LIBRARY-NOTFOUND
+
 //"nppial" library
 CUDA_nppial_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libnppial.so
 
@@ -374,6 +377,9 @@ MKLDNN_DIR:PATH=MKLDNN_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for MKL.
 MKL_DIR:PATH=MKL_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=/usr/local/share/OpenCV
 
 //Value Computed by CMake
 SJC_BINARY_DIR:STATIC=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build
@@ -621,6 +627,8 @@ CUDA_cusparse_LIBRARY-ADVANCED:INTERNAL=1
 CUDA_make2cmake:INTERNAL=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/make2cmake.cmake
 //ADVANCED property for variable: CUDA_nppc_LIBRARY
 CUDA_nppc_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CUDA_nppi_LIBRARY
+CUDA_nppi_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_nppial_LIBRARY
 CUDA_nppial_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_nppicc_LIBRARY
@@ -651,6 +659,8 @@ CUDA_run_nvcc:INTERNAL=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/
 FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda][/usr/local/cuda/bin/nvcc][/usr/local/cuda/include][/usr/local/cuda/lib64/libcudart.so][v10.0()]
 //Details about finding CUDNN
 FIND_PACKAGE_MESSAGE_DETAILS_CUDNN:INTERNAL=[/usr/local/cuda/include][/usr/local/cuda/lib64/libcudnn.so][v()]
+//Details about finding OpenCV
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.4.5()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding torch

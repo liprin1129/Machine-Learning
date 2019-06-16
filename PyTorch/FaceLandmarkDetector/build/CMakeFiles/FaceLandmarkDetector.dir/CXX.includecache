@@ -6,35 +6,43 @@
 
 #IncludeRegexTransform: 
 
+../include/DataLoader.h
+iostream
+-
+fstream
+-
+experimental/filesystem
+-
+vector
+-
+tuple
+-
+list
+-
+regex
+-
+string
+-
+opencv2/core.hpp
+-
+opencv2/highgui.hpp
+-
+
 ../include/FaceLandmarkDetector.h
 torch/torch.h
 -
 iostream
 -
 
-../include/ImageDataLoader.h
-iostream
--
-fstream
--
-filesystem
--
-vector
--
-
 ../include/MainDelegate.h
 FaceLandmarkDetector.h
 ../include/FaceLandmarkDetector.h
-ImageDataLoader.h
-../include/ImageDataLoader.h
+DataLoader.h
+../include/DataLoader.h
 
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.cpp
-FaceLandmarkDetector.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkDetector.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.cpp
-ImageDataLoader.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/ImageDataLoader.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp
+DataLoader.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.h
 
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 MainDelegate.h
