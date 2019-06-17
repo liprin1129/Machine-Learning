@@ -150,32 +150,32 @@ src/DataLoader.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s
 .PHONY : src/DataLoader.cpp.s
 
-src/FaceLandmarkDetector.o: src/FaceLandmarkDetector.cpp.o
+src/FaceLandmarkNet.o: src/FaceLandmarkNet.cpp.o
 
-.PHONY : src/FaceLandmarkDetector.o
+.PHONY : src/FaceLandmarkNet.o
 
 # target to build an object file
-src/FaceLandmarkDetector.cpp.o:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.o
-.PHONY : src/FaceLandmarkDetector.cpp.o
+src/FaceLandmarkNet.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o
+.PHONY : src/FaceLandmarkNet.cpp.o
 
-src/FaceLandmarkDetector.i: src/FaceLandmarkDetector.cpp.i
+src/FaceLandmarkNet.i: src/FaceLandmarkNet.cpp.i
 
-.PHONY : src/FaceLandmarkDetector.i
+.PHONY : src/FaceLandmarkNet.i
 
 # target to preprocess a source file
-src/FaceLandmarkDetector.cpp.i:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.i
-.PHONY : src/FaceLandmarkDetector.cpp.i
+src/FaceLandmarkNet.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.i
+.PHONY : src/FaceLandmarkNet.cpp.i
 
-src/FaceLandmarkDetector.s: src/FaceLandmarkDetector.cpp.s
+src/FaceLandmarkNet.s: src/FaceLandmarkNet.cpp.s
 
-.PHONY : src/FaceLandmarkDetector.s
+.PHONY : src/FaceLandmarkNet.s
 
 # target to generate assembly for a file
-src/FaceLandmarkDetector.cpp.s:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkDetector.cpp.s
-.PHONY : src/FaceLandmarkDetector.cpp.s
+src/FaceLandmarkNet.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.s
+.PHONY : src/FaceLandmarkNet.cpp.s
 
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
@@ -243,9 +243,9 @@ help:
 	@echo "... src/DataLoader.o"
 	@echo "... src/DataLoader.i"
 	@echo "... src/DataLoader.s"
-	@echo "... src/FaceLandmarkDetector.o"
-	@echo "... src/FaceLandmarkDetector.i"
-	@echo "... src/FaceLandmarkDetector.s"
+	@echo "... src/FaceLandmarkNet.o"
+	@echo "... src/FaceLandmarkNet.i"
+	@echo "... src/FaceLandmarkNet.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"

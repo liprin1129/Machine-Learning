@@ -1,6 +1,10 @@
-#include "FaceLandmarkDetector.h"
+#include "FaceLandmarkNet.h"
 
-FaceLandmarkDetector::FaceLandmarkDetector(bool verbose) {
+// ************************ //
+// * FaceLandmarNet class * //
+// ************************ //
+
+FaceLandmarkNet::FaceLandmarkNet(bool verbose) {
     std::cout << "Constructor" << std::endl;
     
     _verbose = verbose;
@@ -97,7 +101,7 @@ FaceLandmarkDetector::FaceLandmarkDetector(bool verbose) {
     register_module("batch_norm8", batch_norm8);
 }
 
-torch::Tensor FaceLandmarkDetector::forward(torch::Tensor x) {
+torch::Tensor FaceLandmarkNet::forward(torch::Tensor x) {
     // Layer #1
     if (_verbose) std::cout << "Layer #1:\n";
 
@@ -155,3 +159,37 @@ torch::Tensor FaceLandmarkDetector::forward(torch::Tensor x) {
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
     return x;
 }
+
+// ***************************** //
+// * FaceLandmarkTrainer class * //
+// ***************************** //
+
+/*
+FaceLandmarkTrainer::FaceLandmarkTrainer() {
+    fln = FaceLandmarkNet(true);
+
+    _adamOptimizer = torch::optim::Adam(
+        fln.parameters(), 
+        torch::optim::AdamOptions(1e-3).beta1(0.5));
+
+    DataLoader dl("/DATASETs/Face/Landmarks/300W/");
+    dl.loadOneTraninImageAndLabel(dl.getDataset()[0]);
+
+    torch::Tensor imgTensor = torch::from_blob(dl.getImage().data, {1, 3, dl.getImage().cols, dl.getImage().rows}, at::ScalarType::Byte);
+    torch::Tensor output = fln.forward(imgTensor);
+    
+    //double labelsArr[dl.getLabels().size()];
+    //std::copy(dl.getLabels().begin(), dl.getLabels().end(), labelsArr);
+    
+    double labelsArr[136];
+    std::copy(dl.getLabels().begin(), dl.getLabels().end(), labelsArr);
+    
+    auto labels = torch::tensor(
+                            labelsArr,
+                            torch::requires_grad(false).dtype(torch::kDouble));//.view({1, 3});
+
+    std::cout << labels << std::endl;
+    //_loss = torch::mse_loss(output, )
+    //register_parameter("loss", _loss);
+}
+*/

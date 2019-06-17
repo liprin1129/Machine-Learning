@@ -1,10 +1,11 @@
-#ifndef __FACE_LANDMARK_DETECTOR_H__
-#define __FACE_LANDMARK_DETECTOR_H__
+#ifndef __FACE_LANDMARK_NET_H__
+#define __FACE_LANDMARK_NET_H__
 
 #include <torch/torch.h>
 #include <iostream>
+#include <DataLoader.h>
 
-class FaceLandmarkDetector : public torch::nn::Module {
+class FaceLandmarkNet : public torch::nn::Module {
     private:
         int64_t inputChannel;
         bool _verbose;
@@ -16,13 +17,31 @@ class FaceLandmarkDetector : public torch::nn::Module {
         torch::nn::BatchNorm batch_norm1{nullptr}, batch_norm2{nullptr}, batch_norm3{nullptr}, batch_norm4{nullptr},
                                 batch_norm5{nullptr}, batch_norm6{nullptr}, batch_norm7{nullptr}, batch_norm8{nullptr};
 
+        //torch::optim::Adam adamOptimzer{nullptr};
+
     public:
         // GETTER
         torch::nn::Conv2d getConv(){return conv1;};
 
-        FaceLandmarkDetector(bool verbose);
+        FaceLandmarkNet(bool verbose);
 
         torch::Tensor forward(torch::Tensor x);
 };
 
-#endif //__FACE_LANDMARK_DETECTOR_H__
+/*
+class FaceLandmarkTrainer : public torch::nn::Module{
+    private:
+        FaceLandmarkNet fln;
+        DataLoader dl;
+
+        torch::optim::Adam _adamOptimizer;
+
+        torch::Tensor _loss;
+
+    public:
+        FaceLandmarkTrainer();
+        void train(int numEpoch);
+};
+*/
+
+#endif //__FACE_LANDMARK_NET_H__

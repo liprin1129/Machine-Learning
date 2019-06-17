@@ -1,7 +1,7 @@
 #ifndef __MAIN_DELEGATE_H__
 #define __MAIN_DELEGATE_H__
 
-#include "FaceLandmarkDetector.h"
+#include "FaceLandmarkNet.h"
 #include "DataLoader.h"
 
 class MainDelegate {
