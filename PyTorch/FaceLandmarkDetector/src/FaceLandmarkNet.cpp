@@ -90,6 +90,7 @@ FaceLandmarkNet::FaceLandmarkNet(bool verbose) {
     register_module("conv6", conv6);
     register_module("conv7", conv7);
     register_module("conv8", conv8);
+    register_module("convOneXOne1", convOneXOne1);
     
     register_module("batch_norm1", batch_norm1);
     register_module("batch_norm2", batch_norm2);

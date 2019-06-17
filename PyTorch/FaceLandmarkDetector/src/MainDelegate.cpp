@@ -1,10 +1,20 @@
 #include "MainDelegate.h"
 
 int MainDelegate::mainDelegation(int argc, char** argv){
+
+    // Create the device we pass around based on whether CUDA is available.
+    torch::Device device(torch::kCPU);
+    if (torch::cuda::is_available()) {
+    std::cout << "CUDA is available! Training on GPU." << std::endl;
+    device = torch::Device(torch::kCUDA);
+    }
+
    //auto inX = torch::randn({1, 3, 1004, 753});
    //std::cout << inX.sizes() << std::endl;
 
    FaceLandmarkNet fln(false);
+   fln.to(device);
+
    //std::cout << fln.getConv() << std::endl;
    //fln.forward(inX);
 
@@ -36,18 +46,33 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    std::fprintf(stdout, "Labels Info: \n\tMin: %f | Max: %f\n", minLable, maxLabel);
    */
 
-   for (int epoch = 0; epoch < 10; ++epoch) {
-      
-      for (int i = 0; i < 5; ++i) {
+   dl.loadOneTraninImageAndLabel(dl.getDataset()[0]);
+   // Convert cv::Mat to Tensor
+   std::vector<int64_t> sizes = {1, 3, dl.getImage().cols, dl.getImage().rows};
+   at::TensorOptions options(at::kFloat);
+   at::Tensor inX = torch::from_blob(dl.getImage().data, at::IntList(sizes), options).to(device);
+   
+   // Convert labels to Tensor
+   double labelsArr[136];
+   //std::copy(dl.getLabels().begin(), dl.getLabels().end(), labelsArr);
+   int k = 0;
+   for (auto &a: dl.getLabels()) {
+      labelsArr[k++] = a;
+   }
+   
+   torch::Tensor labels = torch::tensor(
+                           labelsArr,
+                           torch::requires_grad(false).dtype(at::kFloat)).view({1, 136}).to(device);
+
+   for (int epoch = 0; epoch < 1000; ++epoch) {
+      //torch::Tensor miniBatchLoss = torch::zeros(1, device);
+
+      //for (auto &data: dl.getDataset()) {
          // Image and Label iterator
-         dl.loadOneTraninImageAndLabel(dl.getDataset()[i]);
 
-         // Convert cv::Mat to Tensor
-         std::vector<int64_t> sizes = {1, 3, dl.getImage().cols, dl.getImage().rows};
-         at::TensorOptions options(at::kFloat);
-         at::Tensor inX = torch::from_blob(dl.getImage().data, at::IntList(sizes), options);
-         //inX = inX.toType(at::kFloat);
-
+         adamOptimizer.zero_grad();
+         torch::Tensor output = fln.forward(inX);
+         
          /* // Converted image to tensor information
          std::cout << "\n inX Tensor Info.:" << std::endl;
          std::cout << "\t size: " << inX.sizes() << std::endl;
@@ -55,20 +80,6 @@ int MainDelegate::mainDelegation(int argc, char** argv){
          std::cout << "\t min: " << inX.min() << std::endl;
          */
 
-         torch::Tensor output = fln.forward(inX);
-
-         // Convert labels to Tensor
-         double labelsArr[136];
-         //std::copy(dl.getLabels().begin(), dl.getLabels().end(), labelsArr);
-         int k = 0;
-         for (auto &a: dl.getLabels()) {
-            labelsArr[k++] = a;
-         }
-         
-         torch::Tensor labels = torch::tensor(
-                                 labelsArr,
-                                 torch::requires_grad(false).dtype(at::kFloat)).view({1, 136});
-         
          /* // Converted lables to tensor information
          std::cout << "\nlabels Tensor Info.:" << std::endl;
          std::cout << "\t size: " << labels.sizes() << std::endl;
@@ -77,11 +88,33 @@ int MainDelegate::mainDelegation(int argc, char** argv){
          */
          
          torch::Tensor loss = torch::mse_loss(output, labels);
+         loss.backward();
+         adamOptimizer.step();
          
-         std::cout << "\nMSE: " << loss;
-      }
+         if (epoch % 50) {
+            //std::fprintf(stdout, "Epoch #%d: Mini Batch #%d (loss: %f)\n", epoch, miniBatchCounter, loss.item<float>());
+            std::fprintf(stdout, "Epoch #%d | loss: %f\n", epoch, loss.item<float>());
+         }
 
-      break;
+         /*
+         std::cout << "\nMSE: " << loss.item<float>();
+
+         miniBatchLoss += loss;
+
+         //std::fprintf(stdout, "Epoch #%d: Mini Batch #%d\n", epoch, miniBatchCounter);
+
+         --miniBatchCounter;
+         if (miniBatchCounter < 1) {
+            std::fprintf(stdout, "Epoch #%d: Mini Batch #%d\n", epoch, miniBatchCounter);
+            
+            miniBatchLoss /= miniBatchSize;
+            miniBatchLoss.backward(torch::nullopt, true, false);
+            adamOptimizer.step();
+
+            miniBatchCounter = miniBatchSize;
+         }
+         */
+      //}
    }
 
    /*
