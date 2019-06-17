@@ -44,7 +44,7 @@ void DataLoader::readDataDirectory(std::string rootPath) {
 
 
 cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
-    std::cout << filePath << std::endl;
+    // std::cout << filePath << std::endl;
     
     cv::Mat origImage, normImage;
     
