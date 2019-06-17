@@ -56,7 +56,7 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
     }
 
     if (norm) {
-        cv::normalize(origImage, normImage, 1, 0, cv::NORM_MINMAX, CV_64F);
+        cv::normalize(origImage, normImage, 1, 0, cv::NORM_MINMAX, CV_32FC3);
         //std::cout << normImage << std::endl;
         return normImage;
     }
@@ -72,7 +72,7 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
 }
 
 
-std::tuple<double, double> DataLoader::labelNormalizer(int col, int row, double X, double Y) {
+std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, float X, float Y) {
     X /= col; // (X - min(X)) / (max(X) - min(X))
     Y /= row; // (Y - min(Y)) / (max(Y) - min(Y))
 
@@ -80,8 +80,8 @@ std::tuple<double, double> DataLoader::labelNormalizer(int col, int row, double 
 }
 
 
-void DataLoader::labelStr2Double(std::tuple<std::string, std::string> filePath, bool norm){
-// Convert string type of landmark points to double number list, _labels,
+void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm){
+// Convert string type of landmark points to float number list, _labels,
 // and at the same time, load an corresponding image to cv::Mat, _image.
 // Arguments:
 //      filePath: first emelement is a image file absolute path, and second is pst file absolute path
@@ -94,15 +94,15 @@ void DataLoader::labelStr2Double(std::tuple<std::string, std::string> filePath, 
     // Temporal variables
     std::fstream ptsFile; // fstream instach
     
-    double X; // point's X coordinat
-    double Y; // point's Y coordinat
-    //std::tuple<double, double> norm; // tuple for normalized X, Y coordinate
+    float X; // point's X coordinat
+    float Y; // point's Y coordinat
+    //std::tuple<float, float> norm; // tuple for normalized X, Y coordinate
 
     std::string line; // string to save a line
     std::string::size_type firstDigitSize; // size_t to save the end position of detected digit (in this case, first digit has 6 char xxx.xxx, firstDigitSize will be 7)
 
-    //std::vector<std::tuple<double, double>> landmarks; // output vector containing landmark positions
-    std::list<double> landmarks;
+    //std::vector<std::tuple<float, float>> landmarks; // output vector containing landmark positions
+    std::list<float> landmarks;
 
     auto [imgPath, landmarksPath] = filePath;
 
@@ -118,8 +118,8 @@ void DataLoader::labelStr2Double(std::tuple<std::string, std::string> filePath, 
 
         while (std::getline(ptsFile, line)) {
             if (std::isdigit(line[0])) { // Check string is digit?
-                X = std::stof(line, &firstDigitSize); // convert first string to double
-                Y = std::stof(line.substr(firstDigitSize)); // convert second string to double
+                X = std::stof(line, &firstDigitSize); // convert first string to float
+                Y = std::stof(line.substr(firstDigitSize)); // convert second string to float
 
                 if (norm) {
                     auto [normX, normY] = labelNormalizer(_image.cols, _image.rows, X, Y); // Normalization
@@ -147,9 +147,9 @@ void DataLoader::labelStr2Double(std::tuple<std::string, std::string> filePath, 
 }
 
 
-std::tuple<cv::Mat, std::list<double>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm) {
+std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm) {
     //auto [imgPath, landmarksPath] = filePath;
-    labelStr2Double(filePath, norm);
+    labelStr2Float(filePath, norm);
 
     return std::make_tuple(_image, _labels);
 }
