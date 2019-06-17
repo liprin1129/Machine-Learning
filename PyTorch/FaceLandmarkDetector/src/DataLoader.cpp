@@ -1,15 +1,16 @@
 #include "DataLoader.h"
 
 DataLoader::DataLoader(std::string path) {
-    _rootPath = path;
+    readDataDirectory(path);
 }
 
-void DataLoader::readDataAndLabels() {
+
+void DataLoader::readDataDirectory(std::string rootPath) {
     //auto path = "/DATASETs/Face/Landmarks/300W/";
 
     std::string pathName;                                                                                                               // Temporal variable for absolute directory path
 
-    for(auto& fileName: filesystem::recursive_directory_iterator(_rootPath)) {
+    for(auto& fileName: filesystem::recursive_directory_iterator(rootPath)) {
         if (filesystem::is_directory(fileName)) pathName = fileName.path();                                                             // if fileName is a directory, save absolute directory path
     
         if (filesystem::is_regular_file(fileName)) {                                                                                    // if fileName is a file
@@ -41,6 +42,7 @@ void DataLoader::readDataAndLabels() {
     */
 }
 
+
 cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
     std::cout << filePath << std::endl;
     
@@ -69,27 +71,38 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
     */
 }
 
-std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, float X, float Y) {
+
+std::tuple<double, double> DataLoader::labelNormalizer(int col, int row, double X, double Y) {
     X /= col; // (X - min(X)) / (max(X) - min(X))
     Y /= row; // (Y - min(Y)) / (max(Y) - min(Y))
 
     return std::make_tuple(X, Y);
 }
 
-//std::vector<std::tuple<float, float>> 
-void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm){
+
+void DataLoader::labelStr2Double(std::tuple<std::string, std::string> filePath, bool norm){
+// Convert string type of landmark points to double number list, _labels,
+// and at the same time, load an corresponding image to cv::Mat, _image.
+// Arguments:
+//      filePath: first emelement is a image file absolute path, and second is pst file absolute path
+//          type: std::tuple<std::string, std::string>,
+//          value: a element of _dataset vector
+//      norm: whether normalise or not
+//          type: bool
+//          value: (default) true
+
     // Temporal variables
     std::fstream ptsFile; // fstream instach
     
-    float X; // point's X coordinat
-    float Y; // point's Y coordinat
-    //std::tuple<float, float> norm; // tuple for normalized X, Y coordinate
+    double X; // point's X coordinat
+    double Y; // point's Y coordinat
+    //std::tuple<double, double> norm; // tuple for normalized X, Y coordinate
 
     std::string line; // string to save a line
     std::string::size_type firstDigitSize; // size_t to save the end position of detected digit (in this case, first digit has 6 char xxx.xxx, firstDigitSize will be 7)
 
-    //std::vector<std::tuple<float, float>> landmarks; // output vector containing landmark positions
-    std::list<float> landmarks;
+    //std::vector<std::tuple<double, double>> landmarks; // output vector containing landmark positions
+    std::list<double> landmarks;
 
     auto [imgPath, landmarksPath] = filePath;
 
@@ -97,7 +110,7 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
 
     // Tasks
     if (ptsFile.is_open()) {
-        image = readImage2CVMat(imgPath, true); // to get cols and rows of an image for normalization
+        _image = readImage2CVMat(imgPath, norm); // to get cols and rows of an image for normalization
 
         std::getline(ptsFile, line); // skip a line
         std::getline(ptsFile, line); // skip a line
@@ -105,11 +118,11 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
 
         while (std::getline(ptsFile, line)) {
             if (std::isdigit(line[0])) { // Check string is digit?
-                X = std::stof(line, &firstDigitSize); // convert first string to float
-                Y = std::stof(line.substr(firstDigitSize)); // convert second string to float
+                X = std::stof(line, &firstDigitSize); // convert first string to double
+                Y = std::stof(line.substr(firstDigitSize)); // convert second string to double
 
                 if (norm) {
-                    auto [normX, normY] = labelNormalizer(image.cols, image.rows, X, Y); // Normalization
+                    auto [normX, normY] = labelNormalizer(_image.cols, _image.rows, X, Y); // Normalization
                     landmarks.push_back(normX); // push normalized X coordinate to the landmarks vector
                     landmarks.push_back(normY); // push normalized Y coordinate to the landmarks vector
                 }
@@ -130,5 +143,13 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
     }
     */
 
-    labels = landmarks;
+    _labels = landmarks;
+}
+
+
+std::tuple<cv::Mat, std::list<double>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm) {
+    //auto [imgPath, landmarksPath] = filePath;
+    labelStr2Double(filePath, norm);
+
+    return std::make_tuple(_image, _labels);
 }

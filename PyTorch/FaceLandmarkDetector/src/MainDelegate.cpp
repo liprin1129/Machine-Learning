@@ -10,14 +10,18 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    */
    
    DataLoader dl("/DATASETs/Face/Landmarks/300W/");
-   dl.readDataAndLabels();
+   //dl.readDataDirectory();
    //dl.readImage2CVMat(std::get<0>(dl.getDataset()[1]));
-   dl.labelStr2Float(dl.getDataset()[0], true);
+   dl.loadOneTraninImageAndLabel(dl.getDataset()[0]);
    
-   for (auto &l: dl.getLabels()) std::cout << l << std::endl;
-   cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-   cv::imshow("Image", dl.getImage());
-   cv::waitKey(0);
+   double min, max;
+   cv::minMaxIdx(dl.getImage(), &min, &max);
+   std::fprintf(stdout, "Min: %lf | Max: %lf \n", min, max);
+   for (auto &l: dl.getLabels()) std::fprintf(stdout, "%lf, ", l);
+   std::fprintf(stdout, "\n");
+   //cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
+   //cv::imshow("Image", dl.getImage());
+   //cv::waitKey(0);
    
    //dl.labelNormalizer(std::get<1>(dl.getDataset()[0]));
 }
