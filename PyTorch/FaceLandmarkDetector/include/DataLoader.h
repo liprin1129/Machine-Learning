@@ -13,6 +13,7 @@
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
 
 namespace filesystem = std::experimental::filesystem;
 
@@ -28,7 +29,7 @@ class DataLoader {
         void readDataDirectory(std::string rootPath);                                                   // recursively read files from root folder
         void labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm = true); // Convert string of label to float
         
-        cv::Mat readImage2CVMat(std::string filePath, bool norm=true);              // Read an image data into cv::Mat
+        cv::Mat readImage2CVMat(std::string filePath, bool resize, bool norm=true);              // Read an image data into cv::Mat
         std::tuple<float, float> labelNormalizer(int col, int row, float X, float Y); // MinMax normalize for label data
     public:
         // Getter

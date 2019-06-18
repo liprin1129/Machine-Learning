@@ -4,7 +4,7 @@
 // * FaceLandmarNet class * //
 // ************************ //
 
-FaceLandmarkNet::FaceLandmarkNet(bool verbose) {
+FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose) {
     std::cout << "Constructor" << std::endl;
     
     _verbose = verbose;
@@ -102,9 +102,10 @@ FaceLandmarkNet::FaceLandmarkNet(bool verbose) {
     register_module("batch_norm8", batch_norm8);
 }
 
-torch::Tensor FaceLandmarkNet::forward(torch::Tensor x) {
+torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     // Layer #1
     if (_verbose) std::cout << "Layer #1:\n";
+    if (_verbose) std::cout << "\t Input: \t" << x.sizes() << std::endl;
 
     x = torch::relu(batch_norm1(conv1(x)));
     if (_verbose) std::cout << "\t Conv1: \t" << x.sizes() << std::endl;
@@ -144,7 +145,7 @@ torch::Tensor FaceLandmarkNet::forward(torch::Tensor x) {
     if (_verbose) std::cout << "Layer #5:\n";
     x = torch::relu(batch_norm8(conv8(x)));
     if (_verbose) std::cout << "\t Conv8: \t" << x.sizes() << std::endl;
-
+    
     x = torch::adaptive_avg_pool2d(x, {1, 1});
     if (_verbose) std::cout << "\t Max pool: \t" << x.sizes() << std::endl;
 
@@ -158,6 +159,7 @@ torch::Tensor FaceLandmarkNet::forward(torch::Tensor x) {
     x = x.unsqueeze(0);
     if (_verbose) std::cout << "Last: \n";
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
+
     return x;
 }
 

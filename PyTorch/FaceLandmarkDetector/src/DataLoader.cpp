@@ -43,10 +43,10 @@ void DataLoader::readDataDirectory(std::string rootPath) {
 }
 
 
-cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
+cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm) {
     // std::cout << filePath << std::endl;
     
-    cv::Mat origImage, normImage;
+    cv::Mat origImage, normImage, resizedImage;
     
     origImage = cv::imread(filePath, cv::IMREAD_COLOR);
 
@@ -58,10 +58,17 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool norm) {
     if (norm) {
         cv::normalize(origImage, normImage, 1, 0, cv::NORM_MINMAX, CV_32FC3);
         //std::cout << normImage << std::endl;
-        return normImage;
+        //return normImage;
+        
+        cv::resize(normImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
+
+        return resizedImage;
     }
     else {
-        return origImage;
+
+        cv::resize(origImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
+
+        return resizedImage;
     }
     /*
     cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
@@ -110,7 +117,7 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
 
     // Tasks
     if (ptsFile.is_open()) {
-        _image = readImage2CVMat(imgPath, norm); // to get cols and rows of an image for normalization
+        _image = readImage2CVMat(imgPath, true, norm); // to get cols and rows of an image for normalization
 
         std::getline(ptsFile, line); // skip a line
         std::getline(ptsFile, line); // skip a line

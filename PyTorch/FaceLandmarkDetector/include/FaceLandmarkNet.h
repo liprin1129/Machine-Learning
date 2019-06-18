@@ -5,7 +5,7 @@
 #include <iostream>
 #include <DataLoader.h>
 
-class FaceLandmarkNet : public torch::nn::Module {
+class FaceLandmarkNetImpl : public torch::nn::Module {
     private:
         int64_t inputChannel;
         bool _verbose;
@@ -23,10 +23,11 @@ class FaceLandmarkNet : public torch::nn::Module {
         // GETTER
         torch::nn::Conv2d getConv(){return conv1;};
 
-        FaceLandmarkNet(bool verbose);
+        FaceLandmarkNetImpl(bool verbose);
 
         torch::Tensor forward(torch::Tensor x);
 };
+TORCH_MODULE(FaceLandmarkNet);
 
 /*
 class FaceLandmarkTrainer : public torch::nn::Module{
