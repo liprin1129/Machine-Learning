@@ -58,17 +58,19 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm
     if (norm) {
         cv::normalize(origImage, normImage, 1, 0, cv::NORM_MINMAX, CV_32FC3);
         //std::cout << normImage << std::endl;
-        //return normImage;
+        origImage.release();
+        resizedImage.release();
+        return normImage;
         
-        cv::resize(normImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
-
-        return resizedImage;
+        //cv::resize(normImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
+        //return resizedImage;
     }
     else {
-
-        cv::resize(origImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
-
-        return resizedImage;
+        normImage.release();
+        resizedImage.release();
+        return origImage;
+        //cv::resize(origImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
+        //return resizedImage;
     }
     /*
     cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
@@ -117,7 +119,7 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
 
     // Tasks
     if (ptsFile.is_open()) {
-        _image = readImage2CVMat(imgPath, true, norm); // to get cols and rows of an image for normalization
+        _image = readImage2CVMat(imgPath, false, norm); // to get cols and rows of an image for normalization
 
         std::getline(ptsFile, line); // skip a line
         std::getline(ptsFile, line); // skip a line
