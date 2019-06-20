@@ -17,32 +17,19 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         torch::nn::BatchNorm batch_norm1{nullptr}, batch_norm2{nullptr}, batch_norm3{nullptr}, batch_norm4{nullptr},
                                 batch_norm5{nullptr}, batch_norm6{nullptr}, batch_norm7{nullptr}, batch_norm8{nullptr};
 
-        //torch::optim::Adam adamOptimzer{nullptr};
-
     public:
         // GETTER
         torch::nn::Conv2d getConv(){return conv1;};
 
         FaceLandmarkNetImpl(bool verbose);
+        at::Tensor cvMat2Tensor(cv::Mat cvMat, torch::Device device);
+        at::Tensor floatList2Tensor(std::list<float> floatList, torch::Device device);
 
         torch::Tensor forward(torch::Tensor x);
+
+        void train(DataLoader &dl, torch::Device device, torch::optim::Optimizer &optimizer);
+        void showTrainInfo(cv::Mat cvImg, std::list<float> listLabel, at::Tensor &inX, at::Tensor &label);
 };
 TORCH_MODULE(FaceLandmarkNet);
-
-/*
-class FaceLandmarkTrainer : public torch::nn::Module{
-    private:
-        FaceLandmarkNet fln;
-        DataLoader dl;
-
-        torch::optim::Adam _adamOptimizer;
-
-        torch::Tensor _loss;
-
-    public:
-        FaceLandmarkTrainer();
-        void train(int numEpoch);
-};
-*/
 
 #endif //__FACE_LANDMARK_NET_H__

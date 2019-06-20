@@ -14,9 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//The directory containing a CMake configuration file for Boost.
-Boost_DIR:PATH=/usr/lib/cmake/Boost-1.70.0
-
 //Path to a library.
 C10_CUDA_LIBRARY:FILEPATH=/usr/local/lib/python3.6/dist-packages/torch/lib/libc10_cuda.so
 
@@ -34,7 +31,7 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-7
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -60,7 +57,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-7
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -393,22 +390,11 @@ TORCH_LIBRARY:FILEPATH=/usr/local/lib/python3.6/dist-packages/torch/lib/libtorch
 //The directory containing a CMake configuration file for Torch.
 Torch_DIR:PATH=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Torch
 
-//The directory containing a CMake configuration file for boost_filesystem.
-boost_filesystem_DIR:PATH=/usr/lib/cmake/boost_filesystem-1.70.0
-
-//The directory containing a CMake configuration file for boost_headers.
-boost_headers_DIR:PATH=/usr/lib/cmake/boost_headers-1.70.0
-
-//The directory containing a CMake configuration file for boost_system.
-boost_system_DIR:PATH=/usr/lib/cmake/boost_system-1.70.0
-
 
 ########################
 # INTERNAL cache entries
 ########################
 
-//ADVANCED property for variable: Boost_DIR
-Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
