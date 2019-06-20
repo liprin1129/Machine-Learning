@@ -167,7 +167,7 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
 
     // Squeeze
     x = x.squeeze();
-    x = x.unsqueeze(0);
+    x = torch::softmax(x.unsqueeze(0), 1);
     if (_verbose) std::cout << "Last: \n";
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
 
@@ -190,24 +190,24 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
             if (_verbose) showTrainInfo(cvImg, listLabel, inX, label);
 
             if ((cvImg.cols < 1100) and (cvImg).rows < 1100) {
-                torch::Tensor output = forward(inX);
-                std::cout << output.sum().item<float>() << std::endl;
-            }
-            /*if ((cvImg.cols < 1100) and (cvImg).rows < 1100) {
                 optimizer.zero_grad();
                 torch::Tensor output = forward(inX);
+                std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
+
+                torch::Tensor loss = torch::mse_loss(output, label, Reduction::None);
+                //loss.backward();
+                //optimizer.step();
                 
-                torch::Tensor loss = torch::mse_loss(output, label);
-                loss.backward();
-                optimizer.step();
-                
+                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
+                std::cout << loss << std::endl;
                 ++count;
-                if (count % 100) {
+                /*if (count % 100) {
                 //std::fprintf(stdout, "Epoch #%d: Mini Batch #%d (loss: %f)\n", epoch, miniBatchCounter, loss.item<float>());
                 std::fprintf(stdout, "Epoch #%d, totCount #%d | loss: %f\n", epoch, count, loss.item<float>());
                 //std::fprintf(stdout, "totCount #%d\n", totCount);
-                }
-            }*/
+                }*/
+            }
+            break;
         }
     }
 }
