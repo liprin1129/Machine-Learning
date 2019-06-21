@@ -2,6 +2,8 @@
 
 DataLoader::DataLoader(std::string path) {
     readDataDirectory(path);
+    
+    resizeFlag = false;
 }
 
 
@@ -80,6 +82,19 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm
     */
 }
 
+cv::Mat DataLoader::resizeCVMat(cv::Mat &cvImg, int factorX, int factorY) {
+    cv::Mat resizedImage;
+
+    cv::resize(cvImg, resizedImage, cv::Size2d(factorX, factorY), 0, 0, cv::INTER_LINEAR);
+
+    return resizedImage;
+}
+
+
+float DataLoader::resizeLabel(float origLabel, int origSize, int scaleFactor){
+    return origLabel * scaleFactor/origSize;
+}
+
 
 std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, float X, float Y) {
     X /= col; // (X - min(X)) / (max(X) - min(X))
@@ -88,7 +103,7 @@ std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, float X, 
     return std::make_tuple(X, Y);
 }
 
-
+/*
 void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm){
 // Convert string type of landmark points to float number list, _labels,
 // and at the same time, load an corresponding image to cv::Mat, _image.
@@ -101,10 +116,10 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
 //          value: (default) true
 
     // Temporal variables
-    std::fstream ptsFile; // fstream instach
+    std::fstream ptsFile; // fstream instance
     
-    float X; // point's X coordinat
-    float Y; // point's Y coordinat
+    float X = 0.0; // point's X coordinat
+    float Y = 0.0; // point's Y coordinat
     //std::tuple<float, float> norm; // tuple for normalized X, Y coordinate
 
     std::string line; // string to save a line
@@ -129,9 +144,11 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
             if (std::isdigit(line[0])) { // Check string is digit?
                 X = std::stof(line, &firstDigitSize); // convert first string to float
                 Y = std::stof(line.substr(firstDigitSize)); // convert second string to float
+                //std::fprintf(stdout, "\n[Origin] cols: %d, rows: %d | X: %f, Y: %f\n", _image.cols, _image.rows, X, Y);
 
                 if (norm) {
                     auto [normX, normY] = labelNormalizer(_image.cols, _image.rows, X, Y); // Normalization
+                    //std::fprintf(stdout, "[Norm] cols: %d, rows: %d | X: %f, Y: %f\n", _image.cols, _image.rows, normX, normY);
                     landmarks.push_back(normX); // push normalized X coordinate to the landmarks vector
                     landmarks.push_back(normY); // push normalized Y coordinate to the landmarks vector
                 }
@@ -144,21 +161,63 @@ void DataLoader::labelStr2Float(std::tuple<std::string, std::string> filePath, b
         }
     }
 
-    /*// print landmarks vector
+    // print landmarks vector
     for (auto &l: landmarks) {
         //auto [X, Y] = l;
         //std::cout << X << ", " << Y << std::endl;
         std::cout << l << std::endl;
     }
-    */
 
     _labels = landmarks;
 }
+*/
 
+std::tuple<float, float> DataLoader::str2Float(std::string strLabel) {
+    if (std::isdigit(strLabel[0])) {
+        std::string::size_type firstDigitSize;
 
-std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm) {
+        float X = std::stof(strLabel, &firstDigitSize);
+        float Y = std::stof(strLabel.substr(firstDigitSize));
+
+        return std::make_tuple(X, Y);
+    }
+    else {
+        std::fprintf(stderr, "Label string does not include digits\n");
+        exit(-1);
+    }
+}
+
+std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm, int scaleFactor) {
     //auto [imgPath, landmarksPath] = filePath;
-    labelStr2Float(filePath, norm);
+    //labelStr2Float(filePath, norm);
 
+    // Temporal variables
+    std::fstream ptsFile; // fstream instance
+    
+    float X = 0.0; // point's X coordinat
+    float Y = 0.0; // point's Y coordinat
+    //std::tuple<float, float> norm; // tuple for normalized X, Y coordinate
+
+    std::string line; // string to save a line
+
+    auto [imgPath, landmarksPath] = filePath; // Seperate image path and landmarks path
+
+    ptsFile.open(landmarksPath, std::fstream::in); // open fstream with read only mode
+
+    if (ptsFile.is_open()) {
+        std::getline(ptsFile, line); // skip a line
+        std::getline(ptsFile, line); // skip a line
+        std::getline(ptsFile, line); // skip a line
+
+        _image = readImage2CVMat(imgPath, false, norm); // to get cols and rows of an image for normalization
+        while (std::getline(ptsFile, line)) {
+            if (std::isdigit(line[0])) { // Check string is digit?
+                auto [X, Y] = str2Float(line); // Read X, Y point with float type
+
+                if (_image.cols > 4000 or _image.rows > 4000) {
+                    
+                }
+        }
+    }
     return std::make_tuple(_image, _labels);
 }

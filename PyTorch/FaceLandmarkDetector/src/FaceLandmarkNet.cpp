@@ -100,17 +100,6 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose) {
     register_module("batch_norm6", batch_norm6);
     register_module("batch_norm7", batch_norm7);
     register_module("batch_norm8", batch_norm8);
-
-    /*
-    // Create the device we pass around based on whether CUDA is available.    
-    if (torch::cuda::is_available()) {
-        std::cout << "CUDA is available! Training on GPU." << std::endl;
-        //_device = torch::Device(torch::kCUDA);
-        _deviceType = torch::kCUDA;
-    } else {
-        _deviceType = torch::kCPU;
-    }
-    */
 }
 
 torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
@@ -119,6 +108,7 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     if (_verbose) std::cout << "\t Input: \t" << x.sizes() << std::endl;
 
     x = torch::relu(batch_norm1(conv1(x)));
+    //x = torch::relu(conv1(x));
     if (_verbose) std::cout << "\t Conv1: \t" << x.sizes() << std::endl;
     
     x = torch::max_pool2d(x, {2, 2}, {2, 2}, 0);
@@ -128,33 +118,49 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     if (_verbose) std::cout << "Layer #2:\n";
     
     x = torch::relu(batch_norm2(conv2(x)));
+    //x = torch::relu(conv2(x));
     if (_verbose) std::cout << "\t Conv2: \t" << x.sizes() << std::endl;
+    
     x = torch::relu(batch_norm3(conv3(x)));
+    //x = torch::relu(conv3(x));
     if (_verbose) std::cout << "\t Conv3: \t" << x.sizes() << std::endl;
+    
     x = torch::max_pool2d(x, {2, 2}, {2, 2}, 0);
     if (_verbose) std::cout << "\t Max pool: \t" << x.sizes() << std::endl;
 
     // Layer #3
     if (_verbose) std::cout << "Layer #3:\n";
+    
     x = torch::relu(batch_norm4(conv4(x)));
+    //x = torch::relu(conv4(x));
     if (_verbose) std::cout << "\t Conv4: \t" << x.sizes() << std::endl;
+    
     x = torch::relu(batch_norm5(conv5(x)));
+    //x = torch::relu(conv5(x));
     if (_verbose) std::cout << "\t Conv5: \t" << x.sizes() << std::endl;
+    
     x = torch::max_pool2d(x, {2, 2}, {2, 2}, 0);
     if (_verbose) std::cout << "\t Max pool: \t" << x.sizes() << std::endl;
 
     // Layer #4
     if (_verbose) std::cout << "Layer #4:\n";
+    
     x = torch::relu(batch_norm6(conv6(x)));
+    //x = torch::relu(conv6(x));
     if (_verbose) std::cout << "\t Conv6: \t" << x.sizes() << std::endl;
+    
     x = torch::relu(batch_norm7(conv7(x)));
+    //x = torch::relu(conv7(x));
     if (_verbose) std::cout << "\t Conv7: \t" << x.sizes() << std::endl;
+    
     x = torch::max_pool2d(x, {2, 2}, {2, 2}, 0);
     if (_verbose) std::cout << "\t Max pool: \t" << x.sizes() << std::endl;
 
     // Layer #5
     if (_verbose) std::cout << "Layer #5:\n";
+    
     x = torch::relu(batch_norm8(conv8(x)));
+    //x = torch::relu(conv8(x));
     if (_verbose) std::cout << "\t Conv8: \t" << x.sizes() << std::endl;
     
     x = torch::adaptive_avg_pool2d(x, {1, 1});
@@ -167,7 +173,8 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
 
     // Squeeze
     x = x.squeeze();
-    x = torch::softmax(x.unsqueeze(0), 1);
+    //x = torch::softmax(x.unsqueeze(0), 1);
+    x = x.unsqueeze(0);
     if (_verbose) std::cout << "Last: \n";
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
 
@@ -177,29 +184,38 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
 void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::optim::Optimizer &optimizer) {
     this->to(device);
    
-    for (int epoch = 0; epoch < 10; ++epoch) {
+    for (int epoch = 0; epoch < 100; ++epoch) {
         //torch::Tensor miniBatchLoss = torch::zeros(1, device);
         int count = 0;
 
         for (auto &data: dl.getDataset()) { // Image and Label iterator
             auto [cvImg, listLabel] = dl.loadOneTraninImageAndLabel(data, true);
-
-            at::Tensor inX = cvMat2Tensor(cvImg, device);
+            
+            at::Tensor inX = cvMat2Tensor(cvImg, device); // Convert cv::Mat to Tensor
+            
+            // Convert labels to Tensor
             at::Tensor label = floatList2Tensor(listLabel, device);
+            /*float labelsArr[listLabel.size()];
+            std::copy(listLabel.begin(), listLabel.end(), labelsArr);
+            torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+            torch::Tensor label = torch::from_blob(labelsArr, {1, (signed long) listLabel.size()}, labelOptions).to(device);*/
+
+            std::cout << "NAN!!!!!: " << torch::isnan(inX).sum().item<int>() << " | " << torch::isnan(inX).sum().item<int>() << std::endl;
 
             if (_verbose) showTrainInfo(cvImg, listLabel, inX, label);
-
+            
             if ((cvImg.cols < 1100) and (cvImg).rows < 1100) {
                 optimizer.zero_grad();
                 torch::Tensor output = forward(inX);
-                std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
+                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
+                //std::cout << output << std::endl;
 
-                torch::Tensor loss = torch::mse_loss(output, label, Reduction::None);
-                //loss.backward();
-                //optimizer.step();
-                
-                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
-                std::cout << loss << std::endl;
+                torch::Tensor loss = torch::mse_loss(output, label, Reduction::Mean);
+                loss.backward();
+                optimizer.step();
+
+                std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
+                //std::cout << loss << std::endl;
                 ++count;
                 /*if (count % 100) {
                 //std::fprintf(stdout, "Epoch #%d: Mini Batch #%d (loss: %f)\n", epoch, miniBatchCounter, loss.item<float>());
@@ -207,8 +223,8 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
                 //std::fprintf(stdout, "totCount #%d\n", totCount);
                 }*/
             }
-            break;
         }
+        //break;
     }
 }
 
@@ -221,13 +237,13 @@ at::Tensor FaceLandmarkNetImpl::cvMat2Tensor(cv::Mat cvMat, torch::Device device
                     imgOptions).to(device);
 }
 
-at::Tensor FaceLandmarkNetImpl::floatList2Tensor(std::list<float> floatList, torch::Device device) {
-    // Convert labels to Tensor
-    double labelsArr[136];
+at::Tensor FaceLandmarkNetImpl::floatList2Tensor(std::list<float> floatLists, torch::Device device) {
+    float labelsArr[floatLists.size()];
+    std::copy(floatLists.begin(), floatLists.end(), labelsArr);
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    return torch::tensor(
-                    labelsArr,
-                    labelOptions).view({1, 136}).to(device);
+    torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) floatLists.size()}, labelOptions).to(device);
+    
+    return labelTensor;
 }
 
 void FaceLandmarkNetImpl::showTrainInfo(cv::Mat cvImg, std::list<float> listLabel, at::Tensor &inX, at::Tensor &label) {
