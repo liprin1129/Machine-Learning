@@ -31,11 +31,12 @@ class DataLoader {
         void readDataDirectory(std::string rootPath);                                                   // recursively read files from root folder
         //void labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm = true); // Convert string of label to float
         std::tuple<float, float> str2Float(std::string strLabel);
-        std::tuple<float, float> resizeLabel(std::tuple<float, float> origLabel, int scaleFactor);
+        std::tuple<float, float> resizeLabel(int origCol, int origRow, int newCol, int newRow, std::tuple<float, float> origLabel);
+        std::tuple<float, float> labelNormalizer(int col, int row, std::tuple<float, float> origLabel); // MinMax normalize for label data
 
         cv::Mat readImage2CVMat(std::string filePath);              // Read an image data into cv::Mat
         cv::Mat resizeCVMat(cv::Mat &cvImg, float scaleFactor);
-        std::tuple<float, float> labelNormalizer(int col, int row, std::tuple<float, float> origLabel); // MinMax normalize for label data
+        
     public:
         // Getter
         std::vector<std::tuple<std::string, std::string>> getDataset(){return _dataset;};

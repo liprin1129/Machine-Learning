@@ -77,9 +77,12 @@ cv::Mat DataLoader::resizeCVMat(cv::Mat &cvImg, float scaleFactor) {
 }
 
 
-std::tuple<float, float> DataLoader::resizeLabel(std::tuple<float, float> origLabel, int scaleFactor){
+std::tuple<float, float> DataLoader::resizeLabel(int origCol, int origRow, int newCol, int newRow, std::tuple<float, float> origLabel){
     auto [X, Y] = origLabel;
-    return std::make_tuple(X*scaleFactor, Y*scaleFactor);
+    X *= (newCol/(float)origCol); // (X - min(X)) / (max(X) - min(X))
+    Y *= (newRow/(float)origRow); // (Y - min(Y)) / (max(Y) - min(Y))
+
+    return std::make_tuple(X, Y);
 }
 
 
@@ -88,6 +91,8 @@ std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, std::tupl
 
     X /= col; // (X - min(X)) / (max(X) - min(X))
     Y /= row; // (Y - min(Y)) / (max(Y) - min(Y))
+
+    //std::fprintf(stdout, "(%d, %d) -> (%d, %d) = (%f, %f)\n", origCol, origRow, newCol, newRow, X, Y);
 
     return std::make_tuple(X, Y);
 }
@@ -207,6 +212,8 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
 
         // Get a image
         image = readImage2CVMat(imgPath); // to get cols and rows of an image for normalization
+        int origX = image.cols;
+        int origY = image.rows;
         /*
         if (image.cols > 4000 or image.rows > 4000) {
             //std::cout << ">4000!!!" << std::endl;
@@ -236,16 +243,18 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
             if (std::isdigit(line[0])) { // Check string is digit?
                 std::tuple<float, float> label = str2Float(line); // Read X, Y point with float type
                 
-                label = resizeLabel(str2Float(line), scaleFactor); // Read X, Y point with float type
+                label = resizeLabel(origX, origY, image.cols, image.rows, label); // Read X, Y point with float type
 
                 if (norm) {
                     label = labelNormalizer(image.cols, image.rows, label);
+                    //std::cout << "Norm Label!!" << std::endl;
                 }
 
                 labels.push_back(std::get<0>(label));
                 labels.push_back(std::get<1>(label));
 
-                //cv::circle(image, cv::Point2d(cv::Size(std::get<0>(label)*image.cols, std::get<1>(label)*image.rows)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+                //std::fprintf(stdout, "(%d, %d) -> (%d, %d) = (%f, %f)\n", origX, origY, image.cols, image.rows, std::get<0>(label)*image.cols, std::get<1>(label)*image.rows);
+                //cv::circle(image, cv::Point2d(cv::Size(std::get<0>(label)*image.cols, std::get<1>(label)*image.rows)), 5, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
             }
         }
     }
@@ -255,6 +264,5 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
 
     cv::waitKey(0);
     */
-
     return std::make_tuple(image, labels);
 }

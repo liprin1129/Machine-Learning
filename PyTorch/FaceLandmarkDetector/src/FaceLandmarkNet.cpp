@@ -185,6 +185,7 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
     this->to(device);
    
     for (int epoch = 0; epoch < 500; ++epoch) {
+        std::fprintf(stdout, "Start epoch #%d\n", epoch);
         //torch::Tensor miniBatchLoss = torch::zeros(1, device);
         int count = 0;
         torch::Tensor miniBatchLoss = torch::zeros(1, device);
@@ -197,12 +198,6 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
             
             // Convert labels to Tensor
             at::Tensor label = floatList2Tensor(listLabel, device);
-            /*float labelsArr[listLabel.size()];
-            std::copy(listLabel.begin(), listLabel.end(), labelsArr);
-            torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-            torch::Tensor label = torch::from_blob(labelsArr, {1, (signed long) listLabel.size()}, labelOptions).to(device);
-            */
-            //std::cout << "NAN!!!!!: " << torch::isnan(inX).sum().item<int>() << " | " << torch::isnan(label).sum().item<int>() << std::endl;
 
             if (_verbose) showTrainInfo(cvImg, listLabel, inX, label);
             
@@ -226,13 +221,22 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
                     std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
                     miniBatchLoss = torch::zeros(1, device);
                 }
+
+                if (count % 300 == 0) {
+                    char outputString[100];
+                    char optimizerString[100];
+                    std::sprintf(outputString, "./checkpoints/output-epoch%03d-minibatch%03d.pt", epoch, count);
+                    std::sprintf(optimizerString, "./checkpoints/optimizer-epoch%03d-minibatch%03d.pt", epoch, count);
+                    torch::save(output, outputString);
+                    torch::save(optimizer, optimizerString);
+                }
             }
             else {
                 std::fprintf(stderr, "NAN value detected!\n");
                 exit(-1);
             }
-            //break;
         }
+        std::fprintf(stdout, "End of epoch #%d\n\n", epoch);
     }
 }
 
