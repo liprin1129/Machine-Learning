@@ -22,8 +22,8 @@ class DataLoader {
         // Private Variables
         std::vector<std::tuple<std::string, std::string>> _dataset;     // Return dataset vector (image, label) string
         
-        cv::Mat _image;
-        std::list<float> _labels;
+        //cv::Mat _image;
+        //std::list<float> _labels;
 
         bool resizeFlag;
 
@@ -31,20 +31,20 @@ class DataLoader {
         void readDataDirectory(std::string rootPath);                                                   // recursively read files from root folder
         //void labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm = true); // Convert string of label to float
         std::tuple<float, float> str2Float(std::string strLabel);
-        float resizeLabel(float origLabel, int origSize, int scaleFactor);
+        std::tuple<float, float> resizeLabel(std::tuple<float, float> origLabel, int scaleFactor);
 
-        cv::Mat readImage2CVMat(std::string filePath, bool resize, bool norm=true);              // Read an image data into cv::Mat
-        cv::Mat resizeCVMat(cv::Mat &cvImg, int factorX, int factorY);
-        std::tuple<float, float> labelNormalizer(int col, int row, float X, float Y); // MinMax normalize for label data
+        cv::Mat readImage2CVMat(std::string filePath);              // Read an image data into cv::Mat
+        cv::Mat resizeCVMat(cv::Mat &cvImg, float scaleFactor);
+        std::tuple<float, float> labelNormalizer(int col, int row, std::tuple<float, float> origLabel); // MinMax normalize for label data
     public:
         // Getter
         std::vector<std::tuple<std::string, std::string>> getDataset(){return _dataset;};
-        cv::Mat getImage(){return _image;};
-        std::list<float> getLabels(){return _labels;};
+        //cv::Mat getImage(){return _image;};
+        //std::list<float> getLabels(){return _labels;};
 
         // Public Methods
         DataLoader(std::string path);                                               // Constructor, string arguments
-        std::tuple<cv::Mat, std::list<float>> loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm=true, int scaleFactor=0.5);
+        std::tuple<cv::Mat, std::list<float>> loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm=true);
 };
 
 #endif // __IMAGE_DATA_LOADER_H__s

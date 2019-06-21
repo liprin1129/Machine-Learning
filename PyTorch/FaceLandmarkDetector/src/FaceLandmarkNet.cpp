@@ -184,12 +184,14 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
 void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::optim::Optimizer &optimizer) {
     this->to(device);
    
-    for (int epoch = 0; epoch < 100; ++epoch) {
+    for (int epoch = 0; epoch < 500; ++epoch) {
         //torch::Tensor miniBatchLoss = torch::zeros(1, device);
         int count = 0;
-
+        torch::Tensor miniBatchLoss = torch::zeros(1, device);
+        //torch::Tensor loss;
         for (auto &data: dl.getDataset()) { // Image and Label iterator
             auto [cvImg, listLabel] = dl.loadOneTraninImageAndLabel(data, true);
+            //std::fprintf(stdout, "Width: %d, Height: %d\n", cvImg.cols, cvImg.rows);
             
             at::Tensor inX = cvMat2Tensor(cvImg, device); // Convert cv::Mat to Tensor
             
@@ -198,33 +200,39 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
             /*float labelsArr[listLabel.size()];
             std::copy(listLabel.begin(), listLabel.end(), labelsArr);
             torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-            torch::Tensor label = torch::from_blob(labelsArr, {1, (signed long) listLabel.size()}, labelOptions).to(device);*/
-
-            std::cout << "NAN!!!!!: " << torch::isnan(inX).sum().item<int>() << " | " << torch::isnan(inX).sum().item<int>() << std::endl;
+            torch::Tensor label = torch::from_blob(labelsArr, {1, (signed long) listLabel.size()}, labelOptions).to(device);
+            */
+            //std::cout << "NAN!!!!!: " << torch::isnan(inX).sum().item<int>() << " | " << torch::isnan(label).sum().item<int>() << std::endl;
 
             if (_verbose) showTrainInfo(cvImg, listLabel, inX, label);
             
-            if ((cvImg.cols < 1100) and (cvImg).rows < 1100) {
+            if (not(torch::isnan(inX).sum().item<int>() and torch::isnan(inX).sum().item<int>())){
                 optimizer.zero_grad();
                 torch::Tensor output = forward(inX);
                 //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
                 //std::cout << output << std::endl;
 
-                torch::Tensor loss = torch::mse_loss(output, label, Reduction::Mean);
-                loss.backward();
-                optimizer.step();
+                miniBatchLoss += torch::mse_loss(output, label, Reduction::Mean);
+                //loss.backward();
+                //optimizer.step();
 
-                std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
-                //std::cout << loss << std::endl;
-                ++count;
-                /*if (count % 100) {
-                //std::fprintf(stdout, "Epoch #%d: Mini Batch #%d (loss: %f)\n", epoch, miniBatchCounter, loss.item<float>());
-                std::fprintf(stdout, "Epoch #%d, totCount #%d | loss: %f\n", epoch, count, loss.item<float>());
-                //std::fprintf(stdout, "totCount #%d\n", totCount);
-                }*/
+                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
+                
+                if (++count % 100 == 0) {
+                    optimizer.zero_grad();
+                    miniBatchLoss/10;
+                    miniBatchLoss.backward();
+                    optimizer.step();
+                    std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
+                    miniBatchLoss = torch::zeros(1, device);
+                }
             }
+            else {
+                std::fprintf(stderr, "NAN value detected!\n");
+                exit(-1);
+            }
+            //break;
         }
-        //break;
     }
 }
 

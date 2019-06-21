@@ -45,7 +45,7 @@ void DataLoader::readDataDirectory(std::string rootPath) {
 }
 
 
-cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm) {
+cv::Mat DataLoader::readImage2CVMat(std::string filePath) {
     // std::cout << filePath << std::endl;
     
     cv::Mat origImage, normImage, resizedImage;
@@ -57,23 +57,7 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm
         exit(EXIT_FAILURE);
     }
 
-    if (norm) {
-        cv::normalize(origImage, normImage, 1, 0, cv::NORM_MINMAX, CV_32FC3);
-        //std::cout << normImage << std::endl;
-        origImage.release();
-        resizedImage.release();
-        return normImage;
-        
-        //cv::resize(normImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
-        //return resizedImage;
-    }
-    else {
-        normImage.release();
-        resizedImage.release();
-        return origImage;
-        //cv::resize(origImage, resizedImage, cv::Size(600, 600), 0, 0, cv::INTER_LINEAR);
-        //return resizedImage;
-    }
+    return origImage;
     /*
     cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
     imshow("Image", normImage);
@@ -82,21 +66,26 @@ cv::Mat DataLoader::readImage2CVMat(std::string filePath, bool resize, bool norm
     */
 }
 
-cv::Mat DataLoader::resizeCVMat(cv::Mat &cvImg, int factorX, int factorY) {
+cv::Mat DataLoader::resizeCVMat(cv::Mat &cvImg, float scaleFactor) {
     cv::Mat resizedImage;
-
-    cv::resize(cvImg, resizedImage, cv::Size2d(factorX, factorY), 0, 0, cv::INTER_LINEAR);
-
+    
+    //std::cout << scaleFactor << " | New Size: " << cv::Size2d((int)(cvImg.cols*scaleFactor), (int)(cvImg.rows*scaleFactor)) << std::endl;
+    //cv::resize(cvImg, resizedImage, cv::Size(), scaleFactor, scaleFactor, cv::INTER_LINEAR);
+    cv::resize(cvImg, resizedImage, cv::Size2d(200, 200), 0, 0, cv::INTER_LINEAR);
+    
     return resizedImage;
 }
 
 
-float DataLoader::resizeLabel(float origLabel, int origSize, int scaleFactor){
-    return origLabel * scaleFactor/origSize;
+std::tuple<float, float> DataLoader::resizeLabel(std::tuple<float, float> origLabel, int scaleFactor){
+    auto [X, Y] = origLabel;
+    return std::make_tuple(X*scaleFactor, Y*scaleFactor);
 }
 
 
-std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, float X, float Y) {
+std::tuple<float, float> DataLoader::labelNormalizer(int col, int row, std::tuple<float, float> origLabel) {
+    auto [X, Y] = origLabel;
+
     X /= col; // (X - min(X)) / (max(X) - min(X))
     Y /= row; // (Y - min(Y)) / (max(Y) - min(Y))
 
@@ -187,11 +176,10 @@ std::tuple<float, float> DataLoader::str2Float(std::string strLabel) {
     }
 }
 
-std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm, int scaleFactor) {
-    //auto [imgPath, landmarksPath] = filePath;
-    //labelStr2Float(filePath, norm);
-
-    // Temporal variables
+std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm) {
+    //======================//
+    //= FUNCTION VARIABLES =//
+    //======================//
     std::fstream ptsFile; // fstream instance
     
     float X = 0.0; // point's X coordinat
@@ -204,20 +192,69 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
 
     ptsFile.open(landmarksPath, std::fstream::in); // open fstream with read only mode
 
+    float scaleFactor = 1.0;
+
+    cv::Mat image;
+    std::list<float> labels;
+
+    //=================//
+    //= FUNCTION BODY =//
+    //=================//
     if (ptsFile.is_open()) {
         std::getline(ptsFile, line); // skip a line
         std::getline(ptsFile, line); // skip a line
         std::getline(ptsFile, line); // skip a line
 
-        _image = readImage2CVMat(imgPath, false, norm); // to get cols and rows of an image for normalization
+        // Get a image
+        image = readImage2CVMat(imgPath); // to get cols and rows of an image for normalization
+        /*
+        if (image.cols > 4000 or image.rows > 4000) {
+            //std::cout << ">4000!!!" << std::endl;
+            scaleFactor = 0.005;
+        }
+        else if(image.cols > 3000 or image.rows > 3000){
+            //std::cout << ">3000!!!" << std::endl;
+            scaleFactor = 0.06;
+        }
+        else if(image.cols > 2000 or image.rows > 2000){
+            //std::cout << ">2000!!!" << std::endl;
+            scaleFactor = 0.1;
+        }
+        else if(image.cols > 1000 or image.rows > 1000){
+            //std::cout << ">2000!!!" << std::endl;
+            scaleFactor = 0.2;
+        }
+        */
+        image = resizeCVMat(image, scaleFactor);
+
+        if (norm) {
+            cv::normalize(image, image, 1, 0, cv::NORM_MINMAX, CV_32FC3);
+        }
+
+        // Get labels
         while (std::getline(ptsFile, line)) {
             if (std::isdigit(line[0])) { // Check string is digit?
-                auto [X, Y] = str2Float(line); // Read X, Y point with float type
+                std::tuple<float, float> label = str2Float(line); // Read X, Y point with float type
+                
+                label = resizeLabel(str2Float(line), scaleFactor); // Read X, Y point with float type
 
-                if (_image.cols > 4000 or _image.rows > 4000) {
-                    
+                if (norm) {
+                    label = labelNormalizer(image.cols, image.rows, label);
                 }
+
+                labels.push_back(std::get<0>(label));
+                labels.push_back(std::get<1>(label));
+
+                //cv::circle(image, cv::Point2d(cv::Size(std::get<0>(label)*image.cols, std::get<1>(label)*image.rows)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            }
         }
     }
-    return std::make_tuple(_image, _labels);
+    /*
+    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
+    imshow("Image", image);
+
+    cv::waitKey(0);
+    */
+
+    return std::make_tuple(image, labels);
 }
