@@ -17,17 +17,19 @@ int JointCoordinateManager::estimateDepthCoordinates(int focalLength) {
             auto lJ = leftJoints[i]; // get a tuple from the leftJoints vector
             auto rJ = rightJoints[i]; // get a tuple from the rightJoints vector
 
-            auto [lX, lY, lC] = lJ; // untie the tuple for left image
+            auto [lX, lY, lC] = lJ; // untie the tuple for left image, x, y and confidence
             auto [rX, rY, rC] = rJ; // untime the tuple for right image
             //fprintf(stdout, "%lf:%lf, %lf:%lf, %lf:%lf\n", lX, rX, lY, rY, lC, rC);
 
             // TEMPORAL CODE FOR SIMPLE ALGORITHM
-            auto Z = static_cast<double>(120)*focalLength/(rX-lX); // compute Z coordinate using only x axis (this is not correct, but for convinience)
-            
+            auto Z = static_cast<double>(120)*focalLength/(rX-lX); // compute Z coordinate, 120 is baseline in cm
+            //auto X = (lX - cx)*Z/fx;
+            //auto Y = (lY - cy)*Z/fy;
+
             auto joint = std::make_tuple(lX, lY, Z); // temporally save coordinates
             keyPointCoordinates.push_back(joint);
 
-            fprintf(stdout, "Results: %lf, %lf, %lf\n", lX, lY, Z);
+            fprintf(stdout, "Joint Coordinate: [%lf, %lf, %lf]\n", lX, lY, Z);
         }
         return 0;
     }

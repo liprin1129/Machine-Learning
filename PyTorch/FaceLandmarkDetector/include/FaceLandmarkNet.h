@@ -9,6 +9,8 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
     private:
         int64_t inputChannel;
         bool _verbose;
+        bool _testFlag;
+
         torch::nn::Conv2d conv1{nullptr}, conv2{nullptr}, conv3{nullptr}, conv4{nullptr},
                             conv5{nullptr}, conv6{nullptr}, conv7{nullptr}, conv8{nullptr};
 
@@ -21,7 +23,7 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         // GETTER
         torch::nn::Conv2d getConv(){return conv1;};
 
-        FaceLandmarkNetImpl(bool verbose);
+        FaceLandmarkNetImpl(bool verbose, bool testFlag);
         at::Tensor cvMat2Tensor(cv::Mat cvMat, torch::Device device);
         at::Tensor floatList2Tensor(std::list<float> floatList, torch::Device device);
 

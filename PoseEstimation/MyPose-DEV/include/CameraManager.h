@@ -13,7 +13,11 @@ class CameraManager {
 
         int imgViewWidth;
         int imgViewHeight;
+        
+        // Intrinsic
         int focalLength;
+        int fx;
+        int fy;
 
         sl::Mat slMat;
         cv::Mat cvMat;

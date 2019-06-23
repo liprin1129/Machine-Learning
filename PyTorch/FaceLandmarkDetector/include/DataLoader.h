@@ -26,7 +26,7 @@ class DataLoader {
         //std::list<float> _labels;
 
         bool resizeFlag;
-
+        
         // Private Methods
         void readDataDirectory(std::string rootPath);                                                   // recursively read files from root folder
         //void labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm = true); // Convert string of label to float

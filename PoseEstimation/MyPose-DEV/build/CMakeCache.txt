@@ -15,22 +15,25 @@
 ########################
 
 //Path to a library.
-BLAS_guide_LIBRARY:FILEPATH=BLAS_guide_LIBRARY-NOTFOUND
+BLAS_goto2_LIBRARY:FILEPATH=BLAS_goto2_LIBRARY-NOTFOUND
 
 //Path to a library.
-BLAS_iomp5_LIBRARY:FILEPATH=/usr/local/lib/libiomp5.so
+BLAS_mkl_LIBRARY:FILEPATH=BLAS_mkl_LIBRARY-NOTFOUND
 
 //Path to a library.
-BLAS_mkl_core_LIBRARY:FILEPATH=/usr/local/lib/libmkl_core.so
+BLAS_mkl_em64t_LIBRARY:FILEPATH=BLAS_mkl_em64t_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_ia32_LIBRARY:FILEPATH=BLAS_mkl_ia32_LIBRARY-NOTFOUND
 
 //Path to a library.
 BLAS_mkl_intel_LIBRARY:FILEPATH=BLAS_mkl_intel_LIBRARY-NOTFOUND
 
 //Path to a library.
-BLAS_mkl_intel_lp64_LIBRARY:FILEPATH=/usr/local/lib/libmkl_intel_lp64.so
+BLAS_mkl_intel_lp64_LIBRARY:FILEPATH=BLAS_mkl_intel_lp64_LIBRARY-NOTFOUND
 
 //Path to a library.
-BLAS_mkl_intel_thread_LIBRARY:FILEPATH=/usr/local/lib/libmkl_intel_thread.so
+BLAS_openblas_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libopenblas.so
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
@@ -384,12 +387,6 @@ ZED_DIR:PATH=/usr/local/zed
 
 ZED_FOUND:BOOL=TRUE
 
-//Value Computed by CMake
-ZED_with_OpenCV_BINARY_DIR:STATIC=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/build
-
-//Value Computed by CMake
-ZED_with_OpenCV_SOURCE_DIR:STATIC=/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV
-
 
 ########################
 # INTERNAL cache entries
@@ -397,20 +394,22 @@ ZED_with_OpenCV_SOURCE_DIR:STATIC=/DEVs/Machine-Learning/PoseEstimation/MyPose-D
 
 //Have function sgemm_
 BLAS_WORKS:INTERNAL=
-//ADVANCED property for variable: BLAS_guide_LIBRARY
-BLAS_guide_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: BLAS_iomp5_LIBRARY
-BLAS_iomp5_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: BLAS_mkl_core_LIBRARY
-BLAS_mkl_core_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_goto2_LIBRARY
+BLAS_goto2_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_LIBRARY
+BLAS_mkl_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_em64t_LIBRARY
+BLAS_mkl_em64t_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_ia32_LIBRARY
+BLAS_mkl_ia32_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: BLAS_mkl_intel_LIBRARY
 BLAS_mkl_intel_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: BLAS_mkl_intel_lp64_LIBRARY
 BLAS_mkl_intel_lp64_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_openblas_LIBRARY
+BLAS_openblas_LIBRARY-ADVANCED:INTERNAL=1
 //Have function sgemm_
-BLAS_mkl_intel_lp64_mkl_intel_thread_mkl_core_iomp5_WORKS:INTERNAL=1
-//ADVANCED property for variable: BLAS_mkl_intel_thread_LIBRARY
-BLAS_mkl_intel_thread_LIBRARY-ADVANCED:INTERNAL=1
+BLAS_openblas_WORKS:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -461,8 +460,6 @@ CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//Path to cache edit program executable.
-CMAKE_EDIT_COMMAND:INTERNAL=/usr/local/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -654,7 +651,7 @@ CUDA_parse_cubin:INTERNAL=/usr/local/share/cmake-3.14/Modules/FindCUDA/parse_cub
 //Location of run_nvcc.cmake
 CUDA_run_nvcc:INTERNAL=/usr/local/share/cmake-3.14/Modules/FindCUDA/run_nvcc.cmake
 //Details about finding BLAS
-FIND_PACKAGE_MESSAGE_DETAILS_BLAS:INTERNAL=[/usr/local/lib/libmkl_intel_lp64.so;/usr/local/lib/libmkl_intel_thread.so;/usr/local/lib/libmkl_core.so;/usr/local/lib/libiomp5.so;-lpthread;-lm;-ldl][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_BLAS:INTERNAL=[/usr/lib/x86_64-linux-gnu/libopenblas.so][v()]
 //Details about finding CUDA
 FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda][/usr/local/cuda/bin/nvcc][/usr/local/cuda/include][/usr/local/cuda/lib64/libcudart_static.a][v10.0(10)]
 //Details about finding OpenCV

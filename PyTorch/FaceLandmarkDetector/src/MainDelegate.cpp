@@ -7,12 +7,12 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    // Data Loader
    DataLoader dl("/DATASETs/Face/Landmarks/300W/");
 
-   FaceLandmarkNet fln(false);
+   FaceLandmarkNet fln(false, true);
 
    // Optimizer
    torch::optim::Adam adamOptimizer(
       fln->parameters(),
-      torch::optim::AdamOptions(1e-3).beta1(0.5));
+      torch::optim::AdamOptions(3e-4).beta1(0.5));
 
    std::cout << "CUDA is available! Training on GPU." << std::endl;
    fln->train(dl, torch::Device(torch::kCUDA), adamOptimizer);

@@ -4,10 +4,11 @@
 // * FaceLandmarNet class * //
 // ************************ //
 
-FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose) {
+FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
     std::cout << "Constructor" << std::endl;
     
     _verbose = verbose;
+    _testFlag = testFlag;
 
     inputChannel = 3;
 
@@ -183,11 +184,13 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
 
 void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::optim::Optimizer &optimizer) {
     this->to(device);
-   
+
     for (int epoch = 0; epoch < 500; ++epoch) {
         std::fprintf(stdout, "Start epoch #%d\n", epoch);
         //torch::Tensor miniBatchLoss = torch::zeros(1, device);
         int count = 0;
+        float totLoss = 0.0;
+
         torch::Tensor miniBatchLoss = torch::zeros(1, device);
         //torch::Tensor loss;
         for (auto &data: dl.getDataset()) { // Image and Label iterator
@@ -206,6 +209,11 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
                 torch::Tensor output = forward(inX);
                 //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
                 //std::cout << output << std::endl;
+                
+                if (_testFlag) {
+                    torch::load(output, "./checkpoints/output-epoch020-minibatch600.pt");
+                    torch::load(optimizer, "./checkpoints/optimizer-epoch020-minibatch600.pt");
+                }
 
                 miniBatchLoss += torch::mse_loss(output, label, Reduction::Mean);
                 //loss.backward();
@@ -214,29 +222,35 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
                 //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
                 
                 if (++count % 100 == 0) {
-                    optimizer.zero_grad();
-                    miniBatchLoss/10;
-                    miniBatchLoss.backward();
-                    optimizer.step();
-                    std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
+                    if (not _testFlag) {
+                        optimizer.zero_grad();
+                        miniBatchLoss/10;
+                        miniBatchLoss.backward();
+                        optimizer.step();
+                    }
+                    //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
+                    totLoss += miniBatchLoss.item<float>();
                     miniBatchLoss = torch::zeros(1, device);
+                    //std::fprintf(stdout, "(Epoch #%d / %d, Count #%d) | (loss: %f)\n\n", epoch, 500, count, totLoss.item<float>());// totLoss/static_cast<int>(count/100));
                 }
 
-                if (count % 300 == 0) {
+                if (((epoch+1) % 5 == 0) and (count == 600)) {
                     char outputString[100];
                     char optimizerString[100];
-                    std::sprintf(outputString, "./checkpoints/output-epoch%03d-minibatch%03d.pt", epoch, count);
-                    std::sprintf(optimizerString, "./checkpoints/optimizer-epoch%03d-minibatch%03d.pt", epoch, count);
+                    std::sprintf(outputString, "./checkpoints/output-epoch%03d-minibatch%03d.pt", epoch+1, count);
+                    std::sprintf(optimizerString, "./checkpoints/optimizer-epoch%03d-minibatch%03d.pt", epoch+1, count);
                     torch::save(output, outputString);
                     torch::save(optimizer, optimizerString);
                 }
+
             }
             else {
                 std::fprintf(stderr, "NAN value detected!\n");
                 exit(-1);
             }
         }
-        std::fprintf(stdout, "End of epoch #%d\n\n", epoch);
+        std::fprintf(stdout, "Epoch #[%d/%d] | (loss: %f)\n\n", epoch, 500, totLoss/6);
+        //std::fprintf(stdout, "End of epoch #%d\n\n", epoch);
     }
 }
 

@@ -142,13 +142,11 @@ MyPose-DEV: CMakeFiles/MyPose-DEV.dir/build.make
 MyPose-DEV: /usr/local/zed/lib/libsl_input.so
 MyPose-DEV: /usr/local/zed/lib/libsl_core.so
 MyPose-DEV: /usr/local/zed/lib/libsl_zed.so
-MyPose-DEV: /usr/local/lib/libmkl_intel_lp64.so
-MyPose-DEV: /usr/local/lib/libmkl_intel_thread.so
-MyPose-DEV: /usr/local/lib/libmkl_core.so
-MyPose-DEV: /usr/local/lib/libiomp5.so
+MyPose-DEV: /usr/lib/x86_64-linux-gnu/libopenblas.so
 MyPose-DEV: /usr/local/lib/libopencv_cudabgsegm.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_cudaobjdetect.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_cudastereo.so.3.4.5
+MyPose-DEV: /usr/local/lib/libopencv_shape.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_stitching.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_superres.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_videostab.so.3.4.5
@@ -172,7 +170,6 @@ MyPose-DEV: /usr/local/lib/libopencv_stereo.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_structured_light.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_surface_matching.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_tracking.so.3.4.5
-MyPose-DEV: /usr/local/lib/libopencv_xfeatures2d.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_ximgproc.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_xobjdetect.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_xphoto.so.3.4.5
@@ -194,7 +191,6 @@ MyPose-DEV: /usr/local/cuda-10.0/lib64/libcublas.so
 MyPose-DEV: /usr/local/cuda-10.0/lib64/libcurand.so
 MyPose-DEV: /usr/local/cuda/lib64/libnpps.so
 MyPose-DEV: /usr/local/lib/libopencv_cudafeatures2d.so.3.4.5
-MyPose-DEV: /usr/local/lib/libopencv_shape.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_cudacodec.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_cudaoptflow.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_cudalegacy.so.3.4.5
