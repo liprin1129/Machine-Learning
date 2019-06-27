@@ -18,7 +18,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm1 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(32));
+    //batch_norm1 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(32));
     
     // Convolutional layer #2: 
     // [channel: 32 -> 64], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -26,7 +26,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm2 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
+    //batch_norm2 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
 
     // Convolutional layer #3: 
     // [channel: 64 -> 64], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -34,7 +34,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm3 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
+    //batch_norm3 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
 
     // Convolutional layer #4: 
     // [channel: 64 -> 64], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -42,7 +42,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm4 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
+    //batch_norm4 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
 
     // Convolutional layer #5: 
     // [channel: 64 -> 64], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -50,7 +50,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm5 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
+    //batch_norm5 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(64));
 
     // Convolutional layer #6: 
     // [channel: 64 -> 128], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -58,7 +58,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm6 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(128));
+    //batch_norm6 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(128));
 
     // Convolutional layer #7: 
     // [channel: 128 -> 256], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -66,7 +66,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm7 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(128));
+    //batch_norm7 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(128));
 
     // Convolutional layer #7: 
     // [channel: 128 -> 128], [filter: 3x3], [stride: 1x1], [padding: 0]
@@ -74,7 +74,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
                 .stride(1)
                 .padding(0)
                 .with_bias(false));
-    batch_norm8 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(256));
+    //batch_norm8 = torch::nn::BatchNorm(torch::nn::BatchNormOptions(256));
 
     // [1 x 1] Convolutional layer #8:
     // [channel: 256 -> 68], [filter: 1x1], [stride: 1x1], [padding:0]
@@ -93,6 +93,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
     register_module("conv8", conv8);
     register_module("convOneXOne1", convOneXOne1);
     
+    /*
     register_module("batch_norm1", batch_norm1);
     register_module("batch_norm2", batch_norm2);
     register_module("batch_norm3", batch_norm3);
@@ -101,6 +102,7 @@ FaceLandmarkNetImpl::FaceLandmarkNetImpl(bool verbose, bool testFlag) {
     register_module("batch_norm6", batch_norm6);
     register_module("batch_norm7", batch_norm7);
     register_module("batch_norm8", batch_norm8);
+    */
 }
 
 torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
@@ -108,7 +110,8 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     if (_verbose) std::cout << "Layer #1:\n";
     if (_verbose) std::cout << "\t Input: \t" << x.sizes() << std::endl;
 
-    x = torch::relu(batch_norm1(conv1(x)));
+    //x = torch::relu(batch_norm1(conv1(x)));
+    x = torch::relu(conv1(x));
     //x = torch::relu(conv1(x));
     if (_verbose) std::cout << "\t Conv1: \t" << x.sizes() << std::endl;
     
@@ -118,11 +121,13 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     // Layer #2
     if (_verbose) std::cout << "Layer #2:\n";
     
-    x = torch::relu(batch_norm2(conv2(x)));
+    //x = torch::relu(batch_norm2(conv2(x)));
+    x = torch::relu(conv2(x));
     //x = torch::relu(conv2(x));
     if (_verbose) std::cout << "\t Conv2: \t" << x.sizes() << std::endl;
     
-    x = torch::relu(batch_norm3(conv3(x)));
+    //x = torch::relu(batch_norm3(conv3(x)));
+    x = torch::relu(conv3(x));
     //x = torch::relu(conv3(x));
     if (_verbose) std::cout << "\t Conv3: \t" << x.sizes() << std::endl;
     
@@ -132,11 +137,13 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     // Layer #3
     if (_verbose) std::cout << "Layer #3:\n";
     
-    x = torch::relu(batch_norm4(conv4(x)));
+    //x = torch::relu(batch_norm4(conv4(x)));
+    x = torch::relu(conv4(x));
     //x = torch::relu(conv4(x));
     if (_verbose) std::cout << "\t Conv4: \t" << x.sizes() << std::endl;
     
-    x = torch::relu(batch_norm5(conv5(x)));
+    //x = torch::relu(batch_norm5(conv5(x)));
+    x = torch::relu(conv5(x));
     //x = torch::relu(conv5(x));
     if (_verbose) std::cout << "\t Conv5: \t" << x.sizes() << std::endl;
     
@@ -146,11 +153,13 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     // Layer #4
     if (_verbose) std::cout << "Layer #4:\n";
     
-    x = torch::relu(batch_norm6(conv6(x)));
+    //x = torch::relu(batch_norm6(conv6(x)));
+    x = torch::relu(conv6(x));
     //x = torch::relu(conv6(x));
     if (_verbose) std::cout << "\t Conv6: \t" << x.sizes() << std::endl;
     
-    x = torch::relu(batch_norm7(conv7(x)));
+    //x = torch::relu(batch_norm7(conv7(x)));
+    x = torch::relu(conv7(x));
     //x = torch::relu(conv7(x));
     if (_verbose) std::cout << "\t Conv7: \t" << x.sizes() << std::endl;
     
@@ -160,7 +169,8 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     // Layer #5
     if (_verbose) std::cout << "Layer #5:\n";
     
-    x = torch::relu(batch_norm8(conv8(x)));
+    //x = torch::relu(batch_norm8(conv8(x)));
+    x = torch::relu(conv8(x));
     //x = torch::relu(conv8(x));
     if (_verbose) std::cout << "\t Conv8: \t" << x.sizes() << std::endl;
     
@@ -186,7 +196,7 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
     this->to(device);
 
     for (int epoch = 0; epoch < 500; ++epoch) {
-        std::fprintf(stdout, "Start epoch #%d\n", epoch);
+        //std::fprintf(stdout, "Start epoch #%d\n", epoch);
         //torch::Tensor miniBatchLoss = torch::zeros(1, device);
         int count = 0;
         float totLoss = 0.0;
@@ -194,8 +204,10 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
         torch::Tensor miniBatchLoss = torch::zeros(1, device);
         //torch::Tensor loss;
         for (auto &data: dl.getDataset()) { // Image and Label iterator
+        //for (int i=0; i < dl.getDataset().size(); ++i) {
             auto [cvImg, listLabel] = dl.loadOneTraninImageAndLabel(data, true);
-            //std::fprintf(stdout, "Width: %d, Height: %d\n", cvImg.cols, cvImg.rows);
+            //int rndIdx = rand() % dl.getDataset().size();
+            //auto [cvImg, listLabel] = dl.loadOneTraninImageAndLabel(dl.getDataset()[rndIdx], true);
             
             at::Tensor inX = cvMat2Tensor(cvImg, device); // Convert cv::Mat to Tensor
             
@@ -203,38 +215,38 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
             at::Tensor label = floatList2Tensor(listLabel, device);
 
             if (_verbose) showTrainInfo(cvImg, listLabel, inX, label);
-            
+
+            //std::cout << inX.mean() << "\n" << label.mean() << std::endl << std::endl;
+
             if (not(torch::isnan(inX).sum().item<int>() and torch::isnan(inX).sum().item<int>())){
-                optimizer.zero_grad();
+                
+                //optimizer.zero_grad();
                 torch::Tensor output = forward(inX);
                 //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f)\n", epoch, count, output.sum().item<float>());
                 //std::cout << output << std::endl;
                 
                 if (_testFlag) {
-                    torch::load(output, "./checkpoints/output-epoch020-minibatch600.pt");
-                    torch::load(optimizer, "./checkpoints/optimizer-epoch020-minibatch600.pt");
+                //if (epoch==30) {
+                    torch::load(output, "./checkpoints/output-epoch030-minibatch600.pt");
+                    torch::load(optimizer, "./checkpoints/optimizer-epoch030-minibatch600.pt");
                 }
 
                 miniBatchLoss += torch::mse_loss(output, label, Reduction::Mean);
-                //loss.backward();
-                //optimizer.step();
+                totLoss += miniBatchLoss.item<float>();
 
-                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), loss.item<float>());
-                
-                if (++count % 100 == 0) {
+                //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
+
+                if (++count % 50 == 0) {
                     if (not _testFlag) {
                         optimizer.zero_grad();
                         miniBatchLoss/10;
                         miniBatchLoss.backward();
                         optimizer.step();
                     }
-                    //std::fprintf(stdout, "(Epoch #%d, Count #%d) | (sum: %f, loss: %f)\n", epoch, count, output.sum().item<float>(), miniBatchLoss.item<float>());
-                    totLoss += miniBatchLoss.item<float>();
                     miniBatchLoss = torch::zeros(1, device);
-                    //std::fprintf(stdout, "(Epoch #%d / %d, Count #%d) | (loss: %f)\n\n", epoch, 500, count, totLoss.item<float>());// totLoss/static_cast<int>(count/100));
                 }
 
-                if (((epoch+1) % 5 == 0) and (count == 600)) {
+                if (((epoch) % 10 == 0) and (count == dl.getDataset().size()) and (not _testFlag)) {
                     char outputString[100];
                     char optimizerString[100];
                     std::sprintf(outputString, "./checkpoints/output-epoch%03d-minibatch%03d.pt", epoch+1, count);
@@ -242,16 +254,30 @@ void FaceLandmarkNetImpl::train(DataLoader &dl, torch::Device device, torch::opt
                     torch::save(output, outputString);
                     torch::save(optimizer, optimizerString);
                 }
+                
+                if (count % 50 == 0) {
+                    std::fprintf(stdout, "(Epoch #%d / %d, Count #%d) | (loss: %f)\n", epoch+1, 500, count, totLoss/count);
+                    //outputImage(cvImg, output, epoch);
+                }
 
+                if ((epoch % 5 == 0) and count == dl.getDataset().size()) {
+                    int rndIdx = rand() % dl.getDataset().size();
+                    auto [testImg, testlistLabel] = dl.loadOneTraninImageAndLabel(dl.getDataset()[rndIdx], true);
+                    torch::Tensor testOutput = forward(inX);
+                    outputImage(testImg, testOutput, epoch);
+                }
             }
             else {
                 std::fprintf(stderr, "NAN value detected!\n");
                 exit(-1);
             }
+            //break;
         }
-        std::fprintf(stdout, "Epoch #[%d/%d] | (loss: %f)\n\n", epoch, 500, totLoss/6);
+        
+        std::fprintf(stdout, "Epoch #[%d/%d] | (loss: %f)\n\n", epoch+1, 500, totLoss/count);
         //std::fprintf(stdout, "End of epoch #%d\n\n", epoch);
-    }
+        //break;
+    } 
 }
 
 at::Tensor FaceLandmarkNetImpl::cvMat2Tensor(cv::Mat cvMat, torch::Device device) {
@@ -307,4 +333,57 @@ void FaceLandmarkNetImpl::showTrainInfo(cv::Mat cvImg, std::list<float> listLabe
     std::cout << "\t max: " << label.max() << std::endl;
     std::cout << "\t min: " << label.min() << std::endl;
     std::cout << std::endl;
+}
+
+void FaceLandmarkNetImpl::outputImage(cv::Mat cvImg, at::Tensor output, int epoch) {
+    cv::Mat outputImg = cvImg.clone()*255;
+    std::vector<std::tuple<float, float>> outputVec;
+    float X = 0.0, Y=0.0;
+    for (int i=0; i<output.size(1); ++i) {
+        if (i % 2 == 1) {
+            Y = output[0][i].item<float>()*outputImg.rows;
+            outputVec.push_back(std::make_tuple(X, Y));
+        }
+        X = output[0][i].item<float>()*outputImg.cols;
+    }
+    for (auto l: outputVec) {
+        auto [X, Y] = l;
+        //std::cout << X << ", " << Y << std::endl;
+        cv::circle(outputImg, cv::Point2d(cv::Size(X, Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+    }
+    //std::cout << cvImg.cols << ", " << cvImg.rows << std::endl;
+    
+    //cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
+    //imshow("Image", outputImg);
+    //cv::waitKey(0);
+    char outputString[100];
+    std::sprintf(outputString, "./checkpoints/Images/output-epoch%03d.jpg", epoch);
+    imwrite( outputString, outputImg );
+}
+
+void FaceLandmarkNetImpl::outputImage(cv::Mat cvImg, std::list<float> output) {
+    cv::Mat outputImg = cvImg.clone();
+    std::vector<std::tuple<float, float>> outputVec;
+    float X = 0.0, Y=0.0;
+
+    int count = 0;
+
+    for (std::list<float>::iterator itr = output.begin(); itr != output.end(); ++itr) {
+        if (count % 2 == 1) {
+            Y = (*itr)*outputImg.rows;
+            outputVec.push_back(std::make_tuple(X, Y));
+        }
+        X = (*itr)*outputImg.cols;
+        ++count;
+    }
+    for (auto l: outputVec) {
+        auto [X, Y] = l;
+        std::cout << X << ", " << Y << std::endl;
+        cv::circle(outputImg, cv::Point2d(cv::Size(X, Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+    }
+    std::cout << cvImg.cols << ", " << cvImg.rows << std::endl;
+    
+    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
+    imshow("Image", outputImg);
+    cv::waitKey(0);
 }

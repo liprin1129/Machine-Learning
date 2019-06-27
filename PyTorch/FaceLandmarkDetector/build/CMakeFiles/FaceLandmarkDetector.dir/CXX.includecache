@@ -38,9 +38,19 @@ iostream
 DataLoader.h
 -
 
+../include/MainDelegate.h
+FaceLandmarkNet.h
+../include/FaceLandmarkNet.h
+DataLoader.h
+../include/DataLoader.h
+
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
 FaceLandmarkNet.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

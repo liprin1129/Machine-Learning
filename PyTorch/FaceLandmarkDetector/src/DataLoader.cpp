@@ -71,7 +71,7 @@ cv::Mat DataLoader::resizeCVMat(cv::Mat &cvImg, float scaleFactor) {
     
     //std::cout << scaleFactor << " | New Size: " << cv::Size2d((int)(cvImg.cols*scaleFactor), (int)(cvImg.rows*scaleFactor)) << std::endl;
     //cv::resize(cvImg, resizedImage, cv::Size(), scaleFactor, scaleFactor, cv::INTER_LINEAR);
-    cv::resize(cvImg, resizedImage, cv::Size2d(200, 200), 0, 0, cv::INTER_LINEAR);
+    cv::resize(cvImg, resizedImage, cv::Size2d(300, 300), 0, 0, cv::INTER_LINEAR);
     
     return resizedImage;
 }
@@ -214,25 +214,32 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
         image = readImage2CVMat(imgPath); // to get cols and rows of an image for normalization
         int origX = image.cols;
         int origY = image.rows;
-        /*
+        
         if (image.cols > 4000 or image.rows > 4000) {
             //std::cout << ">4000!!!" << std::endl;
-            scaleFactor = 0.005;
+            //scaleFactor = 0.27; // 1080
+            scaleFactor = 0.135; // 540
         }
         else if(image.cols > 3000 or image.rows > 3000){
             //std::cout << ">3000!!!" << std::endl;
-            scaleFactor = 0.06;
+            //scaleFactor = 0.36; // 1080
+            scaleFactor = 0.18; // 540
         }
         else if(image.cols > 2000 or image.rows > 2000){
             //std::cout << ">2000!!!" << std::endl;
-            scaleFactor = 0.1;
+            //scaleFactor = 0.54; //1080
+            scaleFactor = 0.27; // 540
         }
         else if(image.cols > 1000 or image.rows > 1000){
             //std::cout << ">2000!!!" << std::endl;
-            scaleFactor = 0.2;
+            scaleFactor = 0.54; // 540
         }
-        */
-        image = resizeCVMat(image, scaleFactor);
+        else if (image.cols > 800 or image.rows > 800){
+            //std::cout << ">2000!!!" << std::endl;
+            scaleFactor = 0.75; // 540?
+        }
+        
+        image = resizeCVMat(image, scaleFactor); // Resize input image w.r.t. scaleFactor ratio
 
         if (norm) {
             cv::normalize(image, image, 1, 0, cv::NORM_MINMAX, CV_32FC3);
@@ -254,7 +261,7 @@ std::tuple<cv::Mat, std::list<float>> DataLoader::loadOneTraninImageAndLabel(std
                 labels.push_back(std::get<1>(label));
 
                 //std::fprintf(stdout, "(%d, %d) -> (%d, %d) = (%f, %f)\n", origX, origY, image.cols, image.rows, std::get<0>(label)*image.cols, std::get<1>(label)*image.rows);
-                //cv::circle(image, cv::Point2d(cv::Size(std::get<0>(label)*image.cols, std::get<1>(label)*image.rows)), 5, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+                //cv::circle(image, cv::Point2d(cv::Size(std::get<0>(label)*image.cols, std::get<1>(label)*image.rows)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
             }
         }
     }
