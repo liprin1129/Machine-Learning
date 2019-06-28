@@ -5,9 +5,11 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    //if (torch::cuda::is_available()) {
 
    // Data Loader
-   DataLoader dl("/DATASETs/Face/Landmarks/300W/");
+   customDataset dl("/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv");//("/DATASETs/Face/Landmarks/300W/");
+   auto d = dl.get(0);
+   //std::cout << dl.size() << std::endl;
 
-   FaceLandmarkNet fln(false, false); // verbose, test
+   /*FaceLandmarkNet fln(false, false); // verbose, test
 
    // Optimizer
    torch::optim::Adam adamOptimizer(
@@ -16,4 +18,5 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 
    std::cout << "CUDA is available! Training on GPU." << std::endl;
    fln->train(dl, torch::Device(torch::kCUDA), adamOptimizer);
+   */
 }

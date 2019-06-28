@@ -25,15 +25,17 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         torch::nn::Conv2d getConv(){return conv1;};
 
         FaceLandmarkNetImpl(bool verbose, bool testFlag);
+        torch::Tensor forward(torch::Tensor x);
+        /*
         at::Tensor cvMat2Tensor(cv::Mat cvMat, torch::Device device);
         at::Tensor floatList2Tensor(std::list<float> floatList, torch::Device device);
-
-        torch::Tensor forward(torch::Tensor x);
 
         void train(DataLoader &dl, torch::Device device, torch::optim::Optimizer &optimizer);
         void showTrainInfo(cv::Mat cvImg, std::list<float> listLabel, at::Tensor &inX, at::Tensor &label);
         void outputImage(cv::Mat cvImg, at::Tensor output, int epoch);
         void outputImage(cv::Mat cvImg, std::list<float> output);
+        void outputImage(DataLoader &dl, torch::Device device, int epoch);
+        */
 };
 TORCH_MODULE(FaceLandmarkNet);
 
