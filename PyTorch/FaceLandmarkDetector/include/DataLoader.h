@@ -1,51 +1,73 @@
+/*class FaceLandmarksDataset(Dataset):
+    """Face Landmarks dataset."""
+
+    def __init__(self, csv_file, root_dir, transform=None):
+        """
+        Args:
+            csv_file (string): Path to the csv file with annotations.
+            root_dir (string): Directory with all the images.
+            transform (callable, optional): Optional transform to be applied
+                on a sample.
+        """
+        self.landmarks_frame = pd.read_csv(csv_file)
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.landmarks_frame)
+
+    def __getitem__(self, idx):
+        img_name = os.path.join(self.root_dir,
+                                self.landmarks_frame.iloc[idx, 0])
+        image = io.imread(img_name)
+        landmarks = self.landmarks_frame.iloc[idx, 1:]
+        landmarks = np.array([landmarks])
+        landmarks = landmarks.astype('float').reshape(-1, 2)
+        sample = {'image': image, 'landmarks': landmarks}
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+*/
+
 #ifndef __IMAGE_DATA_LOADER_H__
 #define __IMAGE_DATA_LOADER_H__
 
+#include <torch/torch.h>
 
 #include <iostream>
 #include <fstream>
-#include <experimental/filesystem>
-#include <vector>
-#include <tuple>
-#include <list>
-#include <regex>
 #include <string>
+#include <experimental/filesystem>
+
+#include <vector>
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
-#include "opencv2/imgproc/imgproc.hpp"
+#include <opencv2/imgproc/imgproc.hpp> // resize
 
 namespace filesystem = std::experimental::filesystem;
 
-class DataLoader {
+class customDataset: public torch::data::Dataset<customDataset> {
     private:
-        // Private Variables
-        std::vector<std::tuple<std::string, std::string>> _dataset;     // Return dataset vector (image, label) string
-        
-        //cv::Mat _image;
-        //std::list<float> _labels;
+        //torch::Tensor _states, _labels; // Return Tensors
+        std::vector<std::tuple<std::string, std::vector<int>>> _dataset;     // Return dataset vector (image, label) string
+        std::string _loc;
 
-        bool resizeFlag;
-        
-        // Private Methods
-        void readDataDirectory(std::string rootPath);                                                   // recursively read files from root folder
-        //void labelStr2Float(std::tuple<std::string, std::string> filePath, bool norm = true); // Convert string of label to float
-        std::tuple<float, float> str2Float(std::string strLabel);
-        std::tuple<float, float> resizeLabel(int origCol, int origRow, int newCol, int newRow, std::tuple<float, float> origLabel);
-        std::tuple<float, float> labelNormalizer(int col, int row, std::tuple<float, float> origLabel); // MinMax normalize for label data
-
-        cv::Mat readImage2CVMat(std::string filePath);              // Read an image data into cv::Mat
-        cv::Mat resizeCVMat(cv::Mat &cvImg, float scaleFactor);
-        
     public:
-        // Getter
-        std::vector<std::tuple<std::string, std::string>> getDataset(){return _dataset;};
-        //cv::Mat getImage(){return _image;};
-        //std::list<float> getLabels(){return _labels;};
+        explicit customDataset(const std::string& loc_states);// { readCSV(loc_states); };
 
-        // Public Methods
-        DataLoader(std::string path);                                               // Constructor, string arguments
-        std::tuple<cv::Mat, std::list<float>> loadOneTraninImageAndLabel(std::tuple<std::string, std::string> filePath, bool norm=true);
+        torch::data::Example<> get(size_t index) override;
+        torch::Tensor read_data(const std::string &loc);
+
+        void readCSV(const std::string &loc);
+
+        // Override the size method to infer the size of the data set.
+        torch::optional<size_t> size() const override {
+            //std::cout << _dataset.size() << std::endl;
+            return _dataset.size();
+        };
 };
 
-#endif // __IMAGE_DATA_LOADER_H__s
+#endif // __IMAGE_DATA_LOADER_H__

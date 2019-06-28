@@ -7,40 +7,28 @@
 #IncludeRegexTransform: 
 
 ../include/DataLoader.h
+torch/torch.h
+-
 iostream
 -
 fstream
 -
+string
+-
 experimental/filesystem
 -
 vector
--
-tuple
--
-list
--
-regex
--
-string
 -
 opencv2/core.hpp
 -
 opencv2/highgui.hpp
 -
 opencv2/imgproc/imgproc.hpp
-../include/opencv2/imgproc/imgproc.hpp
+-
 
-../include/FaceLandmarkNet.h
-torch/torch.h
--
-iostream
--
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp
 DataLoader.h
--
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
-FaceLandmarkNet.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h
