@@ -49,14 +49,14 @@
 
 namespace filesystem = std::experimental::filesystem;
 
-class customDataset: public torch::data::Dataset<customDataset> {
+class CustomDataset: public torch::data::Dataset<CustomDataset> {
     private:
         //torch::Tensor _states, _labels; // Return Tensors
         std::vector<std::tuple<std::string, std::vector<int>>> _dataset;     // Return dataset vector (image, label) string
         std::string _loc;
 
     public:
-        explicit customDataset(const std::string& loc_states);// { readCSV(loc_states); };
+        explicit CustomDataset(const std::string& loc_states);// { readCSV(loc_states); };
 
         torch::data::Example<> get(size_t index) override;
         torch::Tensor read_data(const std::string &loc);

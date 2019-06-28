@@ -1,43 +1,74 @@
 #include "DataLoader.h"
 
-customDataset::customDataset(const std::string& loc_states) {
+CustomDataset::CustomDataset(const std::string& loc_states) {
     readCSV(loc_states);
 }
 
-void showImgAndLandmarks(torch::Tensor &imgTensor, torch::Tensor &labelTensor) {
-    //std::cout << imgTensor.size(1) << std::endl;
-    //std::vector<int64_t>shape = {3, img.size(1), img.size(2)};
+void checkTensorImgAndLandmarksV1(torch::Tensor imgTensor, torch::Tensor labelTensor) {
+    // Convert the image Tensor to cv::Mat with CV_8UC3 data type
+    int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+    cv::Mat imgCV(2, cvMatSize, CV_32FC3, imgTensor.data_ptr());
+    imgCV.convertTo(imgCV, CV_8UC3);
 
-    //cv::Mat imgCV = cv::Mat::eye(imgTensor.size(1), imgTensor.size(2), CV_32FC1);
-    //std::memcpy((void*)imgCV.data, imgTensor[0].data_ptr(), sizeof(torch::kFloat32)*imgTensor.numel());
+    // Convert the label Tensor to vector
+    std::vector<std::tuple<float, float>> landmarks;
+    float X = 0.0, Y=0.0;
+    for (int i=0; i<labelTensor.size(1); ++i) {
+        if (i % 2 == 1) {
+            Y = labelTensor[0][i].item<float>();//*outputImg.rows;
+            landmarks.push_back(std::make_tuple(X, Y));
+            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            //std::cout << (int)X << ", " << (int)Y << std::endl;
+        }
+        X = labelTensor[0][i].item<float>();//*outputImg.cols;
+    }
     
-    //cv::Mat imgCV(cv::Size(imgTensor.size(1), imgTensor.size(2)), CV_8UC1, imgTensor.data_ptr());
-    //cv::Mat imgCV((int)imgTensor.size(1), (int)imgTensor.size(2), CV_8UC1, imgTensor[0]. template data<torch::kByte>());
-    //cv::Mat imgCV(cv::Size(imgTensor.size(1)/*128*/, imgTensor.size(2)/*128*/), CV_32FC1, imgTensor[0].data<float>());
-    
-    torch::Tensor intTensor = imgTensor.toType(torch::kInt8);
-
-    cv::Mat imgCV(intTensor.size(1), intTensor.size(2), CV_8UC1, intTensor[0].data<int>());
-
-    std::cout << intTensor[0].sizes() << std::endl;
-    std::cout << imgCV.size << std::endl;
-    //imgCV.convertTo(imgCV, CV_8UC1);
-    std::cout << imgCV << std::endl;
-   /*
-   torch::Tensor tensor = torch::zeros({3, 2, 3}, torch::kF32);
-   cv::Mat cv_mat = cv::Mat::eye(2, 3, CV_32F);
-
-   std::memcpy(tensor[0].data_ptr(), cv_mat.data, sizeof(float)*tensor.numel());
-
-    std::cout << tensor[0] << std::endl<<std::endl;
-   std::cout << cv_mat << std::endl;
-   */
-    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-    imshow("Image", imgCV);
+    cv::namedWindow("Restored", CV_WINDOW_AUTOSIZE);
+    imshow("Restored", imgCV);
     cv::waitKey(0);
 }
 
-torch::data::Example<> customDataset::get(size_t index)
+void checkTensorImgAndLandmarksV2(cv::Mat img, std::vector<int> label, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
+    img.convertTo(img, CV_8UC3);
+
+    int origX = 0.0, origY=0.0;
+    for (int i=0; i<labelTensor.size(1); ++i) {
+        if (i % 2 == 1) {
+            origY = label[i];
+            cv::circle(img, cv::Point2d(cv::Size(origX, origY)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            //std::cout << (int)X << ", " << (int)Y << std::endl;
+        }
+        origX = label[i];
+    }
+
+    cv::namedWindow("Original", CV_WINDOW_AUTOSIZE);
+    imshow("Original", img);
+    cv::waitKey(0);
+
+    // Convert the image Tensor to cv::Mat with CV_8UC3 data type
+    int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+    cv::Mat imgCV(2, cvMatSize, CV_32FC3, imgTensor.data_ptr());
+    imgCV.convertTo(imgCV, CV_8UC3);
+
+    // Convert the label Tensor to vector
+    std::vector<std::tuple<float, float>> landmarks;
+    float X = 0.0, Y=0.0;
+    for (int i=0; i<labelTensor.size(1); ++i) {
+        if (i % 2 == 1) {
+            Y = labelTensor[0][i].item<float>();//*outputImg.rows;
+            landmarks.push_back(std::make_tuple(X, Y));
+            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            //std::cout << (int)X << ", " << (int)Y << std::endl;
+        }
+        X = labelTensor[0][i].item<float>();//*outputImg.cols;
+    }
+    
+    cv::namedWindow("Restored", CV_WINDOW_AUTOSIZE);
+    imshow("Restored", imgCV);
+    cv::waitKey(0);
+}
+
+torch::data::Example<> CustomDataset::get(size_t index)
 {
     auto [imgName, label] = _dataset[index];
 
@@ -46,24 +77,26 @@ torch::data::Example<> customDataset::get(size_t index)
 
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
+    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
 
     // Convert the image and label to a tensor.
-    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, torch::kByte);
+    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, torch::kFloat32);
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
-
+    
     // Convert int label to a tensor
     float labelsArr[label.size()];
-    //std::copy(label.begin(), label.end(), labelsArr);
+    std::copy(label.begin(), label.end(), labelsArr);
 
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);
 
-    showImgAndLandmarks(imgTensor, labelTensor);
+    //checkTensorImgAndLandmarksV2(img, label, imgTensor, labelTensor);
+    checkTensorImgAndLandmarksV1(imgTensor.clone(), labelTensor.clone());
 
     return {imgTensor.clone(), labelTensor.clone()};
 }
 
-void customDataset::readCSV(const std::string &loc) {
+void CustomDataset::readCSV(const std::string &loc) {
     std::vector<std::tuple<std::string, std::vector<int>>> dataset;
 
     // File pointer
