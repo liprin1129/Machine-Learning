@@ -1,11 +1,20 @@
 #include "MainDelegate.h"
 
-/*
 void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
-    cv::Mat imgCV(2, cvMatSize, CV_32FC3, imgTensor.data_ptr());
-    imgCV.convertTo(imgCV, CV_8UC3);
+    cv::Mat imgCVB(2, cvMatSize, CV_8UC1, imgTensor[0].data_ptr());
+    cv::Mat imgCVG(2, cvMatSize, CV_8UC1, imgTensor[1].data_ptr());
+    cv::Mat imgCVR(2, cvMatSize, CV_8UC1, imgTensor[2].data_ptr());
+    //imgCV.convertTo(imgCV, CV_8UC3);
+    
+    // Merge each channel to create colour cv::Mat
+    cv::Mat imgCV; // Merged output cv::Mat
+    std::vector<cv::Mat> channels;
+    channels.push_back(imgCVB);
+    channels.push_back(imgCVG);
+    channels.push_back(imgCVR);
+    cv::merge(channels, imgCV);
 
     // Convert the label Tensor to vector
     std::vector<std::tuple<float, float>> landmarks;
@@ -24,17 +33,18 @@ void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor 
     imshow("Restored", imgCV);
     cv::waitKey(0);
 }
-*/
+
+
 int MainDelegate::mainDelegation(int argc, char** argv){
    // Create the device we pass around based on whether CUDA is available.
    //if (torch::cuda::is_available()) {
 
    // Data Loader
    CustomDataset dl("/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv");//("/DATASETs/Face/Landmarks/300W/");
-   for (int i=0; i<5; ++i){
+   for (int i=0; i<3; ++i){
       auto sample = dl.get(i);
       //std::cout << sample.data.sizes() << ", " << sample.target.sizes() <<  std::endl;
-      //checkTensorImgAndLandmarksV1(sample.data, sample.target);
+      checkTensorImgAndLandmarksV1(sample.data, sample.target);
    }
    //std::cout << dl.size() << std::endl;
 

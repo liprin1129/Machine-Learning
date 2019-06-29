@@ -4,11 +4,22 @@ CustomDataset::CustomDataset(const std::string& loc_states) {
     readCSV(loc_states);
 }
 
-void checkTensorImgAndLandmarksV1(torch::Tensor imgTensor, torch::Tensor labelTensor) {
+/*
+void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
-    cv::Mat imgCV(2, cvMatSize, CV_32FC3, imgTensor.data_ptr());
-    imgCV.convertTo(imgCV, CV_8UC3);
+    cv::Mat imgCVB(2, cvMatSize, CV_8UC1, imgTensor[0].data_ptr());
+    cv::Mat imgCVG(2, cvMatSize, CV_8UC1, imgTensor[1].data_ptr());
+    cv::Mat imgCVR(2, cvMatSize, CV_8UC1, imgTensor[2].data_ptr());
+    //imgCV.convertTo(imgCV, CV_8UC3);
+    
+    // Merge each channel to create colour cv::Mat
+    cv::Mat imgCV; // Merged output cv::Mat
+    std::vector<cv::Mat> channels;
+    channels.push_back(imgCVB);
+    channels.push_back(imgCVG);
+    channels.push_back(imgCVR);
+    cv::merge(channels, imgCV);
 
     // Convert the label Tensor to vector
     std::vector<std::tuple<float, float>> landmarks;
@@ -27,6 +38,7 @@ void checkTensorImgAndLandmarksV1(torch::Tensor imgTensor, torch::Tensor labelTe
     imshow("Restored", imgCV);
     cv::waitKey(0);
 }
+*/
 
 void checkTensorImgAndLandmarksV2(cv::Mat img, std::vector<int> label, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
     img.convertTo(img, CV_8UC3);
@@ -77,12 +89,13 @@ torch::data::Example<> CustomDataset::get(size_t index)
 
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
-    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
+    //img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
 
     // Convert the image and label to a tensor.
-    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, torch::kFloat32);
+    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kInt8).requires_grad(false);
+    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
-    
+
     // Convert int label to a tensor
     float labelsArr[label.size()];
     std::copy(label.begin(), label.end(), labelsArr);
@@ -91,7 +104,7 @@ torch::data::Example<> CustomDataset::get(size_t index)
     torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);
 
     //checkTensorImgAndLandmarksV2(img, label, imgTensor, labelTensor);
-    checkTensorImgAndLandmarksV1(imgTensor.clone(), labelTensor.clone());
+    //checkTensorImgAndLandmarksV1(std::move(imgTensor.clone()), std::move(labelTensor.clone()));
 
     return {imgTensor.clone(), labelTensor.clone()};
 }
