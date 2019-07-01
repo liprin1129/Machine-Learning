@@ -40,13 +40,23 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    //if (torch::cuda::is_available()) {
 
    // Data Loader
-   CustomDataset dl("/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv");//("/DATASETs/Face/Landmarks/300W/");
-   for (int i=0; i<3; ++i){
+   CustomDataset dl(
+       "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+       "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/");//("/DATASETs/Face/Landmarks/300W/");
+       
+   for (int i=10; i<50; ++i){
       auto sample = dl.get(i);
       //std::cout << sample.data.sizes() << ", " << sample.target.sizes() <<  std::endl;
       checkTensorImgAndLandmarksV1(sample.data, sample.target);
    }
    //std::cout << dl.size() << std::endl;
+    
+    /*// Rescale Class test
+    std::tuple<int, int> testSize = {10, 50};
+    auto rescale = Rescale(testSize);
+    cv::Mat testA = cv::Mat::ones(200, 100, CV_8UC1);
+    std::vector<int> testB = {100, 200, 300};
+    rescale(testA, testB);*/
 
    /*FaceLandmarkNet fln(false, false); // verbose, test
 

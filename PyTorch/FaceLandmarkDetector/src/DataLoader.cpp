@@ -1,7 +1,10 @@
 #include "DataLoader.h"
 
-CustomDataset::CustomDataset(const std::string& loc_states) {
-    readCSV(loc_states);
+CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locImages) {
+    _locCSV = locCSV;
+    _locImages = locImages;
+
+    readCSV(locCSV);
 }
 
 /*
@@ -52,11 +55,11 @@ void checkTensorImgAndLandmarksV2(cv::Mat img, std::vector<int> label, torch::Te
         }
         origX = label[i];
     }
-
+    
     cv::namedWindow("Original", CV_WINDOW_AUTOSIZE);
     imshow("Original", img);
     cv::waitKey(0);
-
+    
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
     cv::Mat imgCV(2, cvMatSize, CV_32FC3, imgTensor.data_ptr());
@@ -84,12 +87,19 @@ torch::data::Example<> CustomDataset::get(size_t index)
 {
     auto [imgName, label] = _dataset[index];
 
-    std::string imgPath = "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/";
+    std::string imgPath = _locImages;"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/";
     imgPath += imgName;
-
+    
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
     //img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
+
+    // Rescale
+    auto rescale = Rescale(std::make_tuple(300, 300));
+    rescale(img, label);
+    auto [rImg, rLabel] = rescale.getResizedData();
+    img = rImg;
+    //auto label = rLabel;
 
     // Convert the image and label to a tensor.
     torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kInt8).requires_grad(false);
@@ -98,7 +108,7 @@ torch::data::Example<> CustomDataset::get(size_t index)
 
     // Convert int label to a tensor
     float labelsArr[label.size()];
-    std::copy(label.begin(), label.end(), labelsArr);
+    std::copy(rLabel.begin(), rLabel.end(), labelsArr);
 
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);

@@ -3,6 +3,7 @@
 
 CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o
  ../include/DataLoader.h
+ ../include/ImageTansform.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp
  /usr/local/cuda/include/cuda.h
  /usr/local/cuda/include/cuda_fp16.h
@@ -256,6 +257,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o
  ../include/DataLoader.h
  ../include/FaceLandmarkNet.h
+ ../include/ImageTansform.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
  /usr/local/cuda/include/cuda.h
  /usr/local/cuda/include/cuda_fp16.h
@@ -509,6 +511,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
  ../include/DataLoader.h
  ../include/FaceLandmarkNet.h
+ ../include/ImageTansform.h
  ../include/MainDelegate.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
  /usr/local/cuda/include/cuda.h
@@ -763,6 +766,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o
  ../include/DataLoader.h
  ../include/FaceLandmarkNet.h
+ ../include/ImageTansform.h
  ../include/MainDelegate.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
  /usr/local/cuda/include/cuda.h
