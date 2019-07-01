@@ -2,11 +2,12 @@
 
 void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
+    auto copiedImgTensor = imgTensor.toType(torch::kUInt8).clone();
+
     int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
-    cv::Mat imgCVB(2, cvMatSize, CV_8UC1, imgTensor[0].data_ptr());
-    cv::Mat imgCVG(2, cvMatSize, CV_8UC1, imgTensor[1].data_ptr());
-    cv::Mat imgCVR(2, cvMatSize, CV_8UC1, imgTensor[2].data_ptr());
-    //imgCV.convertTo(imgCV, CV_8UC3);
+    cv::Mat imgCVB(2, cvMatSize, CV_8UC1, copiedImgTensor[0].data_ptr());
+    cv::Mat imgCVG(2, cvMatSize, CV_8UC1, copiedImgTensor[1].data_ptr());
+    cv::Mat imgCVR(2, cvMatSize, CV_8UC1, copiedImgTensor[2].data_ptr()); //CV_8UC1
     
     // Merge each channel to create colour cv::Mat
     cv::Mat imgCV; // Merged output cv::Mat
@@ -40,15 +41,51 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    //if (torch::cuda::is_available()) {
 
    // Data Loader
-   CustomDataset dl(
-       "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
-       "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/");//("/DATASETs/Face/Landmarks/300W/");
-       
+   //CustomDataset dl(
+   //    "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+   //    "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/");//("/DATASETs/Face/Landmarks/300W/");
+
+    //auto rescale = Rescale(std::make_tuple(200, 200));
+
+    //torch::data::datasets::MapDataset<CustomDataset, torch::data::transforms::Stack<torch::data::Example<at::Tensor, at::Tensor>>> 
+    auto cds = CustomDataset(
+        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
+        std::make_tuple(200, 200))
+        .map(torch::data::transforms::Normalize<>(255, 255))
+        .map(torch::data::transforms::Stack<>());
+
+    // Generate a data loader.
+    auto data_loader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
+        std::move(cds), 
+        torch::data::DataLoaderOptions().batch_size(10).workers(8));
+
+    // In a for loop you can now use your data.
+    for (auto& batch : *data_loader) {
+        auto data = batch.data;
+        auto labels = batch.target;
+        // do your usual stuff
+        std::cout << data.sizes() << std::endl;
+        std::cout << labels.sizes() << std::endl;
+
+        for (int i=0; i<9; ++i)
+            std::cout << data[i].min().item<float>() << ", " << data[i].max().item<float>() << std::endl;
+            //std::cout << labels[i].min().item<float>() << ", " << labels[i].max().item<float>() << std::endl;
+            //std::cout << labels[i] << std::endl;
+        std::cout << std::endl;
+    }
+
+    /*
+    CustomDataset dl(
+        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
+        std::make_tuple(200, 200));
+        
    for (int i=10; i<50; ++i){
       auto sample = dl.get(i);
       //std::cout << sample.data.sizes() << ", " << sample.target.sizes() <<  std::endl;
       checkTensorImgAndLandmarksV1(sample.data, sample.target);
-   }
+   }*/
    //std::cout << dl.size() << std::endl;
     
     /*// Rescale Class test

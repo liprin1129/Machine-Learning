@@ -12,7 +12,7 @@ class Rescale {
     private:
         int _outputSizeInt;
         std::tuple<int, int> _outputSizeTuple;
-        std::tuple<cv::Mat, std::vector<float>> _resizedData;
+        std::tuple<cv::Mat, std::vector<float>> _resizedDataCVandFloat;
 
         int _newW, _newH;
 
@@ -20,7 +20,7 @@ class Rescale {
     
     public:
         // GETTERs
-        std::tuple<cv::Mat, std::vector<float>> getResizedData(){return _resizedData;};
+        std::tuple<cv::Mat, std::vector<float>> getResizedDataCVandFloat(){return _resizedDataCVandFloat;};
 
         // METHODs
         Rescale(int outputSize): _outputSizeInt(outputSize), _typeId(typeid(int)) {
@@ -84,15 +84,79 @@ class Rescale {
             }
             //std::fprintf(stdout, "newW: %d, newH: %d\n", _newW, _newH);
 
-            std::cout << resizedImage.size << std::endl;
+            //std::cout << resizedImage.size << std::endl;
 
-            for (auto landmark: resizedLabel) {
-                std::cout << landmark << ", ";
+            //for (auto landmark: resizedLabel) {
+                //std::cout << landmark << ", ";
+            //}
+            //std::cout << std::endl;
+
+            _resizedDataCVandFloat = std::make_tuple(resizedImage, resizedLabel); // data to be returned
+
+            return *this;
+        }
+
+
+        Rescale operator() (torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
+            // Convert the image Tensor to cv::Mat with CV_8UC3 data type
+            int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+            cv::Mat imgCVB(2, cvMatSize, CV_8UC1, imgTensor[0].data_ptr());
+            cv::Mat imgCVG(2, cvMatSize, CV_8UC1, imgTensor[1].data_ptr());
+            cv::Mat imgCVR(2, cvMatSize, CV_8UC1, imgTensor[2].data_ptr());
+
+            // Merge each channel to create colour cv::Mat
+            cv::Mat imgCV; // Merged output cv::Mat
+            std::vector<cv::Mat> channels;
+            channels.push_back(imgCVB);
+            channels.push_back(imgCVG);
+            channels.push_back(imgCVR);
+            cv::merge(channels, imgCV);
+
+            int w = imgCV.rows;
+            int h = imgCV.cols;
+
+            if (_typeId == typeid(int)) {
+                if (h > w) {
+                    //std::cout << "W<H" << std::endl;
+                    //_newH =  (int)_outputSizeInt * h/(float)w;
+                    _newH =  _outputSizeInt * h/w;
+                    _newW = _outputSizeInt;
+                }
+                else {
+                    //std::cout << "W>H" << std::endl;
+                    _newH = _outputSizeInt;
+                    //_newW =  (int)_outputSizeInt * w/(float)h;
+                    _newW =  _outputSizeInt * w/h;
+                }
             }
-            std::cout << std::endl;
+            else {
+                auto [newW, newH] = _outputSizeTuple;
+                _newW = newW;
+                _newH = newH;
+            }
 
-            _resizedData = std::make_tuple(resizedImage, resizedLabel); // data to be returned
+            cv::Mat resizedImage;
+            std::vector<float> resizedLabel;
 
+            // Rescale the image
+            cv::resize(imgCV, resizedImage, cv::Size2d(_newH, _newW), 0, 0, cv::INTER_LINEAR);
+
+            // Convert the label Tensor to vector
+            std::vector<float> resizedLabelVector;
+
+            for (int i=0; i<labelTensor.size(1); ++i) {
+                resizedLabelVector.push_back(labelTensor[0][i].item<float>());
+            }
+
+            // Rescale the labels
+            int coord = 0;
+            for (auto landmark: resizedLabelVector) {
+                if (++coord % 2 == 1) resizedLabel.push_back(landmark * _newH/h);
+                else resizedLabel.push_back(landmark * _newW/w);
+            }
+
+            _resizedDataCVandFloat = std::make_tuple(resizedImage, resizedLabel); // data to be returned
+            //_resizedDataTensor = {};
             return *this;
         }
 };
