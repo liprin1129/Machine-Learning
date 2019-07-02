@@ -52,7 +52,11 @@ DataLoader.h
 ImageTansform.h
 ../include/ImageTansform.h
 
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
+FaceLandmarkNet.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
 MainDelegate.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
 
