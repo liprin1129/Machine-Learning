@@ -1,6 +1,6 @@
 #include "MainDelegate.h"
 
-void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
+void checkTensorImgAndLandmarks(torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     auto copiedImgTensor = imgTensor.toType(torch::kUInt8).clone();
 
@@ -38,7 +38,16 @@ void checkTensorImgAndLandmarksV1(torch::Tensor const &imgTensor, torch::Tensor 
 
 int MainDelegate::mainDelegation(int argc, char** argv){
    // Create the device we pass around based on whether CUDA is available.
-   //if (torch::cuda::is_available()) {
+   if (torch::cuda::is_available()) {
+        FaceLandmarkNet fln(1000, 100, std::make_tuple(300, 300), false, false); // verbose, test
+
+        // Optimizer
+        torch::optim::Adam adamOptimizer(
+            fln->parameters(),
+            torch::optim::AdamOptions(1e-4).beta1(0.5));
+
+        std::cout << "CUDA is available! Training on GPU." << std::endl;
+        fln->train(torch::Device(torch::kCUDA), adamOptimizer);
 
    // Data Loader
    //CustomDataset dl(
@@ -47,6 +56,7 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 
     //auto rescale = Rescale(std::make_tuple(200, 200));
 
+    /* // torch data loader test
     //torch::data::datasets::MapDataset<CustomDataset, torch::data::transforms::Stack<torch::data::Example<at::Tensor, at::Tensor>>> 
     auto cds = CustomDataset(
         "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
@@ -74,6 +84,7 @@ int MainDelegate::mainDelegation(int argc, char** argv){
             //std::cout << labels[i] << std::endl;
         std::cout << std::endl;
     }
+    */
 
     /*
     CustomDataset dl(
@@ -94,15 +105,5 @@ int MainDelegate::mainDelegation(int argc, char** argv){
     cv::Mat testA = cv::Mat::ones(200, 100, CV_8UC1);
     std::vector<int> testB = {100, 200, 300};
     rescale(testA, testB);*/
-
-   /*FaceLandmarkNet fln(false, false); // verbose, test
-
-   // Optimizer
-   torch::optim::Adam adamOptimizer(
-      fln->parameters(),
-      torch::optim::AdamOptions(1e-4).beta1(0.5));
-
-   std::cout << "CUDA is available! Training on GPU." << std::endl;
-   fln->train(dl, torch::Device(torch::kCUDA), adamOptimizer);
-   */
+    }
 }

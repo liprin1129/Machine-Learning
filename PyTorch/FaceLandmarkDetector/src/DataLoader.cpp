@@ -6,7 +6,7 @@ CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locIm
     
     readCSV(locCSV);
 
-    //_rescale = std::make_unique<Rescale>(newSize);
+    _rescale = newSize;
 }
 
 
@@ -19,17 +19,17 @@ torch::data::Example<> CustomDataset::get(size_t index)
     
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
-    //img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
+    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
 
     // Rescale
-    auto rescale = Rescale(std::make_tuple(300, 300));
+    auto rescale = Rescale(_rescale);
     rescale(img, label);
     auto [rImg, rLabel] = rescale.getResizedDataCVandFloat();
-    img = rImg;
+    img = rImg/255; // rescale to [0, 1]
 
     // Convert the image and label to a tensor.
-    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kInt8).requires_grad(false);
-    torch::Tensor imgTensor = torch::from_blob(rImg.data, {rImg.rows, img.cols, 3}, imgOptions);
+    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
 
     // Convert int label to a tensor
@@ -38,11 +38,12 @@ torch::data::Example<> CustomDataset::get(size_t index)
 
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) rLabel.size()}, labelOptions);
+    labelTensor = labelTensor.div(std::get<0>(_rescale));
 
     //checkTensorImgAndLandmarksV2(img, label, imgTensor, labelTensor);
     //checkTensorImgAndLandmarksV1(std::move(imgTensor.clone()), std::move(labelTensor.clone()));
 
-    return {imgTensor.toType(torch::kFloat32).clone(), labelTensor.clone()};
+    return {imgTensor.clone(), labelTensor.clone()};
 }
 
 

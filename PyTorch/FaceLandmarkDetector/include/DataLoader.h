@@ -25,10 +25,13 @@ class CustomDataset: public torch::data::Dataset<CustomDataset> {
         std::string _locCSV;
         std::string _locImages;
 
-        //Rescale *_rescale;
+        std::tuple<int, int> _rescale;
         //std::unique_ptr<Rescale> _rescale;
 
     public:
+        //GETTER
+        //std::tuple<int, int> getRescale(){return _rescale;};
+
         explicit CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize);// { readCSV(loc_states); };
 
         torch::data::Example<> get(size_t index) override;
