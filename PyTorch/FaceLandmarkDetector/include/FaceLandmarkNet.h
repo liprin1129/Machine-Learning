@@ -28,19 +28,11 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         torch::nn::Conv2d getConv(){return conv1;};
 
         FaceLandmarkNetImpl(int numEpoch, int numBatch, std::tuple<int, int> imgRescale, bool verbose, bool testFlag);
+        
         torch::Tensor forward(torch::Tensor x, bool trainFlag);
+        void train(torch::Device device, torch::optim::Optimizer &optimizer);
 
         void checkTensorImgAndLandmarks(int epoch, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, torch::Tensor const &gtLabelTensor);
-
-        at::Tensor cvMat2Tensor(cv::Mat cvMat, torch::Device device);
-        at::Tensor floatList2Tensor(std::list<float> floatList, torch::Device device);
-
-        void train(torch::Device device, torch::optim::Optimizer &optimizer);
-        void showTrainInfo(cv::Mat cvImg, std::list<float> listLabel, at::Tensor &inX, at::Tensor &label);
-        void outputImage(cv::Mat cvImg, at::Tensor output, int epoch);
-        void outputImage(cv::Mat cvImg, std::list<float> output);
-        //void outputImage(DataLoader &dl, torch::Device device, int epoch);
-
 };
 TORCH_MODULE(FaceLandmarkNet);
 

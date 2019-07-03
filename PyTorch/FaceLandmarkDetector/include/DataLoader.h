@@ -26,13 +26,16 @@ class CustomDataset: public torch::data::Dataset<CustomDataset> {
         std::string _locImages;
 
         std::tuple<int, int> _rescale;
+
+        bool _verbose;
         //std::unique_ptr<Rescale> _rescale;
+        void checkcvMatNan(cv::Mat img, std::string dTypeStr);
 
     public:
         //GETTER
         //std::tuple<int, int> getRescale(){return _rescale;};
 
-        explicit CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize);// { readCSV(loc_states); };
+        explicit CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize, bool verbose);
 
         torch::data::Example<> get(size_t index) override;
         torch::Tensor read_data(const std::string &loc);

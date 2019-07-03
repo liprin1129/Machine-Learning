@@ -44,9 +44,17 @@ opencv2/core.hpp
 opencv2/imgproc/imgproc.hpp
 -
 
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
+../include/MainDelegate.h
 FaceLandmarkNet.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
+../include/FaceLandmarkNet.h
+DataLoader.h
+../include/DataLoader.h
+ImageTansform.h
+../include/ImageTansform.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

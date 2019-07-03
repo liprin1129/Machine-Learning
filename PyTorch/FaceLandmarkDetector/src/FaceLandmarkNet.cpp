@@ -185,7 +185,16 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x, bool trainFlag) {
     // Squeeze
     x = x.squeeze();
     //x = torch::softmax(x.unsqueeze(1), 2);
-    x = torch::tanh(x.unsqueeze(1));
+    
+    if (_numBatch > 1) { // in the case that batch_size is greater than 1
+        x = torch::tanh(x.unsqueeze(1));
+    }
+
+    else { // if batch_size is 1.
+        x = torch::tanh(x.unsqueeze(0));
+        x = x.unsqueeze(0);
+    }
+
     if (_verbose) std::cout << "Last: \n";
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
 
@@ -198,7 +207,8 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
     auto cds = CustomDataset(
         "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
         "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
-        _imgRescale)
+        _imgRescale, 
+        _verbose)
         //.map(torch::data::transforms::Normalize<>(-0.5, 1))
         .map(torch::data::transforms::Stack<>());
 
@@ -206,7 +216,7 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
     //auto data_loader = torch::data::make_data_loader<torch::data::samplers::RandomSampler>(
     auto data_loader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
         std::move(cds), 
-        torch::data::DataLoaderOptions().batch_size(_numBatch).workers(4));
+        torch::data::DataLoaderOptions().batch_size(_numBatch).workers(1));
 
     for (int epoch = 0; epoch < _numEpoch; ++epoch) {
         //std::fprintf(stdout, "Start epoch #%d\n", epoch);
@@ -241,16 +251,16 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
                     std::fprintf(stdout, "\t[Labels] Mean: %f, Var: %f\n", labels[0].mean().item<float>(), labels[0].std().item<float>());
                     std::fprintf(stdout, "\t[output] Mean: %f, Var: %f\n\n", output[0].mean().item<float>(), output[0].std().item<float>());
                 }
+                
+                break;
             }
             else {
                 std::fprintf(stderr, "NAN value detected!\n");
                 exit(-1);
             }
-
-            //break;
         }
-        //break;
-    } 
+        break;
+    }
 }
 
 
@@ -310,145 +320,4 @@ void FaceLandmarkNetImpl::checkTensorImgAndLandmarks(int epoch, torch::Tensor co
     imshow("Restored", imgCV);
     cv::waitKey(0);
     */
-}
-
-
-at::Tensor FaceLandmarkNetImpl::cvMat2Tensor(cv::Mat cvMat, torch::Device device) {
-    // Convert cv::Mat to Tensor
-    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    return torch::from_blob(
-                    cvMat.data, 
-                    {1, 3, cvMat.cols, cvMat.rows}, 
-                    imgOptions).to(device);
-}
-
-at::Tensor FaceLandmarkNetImpl::floatList2Tensor(std::list<float> floatLists, torch::Device device) {
-    float labelsArr[floatLists.size()];
-    std::copy(floatLists.begin(), floatLists.end(), labelsArr);
-    torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) floatLists.size()}, labelOptions).to(device);
-    
-    return labelTensor;
-}
-
-void FaceLandmarkNetImpl::showTrainInfo(cv::Mat cvImg, std::list<float> listLabel, at::Tensor &inX, at::Tensor &label) {
-    // Check memory locations
-    std::fprintf(stdout, "Memory location: \n\t%p | %p\n", &cvImg, &listLabel);
-    // Check the loaded image data is OK!
-    double min, max;
-    cv::minMaxIdx(cvImg, &min, &max);
-    std::fprintf(stdout, "Image Info: \n\tMin: %f | Max: %f \n", min, max);
-    //for (auto &l: litLabel) std::fprintf(stdout, "%lf, ", l);
-
-    // Check the loaded labels are OK!
-    float minLable=1.0, maxLabel=0.0;
-    for (auto &l: listLabel) {
-    if (l < minLable) {
-        minLable = l;
-    }
-
-    if (l > maxLabel) {
-        maxLabel = l;
-    }
-    }
-    std::fprintf(stdout, "Labels Info: \n\tMin: %f | Max: %f\n", minLable, maxLabel);
-
-    // Converted image to tensor information
-    std::cout << "inX Tensor Info.:" << std::endl;
-    std::cout << "\t size: " << inX.sizes() << std::endl;
-    std::cout << "\t max: " << inX.max() << std::endl;
-    std::cout << "\t min: " << inX.min() << std::endl;
-    
-
-    // Converted lables to tensor information
-    std::cout << "labels Tensor Info.:" << std::endl;
-    std::cout << "\t size: " << label.sizes() << std::endl;
-    std::cout << "\t max: " << label.max() << std::endl;
-    std::cout << "\t min: " << label.min() << std::endl;
-    std::cout << std::endl;
-}
-
-/*
-void FaceLandmarkNetImpl::outputImage(DataLoader &dl, torch::Device device, int epoch) {
-    int rndIdx = rand() % dl.getDataset().size();
-    auto [testImg, testlistLabel] = dl.loadOneTraninImageAndLabel(dl.getDataset()[rndIdx], true);
-
-    at::Tensor inX = cvMat2Tensor(testImg, device); // Convert cv::Mat to Tensor
-    at::Tensor label = floatList2Tensor(testlistLabel, device); // Convert labels to Tensor
-
-    torch::Tensor output = forward(inX);
-
-    cv::Mat outputImg = testImg.clone()*255;
-    std::vector<std::tuple<float, float>> outputVec;
-    float X = 0.0, Y=0.0;
-    for (int i=0; i<output.size(1); ++i) {
-        if (i % 2 == 1) {
-            Y = output[0][i].item<float>()*128;//*outputImg.rows;
-            outputVec.push_back(std::make_tuple(X, Y));
-        }
-        X = output[0][i].item<float>()*128;//*outputImg.cols;
-    }
-    for (auto l: outputVec) {
-        auto [X, Y] = l;
-        //std::cout << X << ", " << Y << std::endl;
-        cv::circle(outputImg, cv::Point2d(cv::Size(X, Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
-    }
-
-    char outputString[100];
-    std::sprintf(outputString, "./checkpoints/Images/output-epoch%03d.jpg", epoch);
-    imwrite( outputString, outputImg );
-}
-*/
-
-void FaceLandmarkNetImpl::outputImage(cv::Mat cvImg, at::Tensor output, int epoch) {
-    cv::Mat outputImg = cvImg.clone()*255;
-    std::vector<std::tuple<float, float>> outputVec;
-    float X = 0.0, Y=0.0;
-    for (int i=0; i<output.size(1); ++i) {
-        if (i % 2 == 1) {
-            Y = output[0][i].item<float>();//outputImg.rows;
-            outputVec.push_back(std::make_tuple(X, Y));
-        }
-        X = output[0][i].item<float>();//outputImg.cols;
-    }
-    for (auto l: outputVec) {
-        auto [X, Y] = l;
-        //std::cout << X << ", " << Y << std::endl;
-        cv::circle(outputImg, cv::Point2d(cv::Size(X, Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
-    }
-    //std::cout << cvImg.cols << ", " << cvImg.rows << std::endl;
-    
-    //cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-    //imshow("Image", outputImg);
-    //cv::waitKey(0);
-    char outputString[100];
-    std::sprintf(outputString, "./checkpoints/Images/output-epoch%03d.jpg", epoch);
-    imwrite( outputString, outputImg );
-}
-
-void FaceLandmarkNetImpl::outputImage(cv::Mat cvImg, std::list<float> output) {
-    cv::Mat outputImg = cvImg.clone();
-    std::vector<std::tuple<float, float>> outputVec;
-    float X = 0.0, Y=0.0;
-
-    int count = 0;
-
-    for (std::list<float>::iterator itr = output.begin(); itr != output.end(); ++itr) {
-        if (count % 2 == 1) {
-            Y = (*itr);//*outputImg.rows;
-            outputVec.push_back(std::make_tuple(X, Y));
-        }
-        X = (*itr);//*outputImg.cols;
-        ++count;
-    }
-    for (auto l: outputVec) {
-        auto [X, Y] = l;
-        std::cout << X << ", " << Y << std::endl;
-        cv::circle(outputImg, cv::Point2d(cv::Size(X, Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
-    }
-    std::cout << cvImg.cols << ", " << cvImg.rows << std::endl;
-    
-    cv::namedWindow("Image", CV_WINDOW_AUTOSIZE);
-    imshow("Image", outputImg);
-    cv::waitKey(0);
 }

@@ -49,7 +49,7 @@ class Rescale {
             //std::cout << image.size << std::endl;
             //std::fprintf(stdout, "W: %d, H: %d\n", w, h);
 
-            if (_typeId == typeid(int)) {
+            if (_typeId == typeid(int) and _outputSizeInt != 0) {
                 if (h > w) {
                     //std::cout << "W<H" << std::endl;
                     //_newH =  (int)_outputSizeInt * h/(float)w;
@@ -64,11 +64,19 @@ class Rescale {
                 }
             }
             else {
+                _newH = h;
+                _newW = w;
+            }
+            
+            if(std::get<0>(_outputSizeTuple) != 0 and std::get<1>(_outputSizeTuple) != 0){
                 auto [newW, newH] = _outputSizeTuple;
                 _newW = newW;
                 _newH = newH;
             }
-
+            else {
+                _newW = w;
+                _newH = h;
+            }
             
             cv::Mat resizedImage;
             std::vector<float> resizedLabel;
