@@ -4,7 +4,7 @@
 int MainDelegate::mainDelegation(int argc, char** argv){
    // Create the device we pass around based on whether CUDA is available.
    if (torch::cuda::is_available()) {
-        FaceLandmarkNet fln(1000, 1, std::make_tuple(0, 0), true, false); // epoch, batch_size, verbose, test
+        FaceLandmarkNet fln(1000, 70, std::make_tuple(300, 300), false, false); // epoch, batch_size, verbose, test
 
         // Optimizer
         torch::optim::Adam adamOptimizer(

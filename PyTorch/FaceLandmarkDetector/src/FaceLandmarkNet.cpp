@@ -205,8 +205,10 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
     this->to(device);
 
     auto cds = CustomDataset(
-        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
-        "/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
+        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
+        "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
+        "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/",
         _imgRescale, 
         _verbose)
         //.map(torch::data::transforms::Normalize<>(-0.5, 1))
@@ -216,7 +218,7 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
     //auto data_loader = torch::data::make_data_loader<torch::data::samplers::RandomSampler>(
     auto data_loader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
         std::move(cds), 
-        torch::data::DataLoaderOptions().batch_size(_numBatch).workers(1));
+        torch::data::DataLoaderOptions().batch_size(_numBatch).workers(4));
 
     for (int epoch = 0; epoch < _numEpoch; ++epoch) {
         //std::fprintf(stdout, "Start epoch #%d\n", epoch);
@@ -233,10 +235,11 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
             if (not(torch::isnan(data).sum().item<int>() or torch::isnan(labels).sum().item<int>())){
                 
                 optimizer.zero_grad();
-                torch::Tensor output = forward(data.to(device), true);
+                //torch::Tensor output = forward(data.to(device), true);
+                _output = forward(data.to(device), true);
                 //std::fprintf(stdout, "(output) Max: %f, Min: %f\n", output.max().item<float>(), output.min().item<float>());
-                
-                torch::Tensor miniBatchLoss = torch::mse_loss(output, labels.to(device), Reduction::Mean);
+
+                torch::Tensor miniBatchLoss = torch::mse_loss(_output, labels.to(device), Reduction::Mean);
                 //std::fprintf(stdout, "(output) Loss: %f\n", miniBatchLoss.item<float>());
 
                 miniBatchLoss.backward();
@@ -245,21 +248,46 @@ void FaceLandmarkNetImpl::train(torch::Device device, torch::optim::Optimizer &o
                 totLoss += miniBatchLoss.item<float>();
                 //std::fprintf(stdout, "\t(loss: %f)\n", totLoss);
 
-                if (epoch%10 == 0 and batchCount++ == 0) {
-                    checkTensorImgAndLandmarks(epoch, data[0]*255, output[0]*std::get<0>(_imgRescale), labels[0]*std::get<0>(_imgRescale));
-                    std::fprintf(stdout, "Epoch #[%d/%d] | (Train loss: %f)\n", epoch+1, _numEpoch, totLoss);
-                    std::fprintf(stdout, "\t[Labels] Mean: %f, Var: %f\n", labels[0].mean().item<float>(), labels[0].std().item<float>());
-                    std::fprintf(stdout, "\t[output] Mean: %f, Var: %f\n\n", output[0].mean().item<float>(), output[0].std().item<float>());
+                if ((epoch+1)%10 == 0 and batchCount++ == 0) {
+                    //auto val_output = forward(data.to(device), true).detach();
+                    //auto val_loss = torch::mse_loss(val_output[0], labels[0].to(device)).detach();
+
+                    checkTensorImgAndLandmarks(epoch+1, data[0]*255, _output[0]*std::get<0>(_imgRescale), labels[0]*std::get<0>(_imgRescale));
+                    std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, _numEpoch, totLoss*std::get<0>(_imgRescale));
+                    //std::fprintf(stdout, "\t[Labels] Mean: %f, Var: %f\n", labels[0].mean().item<float>(), labels[0].std().item<float>());
+                    //std::fprintf(stdout, "\t[output] Mean: %f, Var: %f\n\n", output[0].mean().item<float>(), output[0].std().item<float>());
                 }
-                
-                break;
             }
             else {
                 std::fprintf(stderr, "NAN value detected!\n");
                 exit(-1);
             }
         }
-        break;
+        
+        if ((epoch+1)%100 == 0 and epoch <= 700) {
+            char outputString[100];
+            char optimizerString[100];
+            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch);
+            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch);
+            torch::save(_output, outputString);
+            torch::save(optimizer, optimizerString);
+        }
+        else if ((epoch+1)%10 == 0 and epoch > 500 and epoch <= 950) {
+            char outputString[100];
+            char optimizerString[100];
+            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch);
+            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch);
+            torch::save(_output, outputString);
+            torch::save(optimizer, optimizerString);
+        }
+        else if ((epoch+1) > 950) {
+            char outputString[100];
+            char optimizerString[100];
+            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch);
+            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch);
+            torch::save(_output, outputString);
+            torch::save(optimizer, optimizerString);
+        }
     }
 }
 
@@ -292,7 +320,7 @@ void FaceLandmarkNetImpl::checkTensorImgAndLandmarks(int epoch, torch::Tensor co
         if (i % 2 == 1) {
             Y = gtLabelTensor[0][i].item<float>();//*outputImg.rows;
             gtLandmarks.push_back(std::make_tuple(X, Y));
-            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 3, cv::Scalar( 0, 255, 0 ), cv::FILLED, cv::LINE_8);
+            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 255, 0 ), cv::FILLED, cv::LINE_8);
             //std::cout << (int)X << ", " << (int)Y << std::endl;
         }
         X = gtLabelTensor[0][i].item<float>();//*outputImg.cols;

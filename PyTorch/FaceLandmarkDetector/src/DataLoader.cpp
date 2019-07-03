@@ -18,9 +18,11 @@ torch::data::Example<> CustomDataset::get(size_t index)
 
     auto [imgName, label] = _dataset[index];
 
-    std::string imgPath = _locImages;"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/";
+    std::string imgPath = _locImages;
     imgPath += imgName;
     
+    //std::cout << imgPath << std::endl;
+
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
     if (_verbose) checkcvMatNan(img, "CV_8UC3");

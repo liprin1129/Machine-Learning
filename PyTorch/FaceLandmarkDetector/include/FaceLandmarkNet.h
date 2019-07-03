@@ -15,6 +15,8 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         int _numBatch;
         std::tuple<int, int> _imgRescale;
 
+        torch::Tensor _output;
+        
         torch::nn::Conv2d conv1{nullptr}, conv2{nullptr}, conv3{nullptr}, conv4{nullptr},
                             conv5{nullptr}, conv6{nullptr}, conv7{nullptr}, conv8{nullptr};
 
