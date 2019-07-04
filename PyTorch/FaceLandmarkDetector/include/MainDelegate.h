@@ -1,10 +1,7 @@
 #ifndef __MAIN_DELEGATE_H__
 #define __MAIN_DELEGATE_H__
 
-#include "FaceLandmarkNet.h"
-#include "DataLoader.h"
-#include "ImageTansform.h"
-//#include <tuple>
+#include "Trainer+Inferrer.h"
 
 class MainDelegate {
 	public:

@@ -33,7 +33,7 @@ class CustomDataset: public torch::data::Dataset<CustomDataset> {
 
     public:
         //GETTER
-        //std::tuple<int, int> getRescale(){return _rescale;};
+        std::tuple<int, int> getRescale(){return _rescale;};
 
         explicit CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize, bool verbose);
 

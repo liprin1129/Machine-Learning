@@ -4,14 +4,17 @@
 int MainDelegate::mainDelegation(int argc, char** argv){
    // Create the device we pass around based on whether CUDA is available.
    if (torch::cuda::is_available()) {
-        FaceLandmarkNet fln(1000, 70, std::make_tuple(300, 300), false, false); // epoch, batch_size, verbose, test
-
-        // Optimizer
-        torch::optim::Adam adamOptimizer(
-            fln->parameters(),
-            torch::optim::AdamOptions(1e-4).beta1(0.5));
-
         std::cout << "CUDA is available! Training on GPU." << std::endl;
-        fln->train(torch::Device(torch::kCUDA), adamOptimizer);
+
+        TrainerInferrer ti(5000, 150, std::make_tuple(120, 120), false);
+        ti.train(
+            torch::Device(torch::kCUDA), 
+            "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/", 
+            "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv");
+
+        //fln->train(torch::Device(torch::kCUDA), adamOptimizer);
+        //fln->infer(torch::Device(torch::kCUDA), 
+        //    "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/indoor_001.png",
+        //    "./checkpoints/Trained-models/output-epoch0999.pt");
     }
 }

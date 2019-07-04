@@ -11,3 +11,5 @@ PoseEstimation/OpenPose/
 PyTorch/Tutorials/C\+\+FrontEnd/mnist/
 
 PyTorch/Tutorials/C\+\+FrontEnd/build/checkpoints/
+
+PyTorch/FaceLandmarkDetector/build/checkpoints/

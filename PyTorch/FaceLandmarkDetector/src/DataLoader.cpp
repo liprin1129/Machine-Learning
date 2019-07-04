@@ -14,7 +14,7 @@ CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locIm
 
 torch::data::Example<> CustomDataset::get(size_t index)
 {
-    if (_verbose) std::fprintf(stdout, "CustomDataset get called\n");
+    //if (_verbose) std::fprintf(stdout, "CustomDataset get called\n");
 
     auto [imgName, label] = _dataset[index];
 
@@ -25,23 +25,23 @@ torch::data::Example<> CustomDataset::get(size_t index)
 
     // Load image with OpenCV.
     cv::Mat img = cv::imread(imgPath);
-    if (_verbose) checkcvMatNan(img, "CV_8UC3");
+    //if (_verbose) checkcvMatNan(img, "CV_8UC3");
 
     img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
-    if (_verbose) checkcvMatNan(img, "CV_32FC3");
+    //if (_verbose) checkcvMatNan(img, "CV_32FC3");
 
     // Rescale
     auto rescale = Rescale(_rescale);
     rescale(img, label);
     auto [rImg, rLabel] = rescale.getResizedDataCVandFloat();
     img = rImg/255; // rescale to [0, 1]
-    if (_verbose) checkcvMatNan(img, "scailing");
+    //if (_verbose) checkcvMatNan(img, "scailing");
 
     // Convert the image and label to a tensor.
     torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
-    if (_verbose) printf("nan in the img Tensor: %s\n", torch::isnan(imgTensor).sum().item<int>() ? "nan detected" : "nan not detected");
+    //if (_verbose) printf("nan in the img Tensor: %s\n", torch::isnan(imgTensor).sum().item<int>() ? "nan detected" : "nan not detected");
 
     // Convert int label to a tensor
     float labelsArr[rLabel.size()];
@@ -50,8 +50,7 @@ torch::data::Example<> CustomDataset::get(size_t index)
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) rLabel.size()}, labelOptions);
     labelTensor = labelTensor.div(std::get<0>(_rescale));
-    
-    if (_verbose) printf("nan in the label Tensor: %s\n", torch::isnan(labelTensor).sum().item<int>() ? "nan detected" : "nan not detected");
+    //if (_verbose) printf("nan in the label Tensor: %s\n", torch::isnan(labelTensor).sum().item<int>() ? "nan detected" : "nan not detected");
 
     //checkTensorImgAndLandmarksV2(img, label, imgTensor, labelTensor);
     //checkTensorImgAndLandmarksV1(std::move(imgTensor.clone()), std::move(labelTensor.clone()));

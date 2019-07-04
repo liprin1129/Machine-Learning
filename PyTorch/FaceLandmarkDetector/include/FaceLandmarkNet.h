@@ -7,15 +7,7 @@
 
 class FaceLandmarkNetImpl : public torch::nn::Module {
     private:
-        int64_t inputChannel;
         bool _verbose;
-        bool _testFlag;
-
-        int _numEpoch;
-        int _numBatch;
-        std::tuple<int, int> _imgRescale;
-
-        torch::Tensor _output;
         
         torch::nn::Conv2d conv1{nullptr}, conv2{nullptr}, conv3{nullptr}, conv4{nullptr},
                             conv5{nullptr}, conv6{nullptr}, conv7{nullptr}, conv8{nullptr};
@@ -26,15 +18,13 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
                                 batch_norm5{nullptr}, batch_norm6{nullptr}, batch_norm7{nullptr}, batch_norm8{nullptr};
 
     public:
-        // GETTER
-        torch::nn::Conv2d getConv(){return conv1;};
-
-        FaceLandmarkNetImpl(int numEpoch, int numBatch, std::tuple<int, int> imgRescale, bool verbose, bool testFlag);
+        FaceLandmarkNetImpl(int inputChannel, bool verbose);
         
-        torch::Tensor forward(torch::Tensor x, bool trainFlag);
-        void train(torch::Device device, torch::optim::Optimizer &optimizer);
-
-        void checkTensorImgAndLandmarks(int epoch, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, torch::Tensor const &gtLabelTensor);
+        torch::Tensor forward(torch::Tensor x);
+        
+        //void train(torch::Device device, torch::optim::Optimizer &optimizer);
+        //void infer(torch::Device device, std::string imgPath, std::string modelPath);
+        //void checkTensorImgAndLandmarks(int epoch, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, torch::Tensor const &gtLabelTensor);
 };
 TORCH_MODULE(FaceLandmarkNet);
 

@@ -204,6 +204,33 @@ src/MainDelegate.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.s
 .PHONY : src/MainDelegate.cpp.s
 
+src/Trainer+Inferrer.o: src/Trainer+Inferrer.cpp.o
+
+.PHONY : src/Trainer+Inferrer.o
+
+# target to build an object file
+src/Trainer+Inferrer.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o
+.PHONY : src/Trainer+Inferrer.cpp.o
+
+src/Trainer+Inferrer.i: src/Trainer+Inferrer.cpp.i
+
+.PHONY : src/Trainer+Inferrer.i
+
+# target to preprocess a source file
+src/Trainer+Inferrer.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.i
+.PHONY : src/Trainer+Inferrer.cpp.i
+
+src/Trainer+Inferrer.s: src/Trainer+Inferrer.cpp.s
+
+.PHONY : src/Trainer+Inferrer.s
+
+# target to generate assembly for a file
+src/Trainer+Inferrer.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.s
+.PHONY : src/Trainer+Inferrer.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -249,6 +276,9 @@ help:
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"
+	@echo "... src/Trainer+Inferrer.o"
+	@echo "... src/Trainer+Inferrer.i"
+	@echo "... src/Trainer+Inferrer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

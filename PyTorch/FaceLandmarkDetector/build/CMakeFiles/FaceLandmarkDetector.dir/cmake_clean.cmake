@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o"
   "CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o"
   "CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o"
+  "CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o"
   "CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o"
   "FaceLandmarkDetector.pdb"
   "FaceLandmarkDetector"

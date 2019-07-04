@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o"
+  "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
