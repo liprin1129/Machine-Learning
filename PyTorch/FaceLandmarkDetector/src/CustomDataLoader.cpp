@@ -1,4 +1,4 @@
-#include "DataLoader.h"
+#include "CustomDataLoader.h"
 
 CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize, bool verbose) {
     _locCSV = locCSV;
@@ -10,7 +10,6 @@ CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locIm
 
     _verbose = verbose;
 }
-
 
 torch::data::Example<> CustomDataset::get(size_t index)
 {
@@ -31,12 +30,15 @@ torch::data::Example<> CustomDataset::get(size_t index)
     //if (_verbose) checkcvMatNan(img, "CV_32FC3");
 
     // Rescale
-    auto rescale = Rescale(_rescale);
+    /*auto rescale = Rescale(_rescale);
     rescale(img, label);
     auto [rImg, rLabel] = rescale.getResizedDataCVandFloat();
     //img = rImg/255; // rescale to [0, 1]
     img = rImg;
-    
+    */
+    //auto rLabel = label;
+    //std::cout << rLabel << std::endl;
+
     // Convert the image and label to a tensor.
     torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
@@ -45,12 +47,13 @@ torch::data::Example<> CustomDataset::get(size_t index)
     //std::cout << imgTensor.sizes() << std::endl;
 
     // Convert int label to a tensor
-    float labelsArr[rLabel.size()];
-    std::copy(rLabel.begin(), rLabel.end(), labelsArr);
+    float labelsArr[label.size()];
+    std::copy(label.begin(), label.end(), labelsArr);
 
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) rLabel.size()}, labelOptions);
-    labelTensor = labelTensor.div(std::get<0>(_rescale));
+    //torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+    torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);
+    //labelTensor = labelTensor.div(std::get<0>(_rescale));
     //if (_verbose) printf("nan in the label Tensor: %s\n", torch::isnan(labelTensor).sum().item<int>() ? "nan detected" : "nan not detected");
 
     //checkTensorImgAndLandmarksV2(img, label, imgTensor, labelTensor);
@@ -88,7 +91,7 @@ void CustomDataset::checkcvMatNan(cv::Mat img, std::string dTypeStr) {
 }
 
 void CustomDataset::readCSV(const std::string &loc) {
-    std::vector<std::tuple<std::string, std::vector<int>>> dataset;
+    //std::vector<std::tuple<std::string, std::vector<float>>> dataset;
 
     // File pointer
     std::fstream fin;
@@ -96,8 +99,8 @@ void CustomDataset::readCSV(const std::string &loc) {
     // Open an existing record 
     fin.open(loc, std::fstream::in); 
 
-    // Read the Data from the file as String Vector 
-    std::vector<int> label;
+    // Read the Data from the file as String Vector and convert it to int
+    std::vector<float> label;
 
     std::string temp, imgName, coord; 
 
@@ -112,11 +115,14 @@ void CustomDataset::readCSV(const std::string &loc) {
         //if (_verbose) std::cout << imgName << std::endl;
         
         while (std::getline(s, coord, ',')) {
-            label.push_back(stoi(coord));
+            //label.push_back(stoi(coord));
+            //std::cout << stof(coord) << ", ";
+            label.push_back(stof(coord));
             //if (_verbose) std::cout << coord << ", ";
         }
         //if(_verbose) std::cout << std::endl;
         
         _dataset.push_back(std::make_tuple(imgName, label));
     }
+    //std::cout << std::get<1>(_dataset[0]) << std::endl;
 }

@@ -21,7 +21,7 @@ namespace filesystem = std::experimental::filesystem;
 class CustomDataset: public torch::data::Dataset<CustomDataset> {
     private:
         //torch::Tensor _states, _labels; // Return Tensors
-        std::vector<std::tuple<std::string, std::vector<int>>> _dataset;     // Return dataset vector (image, label) string
+        std::vector<std::tuple<std::string, std::vector<float>>> _dataset;     // Return dataset vector (image, label) string
         std::string _locCSV;
         std::string _locImages;
 

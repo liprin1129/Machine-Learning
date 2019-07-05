@@ -123,32 +123,32 @@ FaceLandmarkDetector/fast:
 	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/build
 .PHONY : FaceLandmarkDetector/fast
 
-src/DataLoader.o: src/DataLoader.cpp.o
+src/CustomDataLoader.o: src/CustomDataLoader.cpp.o
 
-.PHONY : src/DataLoader.o
+.PHONY : src/CustomDataLoader.o
 
 # target to build an object file
-src/DataLoader.cpp.o:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o
-.PHONY : src/DataLoader.cpp.o
+src/CustomDataLoader.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o
+.PHONY : src/CustomDataLoader.cpp.o
 
-src/DataLoader.i: src/DataLoader.cpp.i
+src/CustomDataLoader.i: src/CustomDataLoader.cpp.i
 
-.PHONY : src/DataLoader.i
+.PHONY : src/CustomDataLoader.i
 
 # target to preprocess a source file
-src/DataLoader.cpp.i:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.i
-.PHONY : src/DataLoader.cpp.i
+src/CustomDataLoader.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.i
+.PHONY : src/CustomDataLoader.cpp.i
 
-src/DataLoader.s: src/DataLoader.cpp.s
+src/CustomDataLoader.s: src/CustomDataLoader.cpp.s
 
-.PHONY : src/DataLoader.s
+.PHONY : src/CustomDataLoader.s
 
 # target to generate assembly for a file
-src/DataLoader.cpp.s:
-	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s
-.PHONY : src/DataLoader.cpp.s
+src/CustomDataLoader.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarkDetector.dir/build.make CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.s
+.PHONY : src/CustomDataLoader.cpp.s
 
 src/FaceLandmarkNet.o: src/FaceLandmarkNet.cpp.o
 
@@ -267,9 +267,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... FaceLandmarkDetector"
-	@echo "... src/DataLoader.o"
-	@echo "... src/DataLoader.i"
-	@echo "... src/DataLoader.s"
+	@echo "... src/CustomDataLoader.o"
+	@echo "... src/CustomDataLoader.i"
+	@echo "... src/CustomDataLoader.s"
 	@echo "... src/FaceLandmarkNet.o"
 	@echo "... src/FaceLandmarkNet.i"
 	@echo "... src/FaceLandmarkNet.s"

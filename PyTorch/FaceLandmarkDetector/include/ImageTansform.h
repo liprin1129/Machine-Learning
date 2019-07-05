@@ -8,6 +8,28 @@
 #include <torch/data/transforms/collate.h>
 #include <torch/types.h>
 
+
+template <typename T = torch::data::Example<>>
+struct MyResize;
+
+/// Custom Stack
+template <>
+struct MyResize<torch::data::Example<>> : public torch::data::transforms::Collation<torch::data::Example<>> {
+torch::data::Example<> apply_batch(std::vector<torch::data::Example<>> examples) override {
+    std::vector<torch::Tensor> data, targets;
+    data.reserve(examples.size());
+    targets.reserve(examples.size());
+    for (auto& example : examples) {
+                //std::cout << example.data.sizes() << std::endl;
+            //std::cout << example.target.sizes() << std::endl;
+      data.push_back(std::move(example.data/100));
+      targets.push_back(std::move(example.target/100));
+    }
+    return {torch::stack(data), torch::stack(targets)};
+  }
+};
+
+
 //#include <typeinfo>
 //#include <tuple>
 //#include <vector>

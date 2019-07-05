@@ -1,6 +1,8 @@
+#pragma once
+
 #include <iostream>
 #include "FaceLandmarkNet.h"
-#include "DataLoader.h"
+#include "CustomDataLoader.h"
 
 class TrainerInferrer {
     private:

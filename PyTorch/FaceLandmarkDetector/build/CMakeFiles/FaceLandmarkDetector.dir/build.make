@@ -57,18 +57,18 @@ include CMakeFiles/FaceLandmarkDetector.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FaceLandmarkDetector.dir/flags.make
 
-CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
-CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o: ../src/DataLoader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp
+CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
+CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o: ../src/CustomDataLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.cpp
 
-CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.i
+CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.i"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.cpp > CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.i
 
-CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/DataLoader.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.s
+CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.s"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.cpp -o CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.s
 
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o: CMakeFiles/FaceLandmarkDetector.dir/flags.make
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o: ../src/FaceLandmarkNet.cpp
@@ -124,7 +124,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.s: cmake_force
 
 # Object files for target FaceLandmarkDetector
 FaceLandmarkDetector_OBJECTS = \
-"CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o" \
+"CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o" \
 "CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o" \
 "CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o" \
 "CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o" \
@@ -133,7 +133,7 @@ FaceLandmarkDetector_OBJECTS = \
 # External object files for target FaceLandmarkDetector
 FaceLandmarkDetector_EXTERNAL_OBJECTS =
 
-FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/DataLoader.cpp.o
+FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/CustomDataLoader.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
 FaceLandmarkDetector: CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o

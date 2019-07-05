@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../include/DataLoader.h
+../include/CustomDataLoader.h
 torch/torch.h
 -
 iostream
@@ -33,7 +33,7 @@ torch/torch.h
 -
 iostream
 -
-DataLoader.h
+CustomDataLoader.h
 -
 
 ../include/ImageTansform.h
@@ -51,18 +51,36 @@ torch/types.h
 -
 
 ../include/MainDelegate.h
-Trainer+Inferrer.h
-../include/Trainer+Inferrer.h
+CustomDataLoader.h
+../include/CustomDataLoader.h
+ImageTansform.h
+../include/ImageTansform.h
 
 ../include/Trainer+Inferrer.h
 iostream
 -
 FaceLandmarkNet.h
 ../include/FaceLandmarkNet.h
-DataLoader.h
-../include/DataLoader.h
+CustomDataLoader.h
+../include/CustomDataLoader.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.cpp
+CustomDataLoader.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
+FaceLandmarkNet.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
 
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.cpp
+Trainer+Inferrer.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.h
+
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
 MainDelegate.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
 
