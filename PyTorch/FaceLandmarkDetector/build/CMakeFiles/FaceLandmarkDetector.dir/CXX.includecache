@@ -44,6 +44,10 @@ opencv2/core.hpp
 opencv2/imgproc/imgproc.hpp
 -
 
+../include/MainDelegate.h
+Trainer+Inferrer.h
+../include/Trainer+Inferrer.h
+
 ../include/Trainer+Inferrer.h
 iostream
 -
@@ -52,9 +56,9 @@ FaceLandmarkNet.h
 DataLoader.h
 ../include/DataLoader.h
 
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.cpp
-Trainer+Inferrer.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
+MainDelegate.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

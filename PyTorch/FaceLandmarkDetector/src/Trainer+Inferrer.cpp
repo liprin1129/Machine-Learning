@@ -98,6 +98,67 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
     }
 }
 
+void TrainerInferrer::infer(torch::Device device, std::string imgPath, std::string modelPath) {
+    // Read image
+    cv::Mat img = cv::imread(imgPath);
+    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
+
+    // Resize image
+    auto [newW, newH] = _imgRescale;
+    cv::Mat resizedImage;
+    cv::resize(img, resizedImage, cv::Size2d(newH, newW), 0, 0, cv::INTER_LINEAR);
+    img = resizedImage/255; // rescale to [0, 1]
+
+    // Convert to Tensor
+    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
+    imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
+    imgTensor = imgTensor.unsqueeze(0); // If the image is 3 dimensions, add extra pseudo-dimension
+
+    torch::load(fln, modelPath);
+    at::Tensor output = fln->forward(imgTensor.to(device));
+
+    checkTensorImgAndLandmarks(imgTensor[0], output, 500);
+}
+
+void TrainerInferrer::checkTensorImgAndLandmarks(torch::Tensor const &imgTensor, torch::Tensor const &inferredTensor, int newWH) {
+    auto copiedImgTensor = (imgTensor*255).toType(torch::kUInt8).clone();
+    
+    std::cout << imgTensor.sizes() << std::endl;
+    int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+    cv::Mat imgCVB(2, cvMatSize, CV_8UC1, copiedImgTensor[0].data_ptr());
+    cv::Mat imgCVG(2, cvMatSize, CV_8UC1, copiedImgTensor[1].data_ptr());
+    cv::Mat imgCVR(2, cvMatSize, CV_8UC1, copiedImgTensor[2].data_ptr()); //CV_8UC1
+    //std::cout << "Pass: Tensor to cv::Mat" << std::endl;
+
+    // Merge each channel to create colour cv::Mat
+    cv::Mat imgCV; // Merged output cv::Mat
+    std::vector<cv::Mat> channels;
+    channels.push_back(imgCVB);
+    channels.push_back(imgCVG);
+    channels.push_back(imgCVR);
+    cv::merge(channels, imgCV);
+    
+    cv::resize(imgCV, imgCV, cv::Size2d(newWH, newWH), 0, 0, cv::INTER_LINEAR);
+    //std::cout << "Pass: cv::Mat merged" << std::endl;
+
+    // Convert the label Tensor to vector
+    std::vector<std::tuple<float, float>> landmarks;
+    float X = 0.0, Y=0.0;
+    for (int i=0; i<inferredTensor.size(1); ++i) {
+        if (i % 2 == 1) {
+            Y = inferredTensor[0][i].item<float>()*newWH;//*outputImg.rows;
+            landmarks.push_back(std::make_tuple(X, Y));
+            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            //std::cout << (int)X << ", " << (int)Y << std::endl;
+        }
+        X = inferredTensor[0][i].item<float>()*newWH;//*outputImg.cols;
+    }
+
+    cv::namedWindow("Restored", CV_WINDOW_AUTOSIZE);
+    imshow("Restored", imgCV);
+    cv::waitKey(0);
+}
 
 void TrainerInferrer::checkTensorImgAndLandmarks(int epoch, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, torch::Tensor const &gtLabelTensor, int newWH) {
     //std::cout << imgTensor.sizes() << std::endl;

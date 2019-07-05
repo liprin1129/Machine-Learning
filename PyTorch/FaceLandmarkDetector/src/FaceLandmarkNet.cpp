@@ -182,45 +182,25 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     x = convOneXOne1(x);
     if (_verbose) std::cout << "\t 1x1 Conv: \t" << x.sizes() << std::endl;
 
-    // Squeeze
-    x = x.squeeze();
     //x = torch::softmax(x.unsqueeze(1), 2);
-    
-    //if (_numBatch > 1) { // in the case that batch_size is greater than 1
-    x = torch::tanh(x.unsqueeze(1));
-    //}
 
-    //else { // if batch_size is 1.
-    //    x = torch::tanh(x.unsqueeze(0));
-    //    x = x.unsqueeze(0);
-    //}
+    if (x.size(0) == 1) { // if batch_size is 1.
+        //std::cout << "batch 1: " << x.size(0) << std::endl;
+        // Squeeze
+        x = x.squeeze();
+        x = torch::tanh(x.unsqueeze(0));
+        //x = x.unsqueeze(0);
+    }
+
+    else { // in the case that batch_size is greater than 1
+        //std::cout << "batch greater than 1: " << x.size(0) << std::endl;
+        // Squeeze
+        x = x.squeeze();
+        x = torch::tanh(x.unsqueeze(1));
+    }
 
     if (_verbose) std::cout << "Last: \n";
     if (_verbose) std::cout << "\t output: \t" << x.sizes() << std::endl;
 
     return x;
 }
-
-
-/*
-void FaceLandmarkNetImpl::infer(torch::Device device, std::string imgPath, std::string modelPath) {
-    // Read image
-    cv::Mat img = cv::imread(imgPath);
-    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
-
-    // Resize image
-    auto [newW, newH] = _imgRescale;
-    cv::Mat resizedImage;
-    cv::resize(img, resizedImage, cv::Size2d(newH, newW), 0, 0, cv::INTER_LINEAR);
-
-    // Convert to Tensor
-    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
-    imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
-
-    torch::load(this, modelPath);
-    _output = forward(imgTensor.to(device));
-
-    std::cout << _output.sizes() << std::endl;
-}
-*/

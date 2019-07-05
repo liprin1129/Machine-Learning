@@ -6,15 +6,15 @@ int MainDelegate::mainDelegation(int argc, char** argv){
    if (torch::cuda::is_available()) {
         std::cout << "CUDA is available! Training on GPU." << std::endl;
 
-        TrainerInferrer ti(5000, 150, std::make_tuple(120, 120), false);
+        TrainerInferrer ti(5000, 50, std::make_tuple(300, 300), false);
         ti.train(
             torch::Device(torch::kCUDA), 
             "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/", 
             "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv");
 
-        //fln->train(torch::Device(torch::kCUDA), adamOptimizer);
-        //fln->infer(torch::Device(torch::kCUDA), 
-        //    "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/indoor_001.png",
-        //    "./checkpoints/Trained-models/output-epoch0999.pt");
+        //ti.infer(torch::Device(torch::kCUDA), 
+        //    //"/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/indoor_001.png",
+        //    "croped-left.png",
+        //    "./checkpoints/Trained-models/output-epoch2600.pt");
     }
 }
