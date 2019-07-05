@@ -1,10 +1,14 @@
-#ifndef __IMAGE_TRANSFORM_H__
-#define __IMAGE_TRANSFORM_H__
+#pragma once
 
 #include <iostream>
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp> // resize
-//k#include <typeinfo>
+//#include <torch/torch.h>
+#include <torch/data/example.h>
+#include <torch/data/transforms/collate.h>
+#include <torch/types.h>
+
+//#include <typeinfo>
 //#include <tuple>
 //#include <vector>
 
@@ -168,5 +172,3 @@ class Rescale {
             return *this;
         }
 };
-
-#endif // __IMAGE_TRANSFORM_H__

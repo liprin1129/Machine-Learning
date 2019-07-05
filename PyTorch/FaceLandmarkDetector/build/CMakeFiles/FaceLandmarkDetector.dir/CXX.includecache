@@ -43,6 +43,12 @@ opencv2/core.hpp
 -
 opencv2/imgproc/imgproc.hpp
 -
+torch/data/example.h
+-
+torch/data/transforms/collate.h
+-
+torch/types.h
+-
 
 ../include/MainDelegate.h
 Trainer+Inferrer.h

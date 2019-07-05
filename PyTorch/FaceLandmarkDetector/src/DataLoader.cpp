@@ -34,14 +34,15 @@ torch::data::Example<> CustomDataset::get(size_t index)
     auto rescale = Rescale(_rescale);
     rescale(img, label);
     auto [rImg, rLabel] = rescale.getResizedDataCVandFloat();
-    img = rImg/255; // rescale to [0, 1]
-    //if (_verbose) checkcvMatNan(img, "scailing");
-
+    //img = rImg/255; // rescale to [0, 1]
+    img = rImg;
+    
     // Convert the image and label to a tensor.
     torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
     torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
     //if (_verbose) printf("nan in the img Tensor: %s\n", torch::isnan(imgTensor).sum().item<int>() ? "nan detected" : "nan not detected");
+    //std::cout << imgTensor.sizes() << std::endl;
 
     // Convert int label to a tensor
     float labelsArr[rLabel.size()];
