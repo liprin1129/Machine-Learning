@@ -28,14 +28,6 @@ opencv2/imgproc/imgproc.hpp
 ImageTansform.h
 ../include/ImageTansform.h
 
-../include/FaceLandmarkNet.h
-torch/torch.h
--
-iostream
--
-CustomDataLoader.h
--
-
 ../include/ImageTansform.h
 iostream
 -
@@ -56,33 +48,13 @@ CustomDataLoader.h
 ImageTansform.h
 ../include/ImageTansform.h
 
-../include/Trainer+Inferrer.h
-iostream
--
-FaceLandmarkNet.h
-../include/FaceLandmarkNet.h
-CustomDataLoader.h
-../include/CustomDataLoader.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.cpp
-CustomDataLoader.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/CustomDataLoader.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
-FaceLandmarkNet.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
-
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 MainDelegate.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.cpp
-Trainer+Inferrer.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
-MainDelegate.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
+thread
+-
+chrono
+-
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

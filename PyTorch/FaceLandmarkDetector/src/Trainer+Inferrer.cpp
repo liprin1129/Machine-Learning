@@ -22,8 +22,7 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
         //"/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
         //"/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/",
         labelCsvFile,
-        imgFolderPath,
-        _imgRescale, 
+        imgFolderPath, 
         _verbose)
         //.map(torch::data::transforms::Normalize<>(-0.5, 1))
         .map(torch::data::transforms::Stack<>());

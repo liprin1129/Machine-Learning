@@ -1,12 +1,10 @@
 #include "CustomDataLoader.h"
 
-CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locImages, std::tuple<int, int> newSize, bool verbose) {
+CustomDataset::CustomDataset(const std::string& locCSV, const std::string& locImages, bool verbose) {
     _locCSV = locCSV;
     _locImages = locImages;
     
     readCSV(locCSV);
-
-    _rescale = newSize;
 
     _verbose = verbose;
 }
@@ -45,14 +43,15 @@ torch::data::Example<> CustomDataset::get(size_t index)
     imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
     //if (_verbose) printf("nan in the img Tensor: %s\n", torch::isnan(imgTensor).sum().item<int>() ? "nan detected" : "nan not detected");
     //std::cout << imgTensor.sizes() << std::endl;
+    //std::cout << imgTensor << std::endl;
 
     // Convert int label to a tensor
     float labelsArr[label.size()];
     std::copy(label.begin(), label.end(), labelsArr);
 
     torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    //torch::TensorOptions labelOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);
+    //torch::Tensor labelTensor = torch::from_blob(labelsArr, {1, (signed long) label.size()}, labelOptions);
+    torch::Tensor labelTensor = torch::tensor(label, labelOptions);
     //labelTensor = labelTensor.div(std::get<0>(_rescale));
     //if (_verbose) printf("nan in the label Tensor: %s\n", torch::isnan(labelTensor).sum().item<int>() ? "nan detected" : "nan not detected");
 
