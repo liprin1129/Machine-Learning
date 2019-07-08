@@ -17,14 +17,14 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
         torch::optim::AdamOptions(5e-5).beta1(0.5));
 
     auto cds = CustomDataset(
-        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv", 
+        "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
+        "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/",
+        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv",
         //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
-        //"/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
-        //"/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/",
-        labelCsvFile,
-        imgFolderPath, 
-        _verbose)
-        //.map(torch::data::transforms::Normalize<>(-0.5, 1))
+        false)
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::Resize(500)))
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomColour(0.7, 3.0, 50.0)))
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomClop(0.7, 100.0)))
         .map(torch::data::transforms::Stack<>());
 
     // Generate a data loader.
@@ -51,16 +51,16 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
                 torch::Tensor output = fln->forward(data.to(device));
 
                 torch::Tensor miniBatchLoss = torch::mse_loss(output, labels.to(device), Reduction::Mean);
-
+                
                 miniBatchLoss.backward();
                 adamOptimizer.step();
 
                 totLoss += miniBatchLoss.item<float>();
 
-                if ((epoch+1)%10 == 0 and batchCount++ == 0) {
+                if ((epoch+1)%2 == 0 and batchCount++ == 0) {
                     //checkTensorImgAndLandmarks(epoch+1, data[0]*255, output[0]*std::get<0>(_imgRescale), labels[0]*std::get<0>(_imgRescale));
                     //std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, _numEpoch, totLoss*std::get<0>(_imgRescale));
-                    checkTensorImgAndLandmarks(epoch+1, data[0]*255, output[0], labels[0], 500);
+                    //checkTensorImgAndLandmarks(epoch+1, data[0]*255, output[0], labels[0], 500);
                     std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, _numEpoch, totLoss);
                 }
             }
@@ -70,6 +70,7 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
             }
         }
         
+        /*
         if ((epoch+1)%200 == 0 and epoch <= (int)_numEpoch*0.8) {
             char outputString[100];
             char optimizerString[100];
@@ -94,6 +95,7 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
             torch::save(fln, outputString);
             torch::save(adamOptimizer, optimizerString);
         }
+        */
     }
 }
 
