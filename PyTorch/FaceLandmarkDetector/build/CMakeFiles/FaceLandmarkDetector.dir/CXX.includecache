@@ -28,6 +28,14 @@ opencv2/imgproc/imgproc.hpp
 ImageTansform.h
 ../include/ImageTansform.h
 
+../include/FaceLandmarkNet.h
+torch/torch.h
+-
+iostream
+-
+CustomDataLoader.h
+-
+
 ../include/ImageTansform.h
 iostream
 -
@@ -47,6 +55,8 @@ CustomDataLoader.h
 ../include/CustomDataLoader.h
 ImageTansform.h
 ../include/ImageTansform.h
+FaceLandmarkNet.h
+../include/FaceLandmarkNet.h
 
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 MainDelegate.h

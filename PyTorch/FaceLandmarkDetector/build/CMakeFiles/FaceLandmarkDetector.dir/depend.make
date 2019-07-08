@@ -509,6 +509,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o: /usr/local/lib/py
 CMakeFiles/FaceLandmarkDetector.dir/src/FaceLandmarkNet.cpp.o: /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
 
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/CustomDataLoader.h
+CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/FaceLandmarkNet.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/ImageTansform.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/MainDelegate.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
@@ -1018,6 +1019,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o: /usr/local/lib/p
 CMakeFiles/FaceLandmarkDetector.dir/src/Trainer+Inferrer.cpp.o: /usr/local/lib/python3.6/dist-packages/torch/include/torch/extension.h
 
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/CustomDataLoader.h
+CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/FaceLandmarkNet.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/ImageTansform.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/MainDelegate.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../src/main.cpp

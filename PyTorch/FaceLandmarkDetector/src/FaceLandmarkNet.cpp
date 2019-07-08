@@ -196,7 +196,7 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
         //std::cout << "batch greater than 1: " << x.size(0) << std::endl;
         // Squeeze
         x = x.squeeze();
-        x = torch::tanh(x.unsqueeze(1));
+        x = torch::tanh(x);
     }
 
     if (_verbose) std::cout << "Last: \n";
