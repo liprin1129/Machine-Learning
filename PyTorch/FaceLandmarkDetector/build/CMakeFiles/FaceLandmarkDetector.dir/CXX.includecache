@@ -51,6 +51,8 @@ torch/types.h
 -
 
 ../include/MainDelegate.h
+math.h
+-
 CustomDataLoader.h
 ../include/CustomDataLoader.h
 ImageTansform.h
@@ -61,10 +63,6 @@ FaceLandmarkNet.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 MainDelegate.h
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
-thread
--
-chrono
--
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

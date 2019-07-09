@@ -10,12 +10,15 @@ class FaceLandmarkNetImpl : public torch::nn::Module {
         bool _verbose;
         
         torch::nn::Conv2d conv1{nullptr}, conv2{nullptr}, conv3{nullptr}, conv4{nullptr},
-                            conv5{nullptr}, conv6{nullptr}, conv7{nullptr}, conv8{nullptr};
+                            conv5{nullptr}, conv6{nullptr}, conv7{nullptr}, conv8{nullptr},
+                            conv9{nullptr}, conv10{nullptr};
 
-        torch::nn::Conv2d convOneXOne1{nullptr};
+        //torch::nn::Conv2d convOneXOne1{nullptr};
 
         torch::nn::BatchNorm batch_norm1{nullptr}, batch_norm2{nullptr}, batch_norm3{nullptr}, batch_norm4{nullptr},
-                                batch_norm5{nullptr}, batch_norm6{nullptr}, batch_norm7{nullptr}, batch_norm8{nullptr};
+                                batch_norm5{nullptr}, batch_norm6{nullptr}, batch_norm7{nullptr}, batch_norm8{nullptr},
+                                batch_norm9{nullptr}, batch_norm10{nullptr};
+
 
     public:
         FaceLandmarkNetImpl(int inputChannel, bool verbose);

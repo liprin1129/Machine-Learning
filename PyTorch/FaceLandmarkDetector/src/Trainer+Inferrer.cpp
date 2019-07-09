@@ -23,8 +23,8 @@ void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std
         //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
         false)
         .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::Resize(500)))
-        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomColour(0.7, 3.0, 50.0)))
-        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomClop(0.7, 100.0)))
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomContrastBrightness(0.7, 3.0, 50.0)))
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomCrop(0.7, 100.0)))
         .map(torch::data::transforms::Stack<>());
 
     // Generate a data loader.

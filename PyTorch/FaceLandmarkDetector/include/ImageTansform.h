@@ -63,14 +63,14 @@ class Resize {
         }
 };
 
-class RandomColour {
+class RandomContrastBrightness {
     private:
         float _prob;
         float _alphaFactor;
         float _betaFactor;
 
     public:
-        RandomColour(float prob, float contrastFactor, float brightnessFactor) : _prob(prob),  _alphaFactor(contrastFactor), _betaFactor(brightnessFactor) {};
+        RandomContrastBrightness(float prob, float contrastFactor, float brightnessFactor) : _prob(prob),  _alphaFactor(contrastFactor), _betaFactor(brightnessFactor) {};
 
         torch::data::Example<> operator() (torch::data::Example<> exampleInput) {
 
@@ -123,13 +123,13 @@ class RandomColour {
         }
 };
 
-class RandomClop {
+class RandomCrop {
     private:
         float _prob;
         float _moveFactor;
 
     public:
-        RandomClop(float prob, float moveFactor): _prob(prob), _moveFactor(moveFactor) {};
+        RandomCrop(float prob, float moveFactor): _prob(prob), _moveFactor(moveFactor) {};
 
         torch::data::Example<> operator() (torch::data::Example<> exampleInput) {
             if ( rand() % 10 <= _prob*10 ) { // 0.7 probability
@@ -180,6 +180,7 @@ class RandomClop {
             }
         }
 };
+
 
 class MiniMaxNormalize {
     //private:
