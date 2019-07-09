@@ -200,7 +200,6 @@ torch::Tensor FaceLandmarkNetImpl::forward(torch::Tensor x) {
     //x = torch::relu(convOneXOne1(x));
     //x = torch::leaky_relu(convOneXOne1(x));
     if (_verbose) std::cout << "Layer #7:\n";
-    //x = torch::softmax(batch_norm10(conv10(x)), 0);
     //x = torch::relu(batch_norm10(conv10(x)));
     //x = torch::relu(conv10(x));
     x = torch::tanh(conv10(x));

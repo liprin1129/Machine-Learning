@@ -43,7 +43,7 @@ void testShow(int count, torch::Tensor const &imgTensor, torch::Tensor const &la
             Y = copiedLabelTensor[0][i].item<float>();//*outputImg.rows;
             landmarks.push_back(std::make_tuple(X, Y));
             if (Y < imgCV.rows and X < imgCV.cols) {
-                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 3, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_4);
+                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 1, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
             }
             //std::cout << (int)X << ", " << (int)Y << std::endl;
         }
@@ -99,7 +99,7 @@ void testSave(int count, torch::Tensor const &imgTensor, torch::Tensor const &la
             Y = copiedLabelTensor[0][i].item<float>();//*outputImg.rows;
             landmarks.push_back(std::make_tuple(X, Y));
             if (Y < imgCV.rows and X < imgCV.cols) {
-                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
+                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 1, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
             }
             //std::cout << (int)X << ", " << (int)Y << std::endl;
         }
@@ -167,7 +167,7 @@ int MainDelegate::mainDelegation(int argc, char** argv){
             "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
             1e-3,   // learning rate
             1000,   // epoch
-            10,    // batch
+            10,    // batch, 10
             6,      // workers
             0.5,    // data wrangling probability
             128,    // resize output
@@ -225,13 +225,13 @@ void MainDelegate::train(
                 torch::Tensor output = fln->forward(batch.data.to(device));
 
                 torch::Tensor miniBatchLoss = torch::mse_loss(output, batch.target.to(device), Reduction::Mean);
-                
                 miniBatchLoss.backward(); // Calculate partial derivatives
                 adamOptimizer.step(); // Back-propagation
 
                 totLoss += miniBatchLoss.item<float>();
-                //++batchCount;
-                if ((epoch+1)%3 == 0 and batchCount++ == 0) {
+                //std::fprintf(stdout, "Batch Loss: %f, Total Loss: %f\n", miniBatchLoss.item<float>(), totLoss);
+                ++batchCount;
+                if ((epoch+1)%3 == 0 and batchCount == 1) {
                     testShow(++epoch, batch.data*255, output*batch.data.size(2));
                 }
             }
