@@ -176,13 +176,13 @@ int MainDelegate::mainDelegation(int argc, char** argv){
             1e-3,   // learning rate
             2000,   // epoch
             50,     // batch, 10
-            6,      // workers
+            14,      // workers
             0.8,    // data wrangling probability
             128,    // resize output
-            4,      // contrast (alpha)
-            50,     // brightness (beta)
+            3,      // contrast (alpha)
+            100,     // brightness (beta)
             20,     // move in pixel
-            2       // how much time to save
+            20       // how much time to save
         );    
     }
 }
@@ -264,54 +264,19 @@ void MainDelegate::train(
             
             torch::save(fln, saveModelString);
             torch::save(adamOptimizer, saveOptimString);
-            //std::this_thread::sleep_for(std::chrono::seconds(1));
-            /*
-            //Read images
-            //cv::Mat leftImgCV = cv::imread("/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/TestImages/croped-left.png", CV_LOAD_IMAGE_COLOR);
-            cv::Mat leftImgCV = cv::imread("/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/indoor_001.png", CV_LOAD_IMAGE_COLOR);
-            leftImgCV.convertTo(leftImgCV, CV_32FC3);
-            cv::resize(leftImgCV, leftImgCV, cv::Size2d(resizeFactor, resizeFactor), 0, 0, cv::INTER_LINEAR);
-
-            cv::Mat rightImgCV = cv::imread("/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/TestImages/croped-right.png", CV_LOAD_IMAGE_COLOR);
-            rightImgCV.convertTo(rightImgCV, CV_32FC3);
-            cv::resize(rightImgCV, rightImgCV, cv::Size2d(resizeFactor, resizeFactor), 0, 0, cv::INTER_LINEAR);
-
-            // Convert to Tensors
-            torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-            torch::Tensor leftImageTensor = torch::from_blob(leftImgCV.data, {leftImgCV.rows, leftImgCV.cols, 3}, imgOptions);
-            torch::Tensor rightImageTensor = torch::from_blob(rightImgCV.data, {rightImgCV.rows, rightImgCV.cols, 3}, imgOptions);
-            
-            leftImageTensor = leftImageTensor.permute({2, 0, 1}); // convert to CxHxW
-            rightImageTensor = rightImageTensor.permute({2, 0, 1}); // convert to CxHxW
-
-            std::vector<torch::Tensor> testTensorVec;
-            testTensorVec.reserve(2);
-            testTensorVec.push_back(leftImageTensor);
-            testTensorVec.push_back(rightImageTensor);
-
-            torch::Tensor stackedTensor = torch::stack(testTensorVec);
-            //testTensor = testTensor.unsqueeze(0);
-            stackedTensor /= 255; // Normalization
-
-            //std::cout << stackedTensor.sizes() << std::endl;
-            torch::Tensor output = fln->forward(stackedTensor.to(device)).detach();
-
-            testSave(epoch+1, stackedTensor[0]*255, output[0]*stackedTensor.size(2), (char*) "Left");
-            testSave(epoch+1, stackedTensor[1]*255, output[1]*stackedTensor.size(2), (char*) "Right");
-            */
         }
 
-        if ((epoch+1) % (saveInterval*2) == 0) {
+        //if ((epoch+1) % (saveInterval*2) == 0) {
             //std::cout << "LOAD!\n";
-            infer(epoch+1-saveInterval, numMiniBatch, resizeFactor, device);
-        }
+        //    infer(epoch+1-saveInterval, numMiniBatch, resizeFactor, device);
+        //}
     }
 }
 
 void MainDelegate::infer(int epoch, int numBatch, int resizeFactor, torch::Device device) {
-    FaceLandmarkNetTest fln(3, false); // Num of channels, Verbose
+    FaceLandmarkNet fln(3, false); // Num of channels, Verbose
     fln->to(device); // Upload the model to the device {CPU, GPU}
-
+    fln->eval();
     torch::optim::Adam adamOptimizer(fln->parameters(), torch::optim::AdamOptions(0.001).beta1(0.5));    
 
     char loadModelString[100];
