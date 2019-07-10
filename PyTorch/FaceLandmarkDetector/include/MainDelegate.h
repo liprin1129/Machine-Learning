@@ -8,6 +8,9 @@
 #include "FaceLandmarkNet.h"
 
 class MainDelegate {
+	private:
+		//at::Tensor _output;
+
 	public:
 		int mainDelegation(int argc, char** argv);
 
@@ -15,10 +18,11 @@ class MainDelegate {
 		(
 			bool verbose, torch::Device device, std::string imgFolderPath, std::string labelCsvFile,
 			float learningRate, int numEpoch, int numMiniBatch, int numWorkers,
-			float wranglingProb, int resizeFactor, float contrastFactor, float brightnessFactor, float moveFactor
+			float wranglingProb, int resizeFactor, float contrastFactor, float brightnessFactor, float moveFactor,
+			int saveInterval
 		);
 		
-		void infer(torch::Device device, std::string imgPath, std::string modelPath);
+		void infer(int epoch, int numBatch, int resizeFactor, torch::Device device);
 };
 
 #endif /* __MAIN_DELEGATE_H__ */

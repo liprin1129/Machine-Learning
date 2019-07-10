@@ -80,7 +80,7 @@ class RandomContrastBrightness {
                 //auto labelTensor = exampleInput.target.clone();
 
                 cv::RNG rng(cv::getTickCount()); // OpenCV random class
-                float alpha = rng.uniform(1.0f, _alphaFactor);
+                float alpha = rng.uniform(0.5f, _alphaFactor);
                 float beta = rng.uniform(-1*_betaFactor, _betaFactor);
 
                 int origW = (int)inputTensor.size(1);

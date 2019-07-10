@@ -50,19 +50,9 @@ torch/data/transforms/collate.h
 torch/types.h
 -
 
-../include/MainDelegate.h
-math.h
--
-CustomDataLoader.h
-../include/CustomDataLoader.h
-ImageTansform.h
-../include/ImageTansform.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.cpp
 FaceLandmarkNet.h
-../include/FaceLandmarkNet.h
-
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
-MainDelegate.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/FaceLandmarkNet.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h
