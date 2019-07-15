@@ -1,0 +1,2 @@
+model_checkpoint_path: "agent_data"
+all_model_checkpoint_paths: "agent_data"
