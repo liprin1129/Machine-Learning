@@ -8,9 +8,41 @@
 #include <torch/data/transforms/collate.h>
 #include <torch/types.h>
 
+#include <filesystem>
 //template <typename Target = torch::Tensor>
 
+namespace filesystem = std::experimental::filesystem;
+
 namespace dataWrangling{
+class Utilities {
+    public:
+        static at::Tensor cvImageToTensorConverter(const std::string &imgName, int resizeFactor) {
+            cv::Mat imgCV = cv::imread(imgName, CV_LOAD_IMAGE_COLOR);
+
+            imgCV.convertTo(imgCV, CV_32FC3);
+            cv::resize(imgCV, imgCV, cv::Size2d(resizeFactor, resizeFactor), 0, 0, cv::INTER_LINEAR);
+
+            // Convert to Tensors
+            torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+            torch::Tensor imageTensor = torch::from_blob(imgCV.data, {imgCV.rows, imgCV.cols, 3}, imgOptions);
+            
+            imageTensor = imageTensor.permute({2, 0, 1}); // convert to CxHxW
+
+            return imageTensor.clone();
+        }
+
+        static std::vector<std::string> readFileNamesWithAbsPath(std::string folderPath) {
+
+            std::vector<std::string> files;
+
+            for (const auto & entry : filesystem::directory_iterator(folderPath)){
+                //std::cout << entry.path() << std::endl;
+                files.push_back(entry.path());
+            }
+
+            return files;
+        }
+};
 
 class Resize {
     private:
@@ -235,4 +267,4 @@ struct RandomColour : public torch::data::transforms::TensorTransform<torch::Ten
         }
 };
 */
-}; // namespace custom
+}; // namespace dataWrangling

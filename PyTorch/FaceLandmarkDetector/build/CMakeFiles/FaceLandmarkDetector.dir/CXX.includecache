@@ -49,16 +49,28 @@ torch/data/transforms/collate.h
 -
 torch/types.h
 -
+filesystem
+-
 
 ../include/MainDelegate.h
 math.h
 -
+Trainer+Inferrer.h
+../include/Trainer+Inferrer.h
 CustomDataLoader.h
 ../include/CustomDataLoader.h
 ImageTansform.h
 ../include/ImageTansform.h
 FaceLandmarkNet.h
 ../include/FaceLandmarkNet.h
+
+../include/Trainer+Inferrer.h
+iostream
+-
+FaceLandmarkNet.h
+../include/FaceLandmarkNet.h
+CustomDataLoader.h
+../include/CustomDataLoader.h
 
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
 MainDelegate.h

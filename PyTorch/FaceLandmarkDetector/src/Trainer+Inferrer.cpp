@@ -1,137 +1,23 @@
 #include "Trainer+Inferrer.h"
-TrainerInferrer::TrainerInferrer(int numEpoch, int numBatch, std::tuple<int, int> imgRescale, bool verbose) {
-    _imgRescale = imgRescale;
-    _verbose = verbose;
-    _numEpoch = numEpoch;
-    _numBatch = numBatch;
+
+void TrainerInferrer::testShow(int count, int resizeFactor, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor) {
+    //std::cout << imgTensor.sizes() << std::endl;
+    //std::cout << labelTensor.sizes() << std::endl<<std::endl;
     
-    fln = FaceLandmarkNet(3, verbose);
-}
-
-void TrainerInferrer::train(torch::Device device, std::string imgFolderPath, std::string labelCsvFile) {
-    fln->to(device); // Upload the model to the device {CPU, GPU}
-
-    // Optimizer
-    torch::optim::Adam adamOptimizer(
-        fln->parameters(),
-        torch::optim::AdamOptions(5e-5).beta1(0.5));
-
-    auto cds = CustomDataset(
-        "/DATASETs/Face/Landmarks/300W-Dataset/300W/face_landmarks.csv",
-        "/DATASETs/Face/Landmarks/300W-Dataset/300W/Data/",
-        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv",
-        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
-        false)
-        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::Resize(500)))
-        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomContrastBrightness(0.7, 3.0, 50.0)))
-        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomCrop(0.7, 100.0)))
-        .map(torch::data::transforms::Stack<>());
-
-    // Generate a data loader.
-    //auto data_loader = torch::data::make_data_loader<torch::data::samplers::RandomSampler>(
-    auto data_loader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
-        std::move(cds), 
-        torch::data::DataLoaderOptions().batch_size(_numBatch).workers(4));
-
-    for (int epoch = 0; epoch < _numEpoch; ++epoch) {
-        //std::fprintf(stdout, "Start epoch #%d\n", epoch);
-
-        float totLoss = 0;
-        int batchCount = 0;
-        for (auto& batch : *data_loader) {
-            auto data = batch.data;
-            auto labels = batch.target;
-            
-            // std::cout << "Data is cuda?: " << data.to(device).is_cuda() << std::endl;
-            // std::cout << "Labels is cuda?: " << labels.to(device).is_cuda() << std::endl;
-
-            if (not(torch::isnan(data).sum().item<int>() or torch::isnan(labels).sum().item<int>())){
-                
-                adamOptimizer.zero_grad();
-                torch::Tensor output = fln->forward(data.to(device));
-
-                torch::Tensor miniBatchLoss = torch::mse_loss(output, labels.to(device), Reduction::Mean);
-                
-                miniBatchLoss.backward();
-                adamOptimizer.step();
-
-                totLoss += miniBatchLoss.item<float>();
-
-                if ((epoch+1)%2 == 0 and batchCount++ == 0) {
-                    //checkTensorImgAndLandmarks(epoch+1, data[0]*255, output[0]*std::get<0>(_imgRescale), labels[0]*std::get<0>(_imgRescale));
-                    //std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, _numEpoch, totLoss*std::get<0>(_imgRescale));
-                    //checkTensorImgAndLandmarks(epoch+1, data[0]*255, output[0], labels[0], 500);
-                    std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, _numEpoch, totLoss);
-                }
-            }
-            else {
-                std::fprintf(stderr, "NAN value detected!\n");
-                exit(-1);
-            }
-        }
-        
-        /*
-        if ((epoch+1)%200 == 0 and epoch <= (int)_numEpoch*0.8) {
-            char outputString[100];
-            char optimizerString[100];
-            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch+1);
-            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch+1);
-            torch::save(fln, outputString);
-            torch::save(adamOptimizer, optimizerString);
-        }
-        else if ((epoch+1)%100 == 0 and epoch > (int)_numEpoch*0.8 and epoch <= (int)_numEpoch*0.95) {
-            char outputString[100];
-            char optimizerString[100];
-            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch+1);
-            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch+1);
-            torch::save(fln, outputString);
-            torch::save(adamOptimizer, optimizerString);
-        }
-        else if ((epoch+1) > (int)_numEpoch*0.95) {
-            char outputString[100];
-            char optimizerString[100];
-            std::sprintf(outputString, "./checkpoints/Trained-models/output-epoch%04d.pt", epoch+1);
-            std::sprintf(optimizerString, "./checkpoints/Trained-models/optimizer-epoch%04d.pt", epoch+1);
-            torch::save(fln, outputString);
-            torch::save(adamOptimizer, optimizerString);
-        }
-        */
-    }
-}
-
-void TrainerInferrer::infer(torch::Device device, std::string imgPath, std::string modelPath) {
-    // Read image
-    cv::Mat img = cv::imread(imgPath);
-    img.convertTo(img, CV_32FC3); // Convert CV_8UC3 data type to CV_32FC3
-
-    // Resize image
-    auto [newW, newH] = _imgRescale;
-    cv::Mat resizedImage;
-    cv::resize(img, resizedImage, cv::Size2d(newH, newW), 0, 0, cv::INTER_LINEAR);
-    img = resizedImage/255; // rescale to [0, 1]
-
-    // Convert to Tensor
-    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
-    torch::Tensor imgTensor = torch::from_blob(img.data, {img.rows, img.cols, 3}, imgOptions);
-    imgTensor = imgTensor.permute({2, 0, 1}); // convert to CxHxW
-    imgTensor = imgTensor.unsqueeze(0); // If the image is 3 dimensions, add extra pseudo-dimension
-
-    torch::load(fln, modelPath);
-    at::Tensor output = fln->forward(imgTensor.to(device));
-
-    checkTensorImgAndLandmarks(imgTensor[0], output, 500);
-}
-
-void TrainerInferrer::checkTensorImgAndLandmarks(torch::Tensor const &imgTensor, torch::Tensor const &inferredTensor, int newWH) {
-    auto copiedImgTensor = (imgTensor*255).toType(torch::kUInt8).clone();
+    // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     
-    std::cout << imgTensor.sizes() << std::endl;
-    int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+    auto copiedImgTensor = imgTensor[0].toType(torch::kUInt8).clone();
+    //auto copiedImgTensor = imgTensor[0].clone();
+    //std::cout << "Passed\n";
+    //std::fprintf(stdout, "TENSOR Sum: %d\n", copiedImgTensor.sum().item<int>());
+    //std::cout << " Copied Tensor: " << copiedImgTensor.sum() << std::endl;
+
+    //std::cout << copiedImgTensor.sizes() << std::endl;
+    int cvMatSize[2] = {(int)copiedImgTensor.size(1), (int)copiedImgTensor.size(2)};
     cv::Mat imgCVB(2, cvMatSize, CV_8UC1, copiedImgTensor[0].data_ptr());
     cv::Mat imgCVG(2, cvMatSize, CV_8UC1, copiedImgTensor[1].data_ptr());
     cv::Mat imgCVR(2, cvMatSize, CV_8UC1, copiedImgTensor[2].data_ptr()); //CV_8UC1
-    //std::cout << "Pass: Tensor to cv::Mat" << std::endl;
-
+    
     // Merge each channel to create colour cv::Mat
     cv::Mat imgCV; // Merged output cv::Mat
     std::vector<cv::Mat> channels;
@@ -140,36 +26,53 @@ void TrainerInferrer::checkTensorImgAndLandmarks(torch::Tensor const &imgTensor,
     channels.push_back(imgCVR);
     cv::merge(channels, imgCV);
     
-    cv::resize(imgCV, imgCV, cv::Size2d(newWH, newWH), 0, 0, cv::INTER_LINEAR);
-    //std::cout << "Pass: cv::Mat merged" << std::endl;
+    //imgCV.convertTo(imgCV, CV_8UC3);
+    // Resize Image
+    cv::resize(imgCV, imgCV, cv::Size2d(resizeFactor, resizeFactor), 0, 0, cv::INTER_LINEAR);
 
     // Convert the label Tensor to vector
     std::vector<std::tuple<float, float>> landmarks;
     float X = 0.0, Y=0.0;
-    for (int i=0; i<inferredTensor.size(1); ++i) {
+
+    auto copiedLabelTensor = (labelTensor*resizeFactor).clone();
+    //copiedLabelTensor = copiedLabelTensor*resizeFactor;
+    //std::cout << copiedLabelTensor.sizes() << std::endl;
+
+    for (int i=0; i<copiedLabelTensor.size(1); ++i) {
         if (i % 2 == 1) {
-            Y = inferredTensor[0][i].item<float>()*newWH;//*outputImg.rows;
+            Y = copiedLabelTensor[0][i].item<float>();//*outputImg.rows;
             landmarks.push_back(std::make_tuple(X, Y));
-            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            if (Y < imgCV.rows and X < imgCV.cols) {
+                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 3, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
+            }
             //std::cout << (int)X << ", " << (int)Y << std::endl;
         }
-        X = inferredTensor[0][i].item<float>()*newWH;//*outputImg.cols;
+        X = copiedLabelTensor[0][i].item<float>();//*outputImg.cols;
     }
+    
+    //cv::namedWindow("Restored", CV_WINDOW_NORMAL);
+    //imshow("Restored", imgCV);
+    //cv::waitKey(0);
 
-    cv::namedWindow("Restored", CV_WINDOW_AUTOSIZE);
-    imshow("Restored", imgCV);
-    cv::waitKey(0);
+    char outputString[100];
+    std::sprintf(outputString, "./checkpoints/Images/TrainDataset/%03d.jpg", count);
+    cv::imwrite( outputString, imgCV );
 }
 
-void TrainerInferrer::checkTensorImgAndLandmarks(int epoch, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, torch::Tensor const &gtLabelTensor, int newWH) {
+void TrainerInferrer::testSave(int count, int rescaleFactor, torch::Tensor const &imgTensor, torch::Tensor const &labelTensor, char* outputName) {
     //std::cout << imgTensor.sizes() << std::endl;
     //std::cout << labelTensor.sizes() << std::endl<<std::endl;
     
     // Convert the image Tensor to cv::Mat with CV_8UC3 data type
     
     auto copiedImgTensor = imgTensor.toType(torch::kUInt8).clone();
+    //auto copiedImgTensor = imgTensor[0].clone();
+    //std::cout << "Passed\n";
+    //std::fprintf(stdout, "TENSOR Sum: %d\n", copiedImgTensor.sum().item<int>());
+    //std::cout << " Copied Tensor: " << copiedImgTensor.sum() << std::endl;
 
-    int cvMatSize[2] = {(int)imgTensor.size(1), (int)imgTensor.size(2)};
+    //std::cout << copiedImgTensor.sizes() << std::endl;
+    int cvMatSize[2] = {(int)copiedImgTensor.size(1), (int)copiedImgTensor.size(2)};
     cv::Mat imgCVB(2, cvMatSize, CV_8UC1, copiedImgTensor[0].data_ptr());
     cv::Mat imgCVG(2, cvMatSize, CV_8UC1, copiedImgTensor[1].data_ptr());
     cv::Mat imgCVR(2, cvMatSize, CV_8UC1, copiedImgTensor[2].data_ptr()); //CV_8UC1
@@ -181,44 +84,177 @@ void TrainerInferrer::checkTensorImgAndLandmarks(int epoch, torch::Tensor const 
     channels.push_back(imgCVG);
     channels.push_back(imgCVR);
     cv::merge(channels, imgCV);
+    
     //imgCV.convertTo(imgCV, CV_8UC3);
 
-    //cv::Mat resizedImage;
-    cv::resize(imgCV, imgCV, cv::Size2d(newWH, newWH), 0, 0, cv::INTER_LINEAR);
-
-    // Convert the ground truth label Tensor to vector
-    std::vector<std::tuple<float, float>> gtLandmarks;
-    float X = 0.0, Y=0.0;
-    for (int i=0; i<gtLabelTensor.size(1); ++i) {
-        if (i % 2 == 1) {
-            Y = gtLabelTensor[0][i].item<float>()*newWH;//*outputImg.rows;
-            gtLandmarks.push_back(std::make_tuple(X, Y));
-            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 255, 0 ), cv::FILLED, cv::LINE_8);
-            //std::cout << (int)X << ", " << (int)Y << std::endl;
-        }
-        X = gtLabelTensor[0][i].item<float>()*newWH;//*outputImg.cols;
-    }
+    //Resize image
+    cv::resize(imgCV, imgCV, cv::Size2d(rescaleFactor, rescaleFactor), 0, 0, cv::INTER_LINEAR);
 
     // Convert the label Tensor to vector
     std::vector<std::tuple<float, float>> landmarks;
-    X = 0.0, Y=0.0;
-    for (int i=0; i<labelTensor.size(1); ++i) {
+    float X = 0.0, Y=0.0;
+
+    auto copiedLabelTensor = (labelTensor*rescaleFactor).clone();
+    // Resize labels
+    //copiedImgTensor = copiedImgTensor*rescaleFactor;
+    //std::cout << copiedLabelTensor.sizes() << std::endl;
+
+    for (int i=0; i<copiedLabelTensor.size(0); ++i) {
         if (i % 2 == 1) {
-            Y = labelTensor[0][i].item<float>()*newWH;//*outputImg.rows;
+            Y = copiedLabelTensor[i].item<float>();//*outputImg.rows;
             landmarks.push_back(std::make_tuple(X, Y));
-            cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 2, cv::Scalar( 0, 0, 255 ), cv::FILLED, cv::LINE_8);
+            if (Y < imgCV.rows and X < imgCV.cols) {
+                cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 3, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
+            }
             //std::cout << (int)X << ", " << (int)Y << std::endl;
         }
-        X = labelTensor[0][i].item<float>()*newWH;//*outputImg.cols;
+        X = copiedLabelTensor[i].item<float>();//*outputImg.cols;
     }
 
     char outputString[100];
-    std::sprintf(outputString, "./checkpoints/Images/output-epoch%03d.jpg", epoch);
+    std::sprintf(outputString, "./checkpoints/Images/TestDataset/%s/%03d.jpg", outputName, count);
     cv::imwrite( outputString, imgCV );
+}
+
+void TrainerInferrer::train
+(
+    FaceLandmarkNet fln,
+    bool verbose, torch::Device device, std::string imgFolderPath, std::string labelCsvFile, 
+    float learningRate, int numEpoch, int numMiniBatch, int numWorkers,
+    float wranglingProb, int resizeFactor, float contrastFactor, float brightnessFactor, float moveFactor,
+    int saveInterval
+)
+{    
+    //FaceLandmarkNet fln(3, verbose); // Num of channels, Verbose
     
+    fln->to(device); // Upload the model to the device {CPU, GPU}
+
+    // Optimizer
+    torch::optim::Adam adamOptimizer(fln->parameters(), torch::optim::AdamOptions(learningRate).beta1(0.5));
+
+    auto cds = CustomDataset(
+        labelCsvFile,
+        imgFolderPath,
+        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/face_landmarks.csv",
+        //"/DATASETs/Face/Landmarks/Pytorch-Tutorial-Landmarks-Dataset/faces/",
+        false)
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::Resize(resizeFactor))) // 300 or 500
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomContrastBrightness(wranglingProb, contrastFactor, brightnessFactor))) // 0.7, 3.0, 50.0
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::RandomCrop(wranglingProb, moveFactor))) // 0.7, 100.0
+        .map(torch::data::transforms::Lambda<torch::data::Example<>>(dataWrangling::MiniMaxNormalize()))
+        .map(torch::data::transforms::Stack<>());
+    
+    // Generate a data loader.
+    //auto dataLoader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
+    auto dataLoader = torch::data::make_data_loader<torch::data::samplers::RandomSampler>(
+        std::move(cds), 
+        torch::data::DataLoaderOptions().batch_size(numMiniBatch).workers(numWorkers));
+
+
+    for (int epoch = 0; epoch < numEpoch; ++epoch) 
+    {
+        float totLoss = 0;
+        int batchCount = 0;
+
+        for (auto& batch : *dataLoader) 
+        {
+            //auto data = batch.data;
+            //auto labels = batch.target;
+
+            if (not(torch::isnan(batch.data).sum().item<int>() or torch::isnan(batch.target).sum().item<int>())){
+                
+                adamOptimizer.zero_grad();
+                torch::Tensor output = fln->forward(batch.data.to(device));
+                //_output = fln->forward(batch.data.to(device));
+
+                torch::Tensor miniBatchLoss = torch::mse_loss(output, batch.target.to(device), Reduction::Mean);
+                miniBatchLoss.backward(); // Calculate partial derivatives
+                adamOptimizer.step(); // Back-propagation
+
+                totLoss += miniBatchLoss.item<float>();
+                //std::fprintf(stdout, "Batch Loss: %f, Total Loss: %f\n", miniBatchLoss.item<float>(), totLoss);
+                ++batchCount;
+                if ((epoch+1)%saveInterval == 0 and batchCount == 1) {
+                    //std::cout << "SAVE!!!!\n";
+                    //testShow(epoch+1, batch.data*255, output*batch.data.size(2));
+                    testShow(epoch+1, 500, batch.data*255, output);
+                }
+            }
+        }
+
+        // Test
+        std::fprintf(stdout, "Epoch #[%d/%d] | (Train total loss: %f)\n", epoch+1, numEpoch, (totLoss*sqrt(pow(resizeFactor, 2) + pow(resizeFactor, 2)))/batchCount);
+        //batchCount = 0;
+        
+        if ((epoch+1) % saveInterval == 0) {
+            //std::cout << "SAVE!\n";
+            char saveModelString[100];
+            char saveOptimString[100];
+
+            std::sprintf(saveModelString, "./checkpoints/Trained-models/model-%03d.pt", epoch+1);
+            std::sprintf(saveOptimString, "./checkpoints/Trained-models/optim-%03d.pt", epoch+1);
+            
+            torch::save(fln, saveModelString);
+            torch::save(adamOptimizer, saveOptimString);
+        }
+
+        //if ((epoch+1) % (saveInterval*2) == 0) {
+            //std::cout << "LOAD!\n";
+        //    infer(epoch+1-saveInterval, numMiniBatch, resizeFactor, device);
+        //}
+    }
+}
+
+
+void TrainerInferrer::infer(FaceLandmarkNet fln, const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, torch::Device device) {    
+    fln->eval();                        // evaluation mode
+    fln->to(device);                    // Upload the model to the device {CPU, GPU}
+
     /*
-    cv::namedWindow("Restored", CV_WINDOW_AUTOSIZE);
-    imshow("Restored", imgCV);
-    cv::waitKey(0);
+    // Convert to Tensors
+    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+    torch::Tensor leftImageTensor = torch::from_blob(leftImgCV.data, {leftImgCV.rows, leftImgCV.cols, 3}, imgOptions);
+    torch::Tensor rightImageTensor = torch::from_blob(rightImgCV.data, {rightImgCV.rows, rightImgCV.cols, 3}, imgOptions);
+    
+    leftImageTensor = leftImageTensor.permute({2, 0, 1}); // convert to CxHxW
+    rightImageTensor = rightImageTensor.permute({2, 0, 1}); // convert to CxHxW
     */
+    std::vector<torch::Tensor> testTensorVec;
+    testTensorVec.reserve(2);
+    testTensorVec.push_back(leftImageTensor);
+    testTensorVec.push_back(rightImageTensor);
+    torch::Tensor stackedTensor = torch::stack(testTensorVec);
+
+    stackedTensor /= 255; // Normalization
+
+    torch::Tensor output = fln->forward(stackedTensor.to(device)).detach();
+
+    testSave(0, 500, stackedTensor[0]*255, output[0], (char*) "Left"); // count to save image, resize factor after the prediction, img tensor, output label tensor, characters indicating to folder name
+    testSave(0, 500, stackedTensor[1]*255, output[1], (char*) "Right"); // count to save image, resize factor after the prediction, img tensor, output label tensor, characters indicating to folder name
+}
+
+void TrainerInferrer::infer(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount) {    
+    fln->eval();                        // evaluation mode
+    fln->to(device);                    // Upload the model to the device {CPU, GPU}
+
+    /*
+    // Convert to Tensors
+    torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+    torch::Tensor leftImageTensor = torch::from_blob(leftImgCV.data, {leftImgCV.rows, leftImgCV.cols, 3}, imgOptions);
+    torch::Tensor rightImageTensor = torch::from_blob(rightImgCV.data, {rightImgCV.rows, rightImgCV.cols, 3}, imgOptions);
+    
+    leftImageTensor = leftImageTensor.permute({2, 0, 1}); // convert to CxHxW
+    rightImageTensor = rightImageTensor.permute({2, 0, 1}); // convert to CxHxW
+    */
+    std::vector<torch::Tensor> testTensorVec;
+    testTensorVec.reserve(2);
+    testTensorVec.push_back(imageTensor);
+    testTensorVec.push_back(imageTensor);
+    torch::Tensor stackedTensor = torch::stack(testTensorVec);
+
+    stackedTensor /= 255; // Normalization
+
+    torch::Tensor output = fln->forward(stackedTensor.to(device)).detach();
+
+    testSave(imgCount, 500, stackedTensor[0]*255, output[0], (char*) "Left"); // count to save image, resize factor after the prediction, img tensor, output label tensor, characters indicating to folder name
 }

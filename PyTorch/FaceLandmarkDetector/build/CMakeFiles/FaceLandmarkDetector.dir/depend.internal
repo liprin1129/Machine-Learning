@@ -513,6 +513,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o
  ../include/FaceLandmarkNet.h
  ../include/ImageTansform.h
  ../include/MainDelegate.h
+ ../include/Trainer+Inferrer.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
  /usr/local/cuda/include/cuda.h
  /usr/local/cuda/include/cuda_fp16.h
@@ -1023,6 +1024,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o
  ../include/FaceLandmarkNet.h
  ../include/ImageTansform.h
  ../include/MainDelegate.h
+ ../include/Trainer+Inferrer.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/main.cpp
  /usr/local/cuda/include/cuda.h
  /usr/local/cuda/include/cuda_fp16.h

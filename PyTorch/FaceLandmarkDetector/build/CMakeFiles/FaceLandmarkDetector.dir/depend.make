@@ -512,6 +512,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/CustomDat
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/FaceLandmarkNet.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/ImageTansform.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/MainDelegate.h
+CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../include/Trainer+Inferrer.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: /usr/local/cuda/include/cuda.h
 CMakeFiles/FaceLandmarkDetector.dir/src/MainDelegate.cpp.o: /usr/local/cuda/include/cuda_fp16.h
@@ -1022,6 +1023,7 @@ CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/CustomDataLoader.
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/FaceLandmarkNet.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/ImageTansform.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/MainDelegate.h
+CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../include/Trainer+Inferrer.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: /usr/local/cuda/include/cuda.h
 CMakeFiles/FaceLandmarkDetector.dir/src/main.cpp.o: /usr/local/cuda/include/cuda_fp16.h
