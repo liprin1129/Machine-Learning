@@ -52,18 +52,6 @@ torch/types.h
 filesystem
 -
 
-../include/MainDelegate.h
-math.h
--
-Trainer+Inferrer.h
-../include/Trainer+Inferrer.h
-CustomDataLoader.h
-../include/CustomDataLoader.h
-ImageTansform.h
-../include/ImageTansform.h
-FaceLandmarkNet.h
-../include/FaceLandmarkNet.h
-
 ../include/Trainer+Inferrer.h
 iostream
 -
@@ -72,13 +60,9 @@ FaceLandmarkNet.h
 CustomDataLoader.h
 ../include/CustomDataLoader.h
 
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.cpp
-MainDelegate.h
-/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/MainDelegate.h
-thread
--
-chrono
--
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.cpp
+Trainer+Inferrer.h
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkDetector/src/Trainer+Inferrer.h
 
 /usr/local/cuda/include/cuda.h
 stdlib.h

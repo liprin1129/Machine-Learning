@@ -10,6 +10,7 @@ class TrainerInferrer {
 
         void testShow(int count, int resizeFactor, const torch::Tensor &imgTensor, const torch::Tensor &labelTensor);
         void testSave(int count, int rescaleFactor, const torch::Tensor &imgTensor, const torch::Tensor &labelTensor, char* outputName);
+        void writeCSV(int count, torch::Tensor const &labelTensor);
 
 		void train
 		(
@@ -27,5 +28,5 @@ class TrainerInferrer {
             torch::Device device
         );
 
-        void infer(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount);
+        void infer2(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount);
 };
