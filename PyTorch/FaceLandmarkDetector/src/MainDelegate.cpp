@@ -35,32 +35,37 @@ int MainDelegate::mainDelegation(int argc, char** argv){
         
         // When inferring
         torch::load(fln, argv[1]);
-
-        //Read images
-        /*
-        torch::Tensor leftImgTensor = dataWrangling::Utilities::cvImageToTensorConverter(std::string(argv[2]), 128);
-        torch::Tensor rightImgTensor = dataWrangling::Utilities::cvImageToTensorConverter(std::string(argv[3]), 128);
-
-        ti.infer(
-            fln,                            // trained parameters location
-            leftImgTensor,
-            rightImgTensor,
-            torch::Device(torch::kCUDA)     // computation device
-        );
-        */
-
-        // To run this code: ./FaceLandmarkDetector ./checkpoints/Trained-models/backup-models/model-2000.pt /DATASETs/Face/Face-SJC/155
-        std::vector<std::string> imgFiles = dataWrangling::Utilities::readFileNamesWithAbsPath(std::string(argv[2]));
         
-        int count = 0;
-        for (auto &file: imgFiles) {
-            torch::Tensor imgTensor = dataWrangling::Utilities::cvImageToTensorConverter(file, 128);
-            ti.inferMono(
-                fln,
-                imgTensor,
-                torch::Device(torch::kCUDA),
-                count++
+        // For stereo images
+        if(argc >= 4) {
+            //Read images
+            torch::Tensor leftImgTensor = dataWrangling::Utilities::cvImageToTensorConverter(std::string(argv[2]), 128);
+            torch::Tensor rightImgTensor = dataWrangling::Utilities::cvImageToTensorConverter(std::string(argv[3]), 128);
+
+            ti.inferStereo(
+                fln,                            // trained parameters location
+                leftImgTensor,
+                rightImgTensor,
+                torch::Device(torch::kCUDA)     // computation device
             );
+        }
+        
+
+        // For monocular image
+        // To run this code: ./FaceLandmarkDetector ./checkpoints/Trained-models/backup-models/model-2000.pt /DATASETs/Face/Face-SJC/Original-Data/155/
+        if (argc < 4) {
+            std::vector<std::string> imgFiles = dataWrangling::Utilities::readFileNamesWithAbsPath(std::string(argv[2]));
+            
+            int count = 0;
+            for (auto &file: imgFiles) {
+                torch::Tensor imgTensor = dataWrangling::Utilities::cvImageToTensorConverter(file, 128);
+                ti.inferMono(
+                    fln,
+                    imgTensor,
+                    torch::Device(torch::kCUDA),
+                    count++
+                );
+            }
         }
     }
 }

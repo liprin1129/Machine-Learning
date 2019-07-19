@@ -197,7 +197,6 @@ void TrainerInferrer::writeCSV(int count, torch::Tensor const &labelTensor) {
     fout.open(outputString, std::ios::out | std::ios::app);
 
     for (int i=0; i<xNormVec.size(); ++i) {
-        
         fout << xNormVec[i] << ", ";
         fout << yNormVec[i];
 
@@ -206,9 +205,8 @@ void TrainerInferrer::writeCSV(int count, torch::Tensor const &labelTensor) {
         }
         
         else {
-            fout << "/n";
+            fout << "\n";
         }
-
     }
 
     fout.clear();
