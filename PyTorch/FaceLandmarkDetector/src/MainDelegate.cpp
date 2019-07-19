@@ -49,19 +49,18 @@ int MainDelegate::mainDelegation(int argc, char** argv){
         );
         */
 
-        // To run this code: ./FaceLandmarkDetector model-2000.pt /DATASETs/Face/Face-SJC/155
+        // To run this code: ./FaceLandmarkDetector ./checkpoints/Trained-models/backup-models/model-2000.pt /DATASETs/Face/Face-SJC/155
         std::vector<std::string> imgFiles = dataWrangling::Utilities::readFileNamesWithAbsPath(std::string(argv[2]));
         
         int count = 0;
         for (auto &file: imgFiles) {
             torch::Tensor imgTensor = dataWrangling::Utilities::cvImageToTensorConverter(file, 128);
-            ti.infer2(
+            ti.inferMono(
                 fln,
                 imgTensor,
                 torch::Device(torch::kCUDA),
                 count++
             );
-            break;
         }
     }
 }

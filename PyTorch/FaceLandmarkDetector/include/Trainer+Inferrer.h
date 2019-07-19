@@ -21,12 +21,12 @@ class TrainerInferrer {
 			int saveInterval
 		);
 
-        void infer(
+        void inferStereo(
             FaceLandmarkNet fln, 
             //cv::Mat leftImg, cv::Mat rightImg, 
             const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, 
             torch::Device device
         );
 
-        void infer2(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount);
+        void inferMono(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount);
 };

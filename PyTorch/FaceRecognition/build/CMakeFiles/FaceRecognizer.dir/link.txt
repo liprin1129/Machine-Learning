@@ -1,0 +1,1 @@
+/usr/bin/g++-7    -rdynamic CMakeFiles/FaceRecognizer.dir/src/FaceRecognizer.cpp.o CMakeFiles/FaceRecognizer.dir/src/MainDelegate.cpp.o CMakeFiles/FaceRecognizer.dir/src/main.cpp.o  -o FaceRecognizer -lstdc++fs 

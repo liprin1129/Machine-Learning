@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/FaceRecognizer.h
+iostream
+-
+experimental/filesystem
+-
+fstream
+-
+string
+-
+
+/DEVs/Machine-Learning/PyTorch/FaceRecognition/src/FaceRecognizer.cpp
+FaceRecognizer.h
+/DEVs/Machine-Learning/PyTorch/FaceRecognition/src/FaceRecognizer.h
+

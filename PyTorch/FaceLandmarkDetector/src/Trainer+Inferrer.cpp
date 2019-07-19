@@ -123,32 +123,72 @@ void TrainerInferrer::writeCSV(int count, torch::Tensor const &labelTensor) {
     std::vector<float> yVec;
     std::vector<float> xNormVec;
     std::vector<float> yNormVec;
-    float X = 0.0, Y=0.0;
 
-    auto copiedLabelTensor = (labelTensor*100).clone();
+    auto copiedLabelTensor = (labelTensor).clone();
 
     for (int i=0; i<copiedLabelTensor.size(0); ++i) {
+        // For y coordinate
         if (i % 2 == 1) {
-            yVec.push_back(copiedLabelTensor[i].item<float>());//*outputImg.rows;
+            if (copiedLabelTensor[i].item<float>() < 1e-4) { // if the value is less than 0.0001, let the value be 0.
+                yVec.push_back(0);
+            }
+            else { // otherwise, round at 4 decimal points
+                yVec.push_back(
+                    round(copiedLabelTensor[i].item<float>() * 1e+4) / 1e+4
+                );
+            }
         }
-        xVec.push_back(copiedLabelTensor[i].item<float>());//*outputImg.cols;
+        
+        // For x coordinate
+        else {
+            if (copiedLabelTensor[i].item<float>() < 1e-4) {
+                    xVec.push_back(0);
+            }
+            else {
+                xVec.push_back( 
+                    round(copiedLabelTensor[i].item<float>() * 1e+4) / 1e+4
+                );
+            }
+        }
     }
+
+    //for (int i=0; i<copiedLabelTensor.size(0)/2; ++i)
+    //    std::cout << i+1 << " : " << xVec[i] << ", " << yVec[i] << "\n";
+    
     // Find maximum x and y
     auto xMax = std::max_element(xVec.begin(), xVec.end());
-    auto xMin = std::min_element(xVec.begin(), xVec.end());
+    auto xMin = std::min_element(xVec.begin(), xVec.end()) + 1e-8;
 
     auto yMax = std::max_element(yVec.begin(), yVec.end());
-    auto yMin = std::min_element(yVec.begin(), yVec.end());
+    auto yMin = std::min_element(yVec.begin(), yVec.end()) + 1e-8;
 
-    // Rescale to [0, 1]
-    std::for_each(xVec.begin(), xVec.end(), [&](float &x){ 
-        xNormVec.push_back( 2*( (x - *xMin) / ((*xMax - *xMin)+1e-8) ) - 1 );});
-    std::for_each(yVec.begin(), yVec.end(), [&](float &y){ 
-        yNormVec.push_back( 2*( (y - *yMin) / ((*yMax - *yMin)+1e-8) ) - 1 );});
+    // Rescale to [-1, 1]
+    std::for_each(xVec.begin(), xVec.end(), 
+        [&](float &x){ 
+            float normX = 2*( (x - *xMin) / (*xMax - *xMin) ) - 1 ;
+            xNormVec.push_back( round(normX * 1e+4) / 1e+4 );
+        });
 
-    //std::cout << *xMax << std::endl;
-    //std::for_each(xNormVec.begin(), xNormVec.end(), [&](float x){std::cout << x << std::endl;});
-    //std::fprintf(stdout, "[%d] max: %f, min: %f\n", count, *xMax, *yMax);
+    std::for_each(yVec.begin(), yVec.end(), 
+        [&](float &y){ 
+            float normY = 2*( (y - *yMin) / (*yMax - *yMin) ) - 1;
+            yNormVec.push_back( round(normY * 1e+4) / 1e+4 );
+        });
+    
+    /*// Rescale to [0, 1]
+    std::for_each(xVec.begin(), xVec.end(), 
+        [&](float &x){ 
+            float normX = (x - *xMin) / (*xMax - *xMin) ;
+            xNormVec.push_back( round(normX * 1e+4) / 1e+4 );
+        });
+
+    std::for_each(yVec.begin(), yVec.end(), 
+        [&](float &y){ 
+            float normY = (y - *yMin) / (*yMax - *yMin);
+            yNormVec.push_back( round(normY * 1e+4) / 1e+4 );
+        });
+    */
+
 
     // Save to CSV
     std::fstream fout; 
@@ -166,7 +206,7 @@ void TrainerInferrer::writeCSV(int count, torch::Tensor const &labelTensor) {
         }
         
         else {
-            fout << "\n";
+            fout << "/n";
         }
 
     }
@@ -264,7 +304,7 @@ void TrainerInferrer::train
 }
 
 
-void TrainerInferrer::infer(FaceLandmarkNet fln, const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, torch::Device device) {    
+void TrainerInferrer::inferStereo(FaceLandmarkNet fln, const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, torch::Device device) {    
     fln->eval();                        // evaluation mode
     fln->to(device);                    // Upload the model to the device {CPU, GPU}
 
@@ -291,7 +331,7 @@ void TrainerInferrer::infer(FaceLandmarkNet fln, const at::Tensor &leftImageTens
     testSave(0, 500, stackedTensor[1]*255, output[1], (char*) "Right"); // count to save image, resize factor after the prediction, img tensor, output label tensor, characters indicating to folder name
 }
 
-void TrainerInferrer::infer2(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount) {    
+void TrainerInferrer::inferMono(FaceLandmarkNet fln, const at::Tensor &imageTensor, torch::Device device, int imgCount) {
     fln->eval();                        // evaluation mode
     fln->to(device);                    // Upload the model to the device {CPU, GPU}
 
