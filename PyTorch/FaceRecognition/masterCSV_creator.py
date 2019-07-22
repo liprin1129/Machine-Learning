@@ -37,11 +37,11 @@ def compute_landmark_distances_numpy_array(indv_coord_np):
     
     indv_abs_distance_np = np.empty([indv_coord_np.shape[0], int(indv_coord_np.shape[1]/2)], dtype=np.float64)
 
-    for idx, coord_list in enumerate(indv_coord_np):
+    for idx, coords in enumerate(indv_coord_np):
         #print(np.shape(x_coord_row), np.shape(x_coord_row))
             
-        x_coord_np = coord_list[::2]
-        y_coord_np = coord_list[1::2]
+        x_coord_np = coords[::2]
+        y_coord_np = coords[1::2]
         #print(x_coord_np.shape, y_coord_np.shape)
 
         #print(x_coord_np, y_coord_np)
@@ -57,7 +57,6 @@ def compute_landmark_distances_numpy_array(indv_coord_np):
 
         distance_np = np.sqrt(x_coord_np + y_coord_np)
         indv_abs_distance_np[idx, :] = distance_np
-        break
         
     return np.round(indv_abs_distance_np.astype(np.float64), 4)
 
@@ -101,12 +100,26 @@ def wirte_a_maen_and_var_csv_file(csv_name, csv_file_paths_list):
     tot_means_and_vars_np = np.round(np.array(tot_means_and_vars_list, dtype=np.float64), 4)
     print(tot_means_and_vars_np.shape)
 
+    xy_coords = int((tot_means_and_vars_np.shape[1]/2)*(2/3))
+    #distances = xy_coords + (tot_means_and_vars_np.shape[1]/2)*(1/3)
+    
     with open(csv_name, 'w') as write_file:
         writer = csv.writer(write_file)
         header = []
+        count = 0
         for i in range(int(tot_means_and_vars_np.shape[1]/2)):
-            header.append("mean:{0}".format(i+1))
-            header.append("variance:{0}".format(i+1))
+            if i < xy_coords:
+                count += 1
+                if (i%2 == 0):
+                    header.append("x_mean:{0}".format(count))
+                    header.append("x_variance:{0}".format(count))
+                else:
+                    count -= 1
+                    header.append("y_meany:{0}".format(count))
+                    header.append("y_variance:{0}".format(count))
+            else:
+                header.append("mean:{0}".format(i-xy_coords+1))
+                header.append("variance:{0}".format(i-xy_coords+1))
         writer.writerow(header)
 
         for coord in tot_means_and_vars_np:

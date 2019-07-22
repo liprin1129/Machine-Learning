@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/c++/7/**"
+                "/usr/include/c++/7/**",
+                "/usr/local/lib/python3.6/dist-packages/torch/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-7",

@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /DEVs/Machine-Learning/PyTorch/FaceRecognition/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -122,6 +122,33 @@ FaceRecognizer: cmake_check_build_system
 FaceRecognizer/fast:
 	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/build
 .PHONY : FaceRecognizer/fast
+
+src/FaceLandmarkNet.o: src/FaceLandmarkNet.cpp.o
+
+.PHONY : src/FaceLandmarkNet.o
+
+# target to build an object file
+src/FaceLandmarkNet.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceLandmarkNet.cpp.o
+.PHONY : src/FaceLandmarkNet.cpp.o
+
+src/FaceLandmarkNet.i: src/FaceLandmarkNet.cpp.i
+
+.PHONY : src/FaceLandmarkNet.i
+
+# target to preprocess a source file
+src/FaceLandmarkNet.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceLandmarkNet.cpp.i
+.PHONY : src/FaceLandmarkNet.cpp.i
+
+src/FaceLandmarkNet.s: src/FaceLandmarkNet.cpp.s
+
+.PHONY : src/FaceLandmarkNet.s
+
+# target to generate assembly for a file
+src/FaceLandmarkNet.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceLandmarkNet.cpp.s
+.PHONY : src/FaceLandmarkNet.cpp.s
 
 src/FaceRecognizer.o: src/FaceRecognizer.cpp.o
 
@@ -210,9 +237,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FaceRecognizer"
-	@echo "... edit_cache"
+	@echo "... src/FaceLandmarkNet.o"
+	@echo "... src/FaceLandmarkNet.i"
+	@echo "... src/FaceLandmarkNet.s"
 	@echo "... src/FaceRecognizer.o"
 	@echo "... src/FaceRecognizer.i"
 	@echo "... src/FaceRecognizer.s"
