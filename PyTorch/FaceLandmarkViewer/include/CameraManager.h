@@ -29,7 +29,6 @@ class CameraManager {
         void runtimeParams(); // Set configuration parameters
 
         void openCamera(); // open camera
-        void getOneFrameFromZED(); // get one sl frame from zed camera
 
         cv::cuda::GpuMat slMatToCvMatConverterForGPU(sl::Mat &slMat);
 
@@ -45,5 +44,7 @@ class CameraManager {
         // ** Class Methods ** //
         void getFramesFromZED();
         void CameraManagerHasLoaded();
-        void displayFrames(); // lenseType ["left", "right"]
+        //void displayFrames(); // lenseType ["left", "right"]
+        void getOneFrameFromZED(); // get one sl frame from zed camera
+        void displayFrames(const cv::Mat &cvLeftMat, const cv::Mat &cvRightMat); // lenseType ["left", "right"]
 };

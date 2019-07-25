@@ -3,7 +3,7 @@
 #include <iostream>
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp> // resize
-//#include <torch/torch.h>
+#include <torch/torch.h>
 #include <torch/data/example.h>
 #include <torch/data/transforms/collate.h>
 #include <torch/types.h>
@@ -16,6 +16,7 @@ namespace filesystem = std::experimental::filesystem;
 namespace dataWrangling{
 class Utilities {
     public:
+
         static at::Tensor cvImageToTensorConverter(const std::string &imgName, int resizeFactor) {
             cv::Mat imgCV = cv::imread(imgName, CV_LOAD_IMAGE_COLOR);
 
@@ -30,6 +31,74 @@ class Utilities {
 
             return imageTensor.clone();
         }
+
+        static at::Tensor cvImageToTensorConverter(const cv::Mat &imgName, int resizeFactor) {
+            //cv::Mat imgCV = cv::imread(imgName, CV_LOAD_IMAGE_COLOR);
+            cv::Mat imgCV = imgName.clone();
+
+            imgCV.convertTo(imgCV, CV_32FC3);
+            cv::resize(imgCV, imgCV, cv::Size2d(resizeFactor, resizeFactor), 0, 0, cv::INTER_LINEAR);
+
+            // Convert to Tensors
+            torch::TensorOptions imgOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false);
+            torch::Tensor imageTensor = torch::from_blob(imgCV.data, {imgCV.rows, imgCV.cols, 3}, imgOptions);
+            
+            imageTensor = imageTensor.permute({2, 0, 1}); // convert to CxHxW
+
+            return imageTensor.clone();
+        }
+
+
+
+        static cv::Mat TensorToCVMatConverter(const torch::Tensor &inputImgTensor, int newSize) {
+            auto imgTensor = inputImgTensor.toType(torch::kUInt8).clone();
+
+            int origW = (int)imgTensor.size(1);
+            int origH = (int)imgTensor.size(2);
+
+            // Convert the image Tensor to cv::Mat with CV_8UC3 data type
+            int cvMatSize[2] = {origW, origH};
+            cv::Mat imgCVB(2, cvMatSize, CV_8UC1, imgTensor[0].data_ptr());
+            cv::Mat imgCVG(2, cvMatSize, CV_8UC1, imgTensor[1].data_ptr());
+            cv::Mat imgCVR(2, cvMatSize, CV_8UC1, imgTensor[2].data_ptr());
+
+            // Merge each channel to create colour cv::Mat
+            cv::Mat imgCV; // Merged output cv::Mat
+            std::vector<cv::Mat> channels;
+            channels.push_back(imgCVB);
+            channels.push_back(imgCVG);
+            channels.push_back(imgCVR);
+            cv::merge(channels, imgCV);
+
+            // Resize cv::Mat
+            cv::Mat resizedImage;
+            cv::resize(imgCV, resizedImage, cv::Size2d(newSize, newSize), 0, 0, cv::INTER_LINEAR);
+
+            return resizedImage;
+        }
+
+
+        static std::vector<std::tuple<float, float>> TensorToFloatVector(const at::Tensor &inputLabelTensor, int newSize) {
+            auto copiedLabelTensor = (inputLabelTensor*newSize).clone();
+
+            copiedLabelTensor *= newSize;
+
+            // Convert the label Tensor to vector
+            std::vector<std::tuple<float, float>> landmarks;
+            float X = 0.0, Y=0.0;
+
+            for (int i=0; i<copiedLabelTensor.size(0); ++i) {
+                if (i % 2 == 1) {
+                    Y = copiedLabelTensor[i].item<float>();//*outputImg.rows;
+                    landmarks.push_back(std::make_tuple(X, Y));
+                }
+
+                X = copiedLabelTensor[i].item<float>();//*outputImg.cols;
+            }
+
+            return landmarks;
+        }
+
 
         static std::vector<std::string> readFileNamesWithAbsPath(std::string folderPath) {
 

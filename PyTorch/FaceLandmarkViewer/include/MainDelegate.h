@@ -2,6 +2,8 @@
 
 #include <thread>
 #include "CameraManager.h"
+#include "Trainer+Inferrer.h"
+#include "FaceLandmarkNet.h"
 
 class MainDelegate {
 	private:

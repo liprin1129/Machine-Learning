@@ -62,18 +62,18 @@ void CameraManager::getOneFrameFromZED()
     }
 }
 
+
 void CameraManager::getFramesFromZED() {
-    //std::fprintf(stdout, "%s\n", "getFrames1");
-    while (true) {
-        //std::fprintf(stdout, "%s\n", "getFrames2");
+    //while (true) {
         getOneFrameFromZED();
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        //std::fprintf(stdout, "%s\n", "getFrames3");
-        if(cv::waitKey(30) >= 0) {
-            break;
-        }
-    }
+
+        //if(cv::waitKey(30) >= 0) {
+        //    break;
+        //}
+    //}
 }
+
 
 // Convert sl::Mat to cv::cuda::GpuMat for GPU
 cv::cuda::GpuMat CameraManager::slMatToCvMatConverterForGPU(sl::Mat &slMat) {
@@ -103,6 +103,7 @@ cv::cuda::GpuMat CameraManager::slMatToCvMatConverterForGPU(sl::Mat &slMat) {
                 slMat.getPtr<sl::uchar1>(sl::MEM_GPU), slMat.getStepBytes(sl::MEM_GPU));
 }
 
+/*
 void CameraManager::displayFrames() {
     //cv::namedWindow("left", cv::WINDOW_NORMAL);
     //cv::namedWindow("right", cv::WINDOW_NORMAL);
@@ -124,6 +125,17 @@ void CameraManager::displayFrames() {
         }
     }
 }
+*/
+
+
+void CameraManager::displayFrames(const cv::Mat &cvLeftMat, const cv::Mat &cvRightMat) {
+
+    cv::imshow("left", cvLeftMat);
+    cv::imshow("left", cvRightMat);
+
+    cv::waitKey(0);
+}
+
 
 void CameraManager::CameraManagerHasLoaded() {
     initParams();

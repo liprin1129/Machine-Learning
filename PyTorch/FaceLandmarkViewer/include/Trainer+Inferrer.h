@@ -14,10 +14,21 @@ class TrainerInferrer {
         void testSave(int count, int rescaleFactor, const torch::Tensor &imgTensor, const torch::Tensor &labelTensor, char* outputName);
         void writeCSV(int count, torch::Tensor const &labelTensor);
 
-        void inferStereo(
+        void overlapOuputsOnCVMat(cv::Mat cvMat, const at::Tensor &labelTensor);
+
+        void inferStereoToCSV
+        (
             FaceLandmarkNet fln, 
             //cv::Mat leftImg, cv::Mat rightImg, 
             const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, 
+            torch::Device device
+        );
+
+        std::tuple<cv::Mat, cv::Mat> inferStereo
+        (
+            FaceLandmarkNet fln, 
+            cv::Mat leftImg, cv::Mat rightImg,
+            //const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, 
             torch::Device device
         );
 

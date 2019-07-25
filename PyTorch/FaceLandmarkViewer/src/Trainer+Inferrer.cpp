@@ -212,8 +212,11 @@ void TrainerInferrer::writeCSV(int count, torch::Tensor const &labelTensor) {
     fout.clear();
 }
 
+//void TrainerInferrer::overlapOuputsOnCVMat(cv::Mat cvMat, const at::Tensor &labelTensor) {
+//    dataWrangling::
+//}
 
-void TrainerInferrer::inferStereo(FaceLandmarkNet fln, const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, torch::Device device) {    
+void TrainerInferrer::inferStereoToCSV(FaceLandmarkNet fln, const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, torch::Device device) {    
     fln->eval();                        // evaluation mode
     fln->to(device);                    // Upload the model to the device {CPU, GPU}
 
@@ -264,4 +267,53 @@ void TrainerInferrer::inferMono(FaceLandmarkNet fln, const at::Tensor &imageTens
     torch::Tensor output = fln->forward(stackedTensor.to(device)).detach();
 
     writeCSV(imgCount, output[0]);
+}
+
+std::tuple<cv::Mat, cv::Mat> TrainerInferrer::inferStereo
+(
+    FaceLandmarkNet fln, 
+    cv::Mat leftCVImg, cv::Mat rightCVImg, 
+    //const at::Tensor &leftImageTensor, const at::Tensor &rightImageTensor, 
+    torch::Device device
+) 
+{
+    std::cout << "I'm in" << std::endl;
+    if (leftCVImg.rows > 0 && leftCVImg.cols > 0 && rightCVImg.rows > 0 && rightCVImg.cols > 0)
+    {
+        auto leftImageTensor = dataWrangling::Utilities::cvImageToTensorConverter(leftCVImg, 128);
+        auto rightImageTensor = dataWrangling::Utilities::cvImageToTensorConverter(rightCVImg, 128);
+
+        std::vector<torch::Tensor> inferTensorVec;
+        inferTensorVec.reserve(2);
+        inferTensorVec.push_back(leftImageTensor);
+        inferTensorVec.push_back(rightImageTensor);
+        torch::Tensor stackedTensor = torch::stack(inferTensorVec);
+
+        stackedTensor /= 255; // Normalization
+
+        // Inferring
+        torch::Tensor output = fln->forward(stackedTensor.to(device)).detach();
+
+        // Convert output tensor to std::vector<std::tuple<float, float>>
+        auto leftLabels = dataWrangling::Utilities::TensorToFloatVector(output[0], 500);
+        auto rightLabels = dataWrangling::Utilities::TensorToFloatVector(output[1], 500);
+
+        auto leftImageCVMat = dataWrangling::Utilities::TensorToCVMatConverter(leftImageTensor, 500);
+        auto rightImageCVMat = dataWrangling::Utilities::TensorToCVMatConverter(rightImageTensor, 500);
+
+        for (int i=0; i<leftLabels.size(); ++i){
+            auto [leftX, leftY] = leftLabels[i];
+            auto [rightX, rightY] = rightLabels[i];
+
+            //if (Y < leftImageCVMat.rows and X < leftImageCVMat.cols) {
+            //    cv::circle(imgCV, cv::Point2d(cv::Size((int)X, (int)Y)), 3, cv::Scalar( 54, 54, 251 ), cv::FILLED, cv::LINE_4);
+            //}
+
+            std::fprintf(stdout, "left: (%f, %f),\t right: (%f, %f)\n", leftX, leftY, rightX, rightY);
+        }
+
+        std::cout << std::endl;
+
+        return std::make_tuple(leftImageCVMat, rightImageCVMat);
+    }
 }
