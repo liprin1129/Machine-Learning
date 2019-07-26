@@ -4,7 +4,7 @@
 #include <sl/Core.hpp>
 
 #include <opencv2/opencv.hpp>
-#include <opencv2/highgui.hpp>
+//#include <opencv2/highgui.hpp>
 #include <chrono>
 #include <thread>
 
@@ -38,13 +38,13 @@ class CameraManager {
         ~CameraManager();
 
         // ** Getters ** //
-        cv::Mat getCVLeftMat() {return _cvLeftMat;};
-        cv::Mat getCVRightMat() {return _cvRightMat;};
+        cv::Mat getCVLeftMat() {return _cvLeftMat.clone();};
+        cv::Mat getCVRightMat() {return _cvRightMat.clone();};
 
         // ** Class Methods ** //
         void getFramesFromZED();
         void CameraManagerHasLoaded();
-        //void displayFrames(); // lenseType ["left", "right"]
+        void displayFrames(); // lenseType ["left", "right"]
         void getOneFrameFromZED(); // get one sl frame from zed camera
-        void displayFrames(const cv::Mat &cvLeftMat, const cv::Mat &cvRightMat); // lenseType ["left", "right"]
+        //void displayFrames(const cv::Mat &cvMat, std::string cameraPosition); // lenseType ["left", "right"]
 };

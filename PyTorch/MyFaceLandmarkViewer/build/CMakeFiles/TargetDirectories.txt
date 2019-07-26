@@ -1,0 +1,3 @@
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/rebuild_cache.dir
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/edit_cache.dir
+/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir

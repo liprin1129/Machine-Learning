@@ -17,3 +17,7 @@ PyTorch/FaceLandmarkDetector/build/checkpoints/
 Reinforcement-Learning/DeepRL Homeworks/hw1/expert_data/
 
 Reinforcement-Learning/DeepRL Homeworks/hw1/tensorboard-logs/
+
+PyTorch/FaceLandmarkViewer/build/haarcascade_frontalface_alt2\.xml
+
+PyTorch/FaceLandmarkViewer/build/lbfmodel\.yaml

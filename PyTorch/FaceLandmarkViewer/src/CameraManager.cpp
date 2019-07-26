@@ -64,14 +64,14 @@ void CameraManager::getOneFrameFromZED()
 
 
 void CameraManager::getFramesFromZED() {
-    //while (true) {
+    while (true) {
         getOneFrameFromZED();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        //std::this_thread::sleep_for(std::chrono::seconds(1));
 
-        //if(cv::waitKey(30) >= 0) {
-        //    break;
-        //}
-    //}
+        if(cv::waitKey(30) >= 0) {
+            break;
+        }
+    }
 }
 
 
@@ -103,7 +103,7 @@ cv::cuda::GpuMat CameraManager::slMatToCvMatConverterForGPU(sl::Mat &slMat) {
                 slMat.getPtr<sl::uchar1>(sl::MEM_GPU), slMat.getStepBytes(sl::MEM_GPU));
 }
 
-/*
+
 void CameraManager::displayFrames() {
     //cv::namedWindow("left", cv::WINDOW_NORMAL);
     //cv::namedWindow("right", cv::WINDOW_NORMAL);
@@ -112,8 +112,11 @@ void CameraManager::displayFrames() {
         if (_cvLeftMat.rows > 0 && _cvLeftMat.cols > 0 && _cvRightMat.rows > 0 && _cvRightMat.cols > 0)
         {   
             //std::fprintf(stdout, "left:[%d, %d], right[%d, %d]\n", _cvLeftMat.rows, _cvLeftMat.cols, _cvRightMat.rows, _cvRightMat.cols);
+
             cv::imshow("left", _cvLeftMat);
             cv::imshow("right", _cvRightMat);
+            //cv::imshow("left", leftCVMatWithLandmarks);
+            //cv::imshow("right", rightCVMatWithLandmarks);
 
             if(cv::waitKey(30) >= 0) {
                 break;
@@ -125,17 +128,16 @@ void CameraManager::displayFrames() {
         }
     }
 }
-*/
 
 
-void CameraManager::displayFrames(const cv::Mat &cvLeftMat, const cv::Mat &cvRightMat) {
+/*
+void CameraManager::displayFrames(const cv::Mat &cvMat, std::string cameraPosition) {
 
-    cv::imshow("left", cvLeftMat);
-    cv::imshow("left", cvRightMat);
+    cv::imshow(cameraPosition, cvMat);
 
     cv::waitKey(0);
 }
-
+*/
 
 void CameraManager::CameraManagerHasLoaded() {
     initParams();

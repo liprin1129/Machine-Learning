@@ -150,32 +150,32 @@ src/CameraManager.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.s
 .PHONY : src/CameraManager.cpp.s
 
-src/FaceLandmarkNet.o: src/FaceLandmarkNet.cpp.o
+src/FaceLandmarksDetector.o: src/FaceLandmarksDetector.cpp.o
 
-.PHONY : src/FaceLandmarkNet.o
+.PHONY : src/FaceLandmarksDetector.o
 
 # target to build an object file
-src/FaceLandmarkNet.cpp.o:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarkNet.cpp.o
-.PHONY : src/FaceLandmarkNet.cpp.o
+src/FaceLandmarksDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o
+.PHONY : src/FaceLandmarksDetector.cpp.o
 
-src/FaceLandmarkNet.i: src/FaceLandmarkNet.cpp.i
+src/FaceLandmarksDetector.i: src/FaceLandmarksDetector.cpp.i
 
-.PHONY : src/FaceLandmarkNet.i
+.PHONY : src/FaceLandmarksDetector.i
 
 # target to preprocess a source file
-src/FaceLandmarkNet.cpp.i:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarkNet.cpp.i
-.PHONY : src/FaceLandmarkNet.cpp.i
+src/FaceLandmarksDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.i
+.PHONY : src/FaceLandmarksDetector.cpp.i
 
-src/FaceLandmarkNet.s: src/FaceLandmarkNet.cpp.s
+src/FaceLandmarksDetector.s: src/FaceLandmarksDetector.cpp.s
 
-.PHONY : src/FaceLandmarkNet.s
+.PHONY : src/FaceLandmarksDetector.s
 
 # target to generate assembly for a file
-src/FaceLandmarkNet.cpp.s:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarkNet.cpp.s
-.PHONY : src/FaceLandmarkNet.cpp.s
+src/FaceLandmarksDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.s
+.PHONY : src/FaceLandmarksDetector.cpp.s
 
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
@@ -203,33 +203,6 @@ src/MainDelegate.s: src/MainDelegate.cpp.s
 src/MainDelegate.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.s
 .PHONY : src/MainDelegate.cpp.s
-
-src/Trainer+Inferrer.o: src/Trainer+Inferrer.cpp.o
-
-.PHONY : src/Trainer+Inferrer.o
-
-# target to build an object file
-src/Trainer+Inferrer.cpp.o:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/Trainer+Inferrer.cpp.o
-.PHONY : src/Trainer+Inferrer.cpp.o
-
-src/Trainer+Inferrer.i: src/Trainer+Inferrer.cpp.i
-
-.PHONY : src/Trainer+Inferrer.i
-
-# target to preprocess a source file
-src/Trainer+Inferrer.cpp.i:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/Trainer+Inferrer.cpp.i
-.PHONY : src/Trainer+Inferrer.cpp.i
-
-src/Trainer+Inferrer.s: src/Trainer+Inferrer.cpp.s
-
-.PHONY : src/Trainer+Inferrer.s
-
-# target to generate assembly for a file
-src/Trainer+Inferrer.cpp.s:
-	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/Trainer+Inferrer.cpp.s
-.PHONY : src/Trainer+Inferrer.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -270,15 +243,12 @@ help:
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
-	@echo "... src/FaceLandmarkNet.o"
-	@echo "... src/FaceLandmarkNet.i"
-	@echo "... src/FaceLandmarkNet.s"
+	@echo "... src/FaceLandmarksDetector.o"
+	@echo "... src/FaceLandmarksDetector.i"
+	@echo "... src/FaceLandmarksDetector.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"
-	@echo "... src/Trainer+Inferrer.o"
-	@echo "... src/Trainer+Inferrer.i"
-	@echo "... src/Trainer+Inferrer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

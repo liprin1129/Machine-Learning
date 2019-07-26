@@ -1,13 +1,16 @@
 #pragma once
 
-#include <thread>
+#include <opencv2/face.hpp>
+#include <opencv2/opencv.hpp>
+//#include "drawLandmarks.hpp"
 #include "CameraManager.h"
-#include "Trainer+Inferrer.h"
-#include "FaceLandmarkNet.h"
+#include "FaceLandmarksDetector.h"
+
+//using namespace std;
+//using namespace cv;
+//using namespace cv::face;
 
 class MainDelegate {
-	private:
-
 	public:
 		int mainDelegation(int argc, char** argv);
 };

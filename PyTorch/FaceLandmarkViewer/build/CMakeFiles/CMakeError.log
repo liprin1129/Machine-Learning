@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_5b6f9/fast 
-/usr/bin/make -f CMakeFiles/cmTC_5b6f9.dir/build.make CMakeFiles/cmTC_5b6f9.dir/build
+Run Build Command(s):/usr/bin/make cmTC_4bb1c/fast 
+/usr/bin/make -f CMakeFiles/cmTC_4bb1c.dir/build.make CMakeFiles/cmTC_4bb1c.dir/build
 make[1]: Entering directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_5b6f9.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_5b6f9.dir/CheckSymbolExists.c.o   -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_5b6f9
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b6f9.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_5b6f9.dir/CheckSymbolExists.c.o  -o cmTC_5b6f9 
-CMakeFiles/cmTC_5b6f9.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_4bb1c.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_4bb1c.dir/CheckSymbolExists.c.o   -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_4bb1c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4bb1c.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_4bb1c.dir/CheckSymbolExists.c.o  -o cmTC_4bb1c 
+CMakeFiles/cmTC_4bb1c.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_5b6f9.dir/build.make:86: recipe for target 'cmTC_5b6f9' failed
-make[1]: *** [cmTC_5b6f9] Error 1
+CMakeFiles/cmTC_4bb1c.dir/build.make:86: recipe for target 'cmTC_4bb1c' failed
+make[1]: *** [cmTC_4bb1c] Error 1
 make[1]: Leaving directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Makefile:121: recipe for target 'cmTC_5b6f9/fast' failed
-make: *** [cmTC_5b6f9/fast] Error 2
+Makefile:121: recipe for target 'cmTC_4bb1c/fast' failed
+make: *** [cmTC_4bb1c/fast] Error 2
 
 File /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,41 +36,41 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_686d7/fast 
-/usr/bin/make -f CMakeFiles/cmTC_686d7.dir/build.make CMakeFiles/cmTC_686d7.dir/build
+Run Build Command(s):/usr/bin/make cmTC_f3a7a/fast 
+/usr/bin/make -f CMakeFiles/cmTC_f3a7a.dir/build.make CMakeFiles/cmTC_f3a7a.dir/build
 make[1]: Entering directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_686d7.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_686d7.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
-Linking C executable cmTC_686d7
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_686d7.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_686d7.dir/CheckFunctionExists.c.o  -o cmTC_686d7 -lpthreads 
+Building C object CMakeFiles/cmTC_f3a7a.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f3a7a.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f3a7a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f3a7a.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_f3a7a.dir/CheckFunctionExists.c.o  -o cmTC_f3a7a -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_686d7.dir/build.make:86: recipe for target 'cmTC_686d7' failed
-make[1]: *** [cmTC_686d7] Error 1
+CMakeFiles/cmTC_f3a7a.dir/build.make:86: recipe for target 'cmTC_f3a7a' failed
+make[1]: *** [cmTC_f3a7a] Error 1
 make[1]: Leaving directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Makefile:121: recipe for target 'cmTC_686d7/fast' failed
-make: *** [cmTC_686d7/fast] Error 2
+Makefile:121: recipe for target 'cmTC_f3a7a/fast' failed
+make: *** [cmTC_f3a7a/fast] Error 2
 
 
 Determining if the function sgemm_ exists failed with the following output:
 Change Dir: /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_4f66b/fast 
-/usr/bin/make -f CMakeFiles/cmTC_4f66b.dir/build.make CMakeFiles/cmTC_4f66b.dir/build
+Run Build Command(s):/usr/bin/make cmTC_4a057/fast 
+/usr/bin/make -f CMakeFiles/cmTC_4a057.dir/build.make CMakeFiles/cmTC_4a057.dir/build
 make[1]: Entering directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4f66b.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_   -o CMakeFiles/cmTC_4f66b.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
-Linking C executable cmTC_4f66b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f66b.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_    -rdynamic CMakeFiles/cmTC_4f66b.dir/CheckFunctionExists.c.o  -o cmTC_4f66b 
-CMakeFiles/cmTC_4f66b.dir/CheckFunctionExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_4a057.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_   -o CMakeFiles/cmTC_4a057.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.14/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4a057
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a057.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_    -rdynamic CMakeFiles/cmTC_4a057.dir/CheckFunctionExists.c.o  -o cmTC_4a057 
+CMakeFiles/cmTC_4a057.dir/CheckFunctionExists.c.o: In function `main':
 CheckFunctionExists.c:(.text+0x10): undefined reference to `sgemm_'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_4f66b.dir/build.make:86: recipe for target 'cmTC_4f66b' failed
-make[1]: *** [cmTC_4f66b] Error 1
+CMakeFiles/cmTC_4a057.dir/build.make:86: recipe for target 'cmTC_4a057' failed
+make[1]: *** [cmTC_4a057] Error 1
 make[1]: Leaving directory '/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/CMakeTmp'
-Makefile:121: recipe for target 'cmTC_4f66b/fast' failed
-make: *** [cmTC_4f66b/fast] Error 2
+Makefile:121: recipe for target 'cmTC_4a057/fast' failed
+make: *** [cmTC_4a057/fast] Error 2
 
 

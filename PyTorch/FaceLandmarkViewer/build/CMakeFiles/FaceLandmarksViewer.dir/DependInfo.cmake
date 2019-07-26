@@ -5,9 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/CameraManager.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o"
-  "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceLandmarkNet.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarkNet.cpp.o"
+  "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceLandmarksDetector.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/MainDelegate.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o"
-  "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/Trainer+Inferrer.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/Trainer+Inferrer.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/main.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
