@@ -11,6 +11,7 @@ CameraManager::~CameraManager() {
     _cvLeftGpuMat.release();
     _cvRightGpuMat.release();
 
+    //std::fprintf(stdout, "CameraManager deconstructor: %d pass\n", 1);
     while(_zed.isOpened()) {
         _zed.close();
     }

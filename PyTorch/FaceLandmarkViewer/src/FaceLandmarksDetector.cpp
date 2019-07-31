@@ -19,15 +19,23 @@ void FaceLandmarksDetector::landmarkDetector(const cv::Ptr<cv::face::Facemark> &
         //std::vector< std::vector<cv::Point2f> > landmarks;
         
         // Run landmark detector
-        bool success = facemark->fit(inCVMat, _faces, _landmarks);
+        bool success = facemark->fit(inCVMat, _faces, _landmarksCVPint2f);
         
         if(success)
         {
-            // If successful, render the landmarks on the face
-            for(int i = 0; i < _landmarks.size(); i++)
+            /*// If successful, render the landmarks on the face
+            for(int i = 0; i < _landmarksCVPint2f.size(); i++)
             {
-                DrawLandmarks::drawLandmarks(inCVMat, _landmarks[i]);
+                DrawLandmarks::drawLandmarks(inCVMat, _landmarksCVPint2f[i]);
+                std::fprintf(stdout, "[%f, %f]\n", _landmarksCVPint2f[i].at(0).x, _landmarksCVPint2f[i].at(0).y);
+                _landmarksTuple2f.push_back(std::make_tuple(_landmarksCVPint2f[i].at(0).x, _landmarksCVPint2f[i].at(0).y));
+                //std::cout << _landmarks[i].at(0).x << std::endl;
+            }*/
+            for(auto const &landmark: _landmarksCVPint2f[0]) {
+                _landmarksTuple2f.push_back(std::make_tuple(landmark.x, landmark.y));
+                //std::fprintf(stdout, "[%f, %f]\n", landmark.x, landmark.y);
             }
+            //std::cout << std::endl;
         }
     }
 }
