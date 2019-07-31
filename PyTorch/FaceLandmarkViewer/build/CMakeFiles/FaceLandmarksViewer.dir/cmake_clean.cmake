@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o"
+  "CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o"
   "CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o"
   "CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o"
   "CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"

@@ -12,7 +12,7 @@ find_package(ZED 2 REQUIRED)
 find_package(CUDA ${ZED_CUDA_VERSION} EXACT REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-#include_directories("/usr/include/c++/7")
+include_directories("/usr/include/c++/7")
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})

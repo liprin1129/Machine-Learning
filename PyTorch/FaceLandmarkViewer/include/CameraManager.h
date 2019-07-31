@@ -24,6 +24,12 @@ class CameraManager {
         cv::Mat _cvLeftMat; // cv Mat variable
         cv::Mat _cvRightMat; // cv Mat variable
 
+        int _focalLength;
+        float _lfX;
+        float _lfY;
+        float _lcx;
+        float _lcy;
+
         // ** Class Methods ** //
         void initParams(); // Set configuration parameters
         void runtimeParams(); // Set configuration parameters
@@ -40,6 +46,9 @@ class CameraManager {
         // ** Getters ** //
         cv::Mat getCVLeftMat() {return _cvLeftMat.clone();};
         cv::Mat getCVRightMat() {return _cvRightMat.clone();};
+        int getCameraFocalLength() {return _focalLength;};
+        std::tuple<float, float> getLeftFocalLength() {return std::make_tuple(_lfX, _lfY);};
+        std::tuple<float, float> getLeftCameraOpticalCentre() {return std::make_tuple(_lcx, _lcy);};
 
         // ** Class Methods ** //
         void getFramesFromZED();

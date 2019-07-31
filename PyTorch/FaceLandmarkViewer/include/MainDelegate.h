@@ -5,10 +5,7 @@
 //#include "drawLandmarks.hpp"
 #include "CameraManager.h"
 #include "FaceLandmarksDetector.h"
-
-//using namespace std;
-//using namespace cv;
-//using namespace cv::face;
+#include "DepthEstimator.h"
 
 class MainDelegate {
 	public:

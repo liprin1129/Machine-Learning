@@ -150,6 +150,33 @@ src/CameraManager.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.s
 .PHONY : src/CameraManager.cpp.s
 
+src/DepthEstimator.o: src/DepthEstimator.cpp.o
+
+.PHONY : src/DepthEstimator.o
+
+# target to build an object file
+src/DepthEstimator.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o
+.PHONY : src/DepthEstimator.cpp.o
+
+src/DepthEstimator.i: src/DepthEstimator.cpp.i
+
+.PHONY : src/DepthEstimator.i
+
+# target to preprocess a source file
+src/DepthEstimator.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.i
+.PHONY : src/DepthEstimator.cpp.i
+
+src/DepthEstimator.s: src/DepthEstimator.cpp.s
+
+.PHONY : src/DepthEstimator.s
+
+# target to generate assembly for a file
+src/DepthEstimator.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.s
+.PHONY : src/DepthEstimator.cpp.s
+
 src/FaceLandmarksDetector.o: src/FaceLandmarksDetector.cpp.o
 
 .PHONY : src/FaceLandmarksDetector.o
@@ -243,6 +270,9 @@ help:
 	@echo "... src/CameraManager.o"
 	@echo "... src/CameraManager.i"
 	@echo "... src/CameraManager.s"
+	@echo "... src/DepthEstimator.o"
+	@echo "... src/DepthEstimator.i"
+	@echo "... src/DepthEstimator.s"
 	@echo "... src/FaceLandmarksDetector.o"
 	@echo "... src/FaceLandmarksDetector.i"
 	@echo "... src/FaceLandmarksDetector.s"

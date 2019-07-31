@@ -1,6 +1,7 @@
 #include "FaceLandmarksDetector.h"
 
-void FaceLandmarksDetector::landmarkDetector(const cv::Ptr<cv::face::Facemark> &facemark, cv::CascadeClassifier &faceDetector, cv::Mat &inCVMat) {
+std::vector<std::tuple<float, float>> FaceLandmarksDetector::landmarkDetector(const cv::Ptr<cv::face::Facemark> &facemark, cv::CascadeClassifier &faceDetector, cv::Mat &inCVMat) {
+    std::vector<std::tuple<float, float>> landmarksVec2f;
 
     if (inCVMat.cols > 0 and inCVMat.rows) {
         // Find face
@@ -23,21 +24,22 @@ void FaceLandmarksDetector::landmarkDetector(const cv::Ptr<cv::face::Facemark> &
         
         if(success)
         {
-            /*// If successful, render the landmarks on the face
+            // If successful, render the landmarks on the face
             for(int i = 0; i < _landmarksCVPint2f.size(); i++)
             {
                 DrawLandmarks::drawLandmarks(inCVMat, _landmarksCVPint2f[i]);
-                std::fprintf(stdout, "[%f, %f]\n", _landmarksCVPint2f[i].at(0).x, _landmarksCVPint2f[i].at(0).y);
-                _landmarksTuple2f.push_back(std::make_tuple(_landmarksCVPint2f[i].at(0).x, _landmarksCVPint2f[i].at(0).y));
-                //std::cout << _landmarks[i].at(0).x << std::endl;
-            }*/
+            }
+            
             for(auto const &landmark: _landmarksCVPint2f[0]) {
-                _landmarksTuple2f.push_back(std::make_tuple(landmark.x, landmark.y));
+                //_landmarksVec2f.push_back(std::make_tuple(landmark.x, landmark.y));
+                landmarksVec2f.push_back(std::make_tuple(landmark.x, landmark.y));
                 //std::fprintf(stdout, "[%f, %f]\n", landmark.x, landmark.y);
             }
             //std::cout << std::endl;
         }
     }
+
+    return landmarksVec2f;
 }
 
 void FaceLandmarksDetector::FaceLandmarksDetectorHasLoaded() {

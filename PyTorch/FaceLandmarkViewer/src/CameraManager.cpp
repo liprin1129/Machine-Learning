@@ -32,7 +32,7 @@ void CameraManager::openCamera()
 // Set configuration parameters
 void CameraManager::initParams()
 {
-    _init_params.camera_resolution = sl::RESOLUTION_HD720;
+    _init_params.camera_resolution = sl::RESOLUTION_VGA;
     _init_params.depth_mode = sl::DEPTH_MODE_NONE;
     _init_params.coordinate_units = sl::UNIT_MILLIMETER;
     _init_params.camera_fps = 1;
@@ -52,8 +52,8 @@ void CameraManager::getOneFrameFromZED()
     if (_zed.grab(_runtime_parameters) == sl::SUCCESS) {
 
         // Retrieve the left image, depth image in half-resolution
-        _zed.retrieveImage(_slLeftMat, sl::VIEW_LEFT, sl::MEM_GPU, _zed.getResolution().width/3, _zed.getResolution().height/3);
-        _zed.retrieveImage(_slRightMat, sl::VIEW_RIGHT, sl::MEM_GPU, _zed.getResolution().width/3, _zed.getResolution().height/3);
+        _zed.retrieveImage(_slLeftMat, sl::VIEW_LEFT, sl::MEM_GPU, _zed.getResolution().width, _zed.getResolution().height);
+        _zed.retrieveImage(_slRightMat, sl::VIEW_RIGHT, sl::MEM_GPU, _zed.getResolution().width, _zed.getResolution().height);
 
         _cvLeftGpuMat = slMatToCvMatConverterForGPU(_slLeftMat);
         _cvRightGpuMat = slMatToCvMatConverterForGPU(_slRightMat);
@@ -143,5 +143,23 @@ void CameraManager::displayFrames(const cv::Mat &cvMat, std::string cameraPositi
 void CameraManager::CameraManagerHasLoaded() {
     initParams();
     openCamera();
-    //displayFrames("left");
+
+    if(_init_params.camera_resolution == 0) {
+        _focalLength=1400;
+    } 
+    else if (_init_params.camera_resolution == 1) {
+        _focalLength=1400;
+    }
+    else if (_init_params.camera_resolution == 2) {
+        _focalLength=700;
+    }
+    else if (_init_params.camera_resolution == 3) {
+        _focalLength=350;
+    }
+
+    _lfX = _zed.getCameraInformation().calibration_parameters.left_cam.fx;
+    _lfY = _zed.getCameraInformation().calibration_parameters.left_cam.fy;
+
+    _lcx = _zed.getCameraInformation().calibration_parameters.left_cam.cx;
+    _lcy = _zed.getCameraInformation().calibration_parameters.left_cam.cy;
 }

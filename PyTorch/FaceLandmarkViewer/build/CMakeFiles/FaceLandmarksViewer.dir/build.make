@@ -70,9 +70,22 @@ CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.s"
 	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/CameraManager.cpp -o CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.s
 
+CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: CMakeFiles/FaceLandmarksViewer.dir/flags.make
+CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: ../src/DepthEstimator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp
+
+CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.i"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp > CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.i
+
+CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.s"
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp -o CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.s
+
 CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o: CMakeFiles/FaceLandmarksViewer.dir/flags.make
 CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o: ../src/FaceLandmarksDetector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o"
 	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceLandmarksDetector.cpp
 
 CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.s: cmake_force
 
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: CMakeFiles/FaceLandmarksViewer.dir/flags.make
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../src/MainDelegate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o"
 	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/MainDelegate.cpp
 
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.s: cmake_force
 
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: CMakeFiles/FaceLandmarksViewer.dir/flags.make
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"
 	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o -c /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/main.cpp
 
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.i: cmake_force
@@ -112,6 +125,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.s: cmake_force
 # Object files for target FaceLandmarksViewer
 FaceLandmarksViewer_OBJECTS = \
 "CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o" \
+"CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o" \
 "CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o" \
 "CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o" \
 "CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"
@@ -120,6 +134,7 @@ FaceLandmarksViewer_OBJECTS = \
 FaceLandmarksViewer_EXTERNAL_OBJECTS =
 
 FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o
+FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o
 FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o
 FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o
 FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o
@@ -241,7 +256,7 @@ FaceLandmarksViewer: /usr/local/lib/libopencv_imgproc.so.3.4.5
 FaceLandmarksViewer: /usr/local/lib/libopencv_core.so.3.4.5
 FaceLandmarksViewer: /usr/local/lib/libopencv_cudev.so.3.4.5
 FaceLandmarksViewer: CMakeFiles/FaceLandmarksViewer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable FaceLandmarksViewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable FaceLandmarksViewer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FaceLandmarksViewer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

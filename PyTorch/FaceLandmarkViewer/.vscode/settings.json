@@ -51,6 +51,11 @@
         "ratio": "cpp",
         "thread": "cpp",
         "cinttypes": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "codecvt": "cpp",
+        "filesystem": "cpp",
+        "numeric": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp"
     }
 }
