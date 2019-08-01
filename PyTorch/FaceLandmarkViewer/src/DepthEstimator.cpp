@@ -29,20 +29,42 @@ void DepthEstimator::estimateCoordinates3D(
     }
 }
 
-void DepthEstimator::incrementalMeanAndVariance() {
+void DepthEstimator::incrementalMean() {
+    auto coordTensor = DataWrangling::Utilities::coordArrToTensorConverter(_coordinate3DArr);
+    //std::cout << "coordTensor\n" << coordTensor << std::endl;
 
-    // Convert _coordinate3DArr[68][3] to torch::Tensor
-    torch::TensorOptions coordTensorOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false).device(torch::kCPU);
-    torch::Tensor coordTensor = torch::randn({68, 3}, coordTensorOptions);
+    // Normalize coordTensor into norm Tensor within [0, 1]
+    auto normTensor = DataWrangling::Utilities::normMinMax(coordTensor);
+    //std::cout << "Norm\n" << normTensor << std::endl;
 
-    for (int i=0; i<68; ++i) {
-        for (int j=0; j<3; ++j) {
-            coordTensor[i][j] = _coordinate3DArr[i][j];
+    if (_classCount <= 10.0) {
+        _initMeanVarTensor(normTensor);
+        _classCount += 1.0;
+    }
+    else {
+        //std::cout << (torch::sum(torch::pow(_oldCoordTensor-normTensor, 2)).item<float>()) << std::endl;
+        auto l2Distance = torch::sum(torch::pow(_oldCoordTensor-normTensor, 2)).item<float>();
+        
+        if ( l2Distance < 5.0 ) {
+            auto newMeanTensor = _meanTensor + (normTensor - _meanTensor) / _classCount;
+            //auto newVarTensor = torch::sqrt( ( torch::pow(_varTensor, 2)*_classCount + (normTensor-_meanTensor)*(normTensor-newMeanTensor) ) / _classCount);
+            
+            // Update
+            _meanTensor = newMeanTensor;
+            //_varTensor = newVarTensor;
+            std::cout << "[O] UPDATE" << std::endl;
+            //std::cout << "Mean\n" << newMeanTensor << std::endl;
+            //std::cout << "Variance\n" << newVarTensor << std::endl;
+            _classCount += 1.0;
+        }
+        else {
+            std::cout << "[X] NO UPDATE >>" << std::endl;
         }
     }
-    //std::cout << coordTensor[33] << std::endl << std::endl;
 
-    
+    // Update
+    _oldCoordTensor = normTensor;
+
     /*auto idx = 33;
     auto X = _coordinate3DArr[idx][0];
     auto Y = _coordinate3DArr[idx][1];
@@ -93,7 +115,48 @@ void DepthEstimator::incrementalMeanAndVariance() {
     */
 }
 
+
+void DepthEstimator::incrementalMeanAndCovariance() {
+    _absDistanceCalculator();
+
+    auto distanceMeanTensor = _distanceTensor.mean();
+    //std::cout << _distanceTensor.sizes() << ", " << distanceMeanTensor.sizes() << std::endl;
+
+    auto distanceCovMatrixTensor = torch::eye(_distanceTensor.size(0));
+    auto disparityTensor = _distanceTensor-distanceMeanTensor;
+
+    for (int i=0; i<distanceCovMatrixTensor.size(0); ++i) {
+        for (int j=0; j<distanceCovMatrixTensor.size(1); ++j) {
+            
+        }
+    }
+    std::cout << (_distanceTensor-distanceMeanTensor).unsqueeze(1).sizes() << std::endl;
+    std::cout << (_distanceTensor-distanceMeanTensor).unsqueeze(0).sizes() << std::endl;
+    std::cout << distanceCovMatrixTensor.sizes() << std::endl;
+}
+
+
+void DepthEstimator::_initMeanVarTensor(at::Tensor const &inVecTensor) {
+        _meanTensor = inVecTensor.mean();
+        //_covTensor = torch::zeros(inVecTensor.size(0));
+}
+
+
+void DepthEstimator::_initMeanCovTensor(at::Tensor const &inVecTensor) {
+        _meanTensor = inVecTensor.mean();
+        _covTensor = torch::eye(inVecTensor.size(0));
+}
+
+
+void DepthEstimator::_absDistanceCalculator() {
+    auto secondOrder = torch::pow(_meanTensor, 2);
+    _distanceTensor = torch::sqrt(secondOrder.sum(1));
+    //std::cout << _distanceTensor.sizes() << std::endl;
+}
+
+
 int DepthEstimator::DepthEstimatorHasLoaded() {
+    /*
     _meanX = 0;
     _meanY = 0;
     _meanZ = 0;
@@ -109,4 +172,6 @@ int DepthEstimator::DepthEstimatorHasLoaded() {
     _classCount=1;
 
     _updateFlag = true;
+    */
+   _classCount=1.0;
 }

@@ -17,7 +17,7 @@ include_directories("/usr/include/c++/7")
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
-include_directories(${xtensor_INCLUDE_DIRS})
+include_directories(PUBLIC ${xtensor_INCLUDE_DIRS})
 
 #link_directories(${ZED_LIBRARY_DIR})
 #link_directories(${OpenCV_LIBRARY_DIRS})
@@ -35,10 +35,8 @@ target_link_libraries(
     ${ZED_LIBRARIES} 
     ${CUDA_CUDA_LIBRARY} ${CUDA_CUDART_LIBRARY} ${CUDA_NPP_LIBRARIES_ZED}
     -lstdc++fs
-    ${xtensor_LIBRARIES}
+    PUBLIC xtensor
 )
 
 set_property(TARGET ${execName} PROPERTY CXX_STANDARD 17)# CXX_EXTENSIONS OFF)
-
-
 # cmake -DCMAKE_PREFIX_PATH=/usr/local/lib/python3.6/dist-packages/torch ..

@@ -6,6 +6,7 @@
 #include "CameraManager.h"
 #include "FaceLandmarksDetector.h"
 #include "DepthEstimator.h"
+#include "DataWranglingHelper.h"
 
 class MainDelegate {
 	public:

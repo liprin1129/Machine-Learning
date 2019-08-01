@@ -64,6 +64,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o: /usr/local/zed/inclu
 CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o: /usr/local/zed/include/sl_zed/Camera.hpp
 CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o: /usr/local/zed/include/sl_zed/defines.hpp
 
+CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: ../include/DataWranglingHelper.h
 CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: ../include/DepthEstimator.h
 CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: ../src/DepthEstimator.cpp
 CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o: /usr/local/cuda/include/cuda.h
@@ -321,6 +322,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o: ../include/d
 CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o: ../src/FaceLandmarksDetector.cpp
 
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../include/CameraManager.h
+CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../include/DataWranglingHelper.h
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../include/DepthEstimator.h
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../include/FaceLandmarksDetector.h
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: ../include/MainDelegate.h
@@ -636,6 +638,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: /usr/local/zed/includ
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o: /usr/local/zed/include/sl_zed/defines.hpp
 
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../include/CameraManager.h
+CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../include/DataWranglingHelper.h
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../include/DepthEstimator.h
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../include/FaceLandmarksDetector.h
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o: ../include/MainDelegate.h

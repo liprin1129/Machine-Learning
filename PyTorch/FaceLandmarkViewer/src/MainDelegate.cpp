@@ -21,7 +21,8 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 
     cv::namedWindow("Right Facial Landmark Detection", cv::WINDOW_NORMAL);
     cv::namedWindow("Left Facial Landmark Detection", cv::WINDOW_NORMAL);
-    
+    std::cout << "get frame" << std::endl;
+
     while(true)
     {   
         cm.getOneFrameFromZED(); // get a left and right camera frame from the camera
@@ -39,7 +40,8 @@ int MainDelegate::mainDelegation(int argc, char** argv){
                 auto [lcx, lcy] = cm.getLeftCameraOpticalCentre();
                 de.estimateCoordinates3D(lLandmarks, rLandmarks, lfx, lfy, lcx, lcy, cm.getCameraFocalLength());
 
-                de.incrementalMeanAndVariance();
+                //de.incrementalMeanAndCovariance();
+                de.incrementalMean();
             }
 
             //if (de.isUpdateFlagTrue()) {
@@ -52,8 +54,17 @@ int MainDelegate::mainDelegation(int argc, char** argv){
 
             // Exit loop if ESC is pressed
             if (cv::waitKey(1) == 27) {
+                cv::destroyAllWindows();
                 cm.~CameraManager();
 
+                de.incrementalMeanAndCovariance();
+                /*
+                // Save means and variances to CSV file
+                std::cout << "Enter you employee number\n";
+                std::string employNo;
+                std::cin >> employNo;
+                DataWrangling::Utilities::writeMeanAndVarTensorToCSV(de.getMeanTensor(), employNo);
+                */
                 delete facemark;
                 break;
             }

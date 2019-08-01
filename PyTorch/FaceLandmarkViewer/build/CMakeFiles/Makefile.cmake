@@ -13,6 +13,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.14.4/CMakeSystem.cmake"
   "detect_cuda_compute_capabilities.cpp"
   "detect_cuda_version.cc"
+  "/usr/lib/cmake/xtensor/xtensorConfig.cmake"
+  "/usr/lib/cmake/xtensor/xtensorConfigVersion.cmake"
   "/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake"
   "/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Caffe2ConfigVersion.cmake"
   "/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Caffe2Targets-release.cmake"

@@ -416,8 +416,8 @@ ZED_DIR:PATH=/usr/local/zed
 
 ZED_FOUND:BOOL=TRUE
 
-//No help, variable specified on the command line.
-_GLIBCXX_USE_CXX11_ABI:UNINITIALIZED=0
+//The directory containing a CMake configuration file for xtensor.
+xtensor_DIR:PATH=/usr/lib/cmake/xtensor
 
 
 ########################

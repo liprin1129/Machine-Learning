@@ -8,26 +8,36 @@
 
 #include <torch/torch.h>
 
+#include "DataWranglingHelper.h"
+
 class DepthEstimator {
     private:
         //std::vector<std::list<int>> _Coordinates3D;
         float _coordinate3DArr[68][3]; // array of 68 landmarks and [X, Y, Z] coordinates
 
-        torch::Tensor _oldTensor;
+        at::Tensor _oldCoordTensor, _meanTensor, _varTensor, _covTensor, _distanceTensor, _oldDistanceTensor;
+        float _classCount; // total count number to calculate mean and variance
 
         /*
         int _oldX, _oldY, _oldZ;
         float _meanX, _meanY, _meanZ;
         float _varX, _varY, _varZ;
-        int64_t _classCount; // total count number to calculate mean and variance
+
         bool _updateFlag;
         */
+
+        void _initMeanVarTensor(at::Tensor const &inTensor);
+        void _initMeanCovTensor(at::Tensor const &inVecTensor);
+        void _absDistanceCalculator();
 
     public:
         // Constructor
         DepthEstimator();
 
         // Getters
+        at::Tensor getMeanTensor(){return _meanTensor;};
+        at::Tensor getVarTensor(){return _varTensor;};
+
         //int64_t getClassCount() {return _classCount;};
         //bool isUpdateFlagTrue() {return _updateFlag;};
         //std::tuple<float, float> getOldXandY() {return std::make_tuple(_oldX, _oldY);};
@@ -43,6 +53,7 @@ class DepthEstimator {
             const int &focalLength
         );
 
-        void incrementalMeanAndVariance();
+        void incrementalMean();
+        void incrementalMeanAndCovariance();
         int DepthEstimatorHasLoaded();
 };

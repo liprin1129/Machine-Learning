@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+../include/DataWranglingHelper.h
+torch/torch.h
+-
+iostream
+-
+fstream
+-
+xtensor/xarray.hpp
+-
+xtensor/xio.hpp
+-
+xtensor/xview.hpp
+-
+
 ../include/DepthEstimator.h
 iostream
 -
@@ -19,6 +33,8 @@ cmath
 -
 torch/torch.h
 -
+DataWranglingHelper.h
+../include/DataWranglingHelper.h
 
 /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp
 DepthEstimator.h

@@ -65,6 +65,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o
  /usr/local/zed/include/sl_zed/Camera.hpp
  /usr/local/zed/include/sl_zed/defines.hpp
 CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o
+ ../include/DataWranglingHelper.h
  ../include/DepthEstimator.h
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp
  /usr/local/cuda/include/cuda.h
@@ -322,6 +323,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o
  /DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceLandmarksDetector.cpp
 CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o
  ../include/CameraManager.h
+ ../include/DataWranglingHelper.h
  ../include/DepthEstimator.h
  ../include/FaceLandmarksDetector.h
  ../include/MainDelegate.h
@@ -637,6 +639,7 @@ CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o
  /usr/local/zed/include/sl_zed/defines.hpp
 CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o
  ../include/CameraManager.h
+ ../include/DataWranglingHelper.h
  ../include/DepthEstimator.h
  ../include/FaceLandmarksDetector.h
  ../include/MainDelegate.h
