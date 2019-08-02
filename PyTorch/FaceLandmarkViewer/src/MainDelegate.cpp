@@ -19,9 +19,22 @@ int MainDelegate::mainDelegation(int argc, char** argv){
     // Variable to store a video frame and its grayscale 
     cv::Mat lFrame, lGray, rFrame, rGray;
 
-    cv::namedWindow("Right Facial Landmark Detection", cv::WINDOW_NORMAL);
-    cv::namedWindow("Left Facial Landmark Detection", cv::WINDOW_NORMAL);
-    std::cout << "get frame" << std::endl;
+    cv::namedWindow("Right Facial Landmark Detection", cv::WINDOW_AUTOSIZE);
+    cv::namedWindow("Left Facial Landmark Detection", cv::WINDOW_AUTOSIZE);
+    //std::cout << "get frame" << std::endl;
+    std::cout << std::endl;
+
+    int initCount = 0;
+    if (std::string(argv[3]) == "Register") {
+        std::cout << "Register\n";
+        initCount = 500;
+    }
+    else if (std::string(argv[3]) == "Predict") {
+        std::cout << "Predict\n";
+        initCount = 100;
+    }
+
+    int clockCount = initCount;
 
     while(true)
     {   
@@ -41,30 +54,35 @@ int MainDelegate::mainDelegation(int argc, char** argv){
                 de.estimateCoordinates3D(lLandmarks, rLandmarks, lfx, lfy, lcx, lcy, cm.getCameraFocalLength());
 
                 //de.incrementalMeanAndCovariance();
-                de.incrementalMean();
+                de.incrementalMean(clockCount);
             }
 
-            //if (de.isUpdateFlagTrue()) {
-                // Display results
-                cv::moveWindow("Left Facial Landmark Detection", 20,20);
-                cv::moveWindow("Right Facial Landmark Detection", 20+lFrame.cols,20);
-                cv::imshow("Left Facial Landmark Detection", lFrame);
-                cv::imshow("Right Facial Landmark Detection", rFrame);
-            //}
+            // Display results
+            cv::moveWindow("Left Facial Landmark Detection", 20,20);
+            cv::moveWindow("Right Facial Landmark Detection", 20+lFrame.cols,20);
+            cv::imshow("Left Facial Landmark Detection", lFrame);
+            cv::imshow("Right Facial Landmark Detection", rFrame);
+            int countPercent = ((initCount-clockCount)*100)/(initCount);
+            std::cout << "\r" << countPercent << " %" << std::flush;
+            //std::cout << "\r" << clockCount << " %" << std::flush;
+            
 
             // Exit loop if ESC is pressed
-            if (cv::waitKey(1) == 27) {
+            if (cv::waitKey(1) == 27 or countPercent >= 100) {
                 cv::destroyAllWindows();
                 cm.~CameraManager();
-
-                de.incrementalMeanAndCovariance();
-                /*
-                // Save means and variances to CSV file
-                std::cout << "Enter you employee number\n";
-                std::string employNo;
-                std::cin >> employNo;
-                DataWrangling::Utilities::writeMeanAndVarTensorToCSV(de.getMeanTensor(), employNo);
-                */
+                
+                if (std::string(argv[3]) == "Register") {
+                    std::cout << "Enter you employee number\n";
+                    std::string employNum;
+                    std::cin >> employNum;
+                    // Save means and variances to CSV file
+                    DataWrangling::Utilities::writeMeanAndVarTensorToCSV(de.getMeanTensor(), employNum);
+                }
+                else if (std::string(argv[3]) == "Predict") {
+                    FaceRecognizer::landmarkMeanDifferences(de.getMeanTensor());
+                }
+                
                 delete facemark;
                 break;
             }

@@ -7,6 +7,7 @@
 #include "FaceLandmarksDetector.h"
 #include "DepthEstimator.h"
 #include "DataWranglingHelper.h"
+#include "FaceRecognizer.h"
 
 class MainDelegate {
 	public:

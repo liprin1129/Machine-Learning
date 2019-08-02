@@ -3,9 +3,6 @@
 #include <torch/torch.h>
 #include <iostream>
 #include <fstream>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xio.hpp>
-#include <xtensor/xview.hpp>
 
 namespace DataWrangling {
 
@@ -28,7 +25,7 @@ class Utilities {
 
         static at::Tensor coordArrToTensorConverter(float inArr[][3]) {
             // Convert _coordinate3DArr[68][3] to torch::Tensor
-            torch::TensorOptions outputTensorOptions = torch::TensorOptions().dtype(torch::kFloat64).requires_grad(false).device(torch::kCPU);
+            torch::TensorOptions outputTensorOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false).device(torch::kCPU);
             torch::Tensor outputTensor = torch::randn({68, 3}, outputTensorOptions);
 
             for (int i=0; i<68; ++i) {
@@ -54,7 +51,7 @@ class Utilities {
 
                 for (int j=0; j<inMeanTensor.size(1); ++j) {
                     //std::cout << inMeanTensor[i][j].item<float>();
-                    fileStream << ", " << inMeanTensor[i][j].item<float>();
+                    fileStream << "," << inMeanTensor[i][j].item<float>();
                     //fileStream << ", " << inVarTensor[i][j].item<float>();
                 }
                 fileStream << "\n";
@@ -63,15 +60,46 @@ class Utilities {
             fileStream.close();
         }
 
+        static at::Tensor readCSVtoTensor(std::string employNo) {
+            torch::TensorOptions outputTensorOptions = torch::TensorOptions().dtype(torch::kFloat32).requires_grad(false).device(torch::kCPU);
+            torch::Tensor outputTensor = torch::randn({68, 3}, outputTensorOptions);
+            auto rowIdx = 0;
+            auto colIdx = 0;
+
+            std::ifstream fileStream;
+            fileStream.open(employNo+".csv");
+
+            std::string line;
+            std::getline(fileStream, line); // Skip the first line
+            
+            while (std::getline(fileStream, line)) {
+                //std::cout << line << std::endl;
+                std::stringstream coordStringStream(line);
+                
+                std::string coordValue;
+                
+                std::getline(coordStringStream, coordValue, ','); // skip landmark number
+                while(std::getline(coordStringStream, coordValue, ',')) {
+                    //std::cout << coordValue << std::endl;
+                    if (colIdx < outputTensor.size(1)) 
+                        outputTensor[rowIdx][colIdx] = std::stof(coordValue);
+                    
+                    //std::cout << rowIdx << ", " << colIdx << std::endl;
+                    ++colIdx;
+                }
+                ++rowIdx;
+                colIdx = 0;
+            }
+
+            //std::cout << outputTensor << std::endl;
+            return outputTensor;
+        }
+
         static at::Tensor tensorColumnSlicer(at::Tensor const &inTensor, int columnIdx) {
             return inTensor.index(
                 {torch::arange(0, inTensor.size(0), torch::kLong), 
                 torch::ones(inTensor.size(0), torch::kLong)*columnIdx});
         }
-
-        //static void multivariateNormalDistribution(at::Tensor const &inTensor, at::Tensor const &inMeanTensor, at::Tensor const &inCovTensor) {
-            
-        //}
 };
 
 } // END namespace DataWrangling

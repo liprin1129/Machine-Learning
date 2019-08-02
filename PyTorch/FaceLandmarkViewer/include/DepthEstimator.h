@@ -53,7 +53,6 @@ class DepthEstimator {
             const int &focalLength
         );
 
-        void incrementalMean();
-        void incrementalMeanAndCovariance();
+        void incrementalMean(int &clockCount);
         int DepthEstimatorHasLoaded();
 };

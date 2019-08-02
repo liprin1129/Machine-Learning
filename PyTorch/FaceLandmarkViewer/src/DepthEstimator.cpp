@@ -29,7 +29,7 @@ void DepthEstimator::estimateCoordinates3D(
     }
 }
 
-void DepthEstimator::incrementalMean() {
+void DepthEstimator::incrementalMean(int &clockCount) {
     auto coordTensor = DataWrangling::Utilities::coordArrToTensorConverter(_coordinate3DArr);
     //std::cout << "coordTensor\n" << coordTensor << std::endl;
 
@@ -37,7 +37,7 @@ void DepthEstimator::incrementalMean() {
     auto normTensor = DataWrangling::Utilities::normMinMax(coordTensor);
     //std::cout << "Norm\n" << normTensor << std::endl;
 
-    if (_classCount <= 10.0) {
+    if (_classCount <= 5.0) {
         _initMeanVarTensor(normTensor);
         _classCount += 1.0;
     }
@@ -51,14 +51,13 @@ void DepthEstimator::incrementalMean() {
             
             // Update
             _meanTensor = newMeanTensor;
-            //_varTensor = newVarTensor;
-            std::cout << "[O] UPDATE" << std::endl;
-            //std::cout << "Mean\n" << newMeanTensor << std::endl;
-            //std::cout << "Variance\n" << newVarTensor << std::endl;
+            //std::cout << "[O] UPDATE" << std::endl;
+
             _classCount += 1.0;
+            clockCount--;
         }
         else {
-            std::cout << "[X] NO UPDATE >>" << std::endl;
+            //std::cout << "[X] NO UPDATE >>" << std::endl;
         }
     }
 
@@ -113,26 +112,6 @@ void DepthEstimator::incrementalMean() {
     std::fprintf(stdout, "%s [X, Y, Z]:[%f, %f, %f], \t Means:[%f, %f, %f], \t Variances[%f, %f, %f]\n",
         _updateFlag==true? "True":"False", X, Y, Z, _meanX, _meanY, _meanZ, _varX, _varY, _varZ);
     */
-}
-
-
-void DepthEstimator::incrementalMeanAndCovariance() {
-    _absDistanceCalculator();
-
-    auto distanceMeanTensor = _distanceTensor.mean();
-    //std::cout << _distanceTensor.sizes() << ", " << distanceMeanTensor.sizes() << std::endl;
-
-    auto distanceCovMatrixTensor = torch::eye(_distanceTensor.size(0));
-    auto disparityTensor = _distanceTensor-distanceMeanTensor;
-
-    for (int i=0; i<distanceCovMatrixTensor.size(0); ++i) {
-        for (int j=0; j<distanceCovMatrixTensor.size(1); ++j) {
-            
-        }
-    }
-    std::cout << (_distanceTensor-distanceMeanTensor).unsqueeze(1).sizes() << std::endl;
-    std::cout << (_distanceTensor-distanceMeanTensor).unsqueeze(0).sizes() << std::endl;
-    std::cout << distanceCovMatrixTensor.sizes() << std::endl;
 }
 
 

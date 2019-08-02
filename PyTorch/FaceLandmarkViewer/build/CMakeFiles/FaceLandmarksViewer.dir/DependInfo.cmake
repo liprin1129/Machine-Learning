@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/CameraManager.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/CameraManager.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/DepthEstimator.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/DepthEstimator.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceLandmarksDetector.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.o"
+  "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/FaceRecognizer.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/FaceRecognizer.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/MainDelegate.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/MainDelegate.cpp.o"
   "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/src/main.cpp" "/DEVs/Machine-Learning/PyTorch/FaceLandmarkViewer/build/CMakeFiles/FaceLandmarksViewer.dir/src/main.cpp.o"
   )

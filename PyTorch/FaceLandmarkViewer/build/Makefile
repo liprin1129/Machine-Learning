@@ -204,6 +204,33 @@ src/FaceLandmarksDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceLandmarksDetector.cpp.s
 .PHONY : src/FaceLandmarksDetector.cpp.s
 
+src/FaceRecognizer.o: src/FaceRecognizer.cpp.o
+
+.PHONY : src/FaceRecognizer.o
+
+# target to build an object file
+src/FaceRecognizer.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceRecognizer.cpp.o
+.PHONY : src/FaceRecognizer.cpp.o
+
+src/FaceRecognizer.i: src/FaceRecognizer.cpp.i
+
+.PHONY : src/FaceRecognizer.i
+
+# target to preprocess a source file
+src/FaceRecognizer.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceRecognizer.cpp.i
+.PHONY : src/FaceRecognizer.cpp.i
+
+src/FaceRecognizer.s: src/FaceRecognizer.cpp.s
+
+.PHONY : src/FaceRecognizer.s
+
+# target to generate assembly for a file
+src/FaceRecognizer.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceLandmarksViewer.dir/build.make CMakeFiles/FaceLandmarksViewer.dir/src/FaceRecognizer.cpp.s
+.PHONY : src/FaceRecognizer.cpp.s
+
 src/MainDelegate.o: src/MainDelegate.cpp.o
 
 .PHONY : src/MainDelegate.o
@@ -276,6 +303,9 @@ help:
 	@echo "... src/FaceLandmarksDetector.o"
 	@echo "... src/FaceLandmarksDetector.i"
 	@echo "... src/FaceLandmarksDetector.s"
+	@echo "... src/FaceRecognizer.o"
+	@echo "... src/FaceRecognizer.i"
+	@echo "... src/FaceRecognizer.s"
 	@echo "... src/MainDelegate.o"
 	@echo "... src/MainDelegate.i"
 	@echo "... src/MainDelegate.s"

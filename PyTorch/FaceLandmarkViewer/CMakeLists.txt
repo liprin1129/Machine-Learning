@@ -10,14 +10,14 @@ find_package(Torch REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(ZED 2 REQUIRED)
 find_package(CUDA ${ZED_CUDA_VERSION} EXACT REQUIRED)
-find_package(xtensor REQUIRED)
+#find_package(xtensor REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories("/usr/include/c++/7")
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
-include_directories(${xtensor_INCLUDE_DIRS})
+#include_directories(${xtensor_INCLUDE_DIRS})
 
 #link_directories(${ZED_LIBRARY_DIR})
 #link_directories(${OpenCV_LIBRARY_DIRS})
@@ -35,7 +35,7 @@ target_link_libraries(
     ${ZED_LIBRARIES} 
     ${CUDA_CUDA_LIBRARY} ${CUDA_CUDART_LIBRARY} ${CUDA_NPP_LIBRARIES_ZED}
     -lstdc++fs
-    ${xtensor_LIBRARIES}
+    #${xtensor_LIBRARIES}
 )
 
 set_property(TARGET ${execName} PROPERTY CXX_STANDARD 17)# CXX_EXTENSIONS OFF)
