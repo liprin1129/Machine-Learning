@@ -31,7 +31,7 @@ int MainDelegate::mainDelegation(int argc, char** argv){
     }
     else if (std::string(argv[3]) == "Predict") {
         std::cout << "Predict\n";
-        initCount = 100;
+        initCount = 80;
     }
 
     int clockCount = initCount;
