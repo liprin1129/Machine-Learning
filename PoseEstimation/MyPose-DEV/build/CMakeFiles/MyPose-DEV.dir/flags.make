@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++1z -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/cuda/include -I/usr/local/zed/include -I/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/include -isystem /usr/local/include/opencv 
+CXX_INCLUDES = -I/usr/local/cuda/include -I/usr/local/zed/include -I/DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/include -I/usr/local/openpose/include -isystem /usr/local/include/opencv 
 

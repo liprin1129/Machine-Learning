@@ -154,6 +154,7 @@ MyPose-DEV: /usr/local/lib/libopencv_aruco.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_bgsegm.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_bioinspired.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_ccalib.so.3.4.5
+MyPose-DEV: /usr/local/lib/libopencv_cvv.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_dnn_objdetect.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_dpm.so.3.4.5
 MyPose-DEV: /usr/local/lib/libopencv_face.so.3.4.5

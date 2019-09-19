@@ -13,6 +13,7 @@ int JointCoordinateManager::estimateDepthCoordinates(int focalLength) {
 // Compute Z coordinate (This is not a good algorithm. This is only for simple verification.)
 
     if ((int)leftJoints.size() == (int)rightJoints.size()) {
+
         for (int i=0; i<(int)leftJoints.size(); ++i) {
             auto lJ = leftJoints[i]; // get a tuple from the leftJoints vector
             auto rJ = rightJoints[i]; // get a tuple from the rightJoints vector
@@ -26,10 +27,10 @@ int JointCoordinateManager::estimateDepthCoordinates(int focalLength) {
             //auto X = (lX - cx)*Z/fx;
             //auto Y = (lY - cy)*Z/fy;
 
-            auto joint = std::make_tuple(lX, lY, Z); // temporally save coordinates
+            auto joint = std::make_tuple(rX, rY, Z); // temporally save coordinates
             keyPointCoordinates.push_back(joint);
 
-            fprintf(stdout, "Joint Coordinate: [%lf, %lf, %lf]\n", lX, lY, Z);
+            //fprintf(stdout, "Joint Coordinate %d: [%lf, %lf, %lf]\n", i, lX, lY, Z);
         }
         return 0;
     }

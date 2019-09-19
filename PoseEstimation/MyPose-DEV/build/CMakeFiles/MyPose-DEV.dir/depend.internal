@@ -101,6 +101,18 @@ CMakeFiles/MyPose-DEV.dir/src/JsonFileManager.o
  ../include/nlohmann/json.hpp
  ../include/nlohmann/json_fwd.hpp
  /DEVs/Machine-Learning/PoseEstimation/MyPose-DEV/src/JsonFileManager.cpp
+ /usr/local/openpose/include/openpose/core/array.hpp
+ /usr/local/openpose/include/openpose/core/arrayCpuGpu.hpp
+ /usr/local/openpose/include/openpose/core/common.hpp
+ /usr/local/openpose/include/openpose/core/datum.hpp
+ /usr/local/openpose/include/openpose/core/macros.hpp
+ /usr/local/openpose/include/openpose/core/point.hpp
+ /usr/local/openpose/include/openpose/core/rectangle.hpp
+ /usr/local/openpose/include/openpose/pose/enumClasses.hpp
+ /usr/local/openpose/include/openpose/pose/poseParameters.hpp
+ /usr/local/openpose/include/openpose/utilities/enumClasses.hpp
+ /usr/local/openpose/include/openpose/utilities/errorAndLog.hpp
+ /usr/local/openpose/include/openpose/utilities/profiler.hpp
 CMakeFiles/MyPose-DEV.dir/src/MainDelegate.o
  ../include/CameraManager.h
  ../include/JointCoordinateManager.h
@@ -192,6 +204,18 @@ CMakeFiles/MyPose-DEV.dir/src/MainDelegate.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/openpose/include/openpose/core/array.hpp
+ /usr/local/openpose/include/openpose/core/arrayCpuGpu.hpp
+ /usr/local/openpose/include/openpose/core/common.hpp
+ /usr/local/openpose/include/openpose/core/datum.hpp
+ /usr/local/openpose/include/openpose/core/macros.hpp
+ /usr/local/openpose/include/openpose/core/point.hpp
+ /usr/local/openpose/include/openpose/core/rectangle.hpp
+ /usr/local/openpose/include/openpose/pose/enumClasses.hpp
+ /usr/local/openpose/include/openpose/pose/poseParameters.hpp
+ /usr/local/openpose/include/openpose/utilities/enumClasses.hpp
+ /usr/local/openpose/include/openpose/utilities/errorAndLog.hpp
+ /usr/local/openpose/include/openpose/utilities/profiler.hpp
  /usr/local/zed/include/sl/Camera.hpp
  /usr/local/zed/include/sl_core/mapping/Mesh.hpp
  /usr/local/zed/include/sl_core/utils/Core.hpp
@@ -289,6 +313,18 @@ CMakeFiles/MyPose-DEV.dir/src/main.o
  /usr/local/cuda/include/vector_functions.h
  /usr/local/cuda/include/vector_functions.hpp
  /usr/local/cuda/include/vector_types.h
+ /usr/local/openpose/include/openpose/core/array.hpp
+ /usr/local/openpose/include/openpose/core/arrayCpuGpu.hpp
+ /usr/local/openpose/include/openpose/core/common.hpp
+ /usr/local/openpose/include/openpose/core/datum.hpp
+ /usr/local/openpose/include/openpose/core/macros.hpp
+ /usr/local/openpose/include/openpose/core/point.hpp
+ /usr/local/openpose/include/openpose/core/rectangle.hpp
+ /usr/local/openpose/include/openpose/pose/enumClasses.hpp
+ /usr/local/openpose/include/openpose/pose/poseParameters.hpp
+ /usr/local/openpose/include/openpose/utilities/enumClasses.hpp
+ /usr/local/openpose/include/openpose/utilities/errorAndLog.hpp
+ /usr/local/openpose/include/openpose/utilities/profiler.hpp
  /usr/local/zed/include/sl/Camera.hpp
  /usr/local/zed/include/sl_core/mapping/Mesh.hpp
  /usr/local/zed/include/sl_core/utils/Core.hpp

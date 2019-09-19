@@ -17,6 +17,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/cuda/include"
   "/usr/local/zed/include"
   "../include"
+  "/usr/local/openpose/include"
   "/usr/local/include/opencv"
   )
 

@@ -25,7 +25,7 @@ std::vector<std::tuple<double, double, double>> JsonFileManager::estimatedJoints
     std::tuple<double, double, double> joint;
     
     auto keypoints = json["people"][0]["pose_keypoints_2d"]; // Data through People -> 0 -> pose_keypoints_2d
-    auto epsilon = 0.00001; // float number for comparing kypoints whether they are not zero
+    auto epsilon = 0.00001; // double number for comparing kypoints whether they are not zero
 
     for (int i=0; i<keypoints.size()/3; ++i) {        
         bool truefalse = false;
@@ -42,6 +42,27 @@ std::vector<std::tuple<double, double, double>> JsonFileManager::estimatedJoints
     return joints;
 }
 
+void JsonFileManager::writeJSON2File(std::string filename, std::vector<std::tuple<double, double, double>> keyPointCoordinates) {
+    nlohmann::json jsonObject;
+
+    const auto& poseBodyPartMappingBody25 = op::getPoseBodyPartMapping(op::PoseModel::BODY_25);
+    
+    for (int i = 0; i < keyPointCoordinates.size(); ++i) {
+        auto [X, Y, Z] = keyPointCoordinates[i];
+        //std::string s = poseBodyPartMappingBody25.at(i);
+        std::fprintf(stdout, "%s: %f, %f, %f\n", poseBodyPartMappingBody25.at(i).c_str(), X, Y, Z);
+
+        jsonObject[poseBodyPartMappingBody25.at(i)] = {X, Y, Z};
+    }
+
+    std::ofstream file("key.json");
+    file << jsonObject;
+    /*
+    for (auto i: poseBodyPartMappingBody25) {
+        std::fprintf(stdout, "%d: %s\n", i.first, i.second.c_str());
+    }
+    */
+}
 
 void JsonFileManager::jsonFileManagerDidLoad() {
     leftJoints = estimatedJoints(leftJSON);

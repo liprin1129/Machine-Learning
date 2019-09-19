@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
+#include <openpose/pose/poseParameters.hpp>
 
 class JsonFileManager {
     private:
@@ -27,6 +29,7 @@ class JsonFileManager {
 
         // Methods
         JsonFileManager(std::string lF, std::string rF); // Constructor
+        void writeJSON2File(std::string filename, std::vector<std::tuple<double, double, double>> keyPointCoordinates);
         void jsonFileManagerDidLoad();
         //void jsonPrint();
 };

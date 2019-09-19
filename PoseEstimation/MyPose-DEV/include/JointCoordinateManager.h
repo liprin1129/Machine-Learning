@@ -12,6 +12,9 @@ class JointCoordinateManager {
         std::vector<std::tuple<double, double, double>> rightJoints; // vector having the right image's keypoints
 
     public:
+        // Getters
+        std::vector<std::tuple<double, double, double>> getkeyPointCoordinates(){return keyPointCoordinates;};
+
         JointCoordinateManager(
             std::vector<std::tuple<double, double, double>> lj, 
             std::vector<std::tuple<double, double, double>> rj); // Constructor
