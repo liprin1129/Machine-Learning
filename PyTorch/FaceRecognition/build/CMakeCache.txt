@@ -15,10 +15,13 @@
 ########################
 
 //Path to a library.
-C10_CUDA_LIBRARY:FILEPATH=/usr/local/lib/python3.6/dist-packages/torch/lib/libc10_cuda.so
+C10_CUDA_LIBRARY:FILEPATH=/usr/local/libtorch/lib/libc10_cuda.so
 
 //Path to a library.
-C10_LIBRARY:FILEPATH=/usr/local/lib/python3.6/dist-packages/torch/lib/libc10.so
+C10_LIBRARY:FILEPATH=/usr/local/libtorch/lib/libc10.so
+
+//Path to a program.
+CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
@@ -82,6 +85,9 @@ CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the C compiler during RELWITHDEBINFO builds.
 CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
+//Path to a program.
+CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
+
 //Flags used by the linker during all build types.
 CMAKE_EXE_LINKER_FLAGS:STRING=
 
@@ -98,7 +104,7 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
@@ -138,9 +144,6 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
-//No help, variable specified on the command line.
-CMAKE_PREFIX_PATH:UNINITIALIZED=/usr/local/lib/python3.6/dist-packages/torch
-
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
 
@@ -152,6 +155,9 @@ CMAKE_PROJECT_NAME:STATIC=SJC
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
+
+//Path to a program.
+CMAKE_READELF:FILEPATH=/usr/bin/readelf
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
@@ -226,7 +232,7 @@ CUDA_BUILD_EMULATION:BOOL=OFF
 CUDA_CUDART_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcudart.so
 
 //Path to a library.
-CUDA_CUDA_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libcuda.so
+CUDA_CUDA_LIB:FILEPATH=/usr/local/cuda/lib64/stubs/libcuda.so
 
 //"cuda" library (older versions only).
 CUDA_CUDA_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcuda.so
@@ -289,10 +295,10 @@ CUDA_TOOLKIT_ROOT_DIR:PATH=/usr/local/cuda
 CUDA_VERBOSE_BUILD:BOOL=OFF
 
 //Version of CUDA as computed from nvcc.
-CUDA_VERSION:STRING=10.0
+CUDA_VERSION:STRING=10.2
 
 //"cublas" library
-CUDA_cublas_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcublas.so
+CUDA_cublas_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcublas.so
 
 //"cudadevrt" library
 CUDA_cudadevrt_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcudadevrt.a
@@ -304,7 +310,7 @@ CUDA_cudart_static_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcudart_static.a
 CUDA_cufft_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcufft.so
 
 //"cupti" library
-CUDA_cupti_LIBRARY:FILEPATH=/usr/local/cuda/extras/CUPTI/lib64/libcupti.so
+CUDA_cupti_LIBRARY:FILEPATH=CUDA_cupti_LIBRARY-NOTFOUND
 
 //"curand" library
 CUDA_curand_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcurand.so
@@ -354,17 +360,26 @@ CUDA_nppitc_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libnppitc.so
 //"npps" library
 CUDA_npps_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libnpps.so
 
+//Folder containing NVIDIA cuDNN header files
+CUDNN_INCLUDE_DIR:PATH=
+
 //Path to a file.
-CUDNN_INCLUDE_DIR:PATH=/usr/local/cuda/include
+CUDNN_INCLUDE_PATH:PATH=/usr/include
+
+//Path to the cudnn library file (e.g., libcudnn.so)
+CUDNN_LIBRARY:PATH=
 
 //Path to a library.
-CUDNN_LIBRARY:FILEPATH=/usr/local/cuda/lib64/libcudnn.so
+CUDNN_LIBRARY_PATH:FILEPATH=/usr/lib/x86_64-linux-gnu/libcudnn.so
 
-//Folder contains NVIDIA cuDNN
-CUDNN_ROOT_DIR:PATH=
+//Folder containing NVIDIA cuDNN
+CUDNN_ROOT:PATH=
+
+//Look for static CUDNN
+CUDNN_STATIC:BOOL=OFF
 
 //The directory containing a CMake configuration file for Caffe2.
-Caffe2_DIR:PATH=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2
+Caffe2_DIR:PATH=/usr/local/libtorch/share/cmake/Caffe2
 
 //Path to a library.
 LIBNVTOOLSEXT:FILEPATH=/usr/local/cuda/lib64/libnvToolsExt.so
@@ -385,16 +400,18 @@ SJC_BINARY_DIR:STATIC=/DEVs/Machine-Learning/PyTorch/FaceRecognition/build
 SJC_SOURCE_DIR:STATIC=/DEVs/Machine-Learning/PyTorch/FaceRecognition
 
 //Path to a library.
-TORCH_LIBRARY:FILEPATH=/usr/local/lib/python3.6/dist-packages/torch/lib/libtorch.so
+TORCH_LIBRARY:FILEPATH=/usr/local/libtorch/lib/libtorch.so
 
 //The directory containing a CMake configuration file for Torch.
-Torch_DIR:PATH=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Torch
+Torch_DIR:PATH=/usr/local/libtorch/share/cmake/Torch
 
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: CMAKE_ADDR2LINE
+CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -402,9 +419,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/DEVs/Machine-Learning/PyTorch/FaceRecognition/buil
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=14
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=18
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=4
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=0
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -445,6 +462,8 @@ CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_DLLTOOL
+CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -469,8 +488,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Have symbol pthread_create
-CMAKE_HAVE_LIBC_CREATE:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
 //Have library pthreads
 CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
 //Have library pthread
@@ -508,8 +527,10 @@ CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_READELF
+CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/local/share/cmake-3.14
+CMAKE_ROOT:INTERNAL=/usr/local/share/cmake-3.18
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -555,7 +576,7 @@ CUDA_CUDA_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_GENERATED_OUTPUT_DIR
 CUDA_GENERATED_OUTPUT_DIR-ADVANCED:INTERNAL=1
 //Returned GPU architectures from detect_gpus tool
-CUDA_GPU_DETECT_OUTPUT:INTERNAL=6.1
+CUDA_GPU_DETECT_OUTPUT:INTERNAL=7.5
 //ADVANCED property for variable: CUDA_HOST_COMPILATION_CPP
 CUDA_HOST_COMPILATION_CPP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_NVCC_EXECUTABLE
@@ -610,7 +631,7 @@ CUDA_cusolver_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_cusparse_LIBRARY
 CUDA_cusparse_LIBRARY-ADVANCED:INTERNAL=1
 //Location of make2cmake.cmake
-CUDA_make2cmake:INTERNAL=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/make2cmake.cmake
+CUDA_make2cmake:INTERNAL=/usr/local/libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/make2cmake.cmake
 //ADVANCED property for variable: CUDA_nppc_LIBRARY
 CUDA_nppc_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_nppi_LIBRARY
@@ -638,19 +659,25 @@ CUDA_nppitc_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_npps_LIBRARY
 CUDA_npps_LIBRARY-ADVANCED:INTERNAL=1
 //Location of parse_cubin.cmake
-CUDA_parse_cubin:INTERNAL=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/parse_cubin.cmake
+CUDA_parse_cubin:INTERNAL=/usr/local/libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/parse_cubin.cmake
 //Location of run_nvcc.cmake
-CUDA_run_nvcc:INTERNAL=/usr/local/lib/python3.6/dist-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/run_nvcc.cmake
+CUDA_run_nvcc:INTERNAL=/usr/local/libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/run_nvcc.cmake
+//ADVANCED property for variable: CUDNN_INCLUDE_DIR
+CUDNN_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CUDNN_LIBRARY
+CUDNN_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CUDNN_ROOT
+CUDNN_ROOT-ADVANCED:INTERNAL=1
 //Details about finding CUDA
-FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda][/usr/local/cuda/bin/nvcc][/usr/local/cuda/include][/usr/local/cuda/lib64/libcudart.so][v10.0()]
+FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda][/usr/local/cuda/bin/nvcc][/usr/local/cuda/include][/usr/local/cuda/lib64/libcudart.so][v10.2()]
 //Details about finding CUDNN
-FIND_PACKAGE_MESSAGE_DETAILS_CUDNN:INTERNAL=[/usr/local/cuda/include][/usr/local/cuda/lib64/libcudnn.so][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_CUDNN:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcudnn.so][/usr/include][v()]
 //Details about finding OpenCV
-FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.4.5()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.4.10()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding torch
-FIND_PACKAGE_MESSAGE_DETAILS_torch:INTERNAL=[/usr/local/lib/python3.6/dist-packages/torch/lib/libtorch.so][/usr/local/lib/python3.6/dist-packages/torch/include;/usr/local/lib/python3.6/dist-packages/torch/include/torch/csrc/api/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_torch:INTERNAL=[/usr/local/libtorch/lib/libtorch.so][/usr/local/libtorch/include;/usr/local/libtorch/include/torch/csrc/api/include][v()]
 //Result of TRY_COMPILE
 compile_result:INTERNAL=TRUE
 //Result of TRY_RUN

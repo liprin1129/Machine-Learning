@@ -23,3 +23,8 @@ PyTorch/FaceLandmarkViewer/build/haarcascade_frontalface_alt2\.xml
 PyTorch/FaceLandmarkViewer/build/lbfmodel\.yaml
 
 *.csv
+PyTorch/DEMO-FaceRecognition/visualizer/data/
+PyTorch/DEMO-FaceRecognition/runs/face_rec_net_1/events.out.tfevents.1593666267.428f33b44759.7086.31
+PyTorch/DEMO-FaceRecognition/runs/
+PyTorch/DEMO-FaceRecognition/runs_backup/face_rec_net_1/events.out.tfevents.1593153219.3e498acd2046.1549.26
+PyTorch/DEMO-FaceRecognition/runs_backup/
