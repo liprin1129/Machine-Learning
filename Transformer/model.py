@@ -16,14 +16,17 @@ class InputEmbeddings(nn.Module):
         return self.embedding(x) * math.sqrt(self.d_model)
     
 class PositionalEncoding(nn.Module):
-
-    def __init__(self, d_model: int, seq_len: int, dropout: float) -> None:
-        super().__init__()
-        self.d_model = d_model
-        self.seq_len = seq_len
+    "Implement the PE function"
+    def __init__(self, d_model: int, dropout: float, max_len:int=5000) -> None:
+        super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(dropout)
 
-        # Create a matri of shape (seq_len, d_model)
-        pe = torch.zeros(seq_len, d_model)
-        # Create a vector of shape ( Seq_Len, 1)
-        position = torch.arange(0, seq_len, dtype=torch.float).unsqueeze(1)
+        #self.d_model = d_model
+        #self.max_len = max_len
+        
+
+        # Create a matrix of shape (seq_len, d_model)
+        pe = torch.zeros(max_len, d_model)
+        # Create a vector of shape (max_len, 1)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        power_factor = torch.arange(0, max_len, 2) / d_model
